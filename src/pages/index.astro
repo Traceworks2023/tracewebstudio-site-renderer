@@ -1,15 +1,42 @@
 ---
-const { tenant, site, language } = Astro.locals;
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Contact from '../components/Contact.astro';
+
+const tenant = Astro.locals.tenant;
+const language = Astro.locals.language;
+
+const content = {
+  hero: {
+    heading: language === 'fr' ? 'Bienvenue' : language === 'ta' ? 'வரவேற்பு' : 'Welcome',
+    subheading: language === 'fr' ? 'Votre site web professionnel' : language === 'ta' ? 'உங்கள் தொழில்முறை வலைத்தளம்' : 'Your professional website',
+    cta: language === 'fr' ? 'Commencer' : language === 'ta' ? 'தொடங்குங்கள்' : 'Get Started',
+  },
+  features: language === 'fr' ? [
+    { title: 'Facile', description: 'Configurez en minutes' },
+    { title: 'Rapide', description: 'Hébergement ultra rapide' },
+    { title: 'Sécurisé', description: 'SSL et sauvegardes automatiques' },
+  ] : language === 'ta' ? [
+    { title: 'எளிதான', description: 'நிமிடங்களில் அமைக்கவும்' },
+    { title: 'வேகமான', description: 'வேகமான ஹோஸ்டிங்' },
+    { title: 'பாதுகாப்பான', description: 'SSL மற்றும் தானியங்கி காப்புப்பிரதி' },
+  ] : [
+    { title: 'Easy', description: 'Set up in minutes' },
+    { title: 'Fast', description: 'Ultra-fast hosting' },
+    { title: 'Secure', description: 'SSL and automatic backups' },
+  ],
+};
 ---
-<html>
-  <head>
-    <title>{site?.name || 'Tracewebstudio Site'}</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <h1>{site?.name || 'Welcome'}</h1>
-    <p>Language: {language}</p>
-    <p>Rendering tenant: {tenant}</p>
-  </body>
-</html>
+
+<SiteLayout tenant={tenant} language={language}>
+  <Hero 
+    heading={content.hero.heading}
+    subheading={content.hero.subheading}
+    cta={content.hero.cta}
+  />
+  
+  <Features items={content.features} />
+  
+  <Contact language={language} />
+</SiteLayout>

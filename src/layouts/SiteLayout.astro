@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  tenant?: {
+    siteSlug: string;
+    defaultLanguage: string;
+    enabledLanguages: string[];
+  };
+  language?: string;
+}
+
+const { tenant, language = 'en' } = Astro.props;
+const siteName = tenant?.siteSlug || 'Tracewebstudio Site';
+---
+
+<BaseLayout title={siteName} language={language}>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="/" class="logo">{siteName}</a>
+        
+        {tenant?.enabledLanguages && tenant.enabledLanguages.length > 1 && (
+          <div class="language-switcher">
+            {tenant.enabledLanguages.map((lang: string) => (
+              <a 
+                href={`/${lang === tenant.defaultLanguage ? '' : lang}`}
+                class:list={['lang-link', { active: lang === language }]}
+              >
+                {lang.toUpperCase()}
+              </a>
+            ))}
+          </div>
+        )}
+      </nav>
+    </div>
+  </header>
+  
+  <main>
+    <slot />
+  </main>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {new Date().getFullYear()} {siteName}. Built with Tracewebstudio.</p>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .site-header {
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+  
+  .language-switcher {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .lang-link {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--color-text);
+    opacity: 0.7;
+  }
+  
+  .lang-link:hover {
+    opacity: 1;
+  }
+  
+  .lang-link.active {
+    background: var(--color-accent);
+    color: white;
+    opacity: 1;
+  }
+  
+  .site-footer {
+    background: var(--color-primary);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 4rem;
+    text-align: center;
+  }
+  
+  main {
+    min-height: 60vh;
+  }
+</style>

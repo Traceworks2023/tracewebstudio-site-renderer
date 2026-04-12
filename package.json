@@ -9,7 +9,11 @@
   },
   "dependencies": {
     "@astrojs/solid-js": "^3.0.0",
+    "@tracewebstudio/shared": "workspace:*",
     "astro": "^4.0.0",
     "solid-js": "^1.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
   }
 }

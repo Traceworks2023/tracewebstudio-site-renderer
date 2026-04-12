@@ -1,0 +1,84 @@
+---
+interface Props {
+  language?: string;
+}
+
+const { language = 'en' } = Astro.props;
+---
+
+<section class="contact">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <form class="contact-form">
+      <div class="form-group">
+        <label for="name">
+          {language === 'fr' ? 'Nom' : language === 'ta' ? 'பெயர்' : 'Name'}
+        </label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="email">
+          {language === 'fr' ? 'Email' : language === 'ta' ? 'மின்னஞ்சல்' : 'Email'}
+        </label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="message">
+          {language === 'fr' ? 'Message' : language === 'ta' ? 'செய்தி' : 'Message'}
+        </label>
+        <textarea id="message" name="message" rows="4" required />
+      </div>
+      
+      <button type="submit" class="btn btn-primary">
+        {language === 'fr' ? 'Envoyer' : language === 'ta' ? 'அனுப்பு' : 'Send'}
+      </button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 4rem 0;
+    background: white;
+  }
+  
+  .contact h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  label {
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  input, textarea {
+    padding: 0.75rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(250, 80, 20, 0.1);
+  }
+</style>
