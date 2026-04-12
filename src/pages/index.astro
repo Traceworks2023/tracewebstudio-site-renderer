@@ -1,0 +1,15 @@
+---
+const { tenant, site, language } = Astro.locals;
+---
+<html>
+  <head>
+    <title>{site?.name || 'Tracewebstudio Site'}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>{site?.name || 'Welcome'}</h1>
+    <p>Language: {language}</p>
+    <p>Rendering tenant: {tenant}</p>
+  </body>
+</html>
