@@ -1,0 +1,183 @@
+---
+// Fashion Street - Urban Streetwear Template
+// Bold, edgy streetwear aesthetic
+
+import Header from '../sections/Header.astro';
+import HeroSection from '../sections/HeroSection.astro';
+import CategoriesStrip from '../sections/CategoriesStrip.astro';
+import ProductGrid from '../sections/ProductGrid.astro';
+import PromoSection from '../sections/PromoSection.astro';
+import LookBook from '../sections/LookBook.astro';
+import BrandStatement from '../sections/BrandStatement.astro';
+import NewsletterSection from '../sections/NewsletterSection.astro';
+import FooterSection from '../sections/FooterSection.astro';
+
+import type { SiteConfig } from '../../lib/site-config';
+
+interface Props {
+  siteConfig: SiteConfig;
+}
+
+const { siteConfig } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{siteConfig?.site_name || 'URBN'} - Streetwear & Urban Fashion</title>
+  
+  <!-- Google Fonts - Bold urban fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Bebas Neue', 'sans-serif'],
+            heading: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            street: '#1a1a1a',
+            accent: '#FF3D00',
+            neon: '#00FF88'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style is:global>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; }
+    .font-display { font-family: 'Bebas Neue', sans-serif; }
+    .font-heading { font-family: 'Space Grotesk', sans-serif; }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; }
+    ::-webkit-scrollbar-thumb { background: #FF3D00; border-radius: 4px; }
+    
+    /* Glitch effect for hover */
+    .glitch:hover {
+      animation: glitch 0.3s linear;
+    }
+    @keyframes glitch {
+      0% { transform: translate(0) }
+      20% { transform: translate(-2px, 2px) }
+      40% { transform: translate(-2px, -2px) }
+      60% { transform: translate(2px, 2px) }
+      80% { transform: translate(2px, -2px) }
+      100% { transform: translate(0) }
+    }
+    
+    /* Neon glow */
+    .neon-glow {
+      text-shadow: 0 0 10px #00FF88, 0 0 20px #00FF88, 0 0 30px #00FF88;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-black">
+  <!-- Header -->
+  <Header siteConfig={siteConfig} />
+  
+  <!-- Main Content -->
+  <main class="flex-1">
+    <!-- Hero - Full screen with bold typography -->
+    <HeroSection content={{
+      heading: 'STREET IS KING',
+      subheading: 'Express your attitude. Define your vibe.',
+      cta_text: 'SHOP DROPS',
+      cta_url: '/new',
+      background_image: 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1920',
+      overlay_opacity: 0.7,
+      height: 'full'
+    }} />
+    
+    <!-- Categories Strip - Horizontal scroll -->
+    <CategoriesStrip content={{
+      categories: [
+        { name: 'Hoodies', slug: 'hoodies', image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400' },
+        { name: 'T-Shirts', slug: 't-shirts', image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400' },
+        { name: 'Sneakers', slug: 'sneakers', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400' },
+        { name: 'Caps', slug: 'caps', image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400' },
+        { name: 'Bags', slug: 'bags', image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400' },
+        { name: 'Accessories', slug: 'accessories', image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400' }
+      ]
+    }} />
+    
+    <!-- Brand Statement -->
+    <BrandStatement content={{
+      text: 'WE DON\'T FOLLOW TRENDS. WE SET THEM.',
+      subtext: 'Born from the streets. Made for the bold.'
+    }} />
+    
+    <!-- Product Grid - 4 columns -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="flex items-center justify-between mb-12">
+          <h2 class="font-display text-5xl md:text-7xl tracking-wider">LATEST DROPS</h2>
+          <a href="/products" class="font-heading text-sm tracking-widest hover:text-accent transition-colors">
+            VIEW ALL →
+          </a>
+        </div>
+        
+        <ProductGrid content={{
+          products: [
+            { id: '1', name: 'Oversized Graphic Tee', price: 1999, image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400', badge: 'NEW', rating: 4.5 },
+            { id: '2', name: 'Cargo Joggers', price: 3499, image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400', rating: 4.3 },
+            { id: '3', name: 'Essential Hoodie', price: 4299, original_price: 5999, image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400', badge: 'SALE', rating: 4.7 },
+            { id: '4', name: 'Chain Necklace', price: 1499, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400', rating: 4.4 },
+            { id: '5', name: 'Bucket Hat', price: 999, image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400', badge: 'TRENDING', rating: 4.6 },
+            { id: '6', name: 'Crossbody Bag', price: 2499, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400', rating: 4.5 },
+            { id: '7', name: 'Graphic Hoodie', price: 3999, image: 'https://images.unsplash.com/photo-1578681994506-b8f463449011?w=400', badge: 'HOT', rating: 4.8 },
+            { id: '8', name: 'Chunky Sneakers', price: 5999, original_price: 7999, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400', badge: 'SALE', rating: 4.9 }
+          ],
+          columns: 4
+        }} />
+      </div>
+    </section>
+    
+    <!-- Promo Section - Bold statement -->
+    <PromoSection content={{
+      heading: 'USE CODE',
+      code: 'STREET20',
+      discount: '20% OFF',
+      subtext: 'On your first order',
+      background_image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920'
+    }} />
+    
+    <!-- Look Book -->
+    <LookBook content={{
+      title: 'THE LOOK BOOK',
+      images: [
+        'https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=600',
+        'https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=600',
+        'https://images.unsplash.com/photo-1578681994506-b8f463449011?w=600',
+        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
+        'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600',
+        'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600'
+      ]
+    }} />
+    
+    <!-- Newsletter -->
+    <NewsletterSection content={{
+      heading: 'JOIN THE MOVEMENT',
+      description: 'Get early access to drops, exclusive offers, and street style inspiration.',
+      placeholder_text: 'Enter your email',
+      button_text: 'SUBSCRIBE',
+      background_color: '#0a0a0a'
+    }} />
+  </main>
+  
+  <!-- Footer -->
+  <FooterSection siteConfig={siteConfig} />
+</body>
+</html>

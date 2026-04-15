@@ -1,0 +1,294 @@
+{
+  "id": "portfolio-video-01",
+  "name": "Video Producer 01",
+  "slug": "portfolio-video-01",
+  "category": "portfolio",
+  "subcategory": "video",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Cinematic video producer portfolio with dramatic presentation. Perfect for videographers, filmmakers, and video production studios.",
+  "previewImage": "https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=800",
+  "structure": {
+    "home": {
+      "layout": "no-hero-showcase",
+      "sections": ["showreel", "work", "services", "about", "contact", "footer"],
+      "heroStyle": {
+        "height": "medium",
+        "textAlignment": "center",
+        "showOverlay": true,
+        "overlayOpacity": 0.6,
+        "showScrollIndicator": false
+      },
+      "productGrid": {
+        "columns": 2,
+        "aspectRatio": "16/9",
+        "showQuickView": false,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "minimal",
+        "sticky": true,
+        "showSearch": false,
+        "showCart": false,
+        "showWishlist": false
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 3,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "no-filter",
+      "grid": {
+        "columns": 2,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "16/9"
+      },
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false,
+        "showClearAll": false
+      },
+      "pagination": {
+        "style": "infinite-scroll",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": false,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "bottom",
+        "showResultCount": false
+      }
+    },
+    "product": {
+      "layout": "gallery-full-left",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": true,
+        "showThumbnails": false,
+        "thumbnailColumns": 1
+      },
+      "info": {
+        "showRating": false,
+        "showPrice": false,
+        "showStock": false,
+        "showSku": false,
+        "showShare": true,
+        "showWishlist": false
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": false,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-info"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 2
+      }
+    },
+    "cart": {
+      "layout": "minimal",
+      "showImages": false,
+      "showQuantities": false,
+      "showRemove": false,
+      "showCoupon": false,
+      "showSummary": false,
+      "continueShoppingUrl": "/work"
+    },
+    "checkout": {
+      "layout": "minimal",
+      "steps": ["contact"],
+      "showOrderSummary": false,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "minimal",
+      "sidebar": {
+        "width": "220px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": false
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": false,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "minimal",
+      "showFilters": false,
+      "showRecent": false,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "dark",
+    "defaultMode": "dark",
+    "colors": {
+      "primary": "#FFFFFF",
+      "primaryHover": "#E0E0E0",
+      "secondary": "#1A1A1A",
+      "secondaryHover": "#2A2A2A",
+      "accent": "#FF3D00",
+      "accentHover": "#E52D00",
+      "background": "#0A0A0A",
+      "surface": "#141414",
+      "surfaceAlt": "#1E1E1E",
+      "textPrimary": "#FFFFFF",
+      "textSecondary": "#808080",
+      "textMuted": "#505050",
+      "border": "#2A2A2A",
+      "borderLight": "#333333",
+      "success": "#4CAF50",
+      "warning": "#FFC107",
+      "error": "#FF3D00",
+      "info": "#2196F3"
+    },
+    "dark": {
+      "background": "#0A0A0A",
+      "surface": "#141414",
+      "textPrimary": "#FFFFFF",
+      "textSecondary": "#808080"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "400",
+        "textTransform": "uppercase",
+        "shadow": "none",
+        "hoverEffect": "color"
+      },
+      "secondary": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "400",
+        "textTransform": "uppercase",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "400",
+        "textTransform": "uppercase",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "0px",
+      "shadow": "none",
+      "shadowHover": "none",
+      "border": "none",
+      "padding": "0px",
+      "hoverEffect": "none"
+    },
+    "inputs": {
+      "borderRadius": "0px",
+      "border": "1px solid #333333",
+      "focusBorder": "#FFFFFF",
+      "padding": "14px 18px",
+      "background": "#141414"
+    },
+    "badges": {
+      "borderRadius": "0px",
+      "padding": "6px 14px",
+      "fontSize": "10px",
+      "fontWeight": "600",
+      "textTransform": "uppercase"
+    },
+    "navigation": {
+      "itemSpacing": "40px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "16/9",
+      "showBadges": false,
+      "showQuickView": false,
+      "showAddToCart": false,
+      "showWishlist": false,
+      "showRating": false,
+      "hoverEffect": "none"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Bebas Neue",
+      "weight": "400",
+      "transform": "uppercase",
+      "letterSpacing": "0.05em"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": "400",
+      "size": "14px",
+      "lineHeight": "1.7"
+    },
+    "accent": {
+      "family": "Bebas Neue",
+      "weight": "400"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "100px 0",
+    "containerWidth": "1400px",
+    "gridGap": "32px",
+    "cardGap": "24px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "none",
+      "md": "none",
+      "lg": "none",
+      "xl": "none"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "0px",
+      "md": "0px",
+      "lg": "0px",
+      "xl": "0px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "200ms ease",
+      "normal": "400ms ease",
+      "slow": "600ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "none"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["portfolio", "video", "filmmaker", "cinematic", "dark", "dramatic"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["showreel", "portfolio", "services", "contact"]
+    }
+  }
+}

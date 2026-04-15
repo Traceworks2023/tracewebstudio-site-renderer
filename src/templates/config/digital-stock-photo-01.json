@@ -1,0 +1,43 @@
+{
+  "id": "digital-stock-photo-01",
+  "name": "Digital Stock Photos",
+  "category": "digital",
+  "subcategory": "stock-photos",
+  "description": "Stock photography marketplace with search-focused design",
+  "version": "1.0.0",
+  "tags": ["digital", "stock-photos", "images", "marketplace"],
+  "components": {
+    "header": {
+      "layout": "search-focused",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "categories", "position": "center" },
+      "actions": ["pricing", "upload"]
+    },
+    "footer": {
+      "layout": "photo-dark",
+      "columns": ["photos", "vectors", "pricing", "contributors"]
+    },
+    "photoCard": { "layout": "preview-download" }
+  },
+  "pages": {
+    "home": { "layout": "browse-photos", "sections": ["hero", "trending", "categories", "pricing", "contributors"] },
+    "search": { "layout": "photo-grid" },
+    "photo": { "layout": "license-select" }
+  },
+  "colors": {
+    "primary": "#1A1A1A",
+    "secondary": "#FFFFFF",
+    "accent": "#00C853",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Inter", "weight": "600" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

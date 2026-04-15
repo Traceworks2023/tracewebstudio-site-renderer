@@ -1,0 +1,43 @@
+{
+  "id": "business-marketing-02",
+  "name": "Business Marketing Agency",
+  "category": "business",
+  "subcategory": "marketing-agency",
+  "description": "Marketing agency with creative, campaign-focused design",
+  "version": "1.0.0",
+  "tags": ["business", "marketing", "agency", "creative"],
+  "components": {
+    "header": {
+      "layout": "creative-dark",
+      "logo": { "type": "bold", "position": "center" },
+      "navigation": { "type": "services", "position": "below" },
+      "actions": ["contact"]
+    },
+    "footer": {
+      "layout": "campaign-dark",
+      "columns": ["services", "work", "insights", "contact"]
+    },
+    "workCard": { "layout": "campaign-art" }
+  },
+  "pages": {
+    "home": { "layout": "creative-agency", "sections": ["hero", "work", "services", "insights", "contact"] },
+    "work": { "layout": "campaign-grid" },
+    "service": { "layout": "service-creative" }
+  },
+  "colors": {
+    "primary": "#FF5722",
+    "secondary": "#1A1A1A",
+    "accent": "#FFEB3B",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Bebas Neue", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 5px 25px rgba(255,87,34,0.25)" }
+}

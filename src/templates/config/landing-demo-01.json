@@ -1,0 +1,41 @@
+{
+  "id": "landing-demo-01",
+  "name": "Landing Product Demo",
+  "category": "landing",
+  "subcategory": "demo",
+  "description": "Product demo request with feature showcase design",
+  "version": "1.0.0",
+  "tags": ["landing", "demo", "product", "showcase"],
+  "components": {
+    "header": {
+      "layout": "demo-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "features", "position": "center" },
+      "actions": ["demo"]
+    },
+    "footer": {
+      "layout": "product-dark",
+      "columns": ["features", "integrations", "pricing", "company"]
+    },
+    "featureCard": { "layout": "demo-feature" }
+  },
+  "pages": {
+    "home": { "layout": "see-it-live", "sections": ["hero", "features", "demo-video", "testimonials", "demo"] }
+  },
+  "colors": {
+    "primary": "#FF5722",
+    "secondary": "#1A1A1A",
+    "accent": "#00E676",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "600" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "8px", "cards": "12px" },
+  "shadows": { "cards": "0 8px 40px rgba(255,87,34,0.25)" }
+}

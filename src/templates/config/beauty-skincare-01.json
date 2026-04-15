@@ -1,0 +1,44 @@
+{
+  "id": "beauty-skincare-01",
+  "name": "Beauty Skincare",
+  "category": "beauty",
+  "subcategory": "skincare",
+  "description": "Skincare products with clean, clinical design",
+  "version": "1.0.0",
+  "tags": ["beauty", "skincare", "clinical", "glow"],
+  "components": {
+    "header": {
+      "layout": "clinical-light",
+      "logo": { "type": "pure", "position": "center" },
+      "navigation": { "type": "concerns", "position": "below" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "glow-dark",
+      "columns": ["routine", "concerns", "ingredients", "about"]
+    },
+    "productCard": { "layout": "bottle-clean" },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "skin-glow", "sections": ["hero", "routine", "concerns", "ingredients", "about"] },
+    "category": { "layout": "routine-grid" },
+    "product": { "layout": "ingredient-detail" }
+  },
+  "colors": {
+    "primary": "#E0E0E0",
+    "secondary": "#FAFAFA",
+    "accent": "#00ACC1",
+    "background": "#FFFFFF",
+    "surface": "#FAFAFA",
+    "text": "#1A1A1A",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "500" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 2px 8px rgba(0,0,0,0.08)" }
+}

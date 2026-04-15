@@ -1,0 +1,167 @@
+---
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  faqs?: FAQ[];
+}
+
+const {
+  title = "Frequently Asked Questions",
+  subtitle = "Find answers to common questions",
+  faqs = [
+    {
+      question: "How do I get started?",
+      answer: "Simply sign up for a free account and you can start building your website immediately. No credit card required.",
+    },
+    {
+      question: "Can I use my own domain?",
+      answer: "Yes! You can connect any domain you own to your website. We provide free SSL certificates.",
+    },
+    {
+      question: "What payment methods do you accept?",
+      answer: "We accept all major credit cards, PayPal, and bank transfers for annual plans.",
+    },
+    {
+      question: "Can I cancel anytime?",
+      answer: "Yes, you can cancel your subscription at any time. No long-term contracts required.",
+    },
+    {
+      question: "Do you offer support?",
+      answer: "We offer 24/7 email support for all plans. Professional and Enterprise plans include priority phone support.",
+    },
+  ],
+} = Astro.props;
+---
+
+<section class="faq">
+  <div class="faq-container">
+    <div class="faq-header">
+      <h2 class="faq-title">{title}</h2>
+      {subtitle && <p class="faq-subtitle">{subtitle}</p>}
+    </div>
+    <div class="faq-list">
+      {faqs.map((faq, index) => (
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span class="question-text">{faq.question}</span>
+            <span class="toggle-icon">+</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: 5rem 2rem;
+    background-color: #F9FAFB;
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .faq-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000032;
+    margin: 0 0 1rem 0;
+  }
+
+  .faq-subtitle {
+    font-size: 1.125rem;
+    color: #6B7280;
+    margin: 0;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: #FA5014;
+  }
+
+  .faq-item[open] {
+    border-color: #FA5014;
+    box-shadow: 0 4px 12px rgba(250, 80, 20, 0.1);
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: #111827;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .question-text {
+    flex: 1;
+    padding-right: 1rem;
+  }
+
+  .toggle-icon {
+    font-size: 1.5rem;
+    color: #FA5014;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item[open] .toggle-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem 1.5rem;
+    color: #6B7280;
+    line-height: 1.7;
+  }
+
+  .faq-answer p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .faq {
+      padding: 3rem 1rem;
+    }
+
+    .faq-title {
+      font-size: 2rem;
+    }
+  }
+</style>

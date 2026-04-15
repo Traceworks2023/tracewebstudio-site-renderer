@@ -1,0 +1,294 @@
+{
+  "id": "restaurant-fastfood-01",
+  "name": "Fast Food 01",
+  "slug": "restaurant-fastfood-01",
+  "category": "restaurant",
+  "subcategory": "fast-food",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Vibrant fast food restaurant template with bold colors. Perfect for quick service restaurants, burger joints, and casual dining.",
+  "previewImage": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800",
+  "structure": {
+    "home": {
+      "layout": "grid-showcase",
+      "sections": ["hero", "menu-categories", "featured-items", "deals", "locations", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "center",
+        "showOverlay": true,
+        "overlayOpacity": 0.5,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 3,
+        "aspectRatio": "1/1",
+        "showQuickView": false,
+        "showAddToCart": true
+      },
+      "navigation": {
+        "style": "hamburger",
+        "sticky": true,
+        "showSearch": false,
+        "showCart": true,
+        "showWishlist": false
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": true
+      }
+    },
+    "category": {
+      "layout": "top-filter-bar",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "1/1"
+      },
+      "sidebar": {
+        "width": "240px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "load-more",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "full-width"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": false,
+        "showThumbnails": false,
+        "thumbnailColumns": 1
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": false,
+        "showSku": false,
+        "showShare": true,
+        "showWishlist": false
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": true,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": true,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "box",
+        "position": "below-info"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "carousel",
+        "columns": 3
+      }
+    },
+    "cart": {
+      "layout": "drawer",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/menu"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["order-type", "contact", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": true
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": false,
+      "showRememberMe": false,
+      "showForgotPassword": false
+    },
+    "search": {
+      "layout": "minimal",
+      "showFilters": false,
+      "showRecent": false,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#FF0000",
+      "primaryHover": "#E60000",
+      "secondary": "#FFC72C",
+      "secondaryHover": "#FFDB3C",
+      "accent": "#FFFFFF",
+      "accentHover": "#F0F0F0",
+      "background": "#FFFFFF",
+      "surface": "#FFF5F5",
+      "surfaceAlt": "#FFEBEB",
+      "textPrimary": "#1A1A1A",
+      "textSecondary": "#4A4A4A",
+      "textMuted": "#8A8A8A",
+      "border": "#FFE5E5",
+      "borderLight": "#FFF0F0",
+      "success": "#00C853",
+      "warning": "#FFB300",
+      "error": "#FF1744",
+      "info": "#2979FF"
+    },
+    "dark": {
+      "background": "#1A0000",
+      "surface": "#2A1010",
+      "textPrimary": "#FFFFFF",
+      "textSecondary": "#FFB3B3"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "50px",
+        "padding": "14px 28px",
+        "fontWeight": "700",
+        "textTransform": "uppercase",
+        "shadow": "0 4px 12px rgba(255, 0, 0, 0.3)",
+        "hoverEffect": "scale"
+      },
+      "secondary": {
+        "borderRadius": "50px",
+        "padding": "14px 28px",
+        "fontWeight": "700",
+        "textTransform": "uppercase",
+        "hoverEffect": "shadow"
+      },
+      "outline": {
+        "borderRadius": "50px",
+        "padding": "14px 28px",
+        "fontWeight": "700",
+        "textTransform": "uppercase",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "16px",
+      "shadow": "0 4px 16px rgba(0,0,0,0.08)",
+      "shadowHover": "0 8px 28px rgba(255, 0, 0, 0.15)",
+      "border": "none",
+      "padding": "20px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "50px",
+      "border": "1px solid #FFE5E5",
+      "focusBorder": "#FF0000",
+      "padding": "12px 20px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "50px",
+      "padding": "4px 12px",
+      "fontSize": "11px",
+      "fontWeight": "700",
+      "textTransform": "uppercase"
+    },
+    "navigation": {
+      "itemSpacing": "24px",
+      "activeIndicator": "background",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "1/1",
+      "showBadges": true,
+      "showQuickView": false,
+      "showAddToCart": true,
+      "showWishlist": false,
+      "showRating": true,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Bangers",
+      "weight": "400",
+      "transform": "none",
+      "letterSpacing": "0.02em"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": "400",
+      "size": "14px",
+      "lineHeight": "1.5"
+    },
+    "accent": {
+      "family": "Bangers",
+      "weight": "400"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "60px 0",
+    "containerWidth": "1200px",
+    "gridGap": "20px",
+    "cardGap": "16px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 2px 8px rgba(0,0,0,0.05)",
+      "md": "0 4px 16px rgba(0,0,0,0.08)",
+      "lg": "0 8px 28px rgba(0,0,0,0.1)",
+      "xl": "0 16px 40px rgba(0,0,0,0.12)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "100ms ease",
+      "normal": "200ms ease",
+      "slow": "300ms ease"
+    },
+    "animations": {
+      "entrance": "slide-up",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["restaurant", "fast-food", "burger", "quick-service", "bold", "vibrant"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["menu", "order-online", "deals", "locations"]
+    }
+  }
+}

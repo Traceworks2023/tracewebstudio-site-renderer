@@ -1,0 +1,293 @@
+{
+  "id": "fashion-ethnic-01",
+  "name": "Fashion Ethnic 01",
+  "slug": "fashion-ethnic-01",
+  "category": "fashion",
+  "subcategory": "ethnic",
+  "isPremium": true,
+  "isActive": true,
+  "description": "Traditional Indian ethnic fashion template with warm colors and decorative elements. Perfect for saree, lehenga, and traditional wear stores.",
+  "previewImage": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800",
+  "structure": {
+    "home": {
+      "layout": "magazine-layout",
+      "sections": ["top-bar", "hero", "categories-showcase", "featured-products", "festive-promo", "testimonials", "instagram-feed", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": true,
+        "overlayOpacity": 0.3,
+        "showScrollIndicator": false
+      },
+      "productGrid": {
+        "columns": 4,
+        "aspectRatio": "3/4",
+        "showQuickView": true,
+        "showAddToCart": true
+      },
+      "navigation": {
+        "style": "centered",
+        "sticky": true,
+        "showSearch": true,
+        "showCart": true,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "links-grid",
+        "columns": 5,
+        "showSocial": true,
+        "showPayment": true
+      }
+    },
+    "category": {
+      "layout": "sidebar-filter-right",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "3/4"
+      },
+      "sidebar": {
+        "width": "260px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "numbered",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-top-info-bottom",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": true,
+        "showThumbnails": true,
+        "thumbnailColumns": 5
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": true,
+        "showSku": true,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": true,
+        "showSizeSelector": true,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": true,
+        "buttonStyle": "split"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-info"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 4
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/collections/all"
+    },
+    "checkout": {
+      "layout": "stepper",
+      "steps": ["bag", "address", "delivery", "payment", "review"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "280px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": false
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": false,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#800020",
+      "primaryHover": "#660019",
+      "secondary": "#5D4037",
+      "secondaryHover": "#4E342E",
+      "accent": "#D4AF37",
+      "accentHover": "#C5A028",
+      "background": "#FFFBF5",
+      "surface": "#FFF8F0",
+      "surfaceAlt": "#F5EDE0",
+      "textPrimary": "#1F1F1F",
+      "textSecondary": "#5C5C5C",
+      "textMuted": "#8C8C8C",
+      "border": "#E8D9C5",
+      "borderLight": "#F0E6D8",
+      "success": "#2E7D32",
+      "warning": "#ED6C02",
+      "error": "#D32F2F",
+      "info": "#0288D1"
+    },
+    "dark": {
+      "background": "#1A1510",
+      "surface": "#2D2620",
+      "textPrimary": "#F5F0E8",
+      "textSecondary": "#C4B8A8"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "500",
+        "textTransform": "capitalize",
+        "shadow": "0 2px 8px rgba(128, 0, 32, 0.2)",
+        "hoverEffect": "shadow"
+      },
+      "secondary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "500",
+        "textTransform": "capitalize",
+        "hoverEffect": "color"
+      },
+      "outline": {
+        "borderRadius": "4px",
+        "padding": "12px 26px",
+        "fontWeight": "500",
+        "textTransform": "capitalize",
+        "hoverEffect": "shadow"
+      }
+    },
+    "cards": {
+      "borderRadius": "8px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.08)",
+      "shadowHover": "0 8px 24px rgba(0,0,0,0.12)",
+      "border": "1px solid #E8D9C5",
+      "padding": "20px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "6px",
+      "border": "1px solid #E8D9C5",
+      "focusBorder": "#D4AF37",
+      "padding": "14px 16px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "4px",
+      "padding": "6px 12px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "28px",
+      "activeIndicator": "background",
+      "dropdownStyle": "mega"
+    },
+    "productCard": {
+      "imageAspectRatio": "3/4",
+      "showBadges": true,
+      "showQuickView": true,
+      "showAddToCart": true,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Cormorant Garamond",
+      "weight": "600",
+      "transform": "none",
+      "letterSpacing": "0"
+    },
+    "body": {
+      "family": "Poppins",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.7"
+    },
+    "accent": {
+      "family": "Tiro Devanagari Hindi",
+      "weight": "400"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "70px 0",
+    "containerWidth": "1240px",
+    "gridGap": "20px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.06)",
+      "md": "0 4px 12px rgba(0,0,0,0.08)",
+      "lg": "0 8px 24px rgba(0,0,0,0.1)",
+      "xl": "0 12px 32px rgba(0,0,0,0.14)"
+    },
+    "borderRadius": {
+      "none": "0px",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "200ms ease",
+      "normal": "300ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "shadow"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["fashion", "ethnic", "indian", "traditional", "saree", "lehenga"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "multi-language", "blog"]
+    }
+  }
+}

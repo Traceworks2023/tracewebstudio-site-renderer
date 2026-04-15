@@ -1,0 +1,44 @@
+{
+  "id": "music-instruments-01",
+  "name": "Music Instruments",
+  "category": "music",
+  "subcategory": "instruments",
+  "description": "Musical instruments store with gear-focused design",
+  "version": "1.0.0",
+  "tags": ["music", "instruments", "gear", "pro-audio"],
+  "components": {
+    "header": {
+      "layout": "stage-dark",
+      "logo": { "type": "image", "position": "center" },
+      "navigation": { "type": "instrument-types", "position": "below" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "studio-dark",
+      "columns": ["guitars", "keys", "pro-audio", "lessons"]
+    },
+    "productCard": { "layout": "gear-shot", "showSpecs": true },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "sound-lab", "sections": ["hero", "guitars", "keys", "drums", "pro-audio"] },
+    "category": { "layout": "gear-grid" },
+    "product": { "layout": "spec-heavy" }
+  },
+  "colors": {
+    "primary": "#7B1FA2",
+    "secondary": "#1A1A1A",
+    "accent": "#FFD600",
+    "background": "#0D0D0D",
+    "surface": "#1F1F1F",
+    "text": "#FFFFFF",
+    "textMuted": "#B0B0B0"
+  },
+  "typography": {
+    "heading": { "font": "Rock Salt", "weight": "400" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 5px 20px rgba(123,31,162,0.2)" }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "furniture-kids-01",
+  "name": "Furniture Kids",
+  "category": "furniture",
+  "subcategory": "kids",
+  "description": "Kids furniture with playful, safe design",
+  "version": "1.0.0",
+  "tags": ["furniture", "kids", "children", "nursery"],
+  "components": {
+    "header": {
+      "layout": "playful-light",
+      "logo": { "type": "fun", "position": "center" },
+      "navigation": { "type": "age-groups", "position": "below" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "nursery-light",
+      "columns": ["beds", "storage", "desks", "safety"]
+    },
+    "productCard": { "layout": "kid-safe" },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "little-rooms", "sections": ["hero", "nursery", "bedroom", "playroom", "safety"] },
+    "category": { "layout": "age-room" },
+    "product": { "layout": "child-safe" }
+  },
+  "colors": {
+    "primary": "#FF9800",
+    "secondary": "#FFF3E0",
+    "accent": "#4CAF50",
+    "background": "#FFFFF5",
+    "surface": "#FFFFFF",
+    "text": "#37474F",
+    "textMuted": "#78909C"
+  },
+  "typography": {
+    "heading": { "font": "Fredoka One", "weight": "400" },
+    "body": { "font": "Nunito", "weight": "600" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "20px", "cards": "16px" },
+  "shadows": { "cards": "0 4px 15px rgba(255,152,0,0.15)" }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "services-legal-01",
+  "name": "Services Legal",
+  "category": "services",
+  "subcategory": "legal",
+  "description": "Legal services with authoritative, trustworthy design",
+  "version": "1.0.0",
+  "tags": ["services", "legal", "law", "attorney"],
+  "components": {
+    "header": {
+      "layout": "authoritative",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "practice-areas", "position": "center" },
+      "actions": ["consultation"]
+    },
+    "footer": {
+      "layout": "professional-dark",
+      "columns": ["practice", "attorneys", "resources", "contact"]
+    },
+    "practiceCard": { "layout": "expertise-area" },
+    "attorneyCard": { "layout": "bio-card" }
+  },
+  "pages": {
+    "home": { "layout": "counsel", "sections": ["hero", "practice", "attorneys", "results", "consultation"] },
+    "practice": { "layout": "area-detail" },
+    "attorneys": { "layout": "team-grid" }
+  },
+  "colors": {
+    "primary": "#1A237E",
+    "secondary": "#C5CAE9",
+    "accent": "#5C6BC0",
+    "background": "#F5F5F5",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "textMuted": "#5C6BC0"
+  },
+  "typography": {
+    "heading": { "font": "Cormorant Garamond", "weight": "600" },
+    "body": { "font": "Montserrat", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 2px 8px rgba(0,0,0,0.08)" }
+}

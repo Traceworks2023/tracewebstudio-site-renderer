@@ -1,0 +1,44 @@
+{
+  "id": "food-cheese-01",
+  "name": "Food Artisan Cheese",
+  "category": "food",
+  "subcategory": "cheese",
+  "description": "Artisan cheese shop with Old World charm",
+  "version": "1.0.0",
+  "tags": ["food", "cheese", "artisan", "deli"],
+  "components": {
+    "header": {
+      "layout": "deli-light",
+      "logo": { "type": "classic", "position": "center" },
+      "navigation": { "type": "types", "position": "below" },
+      "actions": ["sampling", "cart"]
+    },
+    "footer": {
+      "layout": "cave-dark",
+      "columns": ["soft", "hard", "blue", "pairings"]
+    },
+    "productCard": { "layout": "wheel-photo" },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "fromage", "sections": ["hero", "new", "bestsellers", "pairings", "sampling"] },
+    "category": { "layout": "type-gallery" },
+    "product": { "layout": "affineur-story" }
+  },
+  "colors": {
+    "primary": "#FFB300",
+    "secondary": "#FFF8E1",
+    "accent": "#5D4037",
+    "background": "#FFFBF5",
+    "surface": "#FFFFFF",
+    "text": "#5D4037",
+    "textMuted": "#8D6E63"
+  },
+  "typography": {
+    "heading": { "font": "Playfair Display", "weight": "400" },
+    "body": { "font": "Lato", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 3px 10px rgba(0,0,0,0.08)" }
+}

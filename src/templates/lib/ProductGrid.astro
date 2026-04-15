@@ -1,0 +1,111 @@
+---
+/**
+ * Theme-aware Product Grid Component
+ * Renders product grid based on theme configuration
+ */
+import { getCurrentTheme } from './theme-loader';
+import { buildThemeCSSVars, getGridColumns, getAspectRatio, isFeatureEnabled } from './theme-components';
+import ProductCard from './ProductCard.astro';
+
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  compareAtPrice?: number;
+  image: string;
+  hoverImage?: string;
+  badge?: string;
+  rating?: number;
+  reviewCount?: number;
+  url?: string;
+}
+
+interface Props {
+  products: Product[];
+  title?: string;
+  columns?: number;
+  showQuickView?: boolean;
+  showAddToCart?: boolean;
+  class?: string;
+}
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const {
+  products,
+  title,
+  propColumns,
+  class: className
+} = Astro.props;
+
+const columns = propColumns || getGridColumns('home', theme);
+const showQuickView = isFeatureEnabled('quickView', 'home', theme);
+const showAddToCart = isFeatureEnabled('addToCart', 'home', theme);
+const gridGap = theme?.spacing?.gridGap || '24px';
+const sectionPadding = theme?.spacing?.sectionPadding || '80px 0';
+---
+
+<section class={`product-grid ${className || ''}`} style={cssVars}>
+  {title && <h2 class="product-grid__title">{title}</h2>}
+
+  <div
+    class="product-grid__container"
+    style={`--grid-columns: ${columns}; --grid-gap: ${gridGap};`}
+  >
+    {products.map((product) => (
+      <ProductCard
+        product={product}
+        showQuickView={showQuickView}
+        showAddToCart={showAddToCart}
+      />
+    ))}
+  </div>
+</section>
+
+<style define:vars={{
+  'section-padding': sectionPadding,
+  'font-heading': theme?.fonts?.heading?.family || 'Playfair Display',
+  'font-body': theme?.fonts?.body?.family || 'Inter',
+  'section-text': theme?.theme?.colors?.textPrimary || '#111827',
+}}>
+  .product-grid {
+    padding: var(--section-padding);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .product-grid__title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--section-text);
+    margin: 0 0 48px;
+    letter-spacing: -0.02em;
+  }
+
+  .product-grid__container {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns, 4), 1fr);
+    gap: var(--grid-gap, 24px);
+  }
+
+  @media (max-width: 1024px) {
+    .product-grid__container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .product-grid__container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-grid__container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

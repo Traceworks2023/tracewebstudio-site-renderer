@@ -1,0 +1,44 @@
+{
+  "id": "pets-vet-01",
+  "name": "Pets Veterinary",
+  "category": "pets",
+  "subcategory": "veterinary",
+  "description": "Professional veterinary clinic with caring approach",
+  "version": "1.0.0",
+  "tags": ["pets", "veterinary", "clinic", "healthcare"],
+  "components": {
+    "header": {
+      "layout": "caring-light",
+      "logo": { "type": "image", "position": "left" },
+      "navigation": { "type": "services", "position": "center" },
+      "actions": ["emergency", "appointments"]
+    },
+    "footer": {
+      "layout": "caring-dark",
+      "columns": ["services", "resources", "about", "contact"]
+    },
+    "serviceCard": { "layout": "care-card" },
+    "appointmentForm": { "layout": "quick-book" }
+  },
+  "pages": {
+    "home": { "layout": "caring-intro", "sections": ["hero", "services", "team", "testimonials", "appointments"] },
+    "services": { "layout": "service-grid" },
+    "appointments": { "layout": "booking-flow" }
+  },
+  "colors": {
+    "primary": "#00897B",
+    "secondary": "#E0F2F1",
+    "accent": "#FF7043",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#37474F",
+    "textMuted": "#78909C"
+  },
+  "typography": {
+    "heading": { "font": "Nunito", "weight": "600" },
+    "body": { "font": "Open Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "20px", "cards": "12px" },
+  "shadows": { "cards": "0 2px 10px rgba(0,0,0,0.08)" }
+}

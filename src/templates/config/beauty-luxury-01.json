@@ -1,0 +1,44 @@
+{
+  "id": "beauty-luxury-01",
+  "name": "Beauty Luxury",
+  "category": "beauty",
+  "subcategory": "luxury-premium",
+  "description": "High-end luxury beauty with elegant gold accents",
+  "version": "1.0.0",
+  "tags": ["beauty", "luxury", "premium", "gold"],
+  "components": {
+    "header": {
+      "layout": "luxe-dark",
+      "logo": { "type": "image", "position": "center" },
+      "navigation": { "type": "underline", "position": "below" },
+      "actions": ["account", "cart"]
+    },
+    "footer": {
+      "layout": "gold-accent-dark",
+      "columns": ["boutiques", "services", "loyalty", "newsletter"]
+    },
+    "productCard": { "layout": "gold-border", "showPrice": false },
+    "cartDrawer": { "layout": "elegant-slide" }
+  },
+  "pages": {
+    "home": { "layout": "parallax-hero", "sections": ["hero", "collections", "signature", "editorial", "reserver"] },
+    "category": { "layout": "elegant-grid" },
+    "product": { "layout": "full-width-gallery" }
+  },
+  "colors": {
+    "primary": "#D4AF37",
+    "secondary": "#1A1A1A",
+    "accent": "#FFFFFF",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#F5F5F5",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Didot", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "100px" },
+  "borderRadius": { "buttons": "0px", "cards": "4px" },
+  "shadows": { "cards": "0 10px 40px rgba(212,175,55,0.15)" }
+}

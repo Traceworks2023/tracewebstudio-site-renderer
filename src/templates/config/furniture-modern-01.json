@@ -1,0 +1,293 @@
+{
+  "id": "furniture-modern-01",
+  "name": "Modern Living 01",
+  "slug": "furniture-modern-01",
+  "category": "furniture",
+  "subcategory": "modern",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Clean, airy furniture template with Scandinavian influences. Perfect for modern home furnishings, decor, and interior design studios.",
+  "previewImage": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800",
+  "structure": {
+    "home": {
+      "layout": "grid-showcase",
+      "sections": ["hero", "categories", "featured-products", "lookbook", "materials", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": false,
+        "overlayOpacity": 0,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 3,
+        "aspectRatio": "4/3",
+        "showQuickView": true,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "minimal",
+        "sticky": true,
+        "showSearch": true,
+        "showCart": true,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": true
+      }
+    },
+    "category": {
+      "layout": "top-filter-bar",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "4/3"
+      },
+      "sidebar": {
+        "width": "260px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "load-more",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": true,
+        "showThumbnails": true,
+        "thumbnailColumns": 4
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": true,
+        "showSku": true,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": true,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": true,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 3
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/products"
+    },
+    "checkout": {
+      "layout": "multi-step",
+      "steps": ["contact", "shipping", "delivery", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "250px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": true,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#2C3E50",
+      "primaryHover": "#34495E",
+      "secondary": "#7F8C8D",
+      "secondaryHover": "#95A5A6",
+      "accent": "#D4A574",
+      "accentHover": "#C49464",
+      "background": "#FAFAFA",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#F5F5F5",
+      "textPrimary": "#2C3E50",
+      "textSecondary": "#7F8C8D",
+      "textMuted": "#BDC3C7",
+      "border": "#E8E8E8",
+      "borderLight": "#F0F0F0",
+      "success": "#27AE60",
+      "warning": "#F39C12",
+      "error": "#E74C3C",
+      "info": "#3498DB"
+    },
+    "dark": {
+      "background": "#1A1A1A",
+      "surface": "#242424",
+      "textPrimary": "#F5F5F5",
+      "textSecondary": "#A0A0A0"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "shadow": "none",
+        "hoverEffect": "color"
+      },
+      "secondary": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "0px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.06)",
+      "shadowHover": "0 8px 24px rgba(0,0,0,0.1)",
+      "border": "1px solid #E8E8E8",
+      "padding": "20px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "0px",
+      "border": "1px solid #E8E8E8",
+      "focusBorder": "#2C3E50",
+      "padding": "14px 16px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "0px",
+      "padding": "6px 12px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "32px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "4/3",
+      "showBadges": true,
+      "showQuickView": true,
+      "showAddToCart": false,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "second-image"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "DM Sans",
+      "weight": "500",
+      "transform": "none",
+      "letterSpacing": "-0.01em"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.6"
+    },
+    "accent": {
+      "family": "Cormorant Garamond",
+      "weight": "400"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1280px",
+    "gridGap": "24px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.04)",
+      "md": "0 4px 12px rgba(0,0,0,0.06)",
+      "lg": "0 8px 24px rgba(0,0,0,0.08)",
+      "xl": "0 16px 40px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "0px",
+      "md": "0px",
+      "lg": "0px",
+      "xl": "0px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["furniture", "modern", "scandinavian", "home", "minimalist"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "room-planner", "swatches"]
+    }
+  }
+}

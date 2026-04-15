@@ -1,0 +1,44 @@
+{
+  "id": "food-coffee-01",
+  "name": "Food Coffee Roaster",
+  "category": "food",
+  "subcategory": "coffee",
+  "description": "Specialty coffee roaster with artisanal design",
+  "version": "1.0.0",
+  "tags": ["food", "coffee", "roaster", "artisan"],
+  "components": {
+    "header": {
+      "layout": "roastery-dark",
+      "logo": { "type": "craft", "position": "center" },
+      "navigation": { "type": "origins", "position": "below" },
+      "actions": ["subscriptions", "cart"]
+    },
+    "footer": {
+      "layout": "brewery-dark",
+      "columns": ["single-origin", "blends", "brewing", "about"]
+    },
+    "productCard": { "layout": "bean-photo" },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "coffee-culture", "sections": ["hero", "single-origin", "blends", "subscriptions", "about"] },
+    "category": { "layout": "origin-grid" },
+    "product": { "layout": "roast-detail" }
+  },
+  "colors": {
+    "primary": "#5D4037",
+    "secondary": "#1A1A1A",
+    "accent": "#FF7043",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Lobster Two", "weight": "400" },
+    "body": { "font": "Lato", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 4px 15px rgba(93,64,55,0.3)" }
+}

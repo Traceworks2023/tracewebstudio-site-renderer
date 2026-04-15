@@ -1,0 +1,37 @@
+---
+// Category Hero Section
+interface Props {
+  content: {
+    name: string;
+    description?: string;
+    image?: string;
+    breadcrumb?: string;
+  };
+}
+
+const { content } = Astro.props;
+const {
+  name = 'Category Name',
+  description = '',
+  image = 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1920'
+} = content;
+---
+
+<section class="relative h-[40vh] min-h-[300px] flex items-center overflow-hidden">
+  <!-- Background Image -->
+  <div 
+    class="absolute inset-0 bg-cover bg-center"
+    style={`background-image: url('${image}');`}
+  ></div>
+  
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+  
+  <!-- Content -->
+  <div class="relative z-10 container mx-auto px-4 text-center text-white">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4">{name}</h1>
+    {description && (
+      <p class="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">{description}</p>
+    )}
+  </div>
+</section>

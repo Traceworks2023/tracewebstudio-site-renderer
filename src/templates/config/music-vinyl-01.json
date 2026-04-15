@@ -1,0 +1,294 @@
+{
+  "id": "music-vinyl-01",
+  "name": "Vinyl Records 01",
+  "slug": "music-vinyl-01",
+  "category": "music",
+  "subcategory": "vinyl-records",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Retro-inspired music template perfect for vinyl record stores, music shops, and band merchandise.",
+  "previewImage": "https://images.unsplash.com/photo-1539375665275-f9de415ef9ac?w=800",
+  "structure": {
+    "home": {
+      "layout": "parallax-scroll",
+      "sections": ["hero", "genres", "featured-products", "new-releases", "artists", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "center",
+        "showOverlay": true,
+        "overlayOpacity": 0.6,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 4,
+        "aspectRatio": "1/1",
+        "showQuickView": true,
+        "showAddToCart": true
+      },
+      "navigation": {
+        "style": "hamburger",
+        "sticky": true,
+        "showSearch": true,
+        "showCart": true,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "detailed",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": true
+      }
+    },
+    "category": {
+      "layout": "sidebar-filter-left",
+      "grid": {
+        "columns": 4,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "1/1"
+      },
+      "sidebar": {
+        "width": "260px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "numbered",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "full-width"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "left",
+        "showZoom": true,
+        "showThumbnails": true,
+        "thumbnailColumns": 3
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": true,
+        "showSku": true,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": true,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": true,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "carousel",
+        "columns": 4
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/records"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "shipping", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "250px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "split",
+      "showSocialLogin": true,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "dark",
+    "defaultMode": "dark",
+    "colors": {
+      "primary": "#E63946",
+      "primaryHover": "#D32F3E",
+      "secondary": "#1D3557",
+      "secondaryHover": "#2A4468",
+      "accent": "#F4A261",
+      "accentHover": "#E39251",
+      "background": "#0D1117",
+      "surface": "#161B22",
+      "surfaceAlt": "#21262D",
+      "textPrimary": "#F0F6FC",
+      "textSecondary": "#8B949E",
+      "textMuted": "#6E7681",
+      "border": "#30363D",
+      "borderLight": "#21262D",
+      "success": "#3FB950",
+      "warning": "#D29922",
+      "error": "#F85149",
+      "info": "#58A6FF"
+    },
+    "dark": {
+      "background": "#0D1117",
+      "surface": "#161B22",
+      "textPrimary": "#F0F6FC",
+      "textSecondary": "#8B949E"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "shadow": "0 4px 12px rgba(230, 57, 70, 0.3)",
+        "hoverEffect": "scale"
+      },
+      "secondary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "hoverEffect": "shadow"
+      },
+      "outline": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "8px",
+      "shadow": "0 4px 16px rgba(0,0,0,0.3)",
+      "shadowHover": "0 8px 28px rgba(230, 57, 70, 0.15)",
+      "border": "1px solid #30363D",
+      "padding": "16px",
+      "hoverEffect": "border"
+    },
+    "inputs": {
+      "borderRadius": "4px",
+      "border": "1px solid #30363D",
+      "focusBorder": "#E63946",
+      "padding": "12px 16px",
+      "background": "#161B22"
+    },
+    "badges": {
+      "borderRadius": "4px",
+      "padding": "6px 12px",
+      "fontSize": "10px",
+      "fontWeight": "700",
+      "textTransform": "uppercase"
+    },
+    "navigation": {
+      "itemSpacing": "28px",
+      "activeIndicator": "background",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "1/1",
+      "showBadges": true,
+      "showQuickView": true,
+      "showAddToCart": true,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Archivo Black",
+      "weight": "400",
+      "transform": "uppercase",
+      "letterSpacing": "0.02em"
+    },
+    "body": {
+      "family": "Space Grotesk",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.6"
+    },
+    "accent": {
+      "family": "Space Mono",
+      "weight": "400"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1280px",
+    "gridGap": "24px",
+    "cardGap": "16px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 2px 8px rgba(0,0,0,0.3)",
+      "md": "0 4px 16px rgba(0,0,0,0.4)",
+      "lg": "0 8px 28px rgba(0,0,0,0.5)",
+      "xl": "0 16px 48px rgba(0,0,0,0.6)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "8px",
+      "xl": "12px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "100ms ease",
+      "normal": "200ms ease",
+      "slow": "300ms ease"
+    },
+    "animations": {
+      "entrance": "slide-up",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["music", "vinyl", "records", "retro", "dark", "audio"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "streaming-preview", "artists"]
+    }
+  }
+}

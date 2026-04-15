@@ -1,0 +1,41 @@
+{
+  "id": "landing-ebook-01",
+  "name": "Landing Ebook",
+  "category": "landing",
+  "subcategory": "ebook",
+  "description": "Ebook download landing page with conversion focus",
+  "version": "1.0.0",
+  "tags": ["landing", "ebook", "lead-magnet", "conversion"],
+  "components": {
+    "header": {
+      "layout": "minimal-center",
+      "logo": { "type": "text", "position": "center" },
+      "navigation": { "type": "none" },
+      "actions": []
+    },
+    "footer": {
+      "layout": "minimal-dark",
+      "columns": ["privacy", "terms"]
+    },
+    "ctaForm": { "layout": "lead-capture" }
+  },
+  "pages": {
+    "home": { "layout": "book-magnet", "sections": ["headline", "cover", "benefits", "testimonials", "download"] }
+  },
+  "colors": {
+    "primary": "#7C4DFF",
+    "secondary": "#1A1A1A",
+    "accent": "#00E5FF",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#B0B0B0"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "600" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "8px", "cards": "12px" },
+  "shadows": { "cards": "0 8px 40px rgba(124,77,255,0.3)" }
+}

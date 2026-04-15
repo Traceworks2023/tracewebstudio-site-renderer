@@ -1,0 +1,587 @@
+---
+import BaseLayout from '../lib/BaseLayout.astro';
+import { getCurrentTheme } from '../lib/theme-loader';
+import { buildThemeCSSVars } from '../lib/theme-components';
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const store = {
+  name: 'Fashion Luxe Store',
+  ownerName: 'Sarah'
+};
+
+const settings = {
+  store: {
+    name: 'Fashion Luxe Store',
+    email: 'sarah@fashionluxe.com',
+    phone: '+1 (555) 123-4567',
+    address: '123 Fashion Street, New York, NY 10001',
+    currency: 'USD',
+    timezone: 'America/New_York'
+  },
+  payments: {
+    acceptCards: true,
+    acceptPaypal: true,
+    acceptStripe: true,
+    testMode: false
+  },
+  shipping: {
+    freeShipping: true,
+    flatRate: 9.99,
+    expeditedRate: 19.99,
+    daysMin: 3,
+    daysMax: 7
+  }
+};
+---
+
+<BaseLayout title="Settings - Fashion Luxe" showHeader={false} showFooter={false}>
+  <div class="tenant" style={cssVars}>
+    <aside class="tenant__sidebar">
+      <div class="tenant__logo">
+        <div class="tenant__logo-icon">FL</div>
+        <span class="tenant__logo-name">{store.name}</span>
+      </div>
+
+      <nav class="tenant__nav">
+        <a href="/tenant" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Dashboard
+        </a>
+        <a href="/tenant/products" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          Products
+        </a>
+        <a href="/tenant/orders" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          </svg>
+          Orders
+        </a>
+        <a href="/tenant/customers" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          Customers
+        </a>
+        <a href="/tenant/analytics" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          Analytics
+        </a>
+        <a href="/tenant/settings" class="tenant__nav-link tenant__nav-link--active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+          </svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="tenant__sidebar-footer">
+        <a href="/tenant/logout" class="tenant__nav-link tenant__nav-link--logout">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" x2="9" y1="12" y2="12"></line>
+          </svg>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <main class="tenant__main">
+      <header class="tenant__header">
+        <div class="tenant__header-left">
+          <h1 class="tenant__title">Settings</h1>
+          <p class="tenant__subtitle">Manage your store configuration</p>
+        </div>
+      </header>
+
+      <div class="tenant__settings-grid">
+        <section class="tenant__settings-section">
+          <div class="tenant__settings-header">
+            <h2 class="tenant__settings-title">Store Information</h2>
+            <p class="tenant__settings-desc">Basic information about your store</p>
+          </div>
+          <div class="tenant__form">
+            <div class="tenant__form-group">
+              <label class="tenant__label">Store Name</label>
+              <input type="text" class="tenant__input" value={settings.store.name} />
+            </div>
+            <div class="tenant__form-row">
+              <div class="tenant__form-group">
+                <label class="tenant__label">Email</label>
+                <input type="email" class="tenant__input" value={settings.store.email} />
+              </div>
+              <div class="tenant__form-group">
+                <label class="tenant__label">Phone</label>
+                <input type="tel" class="tenant__input" value={settings.store.phone} />
+              </div>
+            </div>
+            <div class="tenant__form-group">
+              <label class="tenant__label">Address</label>
+              <textarea class="tenant__textarea">{settings.store.address}</textarea>
+            </div>
+            <div class="tenant__form-row">
+              <div class="tenant__form-group">
+                <label class="tenant__label">Currency</label>
+                <select class="tenant__select">
+                  <option value="USD" selected>USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="GBP">GBP (£)</option>
+                </select>
+              </div>
+              <div class="tenant__form-group">
+                <label class="tenant__label">Timezone</label>
+                <select class="tenant__select">
+                  <option value="America/New_York" selected>Eastern Time</option>
+                  <option value="America/Los_Angeles">Pacific Time</option>
+                  <option value="Europe/London">London</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="tenant__settings-section">
+          <div class="tenant__settings-header">
+            <h2 class="tenant__settings-title">Payment Settings</h2>
+            <p class="tenant__settings-desc">Configure payment methods</p>
+          </div>
+          <div class="tenant__form">
+            <div class="tenant__toggle-group">
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={settings.payments.acceptCards} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">Credit/Debit Cards</span>
+              </label>
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={settings.payments.acceptPaypal} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">PayPal</span>
+              </label>
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={settings.payments.acceptStripe} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">Stripe</span>
+              </label>
+            </div>
+            <div class="tenant__toggle-group">
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={settings.payments.testMode} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">Test Mode (Sandbox)</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="tenant__settings-section">
+          <div class="tenant__settings-header">
+            <h2 class="tenant__settings-title">Shipping Settings</h2>
+            <p class="tenant__settings-desc">Configure shipping rates and options</p>
+          </div>
+          <div class="tenant__form">
+            <div class="tenant__toggle-group">
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={settings.shipping.freeShipping} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">Free Shipping</span>
+              </label>
+            </div>
+            <div class="tenant__form-row">
+              <div class="tenant__form-group">
+                <label class="tenant__label">Flat Rate</label>
+                <div class="tenant__input-group">
+                  <span class="tenant__input-prefix">$</span>
+                  <input type="number" class="tenant__input" value={settings.shipping.flatRate} />
+                </div>
+              </div>
+              <div class="tenant__form-group">
+                <label class="tenant__label">Expedited Rate</label>
+                <div class="tenant__input-group">
+                  <span class="tenant__input-prefix">$</span>
+                  <input type="number" class="tenant__input" value={settings.shipping.expeditedRate} />
+                </div>
+              </div>
+            </div>
+            <div class="tenant__form-row">
+              <div class="tenant__form-group">
+                <label class="tenant__label">Delivery Days (Min)</label>
+                <input type="number" class="tenant__input" value={settings.shipping.daysMin} />
+              </div>
+              <div class="tenant__form-group">
+                <label class="tenant__label">Delivery Days (Max)</label>
+                <input type="number" class="tenant__input" value={settings.shipping.daysMax} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="tenant__settings-section">
+          <div class="tenant__settings-header">
+            <h2 class="tenant__settings-title">Notifications</h2>
+            <p class="tenant__settings-desc">Configure email notifications</p>
+          </div>
+          <div class="tenant__form">
+            <div class="tenant__toggle-group">
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={true} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">New Order Alerts</span>
+              </label>
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={true} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">Order Shipped Notifications</span>
+              </label>
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={true} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">Low Stock Alerts</span>
+              </label>
+              <label class="tenant__toggle">
+                <input type="checkbox" checked={false} />
+                <span class="tenant__toggle-slider"></span>
+                <span class="tenant__toggle-label">Marketing Emails</span>
+              </label>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="tenant__actions-bar">
+        <button class="tenant__btn tenant__btn--secondary">Cancel</button>
+        <button class="tenant__btn tenant__btn--primary">Save Changes</button>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style define:vars={cssVars}>
+  .tenant {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    background: var(--theme-background);
+  }
+
+  .tenant__sidebar {
+    background: var(--theme-surface);
+    border-right: 1px solid var(--theme-border);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .tenant__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 24px;
+    border-bottom: 1px solid var(--theme-border);
+    margin-bottom: 24px;
+  }
+
+  .tenant__logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .tenant__logo-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .tenant__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .tenant__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--btn-radius);
+    color: var(--theme-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .tenant__nav-link:hover {
+    background: var(--theme-background);
+    color: var(--theme-text);
+  }
+
+  .tenant__nav-link--active {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+  }
+
+  .tenant__nav-link--logout {
+    color: var(--theme-error);
+    margin-top: auto;
+  }
+
+  .tenant__sidebar-footer {
+    border-top: 1px solid var(--theme-border);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+
+  .tenant__main {
+    padding: 32px 40px;
+  }
+
+  .tenant__header {
+    margin-bottom: 32px;
+  }
+
+  .tenant__title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--theme-text);
+  }
+
+  .tenant__subtitle {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .tenant__settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .tenant__settings-section {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 24px;
+  }
+
+  .tenant__settings-header {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .tenant__settings-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--theme-text);
+  }
+
+  .tenant__settings-desc {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .tenant__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tenant__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tenant__form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .tenant__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--theme-text);
+  }
+
+  .tenant__input,
+  .tenant__select,
+  .tenant__textarea {
+    padding: 10px 14px;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--btn-radius);
+    font-size: 14px;
+    background: var(--theme-background);
+    color: var(--theme-text);
+  }
+
+  .tenant__input:focus,
+  .tenant__select:focus,
+  .tenant__textarea:focus {
+    outline: none;
+    border-color: var(--theme-primary);
+  }
+
+  .tenant__textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .tenant__input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .tenant__input-prefix {
+    position: absolute;
+    left: 14px;
+    color: var(--theme-text-muted);
+    font-size: 14px;
+  }
+
+  .tenant__input-group .tenant__input {
+    padding-left: 32px;
+  }
+
+  .tenant__toggle-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tenant__toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .tenant__toggle input {
+    display: none;
+  }
+
+  .tenant__toggle-slider {
+    width: 44px;
+    height: 24px;
+    background: var(--theme-border);
+    border-radius: 12px;
+    position: relative;
+    transition: background 0.2s ease;
+  }
+
+  .tenant__toggle-slider::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+  }
+
+  .tenant__toggle input:checked + .tenant__toggle-slider {
+    background: var(--theme-primary);
+  }
+
+  .tenant__toggle input:checked + .tenant__toggle-slider::after {
+    transform: translateX(20px);
+  }
+
+  .tenant__toggle-label {
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .tenant__actions-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--theme-border);
+  }
+
+  .tenant__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: var(--btn-radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border: none;
+  }
+
+  .tenant__btn--primary {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+  }
+
+  .tenant__btn--primary:hover {
+    background: var(--theme-primary-hover);
+  }
+
+  .tenant__btn--secondary {
+    background: var(--theme-surface);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-border);
+  }
+
+  .tenant__btn--secondary:hover {
+    background: var(--theme-background);
+  }
+
+  @media (max-width: 1200px) {
+    .tenant {
+      grid-template-columns: 1fr;
+    }
+
+    .tenant__sidebar {
+      display: none;
+    }
+
+    .tenant__settings-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

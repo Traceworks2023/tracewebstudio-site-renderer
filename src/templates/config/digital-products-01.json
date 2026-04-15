@@ -1,0 +1,293 @@
+{
+  "id": "digital-products-01",
+  "name": "Digital Products 01",
+  "slug": "digital-products-01",
+  "category": "digital",
+  "subcategory": "software",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Modern digital products template for software and downloads. Perfect for selling software, plugins, templates, and digital downloads.",
+  "previewImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+  "structure": {
+    "home": {
+      "layout": "hero-with-sidebar",
+      "sections": ["hero", "features", "featured-products", "comparison", "testimonials", "faq", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": false,
+        "overlayOpacity": 0,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 3,
+        "aspectRatio": "16/10",
+        "showQuickView": false,
+        "showAddToCart": true
+      },
+      "navigation": {
+        "style": "top-bar",
+        "sticky": true,
+        "showSearch": true,
+        "showCart": true,
+        "showWishlist": false
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "top-filter-bar",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "16/10"
+      },
+      "sidebar": {
+        "width": "260px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "load-more",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": false,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": false,
+        "showThumbnails": false,
+        "thumbnailColumns": 1
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": false,
+        "showSku": true,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": false,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 3
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": false,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/products"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": true
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "250px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": true,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "dark",
+    "defaultMode": "dark",
+    "colors": {
+      "primary": "#6366F1",
+      "primaryHover": "#5558E3",
+      "secondary": "#1E293B",
+      "secondaryHover": "#2E3A4B",
+      "accent": "#22D3EE",
+      "accentHover": "#12C3DE",
+      "background": "#0F172A",
+      "surface": "#1E293B",
+      "surfaceAlt": "#334155",
+      "textPrimary": "#F8FAFC",
+      "textSecondary": "#94A3B8",
+      "textMuted": "#64748B",
+      "border": "#334155",
+      "borderLight": "#475569",
+      "success": "#22C55E",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#3B82F6"
+    },
+    "dark": {
+      "background": "#0F172A",
+      "surface": "#1E293B",
+      "textPrimary": "#F8FAFC",
+      "textSecondary": "#94A3B8"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "8px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "shadow": "0 4px 14px rgba(99, 102, 241, 0.35)",
+        "hoverEffect": "scale"
+      },
+      "secondary": {
+        "borderRadius": "8px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "shadow"
+      },
+      "outline": {
+        "borderRadius": "8px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "12px",
+      "shadow": "0 4px 20px rgba(0,0,0,0.3)",
+      "shadowHover": "0 8px 32px rgba(99, 102, 241, 0.2)",
+      "border": "1px solid #334155",
+      "padding": "24px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "8px",
+      "border": "1px solid #334155",
+      "focusBorder": "#6366F1",
+      "padding": "14px 18px",
+      "background": "#1E293B"
+    },
+    "badges": {
+      "borderRadius": "6px",
+      "padding": "4px 10px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "28px",
+      "activeIndicator": "background",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "16/10",
+      "showBadges": true,
+      "showQuickView": false,
+      "showAddToCart": true,
+      "showWishlist": false,
+      "showRating": true,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Inter",
+      "weight": "700",
+      "transform": "none",
+      "letterSpacing": "-0.02em"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.6"
+    },
+    "accent": {
+      "family": "JetBrains Mono",
+      "weight": "400"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1200px",
+    "gridGap": "24px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 2px 8px rgba(0,0,0,0.3)",
+      "md": "0 4px 20px rgba(0,0,0,0.4)",
+      "lg": "0 8px 32px rgba(0,0,0,0.5)",
+      "xl": "0 16px 48px rgba(0,0,0,0.6)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "slide-up",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["digital", "software", "downloads", "saas", "tech", "dark"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "licenses", "downloads", "updates"]
+    }
+  }
+}

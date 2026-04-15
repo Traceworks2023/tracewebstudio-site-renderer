@@ -1,0 +1,44 @@
+{
+  "id": "jewelry-minimalist-01",
+  "name": "Jewelry Minimalist",
+  "category": "jewelry",
+  "subcategory": "minimalist",
+  "description": "Delicate minimalist jewelry with understated elegance",
+  "version": "1.0.0",
+  "tags": ["jewelry", "minimalist", "delicate", "elegant"],
+  "components": {
+    "header": {
+      "layout": "barely-there",
+      "logo": { "type": "fine-text", "position": "center" },
+      "navigation": { "type": "whisper", "position": "below" },
+      "actions": ["cart"]
+    },
+    "footer": {
+      "layout": "fine-line",
+      "columns": ["collections", "about", "care", "contact"]
+    },
+    "productCard": { "layout": "delicate-pendant" },
+    "cartDrawer": { "layout": "soft-slide" }
+  },
+  "pages": {
+    "home": { "layout": "fine-jewelry", "sections": ["hero", "collections", "bestsellers", "story", "commissions"] },
+    "category": { "layout": "display-case" },
+    "product": { "layout": "lightbox-detail" }
+  },
+  "colors": {
+    "primary": "#D4AF37",
+    "secondary": "#FFFFFF",
+    "accent": "#E8E4DC",
+    "background": "#FFFFFF",
+    "surface": "#FAFAFA",
+    "text": "#1A1A1A",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Didot", "weight": "400" },
+    "body": { "font": "Gill Sans", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "100px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

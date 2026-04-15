@@ -1,0 +1,57 @@
+---
+// Categories Strip - Horizontal scroll strip
+interface Category {
+  name: string;
+  slug: string;
+  image: string;
+}
+
+interface Props {
+  content: {
+    categories: Category[];
+  };
+}
+
+const { content } = Astro.props;
+const {
+  categories = [
+    { name: 'Hoodies', slug: 'hoodies', image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400' },
+    { name: 'T-Shirts', slug: 't-shirts', image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400' },
+    { name: 'Sneakers', slug: 'sneakers', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400' },
+    { name: 'Caps', slug: 'caps', image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400' }
+  ]
+} = content;
+---
+
+<section class="py-8 bg-street border-y border-gray-800 overflow-hidden">
+  <div class="flex space-x-6 overflow-x-auto scrollbar-hide px-4 pb-4">
+    {categories.map((category) => (
+      <a 
+        href={`/category/${category.slug}`}
+        class="flex-shrink-0 group w-40"
+      >
+        <div class="relative aspect-square overflow-hidden rounded-lg mb-2 border-2 border-transparent group-hover:border-accent transition-colors">
+          <img 
+            src={category.image} 
+            alt={category.name}
+            class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
+          />
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+        </div>
+        <h3 class="font-heading text-sm tracking-wider text-center text-gray-300 group-hover:text-white transition-colors">
+          {category.name.toUpperCase()}
+        </h3>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

@@ -1,3 +1,4 @@
+/// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
 interface TenantContext {
@@ -14,4 +15,12 @@ declare namespace App {
     tenant: TenantContext | null;
     language: string;
   }
+}
+
+interface ImportMetaEnv {
+  readonly PUBLIC_API_GATEWAY_URL: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
 }

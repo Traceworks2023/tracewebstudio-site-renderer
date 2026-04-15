@@ -1,0 +1,44 @@
+{
+  "id": "music-equipment-01",
+  "name": "Music Equipment",
+  "category": "music",
+  "subcategory": "equipment",
+  "description": "Music production equipment with studio aesthetic",
+  "version": "1.0.0",
+  "tags": ["music", "equipment", "studio", "production"],
+  "components": {
+    "header": {
+      "layout": "studio-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "equipment-types", "position": "center" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "gear-dark",
+      "columns": ["synths", "drums", "recording", "software"]
+    },
+    "productCard": { "layout": "studio-gear" },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "make-music", "sections": ["hero", "synths", "drums", "recording", "software"] },
+    "category": { "layout": "gear-grid" },
+    "product": { "layout": "spec-heavy" }
+  },
+  "colors": {
+    "primary": "#1A1A1A",
+    "secondary": "#263238",
+    "accent": "#00E676",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Roboto Condensed", "weight": "700" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(0,0,0,0.4)" }
+}

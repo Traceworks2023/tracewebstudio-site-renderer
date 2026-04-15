@@ -1,0 +1,44 @@
+{
+  "id": "restaurant-cafe-01",
+  "name": "Restaurant Cafe",
+  "category": "restaurant",
+  "subcategory": "cafe-bistro",
+  "description": "Cozy cafe and bistro with warm, inviting atmosphere",
+  "version": "1.0.0",
+  "tags": ["restaurant", "cafe", "bistro", "cozy"],
+  "components": {
+    "header": {
+      "layout": "warm-wood",
+      "logo": { "type": "image", "position": "center" },
+      "navigation": { "type": "casual", "position": "below" },
+      "actions": ["order"]
+    },
+    "footer": {
+      "layout": "cozy-dark",
+      "columns": ["story", "menu", "location", "hours"]
+    },
+    "menuCard": { "layout": "board-style" },
+    "orderButton": { "layout": "rounded-accent" }
+  },
+  "pages": {
+    "home": { "layout": "cozy-intro", "sections": ["hero", "atmosphere", "popular", "specials", "location"] },
+    "menu": { "layout": "category-tabs" },
+    "order": { "layout": "quick-add" }
+  },
+  "colors": {
+    "primary": "#8B4513",
+    "secondary": "#F5E6D3",
+    "accent": "#D4A574",
+    "background": "#FFFAF5",
+    "surface": "#F5E6D3",
+    "text": "#3E2723",
+    "textMuted": "#6D4C41"
+  },
+  "typography": {
+    "heading": { "font": "Lobster", "weight": "400" },
+    "body": { "font": "Open Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "20px", "cards": "12px" },
+  "shadows": { "cards": "0 3px 10px rgba(139,69,19,0.1)" }
+}

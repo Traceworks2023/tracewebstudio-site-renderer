@@ -1,0 +1,656 @@
+---
+import BaseLayout from '../lib/BaseLayout.astro';
+import { getCurrentTheme } from '../lib/theme-loader';
+import { buildThemeCSSVars } from '../lib/theme-components';
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const store = {
+  name: 'Fashion Luxe Store',
+  ownerName: 'Sarah',
+  email: 'sarah@fashionluxe.com'
+};
+
+const products = [
+  { id: 1, name: 'Summer Floral Dress', category: 'Dresses', price: 99.99, stock: 45, status: 'Active', image: 'dress' },
+  { id: 2, name: 'Classic White Blouse', category: 'Tops', price: 74.99, stock: 82, status: 'Active', image: 'blouse' },
+  { id: 3, name: 'Denim Jacket', category: 'Outerwear', price: 119.99, stock: 23, status: 'Active', image: 'jacket' },
+  { id: 4, name: 'Silk Scarf', category: 'Accessories', price: 69.99, stock: 56, status: 'Active', image: 'scarf' },
+  { id: 5, name: 'Leather Handbag', category: 'Bags', price: 149.99, stock: 12, status: 'Low Stock', image: 'bag' },
+  { id: 6, name: 'Cashmere Sweater', category: 'Knitwear', price: 189.99, stock: 0, status: 'Out of Stock', image: 'sweater' }
+];
+
+const categories = ['All', 'Dresses', 'Tops', 'Outerwear', 'Accessories', 'Bags', 'Knitwear'];
+---
+
+<BaseLayout title="Products - Fashion Luxe" showHeader={false} showFooter={false}>
+  <div class="tenant" style={cssVars}>
+    <aside class="tenant__sidebar">
+      <div class="tenant__logo">
+        <div class="tenant__logo-icon">FL</div>
+        <span class="tenant__logo-name">{store.name}</span>
+      </div>
+
+      <nav class="tenant__nav">
+        <a href="/tenant" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Dashboard
+        </a>
+        <a href="/tenant/products" class="tenant__nav-link tenant__nav-link--active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          Products
+        </a>
+        <a href="/tenant/orders" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          </svg>
+          Orders
+        </a>
+        <a href="/tenant/customers" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          Customers
+        </a>
+        <a href="/tenant/analytics" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          Analytics
+        </a>
+        <a href="/tenant/settings" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+          </svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="tenant__sidebar-footer">
+        <a href="/tenant/logout" class="tenant__nav-link tenant__nav-link--logout">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" x2="9" y1="12" y2="12"></line>
+          </svg>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <main class="tenant__main">
+      <header class="tenant__header">
+        <div class="tenant__header-left">
+          <h1 class="tenant__title">Products</h1>
+          <p class="tenant__subtitle">Manage your product inventory</p>
+        </div>
+        <div class="tenant__header-right">
+          <button class="tenant__btn tenant__btn--secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            Export
+          </button>
+          <button class="tenant__btn tenant__btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Product
+          </button>
+        </div>
+      </header>
+
+      <div class="tenant__toolbar">
+        <div class="tenant__search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" placeholder="Search products..." class="tenant__search-input" />
+        </div>
+        <div class="tenant__filters">
+          <select class="tenant__select">
+            <option value="">All Categories</option>
+            {categories.slice(1).map(cat => (
+              <option value={cat.toLowerCase()}>{cat}</option>
+            ))}
+          </select>
+          <select class="tenant__select">
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="low-stock">Low Stock</option>
+            <option value="out-of-stock">Out of Stock</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="tenant__categories">
+        {categories.map((cat, i) => (
+          <button class={`tenant__category-btn ${i === 0 ? 'tenant__category-btn--active' : ''}`}>
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div class="tenant__table-container">
+        <table class="tenant__table">
+          <thead>
+            <tr>
+              <th class="tenant__th--checkbox">
+                <input type="checkbox" />
+              </th>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr>
+                <td class="tenant__td--checkbox">
+                  <input type="checkbox" />
+                </td>
+                <td>
+                  <div class="tenant__product-cell">
+                    <div class="tenant__product-image">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
+                      </svg>
+                    </div>
+                    <span class="tenant__product-name">{product.name}</span>
+                  </div>
+                </td>
+                <td>{product.category}</td>
+                <td class="tenant__td--price">${product.price.toFixed(2)}</td>
+                <td class={product.stock === 0 ? 'tenant__td--out' : product.stock < 20 ? 'tenant__td--low' : ''}>
+                  {product.stock}
+                </td>
+                <td>
+                  <span class={`tenant__badge tenant__badge--${product.status.toLowerCase().replace(' ', '-')}`}>
+                    {product.status}
+                  </span>
+                </td>
+                <td>
+                  <div class="tenant__actions">
+                    <button class="tenant__action-btn" title="Edit">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                      </svg>
+                    </button>
+                    <button class="tenant__action-btn" title="Duplicate">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                    </button>
+                    <button class="tenant__action-btn tenant__action-btn--danger" title="Delete">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tenant__pagination">
+        <span class="tenant__pagination-info">Showing 1-6 of 48 products</span>
+        <div class="tenant__pagination-controls">
+          <button class="tenant__pagination-btn" disabled>Previous</button>
+          <button class="tenant__pagination-btn tenant__pagination-btn--active">1</button>
+          <button class="tenant__pagination-btn">2</button>
+          <button class="tenant__pagination-btn">3</button>
+          <button class="tenant__pagination-btn">Next</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style define:vars={cssVars}>
+  .tenant {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    background: var(--theme-background);
+  }
+
+  .tenant__sidebar {
+    background: var(--theme-surface);
+    border-right: 1px solid var(--theme-border);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .tenant__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 24px;
+    border-bottom: 1px solid var(--theme-border);
+    margin-bottom: 24px;
+  }
+
+  .tenant__logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .tenant__logo-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .tenant__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .tenant__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--btn-radius);
+    color: var(--theme-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .tenant__nav-link:hover {
+    background: var(--theme-background);
+    color: var(--theme-text);
+  }
+
+  .tenant__nav-link--active {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+  }
+
+  .tenant__nav-link--logout {
+    color: var(--theme-error);
+    margin-top: auto;
+  }
+
+  .tenant__sidebar-footer {
+    border-top: 1px solid var(--theme-border);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+
+  .tenant__main {
+    padding: 32px 40px;
+  }
+
+  .tenant__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .tenant__title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--theme-text);
+  }
+
+  .tenant__subtitle {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .tenant__header-right {
+    display: flex;
+    gap: 12px;
+  }
+
+  .tenant__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--btn-radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border: none;
+  }
+
+  .tenant__btn--primary {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+  }
+
+  .tenant__btn--primary:hover {
+    background: var(--theme-primary-hover);
+  }
+
+  .tenant__btn--secondary {
+    background: var(--theme-surface);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-border);
+  }
+
+  .tenant__btn--secondary:hover {
+    background: var(--theme-background);
+  }
+
+  .tenant__toolbar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .tenant__search {
+    flex: 1;
+    max-width: 400px;
+    position: relative;
+  }
+
+  .tenant__search svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--theme-text-muted);
+  }
+
+  .tenant__search-input {
+    width: 100%;
+    padding: 10px 14px 10px 44px;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--btn-radius);
+    font-size: 14px;
+    background: var(--theme-surface);
+    color: var(--theme-text);
+  }
+
+  .tenant__search-input:focus {
+    outline: none;
+    border-color: var(--theme-primary);
+  }
+
+  .tenant__filters {
+    display: flex;
+    gap: 12px;
+  }
+
+  .tenant__select {
+    padding: 10px 36px 10px 14px;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--btn-radius);
+    font-size: 14px;
+    background: var(--theme-surface);
+    color: var(--theme-text);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+
+  .tenant__categories {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .tenant__category-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--theme-border);
+    border-radius: 20px;
+    font-size: 13px;
+    background: var(--theme-surface);
+    color: var(--theme-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tenant__category-btn:hover {
+    border-color: var(--theme-primary);
+    color: var(--theme-primary);
+  }
+
+  .tenant__category-btn--active {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    border-color: var(--theme-primary);
+  }
+
+  .tenant__table-container {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+  }
+
+  .tenant__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .tenant__table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--theme-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 16px;
+    background: var(--theme-surface);
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .tenant__table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--theme-border-light);
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .tenant__table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .tenant__th--checkbox,
+  .tenant__td--checkbox {
+    width: 48px;
+    text-align: center;
+  }
+
+  .tenant__product-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tenant__product-image {
+    width: 48px;
+    height: 48px;
+    background: var(--theme-background);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-text-muted);
+  }
+
+  .tenant__product-name {
+    font-weight: 500;
+  }
+
+  .tenant__td--price {
+    font-weight: 600;
+  }
+
+  .tenant__td--low {
+    color: var(--theme-warning);
+  }
+
+  .tenant__td--out {
+    color: var(--theme-error);
+  }
+
+  .tenant__badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .tenant__badge--active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--theme-success);
+  }
+
+  .tenant__badge--low-stock {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--theme-warning);
+  }
+
+  .tenant__badge--out-of-stock {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--theme-error);
+  }
+
+  .tenant__actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .tenant__action-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: var(--theme-background);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--theme-text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .tenant__action-btn:hover {
+    background: var(--theme-surface-alt);
+    color: var(--theme-text);
+  }
+
+  .tenant__action-btn--danger:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--theme-error);
+  }
+
+  .tenant__pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  .tenant__pagination-info {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+  }
+
+  .tenant__pagination-controls {
+    display: flex;
+    gap: 8px;
+  }
+
+  .tenant__pagination-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--theme-border);
+    background: var(--theme-surface);
+    border-radius: var(--btn-radius);
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--theme-text);
+    transition: all 0.2s ease;
+  }
+
+  .tenant__pagination-btn:hover:not(:disabled) {
+    background: var(--theme-background);
+    border-color: var(--theme-primary);
+  }
+
+  .tenant__pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .tenant__pagination-btn--active {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    border-color: var(--theme-primary);
+  }
+
+  @media (max-width: 1200px) {
+    .tenant {
+      grid-template-columns: 1fr;
+    }
+
+    .tenant__sidebar {
+      display: none;
+    }
+
+    .tenant__toolbar {
+      flex-direction: column;
+    }
+
+    .tenant__search {
+      max-width: none;
+    }
+  }
+</style>

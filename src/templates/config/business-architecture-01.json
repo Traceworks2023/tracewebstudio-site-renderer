@@ -1,0 +1,43 @@
+{
+  "id": "business-architecture-01",
+  "name": "Business Architecture Firm",
+  "category": "business",
+  "subcategory": "architecture",
+  "description": "Architecture firm with structural, blueprint aesthetic",
+  "version": "1.0.0",
+  "tags": ["business", "architecture", "firm", "structural"],
+  "components": {
+    "header": {
+      "layout": "structural-light",
+      "logo": { "type": "wordmark", "position": "left" },
+      "navigation": { "type": "services", "position": "center" },
+      "actions": ["projects", "contact"]
+    },
+    "footer": {
+      "layout": "blueprint-dark",
+      "columns": ["residential", "commercial", "urban", "contact"]
+    },
+    "projectCard": { "layout": "structure-photo" }
+  },
+  "pages": {
+    "home": { "layout": "built-form", "sections": ["hero", "projects", "services", "process", "contact"] },
+    "projects": { "layout": "structure-grid" },
+    "project": { "layout": "blueprint-detail" }
+  },
+  "colors": {
+    "primary": "#37474F",
+    "secondary": "#ECEFF1",
+    "accent": "#00ACC1",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#263238",
+    "textMuted": "#78909C"
+  },
+  "typography": {
+    "heading": { "font": "Roboto Condensed", "weight": "300" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(0,0,0,0.08)" }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "health-therapy-01",
+  "name": "Health Physical Therapy",
+  "category": "health",
+  "subcategory": "therapy",
+  "description": "Physical therapy with professional, healing design",
+  "version": "1.0.0",
+  "tags": ["health", "therapy", "rehabilitation", "physical"],
+  "components": {
+    "header": {
+      "layout": "healing-light",
+      "logo": { "type": "care", "position": "left" },
+      "navigation": { "type": "services", "position": "center" },
+      "actions": ["appointments", "contact"]
+    },
+    "footer": {
+      "layout": "rehab-dark",
+      "columns": ["services", "conditions", "about", "contact"]
+    },
+    "serviceCard": { "layout": "treatment-card" },
+    "appointmentForm": { "layout": "therapy-request" }
+  },
+  "pages": {
+    "home": { "layout": "heal", "sections": ["hero", "services", "conditions", "testimonials", "appointments"] },
+    "services": { "layout": "treatment-grid" },
+    "appointments": { "layout": "request-form" }
+  },
+  "colors": {
+    "primary": "#00897B",
+    "secondary": "#E0F2F1",
+    "accent": "#FF7043",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#37474F",
+    "textMuted": "#78909C"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "500" },
+    "body": { "font": "Open Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 2px 8px rgba(0,0,0,0.08)" }
+}

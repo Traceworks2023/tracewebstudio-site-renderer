@@ -1,0 +1,152 @@
+---
+// Fashion Luxe Category Page
+import { fetchSiteBySlug, fetchPageContent } from '../../../lib/api';
+
+const siteSlug = 'demo';
+const site = await fetchSiteBySlug(siteSlug);
+const siteId = site?.id || 'demo-site';
+
+const pageContent = await fetchPageContent(siteId, 'category');
+const categoryContent = pageContent?.content || {};
+
+const category = {
+  name: categoryContent.page_title || 'Women',
+  slug: 'women',
+  description: categoryContent.page_description || 'Discover our curated collection of women\'s fashion and accessories',
+  image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1920'
+};
+
+const products = [
+  { id: '1', name: 'Elegant Silk Dress', price: 4999, original_price: 7999, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400', badge: '50% OFF', rating: 4.5 },
+  { id: '2', name: 'Designer Handbag', price: 4999, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400', badge: 'NEW', rating: 4.8 },
+  { id: '3', name: 'Classic Watch', price: 7999, original_price: 9999, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400', badge: 'BESTSELLER', rating: 4.6 },
+  { id: '4', name: 'Gold Necklace', price: 12999, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400', rating: 4.9 },
+  { id: '5', name: 'Silk Scarf', price: 1999, original_price: 2999, image: 'https://images.unsplash.com/photo-1601370690183-1c7796ecec61?w=400', badge: 'SALE', rating: 4.3 },
+  { id: '6', name: 'Leather Belt', price: 1499, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400', rating: 4.4 },
+  { id: '7', name: 'Sunglasses', price: 2499, original_price: 3999, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400', badge: 'HOT', rating: 4.7 },
+  { id: '8', name: 'Premium Wallet', price: 3499, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=400', rating: 4.5 }
+];
+
+const filters = [
+  { name: 'Category', options: ['Dresses', 'Tops', 'Bottoms', 'Accessories', 'Shoes'] },
+  { name: 'Size', options: ['XS', 'S', 'M', 'L', 'XL'] },
+  { name: 'Color', options: ['Black', 'White', 'Red', 'Blue', 'Green'] }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{category.name} - LUXE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>{`
+    :root {
+      --theme-primary: #000032;
+      --theme-accent: #FA5014;
+      --theme-background: #FFFFFF;
+      --theme-surface: #F9FAFB;
+      --theme-text: #111827;
+      --theme-text-secondary: #6B7280;
+      --theme-border: #E5E7EB;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); }
+    h1, h2, h3 { font-family: var(--font-heading); }
+  `}</style>
+</head>
+<body class="min-h-screen">
+
+  <!-- Category Hero -->
+  <section class="relative h-[40vh] min-h-[300px] flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${category.image}');`}></div>
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative z-10 container mx-auto px-4 text-center text-white">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">{category.name}</h1>
+      <p class="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">{category.description}</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+        
+        <!-- Filters Sidebar -->
+        <aside class="w-full lg:w-64 flex-shrink-0">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="font-bold text-lg">Filters</h3>
+              <button class="text-sm text-gray-500 hover:text-black">Clear All</button>
+            </div>
+            
+            {filters.map((filter) => (
+              <div class="mb-6 pb-6 border-b border-gray-200 last:border-0">
+                <h4 class="font-semibold text-gray-900 mb-3">{filter.name}</h4>
+                <div class="space-y-2">
+                  {filter.options.map((option) => (
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                      <input type="checkbox" class="w-5 h-5 border-gray-300 rounded focus:ring-black" />
+                      <span class="text-gray-600 group-hover:text-black transition-colors">{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
+            
+            <button class="w-full bg-black text-white py-3 font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+              Apply Filters
+            </button>
+          </div>
+        </aside>
+        
+        <!-- Products Grid -->
+        <div class="flex-1">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <p class="text-gray-600">
+              Showing <span class="font-semibold">{products.length}</span> products
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {products.map((product) => (
+              <div class="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+                <div class="relative aspect-[3/4] overflow-hidden">
+                  <img src={product.image} alt={product.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  {product.badge && (
+                    <span class="absolute top-3 left-3 bg-black text-white text-xs font-bold px-2 py-1 rounded">
+                      {product.badge}
+                    </span>
+                  )}
+                </div>
+                <div class="p-4">
+                  <h3 class="font-medium text-gray-900 mb-1 truncate">{product.name}</h3>
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="font-bold text-lg">₹{product.price.toLocaleString()}</span>
+                    {product.original_price && (
+                      <span class="text-gray-400 line-through text-sm">₹{product.original_price.toLocaleString()}</span>
+                    )}
+                  </div>
+                  <div class="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg class={`w-4 h-4 ${i < Math.round(product.rating) ? 'text-yellow-400' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                    <span class="text-sm text-gray-500 ml-1">({product.rating})</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

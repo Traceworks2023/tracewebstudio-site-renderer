@@ -1,0 +1,43 @@
+{
+  "id": "art-contemporary-01",
+  "name": "Art Contemporary",
+  "category": "art",
+  "subcategory": "contemporary",
+  "description": "Contemporary art space with edgy, experimental design",
+  "version": "1.0.0",
+  "tags": ["art", "contemporary", "experimental", "gallery"],
+  "components": {
+    "header": {
+      "layout": "dark-minimal",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "bold", "position": "right" },
+      "actions": ["art-fair"]
+    },
+    "footer": {
+      "layout": "art-space-dark",
+      "columns": ["exhibitions", "artists", "art-fairs", "newsletter"]
+    },
+    "artworkCard": { "layout": "statement-piece" }
+  },
+  "pages": {
+    "home": { "layout": "art-fair", "sections": ["hero", "exhibitions", "artists", "art-fairs", "collect"] },
+    "gallery": { "layout": "immersive" },
+    "artwork": { "layout": "statement" }
+  },
+  "colors": {
+    "primary": "#000000",
+    "secondary": "#1A1A1A",
+    "accent": "#FF3300",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Helvetica Neue", "weight": "700" },
+    "body": { "font": "Helvetica Neue", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

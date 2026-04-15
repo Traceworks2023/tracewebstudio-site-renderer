@@ -1,0 +1,593 @@
+---
+import BaseLayout from '../lib/BaseLayout.astro';
+import { getCurrentTheme } from '../lib/theme-loader';
+import { buildThemeCSSVars } from '../lib/theme-components';
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const store = {
+  name: 'Fashion Luxe Store',
+  ownerName: 'Sarah',
+  email: 'sarah@fashionluxe.com',
+  logo: null
+};
+
+const stats = [
+  { label: 'Total Revenue', value: '$12,450', change: '+12.5%', trend: 'up' },
+  { label: 'Orders', value: '156', change: '+8.2%', trend: 'up' },
+  { label: 'Products', value: '48', change: '+3', trend: 'up' },
+  { label: 'Customers', value: '234', change: '+15', trend: 'up' }
+];
+
+const recentOrders = [
+  { id: 'ORD-2024-001', customer: 'Emma Wilson', date: 'Apr 12, 2024', status: 'Processing', total: 149.97, items: 2 },
+  { id: 'ORD-2024-002', customer: 'James Brown', date: 'Apr 11, 2024', status: 'Shipped', total: 79.99, items: 1 },
+  { id: 'ORD-2024-003', customer: 'Lisa Chen', date: 'Apr 10, 2024', status: 'Delivered', total: 229.97, items: 3 },
+  { id: 'ORD-2024-004', customer: 'Michael Park', date: 'Apr 9, 2024', status: 'Delivered', total: 89.99, items: 1 }
+];
+
+const topProducts = [
+  { name: 'Summer Floral Dress', sales: 45, revenue: 4500 },
+  { name: 'Classic White Blouse', sales: 38, revenue: 2850 },
+  { name: 'Denim Jacket', sales: 32, revenue: 3840 },
+  { name: 'Silk Scarf', sales: 28, revenue: 1960 }
+];
+
+const quickActions = [
+  { label: 'Add Product', icon: 'plus', href: '/tenant/products/new' },
+  { label: 'View Orders', icon: 'clipboard', href: '/tenant/orders' },
+  { label: 'Promotions', icon: 'tag', href: '/tenant/promotions' },
+  { label: 'Analytics', icon: 'chart', href: '/tenant/analytics' }
+];
+---
+
+<BaseLayout title="Store Dashboard - Fashion Luxe" showHeader={false} showFooter={false}>
+  <div class="tenant" style={cssVars}>
+    <aside class="tenant__sidebar">
+      <div class="tenant__logo">
+        <div class="tenant__logo-icon">FL</div>
+        <span class="tenant__logo-name">{store.name}</span>
+      </div>
+
+      <nav class="tenant__nav">
+        <a href="/tenant" class="tenant__nav-link tenant__nav-link--active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          Dashboard
+        </a>
+        <a href="/tenant/products" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          Products
+        </a>
+        <a href="/tenant/orders" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          </svg>
+          Orders
+        </a>
+        <a href="/tenant/customers" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          Customers
+        </a>
+        <a href="/tenant/analytics" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          Analytics
+        </a>
+        <a href="/tenant/settings" class="tenant__nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+          </svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="tenant__sidebar-footer">
+        <a href="/tenant/logout" class="tenant__nav-link tenant__nav-link--logout">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" x2="9" y1="12" y2="12"></line>
+          </svg>
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <main class="tenant__main">
+      <header class="tenant__header">
+        <div class="tenant__header-left">
+          <h1 class="tenant__title">Dashboard</h1>
+          <p class="tenant__welcome">Welcome back, {store.ownerName}!</p>
+        </div>
+        <div class="tenant__header-right">
+          <button class="tenant__btn tenant__btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Product
+          </button>
+        </div>
+      </header>
+
+      <div class="tenant__stats">
+        {stats.map((stat) => (
+          <div class="tenant__stat">
+            <span class="tenant__stat-value">{stat.value}</span>
+            <span class="tenant__stat-label">{stat.label}</span>
+            <span class={`tenant__stat-change tenant__stat-change--${stat.trend}`}>
+              {stat.change}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div class="tenant__grid">
+        <section class="tenant__section tenant__section--orders">
+          <div class="tenant__section-header">
+            <h2 class="tenant__section-title">Recent Orders</h2>
+            <a href="/tenant/orders" class="tenant__section-link">View All</a>
+          </div>
+          <div class="tenant__orders">
+            <table class="tenant__table">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Customer</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentOrders.map((order) => (
+                  <tr>
+                    <td>
+                      <span class="tenant__order-id">{order.id}</span>
+                      <span class="tenant__order-date">{order.date}</span>
+                    </td>
+                    <td>{order.customer}</td>
+                    <td>
+                      <span class={`tenant__badge tenant__badge--${order.status.toLowerCase()}`}>
+                        {order.status}
+                      </span>
+                    </td>
+                    <td class="tenant__order-total">${order.total.toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="tenant__section tenant__section--products">
+          <div class="tenant__section-header">
+            <h2 class="tenant__section-title">Top Products</h2>
+            <a href="/tenant/products" class="tenant__section-link">View All</a>
+          </div>
+          <div class="tenant__products">
+            {topProducts.map((product) => (
+              <div class="tenant__product">
+                <div class="tenant__product-info">
+                  <span class="tenant__product-name">{product.name}</span>
+                  <span class="tenant__product-sales">{product.sales} sales</span>
+                </div>
+                <span class="tenant__product-revenue">${product.revenue.toLocaleString()}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <section class="tenant__section tenant__section--actions">
+        <h2 class="tenant__section-title">Quick Actions</h2>
+        <div class="tenant__actions">
+          {quickActions.map((action) => (
+            <a href={action.href} class="tenant__action-card">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                {action.icon === 'plus' && <><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></>}
+                {action.icon === 'clipboard' && <><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></>}
+                {action.icon === 'tag' && <><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></>}
+                {action.icon === 'chart' && <><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></>}
+              </svg>
+              <span class="tenant__action-label">{action.label}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style define:vars={cssVars}>
+  .tenant {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    background: var(--theme-background);
+  }
+
+  .tenant__sidebar {
+    background: var(--theme-surface);
+    border-right: 1px solid var(--theme-border);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .tenant__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 24px;
+    border-bottom: 1px solid var(--theme-border);
+    margin-bottom: 24px;
+  }
+
+  .tenant__logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .tenant__logo-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .tenant__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .tenant__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--btn-radius);
+    color: var(--theme-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .tenant__nav-link:hover {
+    background: var(--theme-background);
+    color: var(--theme-text);
+  }
+
+  .tenant__nav-link--active {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+  }
+
+  .tenant__nav-link--logout {
+    color: var(--theme-error);
+    margin-top: auto;
+  }
+
+  .tenant__sidebar-footer {
+    border-top: 1px solid var(--theme-border);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+
+  .tenant__main {
+    padding: 32px 40px;
+    max-width: 1200px;
+  }
+
+  .tenant__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .tenant__title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--theme-text);
+  }
+
+  .tenant__welcome {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .tenant__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--btn-radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border: none;
+  }
+
+  .tenant__btn--primary {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+  }
+
+  .tenant__btn--primary:hover {
+    background: var(--theme-primary-hover);
+  }
+
+  .tenant__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .tenant__stat {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tenant__stat-value {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--theme-text);
+  }
+
+  .tenant__stat-label {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+  }
+
+  .tenant__stat-change {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .tenant__stat-change--up {
+    color: var(--theme-success);
+  }
+
+  .tenant__stat-change--down {
+    color: var(--theme-error);
+  }
+
+  .tenant__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .tenant__section {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 24px;
+  }
+
+  .tenant__section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .tenant__section-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--theme-text);
+  }
+
+  .tenant__section-link {
+    font-size: 13px;
+    color: var(--theme-primary);
+    text-decoration: none;
+  }
+
+  .tenant__section-link:hover {
+    text-decoration: underline;
+  }
+
+  .tenant__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .tenant__table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--theme-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0 0 12px;
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .tenant__table td {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--theme-border-light);
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .tenant__table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .tenant__order-id {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .tenant__order-date {
+    display: block;
+    font-size: 12px;
+    color: var(--theme-text-muted);
+  }
+
+  .tenant__badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .tenant__badge--processing {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--theme-warning);
+  }
+
+  .tenant__badge--shipped {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--theme-info);
+  }
+
+  .tenant__badge--delivered {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--theme-success);
+  }
+
+  .tenant__order-total {
+    font-weight: 600;
+  }
+
+  .tenant__products {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tenant__product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: var(--theme-background);
+    border-radius: var(--btn-radius);
+  }
+
+  .tenant__product-name {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .tenant__product-sales {
+    display: block;
+    font-size: 12px;
+    color: var(--theme-text-muted);
+  }
+
+  .tenant__product-revenue {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .tenant__section--actions {
+    margin-bottom: 32px;
+  }
+
+  .tenant__actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .tenant__action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 16px;
+    background: var(--theme-background);
+    border-radius: var(--btn-radius);
+    text-decoration: none;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .tenant__action-card:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .tenant__action-card svg {
+    color: var(--theme-primary);
+  }
+
+  .tenant__action-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--theme-text);
+  }
+
+  @media (max-width: 1200px) {
+    .tenant {
+      grid-template-columns: 1fr;
+    }
+
+    .tenant__sidebar {
+      display: none;
+    }
+
+    .tenant__stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tenant__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tenant__actions {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

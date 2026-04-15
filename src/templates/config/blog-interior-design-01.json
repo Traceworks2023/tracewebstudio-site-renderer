@@ -1,0 +1,43 @@
+{
+  "id": "blog-interior-design-01",
+  "name": "Blog Interior Design",
+  "category": "blog",
+  "subcategory": "interior-design",
+  "description": "Interior design blog with inspiring room showcases",
+  "version": "1.0.0",
+  "tags": ["blog", "interior", "design", "rooms"],
+  "components": {
+    "header": {
+      "layout": "design-light",
+      "logo": { "type": "elegant", "position": "center" },
+      "navigation": { "type": "rooms", "position": "below" },
+      "actions": ["newsletter"]
+    },
+    "footer": {
+      "layout": "styled-light",
+      "columns": ["rooms", "styles", "shopping", "about"]
+    },
+    "postCard": { "layout": "room-feature" }
+  },
+  "pages": {
+    "home": { "layout": "design-inspire", "sections": ["hero", "rooms", "styles", "shopping", "newsletter"] },
+    "category": { "layout": "room-grid" },
+    "post": { "layout": "room-tour" }
+  },
+  "colors": {
+    "primary": "#5D4037",
+    "secondary": "#EFEBE9",
+    "accent": "#9E9E9E",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#3E2723",
+    "textMuted": "#6D4C41"
+  },
+  "typography": {
+    "heading": { "font": "Playfair Display", "weight": "400" },
+    "body": { "font": "Lato", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(0,0,0,0.08)" }
+}

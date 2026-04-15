@@ -1,0 +1,294 @@
+{
+  "id": "fashion-sustainable-01",
+  "name": "Sustainable Fashion 01",
+  "slug": "fashion-sustainable-01",
+  "category": "fashion",
+  "subcategory": "sustainable",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Eco-friendly sustainable fashion template with natural aesthetics. Perfect for ethical fashion brands and eco-conscious boutiques.",
+  "previewImage": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800",
+  "structure": {
+    "home": {
+      "layout": "magazine-layout",
+      "sections": ["hero", "mission", "featured-products", "materials", "impact", "testimonials", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": false,
+        "overlayOpacity": 0,
+        "showScrollIndicator": false
+      },
+      "productGrid": {
+        "columns": 3,
+        "aspectRatio": "3/4",
+        "showQuickView": true,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "minimal",
+        "sticky": true,
+        "showSearch": false,
+        "showCart": true,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": true
+      }
+    },
+    "category": {
+      "layout": "no-filter",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "3/4"
+      },
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false,
+        "showClearAll": false
+      },
+      "pagination": {
+        "style": "infinite-scroll",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": false
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": true,
+        "showThumbnails": true,
+        "thumbnailColumns": 4
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": true,
+        "showSku": false,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": true,
+        "showSizeSelector": true,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": true,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 3
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/products"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "shipping", "carbon-offset", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": true,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "overlay",
+      "showFilters": false,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#4A5D23",
+      "primaryHover": "#3A4D13",
+      "secondary": "#2C3E1F",
+      "secondaryHover": "#3C4E2F",
+      "accent": "#C4A77D",
+      "accentHover": "#B49668",
+      "background": "#FDFCF9",
+      "surface": "#F5F2E8",
+      "surfaceAlt": "#EBE6DA",
+      "textPrimary": "#2C3E1F",
+      "textSecondary": "#5D6D43",
+      "textMuted": "#9BA583",
+      "border": "#D4D0C4",
+      "borderLight": "#E8E4DA",
+      "success": "#7CB682",
+      "warning": "#D4A84B",
+      "error": "#B85C4A",
+      "info": "#7A9B8A"
+    },
+    "dark": {
+      "background": "#1A1F15",
+      "surface": "#252B1F",
+      "textPrimary": "#F5F2E8",
+      "textSecondary": "#9BA583"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "shadow": "none",
+        "hoverEffect": "color"
+      },
+      "secondary": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "0px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "4px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.05)",
+      "shadowHover": "0 8px 24px rgba(0,0,0,0.08)",
+      "border": "none",
+      "padding": "20px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "0px",
+      "border": "1px solid #D4D0C4",
+      "focusBorder": "#4A5D23",
+      "padding": "14px 18px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "0px",
+      "padding": "6px 12px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "36px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "3/4",
+      "showBadges": true,
+      "showQuickView": true,
+      "showAddToCart": false,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "second-image"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "DM Serif Display",
+      "weight": "400",
+      "transform": "none",
+      "letterSpacing": "0"
+    },
+    "body": {
+      "family": "Karla",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.7"
+    },
+    "accent": {
+      "family": "Cormorant Garamond",
+      "weight": "400",
+      "italic": true
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1200px",
+    "gridGap": "24px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.04)",
+      "md": "0 2px 12px rgba(0,0,0,0.05)",
+      "lg": "0 8px 24px rgba(0,0,0,0.08)",
+      "xl": "0 16px 40px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "0px",
+      "md": "4px",
+      "lg": "8px",
+      "xl": "12px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["fashion", "sustainable", "eco-friendly", "organic", "ethical", "natural"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "carbon-offset", "impact-tracker"]
+    }
+  }
+}

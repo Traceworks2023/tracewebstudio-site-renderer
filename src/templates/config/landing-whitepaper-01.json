@@ -1,0 +1,41 @@
+{
+  "id": "landing-ebook-03",
+  "name": "Landing Whitepaper",
+  "category": "landing",
+  "subcategory": "whitepaper",
+  "description": "Whitepaper download with authoritative, research-focused design",
+  "version": "1.0.0",
+  "tags": ["landing", "whitepaper", "b2b", "research"],
+  "components": {
+    "header": {
+      "layout": "research-light",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "none" },
+      "actions": []
+    },
+    "footer": {
+      "layout": "minimal",
+      "columns": ["privacy", "terms"]
+    },
+    "ctaForm": { "layout": "lead-capture" }
+  },
+  "pages": {
+    "home": { "layout": "research-gate", "sections": ["headline", "preview", "key-findings", "download"] }
+  },
+  "colors": {
+    "primary": "#37474F",
+    "secondary": "#FFFFFF",
+    "accent": "#FF6F00",
+    "background": "#F5F5F5",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Roboto Slab", "weight": "500" },
+    "body": { "font": "Open Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 4px 20px rgba(0,0,0,0.1)" }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "fashion-minimalist-01",
+  "name": "Fashion Minimalist",
+  "category": "fashion",
+  "subcategory": "minimalist",
+  "description": "Clean, minimalist fashion with focus on simplicity and quality",
+  "version": "1.0.0",
+  "tags": ["fashion", "minimalist", "clean", "basic"],
+  "components": {
+    "header": {
+      "layout": "ultra-minimal",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "none", "position": "right" },
+      "actions": ["menu-toggle"]
+    },
+    "footer": {
+      "layout": "simple-center",
+      "columns": ["brand", "links"]
+    },
+    "productCard": { "layout": "pure-image", "noBadges": true },
+    "cartDrawer": { "layout": "full-overlay" }
+  },
+  "pages": {
+    "home": { "layout": "editorial-grid", "sections": ["hero", "lookbook", "essentials", "story"] },
+    "category": { "layout": "infinite-scroll" },
+    "product": { "layout": "minimal-gallery" }
+  },
+  "colors": {
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "accent": "#333333",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#000000",
+    "textMuted": "#999999"
+  },
+  "typography": {
+    "heading": { "font": "Helvetica Neue", "weight": "300" },
+    "body": { "font": "Helvetica Neue", "weight": "400" }
+  },
+  "spacing": { "base": "8px", "section": "120px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

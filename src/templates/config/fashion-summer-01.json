@@ -1,0 +1,44 @@
+{
+  "id": "fashion-summer-01",
+  "name": "Fashion Summer",
+  "category": "fashion",
+  "subcategory": "summer-wear",
+  "description": "Light, airy fashion for summer seasons with tropical vibes",
+  "version": "1.0.0",
+  "tags": ["fashion", "summer", "beachwear", "tropical"],
+  "components": {
+    "header": {
+      "layout": "minimal-light",
+      "logo": { "type": "text", "position": "center" },
+      "navigation": { "type": "inline", "position": "left" },
+      "actions": ["search", "wishlist", "cart"]
+    },
+    "footer": {
+      "layout": "centered-light",
+      "columns": ["brand", "shop", "about", "social"]
+    },
+    "productCard": { "layout": "image-top", "showBadge": true },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "full-width-hero", "sections": ["hero", "categories", "featured", "summer-collection", "instagram"] },
+    "category": { "layout": "masonry-grid" },
+    "product": { "layout": "scroll-gallery" }
+  },
+  "colors": {
+    "primary": "#FF9A56",
+    "secondary": "#FFF5E1",
+    "accent": "#00C9A7",
+    "background": "#FFFFFF",
+    "surface": "#FFF9F5",
+    "text": "#2D3436",
+    "textMuted": "#636E72"
+  },
+  "typography": {
+    "heading": { "font": "Playfair Display", "weight": "600" },
+    "body": { "font": "Nunito", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "50px", "cards": "16px" },
+  "shadows": { "cards": "0 2px 10px rgba(0,0,0,0.08)" }
+}

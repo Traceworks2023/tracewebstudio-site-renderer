@@ -1,0 +1,44 @@
+{
+  "id": "automotive-parts-01",
+  "name": "Automotive Parts",
+  "category": "automotive",
+  "subcategory": "parts",
+  "description": "Auto parts with technical, parts-focused design",
+  "version": "1.0.0",
+  "tags": ["automotive", "parts", "repair", "accessories"],
+  "components": {
+    "header": {
+      "layout": "garage-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "parts-types", "position": "center" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "shop-dark",
+      "columns": ["engine", "brakes", "electrical", "accessories"]
+    },
+    "productCard": { "layout": "part-diagram" },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "fix-it", "sections": ["hero", "popular", "engine", "brakes", "accessories"] },
+    "category": { "layout": "parts-grid" },
+    "product": { "layout": "part-spec" }
+  },
+  "colors": {
+    "primary": "#37474F",
+    "secondary": "#1A1A1A",
+    "accent": "#FF6D00",
+    "background": "#1A1A1A",
+    "surface": "#263238",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Roboto Condensed", "weight": "700" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 3px 10px rgba(0,0,0,0.3)" }
+}

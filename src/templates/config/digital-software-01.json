@@ -1,0 +1,44 @@
+{
+  "id": "digital-software-01",
+  "name": "Digital Software",
+  "category": "digital",
+  "subcategory": "software",
+  "description": "Software products and digital tools store",
+  "version": "1.0.0",
+  "tags": ["digital", "software", "saas", "tools"],
+  "components": {
+    "header": {
+      "layout": "tech-dark",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "categories", "position": "center" },
+      "actions": ["demo", "cart"]
+    },
+    "footer": {
+      "layout": "tech-minimal",
+      "columns": ["products", "resources", "company", "legal"]
+    },
+    "productCard": { "layout": "feature-list" },
+    "cartDrawer": { "layout": "digital-delivery" }
+  },
+  "pages": {
+    "home": { "layout": "saas-style", "sections": ["hero", "features", "pricing", "demos", "compare"] },
+    "category": { "layout": "feature-grid" },
+    "product": { "layout": "feature-deep" }
+  },
+  "colors": {
+    "primary": "#6200EA",
+    "secondary": "#1A1A2E",
+    "accent": "#00E5FF",
+    "background": "#0D0D1A",
+    "surface": "#1A1A2E",
+    "text": "#FFFFFF",
+    "textMuted": "#8892B0"
+  },
+  "typography": {
+    "heading": { "font": "Inter", "weight": "600" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "8px", "cards": "12px" },
+  "shadows": { "cards": "0 4px 20px rgba(98,0,234,0.2)" }
+}

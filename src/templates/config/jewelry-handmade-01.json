@@ -1,0 +1,296 @@
+{
+  "id": "jewelry-handmade-01",
+  "name": "Handmade Jewelry 01",
+  "slug": "jewelry-handmade-01",
+  "category": "jewelry",
+  "subcategory": "handmade",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Artisan handmade jewelry template with organic aesthetics. Perfect for independent jewelers, craft markets, and artisan jewelry designers.",
+  "previewImage": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800",
+  "structure": {
+    "home": {
+      "layout": "magazine-layout",
+      "sections": ["hero", "story", "featured-products", "craftsmanship", "testimonials", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "medium",
+        "textAlignment": "center",
+        "showOverlay": false,
+        "overlayOpacity": 0,
+        "showScrollIndicator": false
+      },
+      "productGrid": {
+        "columns": 4,
+        "aspectRatio": "1/1",
+        "showQuickView": false,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "minimal",
+        "sticky": true,
+        "showSearch": false,
+        "showCart": true,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 3,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "no-filter",
+      "grid": {
+        "columns": 4,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "1/1"
+      },
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false,
+        "showClearAll": false
+      },
+      "pagination": {
+        "style": "infinite-scroll",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": false
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": true,
+        "showThumbnails": true,
+        "thumbnailColumns": 4
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": true,
+        "showSku": true,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": true,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": false,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 4
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": false,
+      "showSummary": true,
+      "continueShoppingUrl": "/collections"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "shipping", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": false
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": false,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "overlay",
+      "showFilters": false,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#5D4E37",
+      "primaryHover": "#4D3E27",
+      "secondary": "#3D2E1F",
+      "secondaryHover": "#4D3E2F",
+      "accent": "#C4956A",
+      "accentHover": "#B4855A",
+      "background": "#FAF7F2",
+      "surface": "#F5F0E8",
+      "surfaceAlt": "#EDE7DC",
+      "textPrimary": "#3D2E1F",
+      "textSecondary": "#6B5D4D",
+      "textMuted": "#9B8B7B",
+      "border": "#E0D8CC",
+      "borderLight": "#EDE7DC",
+      "success": "#7CB682",
+      "warning": "#D4A84B",
+      "error": "#B85C4A",
+      "info": "#7A9BB0"
+    },
+    "dark": {
+      "background": "#1A1512",
+      "surface": "#2A2520",
+      "textPrimary": "#F5F0E8",
+      "textSecondary": "#9B8B7B"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "2px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "uppercase",
+        "shadow": "none",
+        "hoverEffect": "color"
+      },
+      "secondary": {
+        "borderRadius": "2px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "uppercase",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "2px",
+        "padding": "16px 32px",
+        "fontWeight": "500",
+        "textTransform": "uppercase",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "4px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.05)",
+      "shadowHover": "0 6px 20px rgba(0,0,0,0.08)",
+      "border": "none",
+      "padding": "20px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "2px",
+      "border": "1px solid #E0D8CC",
+      "focusBorder": "#5D4E37",
+      "padding": "14px 18px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "2px",
+      "padding": "6px 12px",
+      "fontSize": "10px",
+      "fontWeight": "600",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.1em"
+    },
+    "navigation": {
+      "itemSpacing": "36px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "1/1",
+      "showBadges": true,
+      "showQuickView": false,
+      "showAddToCart": false,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Cormorant Garamond",
+      "weight": "500",
+      "transform": "none",
+      "letterSpacing": "0.02em"
+    },
+    "body": {
+      "family": "Proza Libre",
+      "weight": "400",
+      "size": "14px",
+      "lineHeight": "1.8"
+    },
+    "accent": {
+      "family": "Cormorant Garamond",
+      "weight": "400",
+      "italic": true
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1200px",
+    "gridGap": "20px",
+    "cardGap": "16px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.04)",
+      "md": "0 2px 12px rgba(0,0,0,0.05)",
+      "lg": "0 6px 20px rgba(0,0,0,0.08)",
+      "xl": "0 12px 32px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "6px",
+      "xl": "10px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "200ms ease",
+      "normal": "300ms ease",
+      "slow": "500ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["jewelry", "handmade", "artisan", "craft", "organic", "unique"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "custom-orders", "storytelling"]
+    }
+  }
+}

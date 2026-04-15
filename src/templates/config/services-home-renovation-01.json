@@ -1,0 +1,44 @@
+{
+  "id": "services-home-renovation-01",
+  "name": "Services Home Renovation",
+  "category": "services",
+  "subcategory": "renovation",
+  "description": "Home renovation with project-focused, professional design",
+  "version": "1.0.0",
+  "tags": ["services", "renovation", "contractor", "home"],
+  "components": {
+    "header": {
+      "layout": "renovate-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "services", "position": "center" },
+      "actions": ["estimate"]
+    },
+    "footer": {
+      "layout": "transform-dark",
+      "columns": ["kitchens", "baths", "additions", "contact"]
+    },
+    "projectCard": { "layout": "before-after" },
+    "estimateForm": { "layout": "project-details" }
+  },
+  "pages": {
+    "home": { "layout": "transform-home", "sections": ["hero", "services", "before-after", "testimonials", "estimate"] },
+    "services": { "layout": "service-grid" },
+    "estimate": { "layout": "project-form" }
+  },
+  "colors": {
+    "primary": "#FF6F00",
+    "secondary": "#263238",
+    "accent": "#00ACC1",
+    "background": "#1A1A1A",
+    "surface": "#263238",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Roboto Condensed", "weight": "700" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(0,0,0,0.3)" }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "landing-app-download-01",
+  "name": "Landing App Download",
+  "category": "landing",
+  "subcategory": "app-download",
+  "description": "Mobile app download landing page",
+  "version": "1.0.0",
+  "tags": ["landing", "app", "mobile", "download"],
+  "components": {
+    "header": {
+      "layout": "minimal",
+      "logo": { "type": "icon", "position": "center" },
+      "navigation": { "type": "none" },
+      "actions": []
+    },
+    "footer": {
+      "layout": "minimal",
+      "columns": ["privacy", "terms", "support"]
+    },
+    "appShowcase": { "layout": "phone-mockup" }
+  },
+  "pages": {
+    "home": { "layout": "get-app", "sections": ["headline", "app-preview", "features", "testimonials", "download"] }
+  },
+  "colors": {
+    "primary": "#6200EA",
+    "secondary": "#1A1A1A",
+    "accent": "#FFFFFF",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#B0B0B0"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "600" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "8px", "cards": "12px" },
+  "shadows": { "cards": "0 8px 40px rgba(98,0,234,0.25)" }
+}

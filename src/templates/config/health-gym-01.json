@@ -1,0 +1,44 @@
+{
+  "id": "health-gym-01",
+  "name": "Health Gym Membership",
+  "category": "health",
+  "subcategory": "gym",
+  "description": "Gym membership with fitness-focused design",
+  "version": "1.0.0",
+  "tags": ["health", "gym", "fitness", "membership"],
+  "components": {
+    "header": {
+      "layout": "fit-dark",
+      "logo": { "type": "bold", "position": "center" },
+      "navigation": { "type": "programs", "position": "below" },
+      "actions": ["join", "login"]
+    },
+    "footer": {
+      "layout": "gym-dark",
+      "columns": ["classes", "equipment", "membership", "contact"]
+    },
+    "classCard": { "layout": "workout-card" },
+    "membershipCard": { "layout": "tier-plan" }
+  },
+  "pages": {
+    "home": { "layout": "get-fit", "sections": ["hero", "classes", "equipment", "membership", "testimonials"] },
+    "classes": { "layout": "class-schedule" },
+    "membership": { "layout": "plan-compare" }
+  },
+  "colors": {
+    "primary": "#FF5722",
+    "secondary": "#1A1A1A",
+    "accent": "#FFD54F",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Bebas Neue", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "500" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 5px 20px rgba(255,87,34,0.25)" }
+}

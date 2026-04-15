@@ -1,0 +1,44 @@
+{
+  "id": "jewelry-bridal-01",
+  "name": "Jewelry Bridal",
+  "category": "jewelry",
+  "subcategory": "bridal",
+  "description": "Bridal jewelry with romantic, elegant design",
+  "version": "1.0.0",
+  "tags": ["jewelry", "bridal", "engagement", "wedding"],
+  "components": {
+    "header": {
+      "layout": "romantic-light",
+      "logo": { "type": "elegant", "position": "center" },
+      "navigation": { "type": " bridal-types", "position": "below" },
+      "actions": ["appointments"]
+    },
+    "footer": {
+      "layout": "diamond-dark",
+      "columns": ["engagement", "wedding", "anniversary", "contact"]
+    },
+    "productCard": { "layout": "sparkle-focus" },
+    "appointmentForm": { "layout": "consultation" }
+  },
+  "pages": {
+    "home": { "layout": "forever", "sections": ["hero", "engagement", "wedding", "anniversary", "appointments"] },
+    "category": { "layout": "elegant-gallery" },
+    "product": { "layout": "sparkle-detail" }
+  },
+  "colors": {
+    "primary": "#D4AF37",
+    "secondary": "#1A1A1A",
+    "accent": "#E8E4DC",
+    "background": "#FFFBF5",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Didot", "weight": "400" },
+    "body": { "font": "Cormorant Garamond", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 20px rgba(212,175,55,0.15)" }
+}

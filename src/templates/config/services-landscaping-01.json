@@ -1,0 +1,44 @@
+{
+  "id": "services-landscaping-01",
+  "name": "Services Landscaping",
+  "category": "services",
+  "subcategory": "landscaping",
+  "description": "Landscaping service with natural, garden-focused design",
+  "version": "1.0.0",
+  "tags": ["services", "landscaping", "garden", "outdoor"],
+  "components": {
+    "header": {
+      "layout": "natural-light",
+      "logo": { "type": "image", "position": "left" },
+      "navigation": { "type": "services", "position": "center" },
+      "actions": ["estimate"]
+    },
+    "footer": {
+      "layout": "garden-dark",
+      "columns": ["design", "maintenance", "projects", "contact"]
+    },
+    "projectCard": { "layout": "garden-photo" },
+    "serviceCard": { "layout": "outdoor-service" }
+  },
+  "pages": {
+    "home": { "layout": "grow-green", "sections": ["hero", "services", "projects", "testimonials", "estimate"] },
+    "projects": { "layout": "portfolio-grid" },
+    "estimate": { "layout": "landscape-form" }
+  },
+  "colors": {
+    "primary": "#43A047",
+    "secondary": "#E8F5E9",
+    "accent": "#8D6E63",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#1B5E20",
+    "textMuted": "#558B2F"
+  },
+  "typography": {
+    "heading": { "font": "Lobster", "weight": "400" },
+    "body": { "font": "Open Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "12px" },
+  "shadows": { "cards": "0 4px 15px rgba(67,160,71,0.15)" }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "kids-baby-01",
+  "name": "Kids Baby Store",
+  "category": "kids",
+  "subcategory": "baby",
+  "description": "Baby products store with soft, nurturing design",
+  "version": "1.0.0",
+  "tags": ["kids", "baby", "nursery", "gentle"],
+  "components": {
+    "header": {
+      "layout": "soft-pastel",
+      "logo": { "type": "image", "position": "center" },
+      "navigation": { "type": "age-groups", "position": "below" },
+      "actions": ["search", "registry", "cart"]
+    },
+    "footer": {
+      "layout": "nurturing",
+      "columns": ["shop", "registry", "guides", "about"]
+    },
+    "productCard": { "layout": "soft-image", "showAge": true },
+    "cartDrawer": { "layout": "gentle-slide" }
+  },
+  "pages": {
+    "home": { "layout": "nurturing-start", "sections": ["hero", "essentials", "by-age", "registry", "guides"] },
+    "category": { "layout": "age-grouped" },
+    "product": { "layout": "parent-friendly" }
+  },
+  "colors": {
+    "primary": "#F8BBD9",
+    "secondary": "#E1F5FE",
+    "accent": "#81D4FA",
+    "background": "#FFFFF7",
+    "surface": "#FFFFFF",
+    "text": "#5D4037",
+    "textMuted": "#8D6E63"
+  },
+  "typography": {
+    "heading": { "font": "Quicksand", "weight": "500" },
+    "body": { "font": "Nunito", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "25px", "cards": "16px" },
+  "shadows": { "cards": "0 3px 12px rgba(248,187,217,0.2)" }
+}

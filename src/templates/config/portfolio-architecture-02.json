@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-architecture-02",
+  "name": "Portfolio Architecture Modern",
+  "category": "portfolio",
+  "subcategory": "architecture",
+  "description": "Modern architecture portfolio with clean structural presentation",
+  "version": "1.0.0",
+  "tags": ["portfolio", "architecture", "modern", "buildings"],
+  "components": {
+    "header": {
+      "layout": "structural",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "project-types", "position": "right" },
+      "actions": ["contact"]
+    },
+    "footer": {
+      "layout": "studio-minimal",
+      "columns": ["residential", "commercial", "conceptual", "contact"]
+    },
+    "projectCard": { "layout": "structure-focus" }
+  },
+  "pages": {
+    "home": { "layout": "building-showcase", "sections": ["hero", "residential", "commercial", "awards", "contact"] },
+    "projects": { "layout": "structural-grid" },
+    "project": { "layout": "blueprint-detail" }
+  },
+  "colors": {
+    "primary": "#37474F",
+    "secondary": "#ECEFF1",
+    "accent": "#FF6F00",
+    "background": "#FFFFFF",
+    "surface": "#FAFAFA",
+    "text": "#263238",
+    "textMuted": "#78909C"
+  },
+  "typography": {
+    "heading": { "font": "Roboto Condensed", "weight": "300" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

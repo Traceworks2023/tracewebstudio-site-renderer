@@ -1,0 +1,82 @@
+---
+// Product Tabs Section
+interface Tab {
+  id: string;
+  title: string;
+  content: string;
+  content_type?: string;
+}
+
+interface Props {
+  content: {
+    section_id: string;
+    tabs: Tab[];
+    default_tab?: string;
+  };
+}
+
+const { content } = Astro.props;
+const {
+  tabs = [
+    { id: 'description', title: 'Description', content: '<p>Product description goes here.</p>', content_type: 'html' },
+    { id: 'shipping', title: 'Shipping', content: '<p>Shipping information goes here.</p>', content_type: 'html' },
+    { id: 'returns', title: 'Returns', content: '<p>Return policy goes here.</p>', content_type: 'html' }
+  ],
+  default_tab = 'description'
+} = content;
+
+const activeTab = default_tab || tabs[0]?.id;
+---
+
+<div class="border-b border-gray-200">
+  <!-- Tab Headers -->
+  <div class="flex overflow-x-auto">
+    {tabs.map((tab, index) => (
+      <button 
+        class={`px-6 py-4 font-semibold text-sm whitespace-nowrap border-b-2 transition-colors ${
+          tab.id === activeTab 
+            ? 'border-black text-black' 
+            : 'border-transparent text-gray-500 hover:text-gray-700'
+        }`}
+        data-tab={tab.id}
+      >
+        {tab.title}
+      </button>
+    ))}
+  </div>
+  
+  <!-- Tab Content -->
+  <div class="py-8">
+    {tabs.map((tab) => (
+      <div 
+        id={`tab-${tab.id}`}
+        class={`prose max-w-none ${tab.id === activeTab ? 'block' : 'hidden'}`}
+      >
+        <Fragment set:html={tab.content} />
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('[data-tab]').forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+      
+      // Update buttons
+      document.querySelectorAll('[data-tab]').forEach(btn => {
+        btn.classList.remove('border-black', 'text-black');
+        btn.classList.add('border-transparent', 'text-gray-500');
+      });
+      button.classList.remove('border-transparent', 'text-gray-500');
+      button.classList.add('border-black', 'text-black');
+      
+      // Update content
+      document.querySelectorAll('[id^="tab-"]').forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.getElementById(`tab-${tabId}`)?.classList.remove('hidden');
+    });
+  });
+</script>

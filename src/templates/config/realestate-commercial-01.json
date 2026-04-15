@@ -1,0 +1,293 @@
+{
+  "id": "realestate-commercial-01",
+  "name": "Commercial Real Estate 01",
+  "slug": "realestate-commercial-01",
+  "category": "real-estate",
+  "subcategory": "commercial",
+  "isPremium": true,
+  "isActive": true,
+  "description": "Professional commercial real estate template. Perfect for office spaces, retail locations, and commercial property listings.",
+  "previewImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+  "structure": {
+    "home": {
+      "layout": "split-hero-left",
+      "sections": ["hero", "featured-properties", "search", "services", "market-updates", "contact", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": true,
+        "overlayOpacity": 0.5,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 3,
+        "aspectRatio": "16/9",
+        "showQuickView": true,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "top-bar",
+        "sticky": true,
+        "showSearch": false,
+        "showCart": false,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "detailed",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "sidebar-filter-left",
+      "grid": {
+        "columns": 2,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "16/9"
+      },
+      "sidebar": {
+        "width": "300px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "numbered",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": false,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-top-info-bottom",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": true,
+        "showThumbnails": true,
+        "thumbnailColumns": 4
+      },
+      "info": {
+        "showRating": false,
+        "showPrice": true,
+        "showStock": false,
+        "showSku": true,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": false,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "box",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 3
+      }
+    },
+    "cart": {
+      "layout": "minimal",
+      "showImages": true,
+      "showQuantities": false,
+      "showRemove": false,
+      "showCoupon": false,
+      "showSummary": true,
+      "continueShoppingUrl": "/properties"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "tour", "details"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "260px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "split",
+      "showSocialLogin": false,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#0F4C81",
+      "primaryHover": "#1F5C91",
+      "secondary": "#1A365D",
+      "secondaryHover": "#2A466D",
+      "accent": "#C9A227",
+      "accentHover": "#B99117",
+      "background": "#F8FAFC",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#EDF2F7",
+      "textPrimary": "#1A365D",
+      "textSecondary": "#4A5568",
+      "textMuted": "#A0AEC0",
+      "border": "#E2E8F0",
+      "borderLight": "#F0F4F8",
+      "success": "#38A169",
+      "warning": "#D69E2E",
+      "error": "#E53E3E",
+      "info": "#3182CE"
+    },
+    "dark": {
+      "background": "#0D1B2A",
+      "surface": "#1A2D3F",
+      "textPrimary": "#F8FAFC",
+      "textSecondary": "#A0AEC0"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "shadow": "0 2px 8px rgba(15, 76, 129, 0.2)",
+        "hoverEffect": "shadow"
+      },
+      "secondary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "8px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.06)",
+      "shadowHover": "0 8px 24px rgba(0,0,0,0.1)",
+      "border": "1px solid #E2E8F0",
+      "padding": "0px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "4px",
+      "border": "1px solid #E2E8F0",
+      "focusBorder": "#0F4C81",
+      "padding": "14px 16px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "4px",
+      "padding": "6px 12px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "32px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "mega"
+    },
+    "productCard": {
+      "imageAspectRatio": "16/9",
+      "showBadges": true,
+      "showQuickView": true,
+      "showAddToCart": false,
+      "showWishlist": true,
+      "showRating": false,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Montserrat",
+      "weight": "600",
+      "transform": "none",
+      "letterSpacing": "-0.01em"
+    },
+    "body": {
+      "family": "Source Sans Pro",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.6"
+    },
+    "accent": {
+      "family": "Montserrat",
+      "weight": "500"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1280px",
+    "gridGap": "24px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.05)",
+      "md": "0 2px 12px rgba(0,0,0,0.06)",
+      "lg": "0 8px 24px rgba(0,0,0,0.08)",
+      "xl": "0 16px 40px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "8px",
+      "xl": "12px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["real-estate", "commercial", "office", "retail", "business", "professional"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["listings", "virtual-tours", "lease-calculator", "agent-contact"]
+    }
+  }
+}

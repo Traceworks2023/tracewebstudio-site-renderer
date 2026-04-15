@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-animation-01",
+  "name": "Portfolio Animation",
+  "category": "portfolio",
+  "subcategory": "animation",
+  "description": "Motion designer portfolio with dynamic animations",
+  "version": "1.0.0",
+  "tags": ["portfolio", "animation", "motion", "video"],
+  "components": {
+    "header": {
+      "layout": "motion-dark",
+      "logo": { "type": "animated", "position": "left" },
+      "navigation": { "type": "minimal", "position": "right" },
+      "actions": ["reel", "contact"]
+    },
+    "footer": {
+      "layout": "showreel-dark",
+      "columns": ["work", "services", "reel", "social"]
+    },
+    "videoCard": { "layout": "play-on-hover" }
+  },
+  "pages": {
+    "home": { "layout": "reel-first", "sections": ["reel", "featured", "commercials", "music-videos", "about"] },
+    "work": { "layout": "video-grid" },
+    "project": { "layout": "video-player" }
+  },
+  "colors": {
+    "primary": "#651FFF",
+    "secondary": "#1A1A1A",
+    "accent": "#00E5FF",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#9E9E9E"
+  },
+  "typography": {
+    "heading": { "font": "Bebas Neue", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 4px 20px rgba(101,31,255,0.3)" }
+}

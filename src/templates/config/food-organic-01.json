@@ -1,0 +1,44 @@
+{
+  "id": "food-organic-01",
+  "name": "Food Organic Market",
+  "category": "food",
+  "subcategory": "organic-market",
+  "description": "Organic food market with farm-fresh produce focus",
+  "version": "1.0.0",
+  "tags": ["food", "organic", "market", "farm-fresh"],
+  "components": {
+    "header": {
+      "layout": "fresh-light",
+      "logo": { "type": "image", "position": "left" },
+      "navigation": { "type": "categories", "position": "center" },
+      "actions": ["search", "account", "cart"]
+    },
+    "footer": {
+      "layout": "farm-fresh",
+      "columns": ["farms", "products", "delivery", "newsletter"]
+    },
+    "productCard": { "layout": "farm-photo", "showOrigin": true },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "farm-to-table", "sections": ["hero", "weekly-favorites", "seasonal", "producers", "delivery-info"] },
+    "category": { "layout": "list-view" },
+    "product": { "layout": "farm-story" }
+  },
+  "colors": {
+    "primary": "#4CAF50",
+    "secondary": "#E8F5E9",
+    "accent": "#FF9800",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#1B5E20",
+    "textMuted": "#558B2F"
+  },
+  "typography": {
+    "heading": { "font": "Merriweather", "weight": "700" },
+    "body": { "font": "Source Sans Pro", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "8px", "cards": "12px" },
+  "shadows": { "cards": "0 2px 8px rgba(0,0,0,0.08)" }
+}

@@ -1,0 +1,242 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  showForm?: boolean;
+}
+
+const {
+  title = "Get in Touch",
+  subtitle = "Have a question? We'd love to hear from you.",
+  email = "hello@example.com",
+  phone = "+1 (555) 123-4567",
+  address = "123 Business Street, San Francisco, CA 94102",
+  showForm = true,
+} = Astro.props;
+---
+
+<section class="contact">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h2 class="contact-title">{title}</h2>
+      {subtitle && <p class="contact-subtitle">{subtitle}</p>}
+      
+      <div class="contact-details">
+        <div class="contact-item">
+          <span class="contact-icon">📧</span>
+          <div>
+            <strong>Email</strong>
+            <a href={`mailto:${email}`}>{email}</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📞</span>
+          <div>
+            <strong>Phone</strong>
+            <a href={`tel:${phone}`}>{phone}</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div>
+            <strong>Address</strong>
+            <span>{address}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {showForm && (
+      <div class="contact-form-wrapper">
+        <form class="contact-form" action="/api/contact" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required placeholder="John Doe" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="john@example.com" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required placeholder="How can we help?" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows={5} required placeholder="Your message..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 5rem 2rem;
+    background-color: white;
+  }
+
+  .contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .contact-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000032;
+    margin: 0 0 1rem 0;
+  }
+
+  .contact-subtitle {
+    font-size: 1.125rem;
+    color: #6B7280;
+    margin: 0 0 2rem 0;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contact-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF1EB;
+    border-radius: 50%;
+  }
+
+  .contact-item strong {
+    display: block;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-item a,
+  .contact-item span {
+    color: #6B7280;
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+
+  .contact-item a:hover {
+    color: #FA5014;
+  }
+
+  .contact-form-wrapper {
+    background: #F9FAFB;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #E5E7EB;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 500;
+    color: #111827;
+    font-size: 0.875rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #FA5014;
+    box-shadow: 0 0 0 3px rgba(250, 80, 20, 0.1);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #9CA3AF;
+  }
+
+  .btn {
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background-color: #FA5014;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: #e04a12;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 968px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .contact {
+      padding: 3rem 1rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-game-dev-01",
+  "name": "Portfolio Game Developer",
+  "category": "portfolio",
+  "subcategory": "game-dev",
+  "description": "Game developer portfolio with dynamic, gaming aesthetic",
+  "version": "1.0.0",
+  "tags": ["portfolio", "gamedev", "games", "developer"],
+  "components": {
+    "header": {
+      "layout": "game-dark",
+      "logo": { "type": "pixel", "position": "left" },
+      "navigation": { "type": "games", "position": "center" },
+      "actions": ["resume", "contact"]
+    },
+    "footer": {
+      "layout": "pixel-dark",
+      "columns": ["games", "skills", "engine", "social"]
+    },
+    "gameCard": { "layout": "screenshot-showcase" }
+  },
+  "pages": {
+    "home": { "layout": "level-select", "sections": ["hero", "games", "skills", "engine", "contact"] },
+    "games": { "layout": "game-grid" },
+    "game": { "layout": "game-detail" }
+  },
+  "colors": {
+    "primary": "#9C27B0",
+    "secondary": "#1A1A1A",
+    "accent": "#00E676",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Press Start 2P", "weight": "400" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "0px", "cards": "4px" },
+  "shadows": { "cards": "0 5px 20px rgba(156,39,176,0.3)" }
+}

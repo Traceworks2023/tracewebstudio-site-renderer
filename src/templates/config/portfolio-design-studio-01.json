@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-design-studio-01",
+  "name": "Portfolio Design Studio",
+  "category": "portfolio",
+  "subcategory": "design-studio",
+  "description": "Design studio portfolio with bold visual presentation",
+  "version": "1.0.0",
+  "tags": ["portfolio", "design", "creative", "studio"],
+  "components": {
+    "header": {
+      "layout": "studio-dark",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "minimal", "position": "right" },
+      "actions": ["contact"]
+    },
+    "footer": {
+      "layout": "contact-dark",
+      "columns": ["work", "services", "studio", "social"]
+    },
+    "projectCard": { "layout": "large-image" }
+  },
+  "pages": {
+    "home": { "layout": "full-bleed", "sections": ["hero", "selected-work", "services", "about", "contact"] },
+    "work": { "layout": "masonry-grid" },
+    "project": { "layout": "fullscreen-gallery" }
+  },
+  "colors": {
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "accent": "#FF3300",
+    "background": "#FFFFFF",
+    "surface": "#F5F5F5",
+    "text": "#000000",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Helvetica Neue", "weight": "700" },
+    "body": { "font": "Helvetica Neue", "weight": "400" }
+  },
+  "spacing": { "base": "8px", "section": "100px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

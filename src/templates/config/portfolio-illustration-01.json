@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-illustration-01",
+  "name": "Portfolio Illustration",
+  "category": "portfolio",
+  "subcategory": "illustration",
+  "description": "Illustrator portfolio with colorful, artistic presentation",
+  "version": "1.0.0",
+  "tags": ["portfolio", "illustration", "art", "drawing"],
+  "components": {
+    "header": {
+      "layout": "artistic-light",
+      "logo": { "type": "signature", "position": "left" },
+      "navigation": { "type": "gallery", "position": "center" },
+      "actions": ["shop", "contact"]
+    },
+    "footer": {
+      "layout": "artful",
+      "columns": ["portfolio", "shop", "commissions", "social"]
+    },
+    "artCard": { "layout": "frame-style" }
+  },
+  "pages": {
+    "home": { "layout": "gallery-wall", "sections": ["hero", "recent", "collections", "prints", "about"] },
+    "gallery": { "layout": "lightbox-grid" },
+    "artwork": { "layout": "detail-view" }
+  },
+  "colors": {
+    "primary": "#E91E63",
+    "secondary": "#FFF8E1",
+    "accent": "#9C27B0",
+    "background": "#FFFFFF",
+    "surface": "#FFF8E1",
+    "text": "#2D2D2D",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Caveat", "weight": "400" },
+    "body": { "font": "Quicksand", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "20px", "cards": "0px" },
+  "shadows": { "cards": "0 8px 30px rgba(233,30,99,0.1)" }
+}

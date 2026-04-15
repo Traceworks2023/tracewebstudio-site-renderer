@@ -1,0 +1,44 @@
+{
+  "id": "books-technical-01",
+  "name": "Books Technical",
+  "category": "books",
+  "subcategory": "technical",
+  "description": "Technical books and programming resources store",
+  "version": "1.0.0",
+  "tags": ["books", "technical", "programming", "learning"],
+  "components": {
+    "header": {
+      "layout": "reader-dark",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "topics", "position": "center" },
+      "actions": ["search", "account", "cart"]
+    },
+    "footer": {
+      "layout": "minimal-dark",
+      "columns": ["topics", "authors", "about", "newsletter"]
+    },
+    "bookCard": { "layout": "cover-focused", "showRating": true },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "knowledge-hub", "sections": ["hero", "new-releases", "bestsellers", "topics", "authors"] },
+    "category": { "layout": "filter-grid" },
+    "book": { "layout": "preview-first" }
+  },
+  "colors": {
+    "primary": "#5C6BC0",
+    "secondary": "#1A1A2E",
+    "accent": "#00BFA5",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "IBM Plex Sans", "weight": "600" },
+    "body": { "font": "IBM Plex Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 2px 8px rgba(0,0,0,0.08)" }
+}

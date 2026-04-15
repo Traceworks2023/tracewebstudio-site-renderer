@@ -1,0 +1,294 @@
+{
+  "id": "blog-personal-01",
+  "name": "Personal Blog 01",
+  "slug": "blog-personal-01",
+  "category": "blog",
+  "subcategory": "personal",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Warm personal blog with engaging typography. Perfect for personal bloggers, writers, and content creators.",
+  "previewImage": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800",
+  "structure": {
+    "home": {
+      "layout": "magazine-layout",
+      "sections": ["hero", "featured", "posts", "about", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "medium",
+        "textAlignment": "left",
+        "showOverlay": false,
+        "overlayOpacity": 0,
+        "showScrollIndicator": false
+      },
+      "productGrid": {
+        "columns": 2,
+        "aspectRatio": "16/9",
+        "showQuickView": false,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "centered",
+        "sticky": true,
+        "showSearch": true,
+        "showCart": false,
+        "showWishlist": false
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 3,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "no-filter",
+      "grid": {
+        "columns": 2,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "16/9"
+      },
+      "sidebar": {
+        "width": "280px",
+        "collapsible": true,
+        "showClearAll": false
+      },
+      "pagination": {
+        "style": "numbered",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": false,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "bottom",
+        "showResultCount": false
+      }
+    },
+    "product": {
+      "layout": "gallery-top-info-bottom",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": false,
+        "showThumbnails": false,
+        "thumbnailColumns": 1
+      },
+      "info": {
+        "showRating": false,
+        "showPrice": false,
+        "showStock": false,
+        "showSku": false,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": false,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-info"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 2
+      }
+    },
+    "cart": {
+      "layout": "minimal",
+      "showImages": false,
+      "showQuantities": false,
+      "showRemove": false,
+      "showCoupon": false,
+      "showSummary": false,
+      "continueShoppingUrl": "/posts"
+    },
+    "checkout": {
+      "layout": "minimal",
+      "steps": ["contact"],
+      "showOrderSummary": false,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": false
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": true,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": false,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#2D3436",
+      "primaryHover": "#3D4446",
+      "secondary": "#636E72",
+      "secondaryHover": "#737E82",
+      "accent": "#D63031",
+      "accentHover": "#C62021",
+      "background": "#FFFFFF",
+      "surface": "#FAFAFA",
+      "surfaceAlt": "#F5F5F5",
+      "textPrimary": "#2D3436",
+      "textSecondary": "#636E72",
+      "textMuted": "#B2BEC3",
+      "border": "#E9ECEF",
+      "borderLight": "#F1F3F5",
+      "success": "#00B894",
+      "warning": "#FDCB6E",
+      "error": "#E17055",
+      "info": "#74B9FF"
+    },
+    "dark": {
+      "background": "#0D1117",
+      "surface": "#161B22",
+      "textPrimary": "#F0F6FC",
+      "textSecondary": "#8B949E"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "4px",
+        "padding": "12px 24px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "shadow": "none",
+        "hoverEffect": "color"
+      },
+      "secondary": {
+        "borderRadius": "4px",
+        "padding": "12px 24px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "4px",
+        "padding": "12px 24px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "8px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.05)",
+      "shadowHover": "0 8px 24px rgba(0,0,0,0.08)",
+      "border": "none",
+      "padding": "0px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "4px",
+      "border": "1px solid #E9ECEF",
+      "focusBorder": "#2D3436",
+      "padding": "12px 16px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "4px",
+      "padding": "4px 12px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "36px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "16/9",
+      "showBadges": true,
+      "showQuickView": false,
+      "showAddToCart": false,
+      "showWishlist": false,
+      "showRating": false,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Lora",
+      "weight": "500",
+      "transform": "none",
+      "letterSpacing": "-0.01em"
+    },
+    "body": {
+      "family": "Source Sans Pro",
+      "weight": "400",
+      "size": "17px",
+      "lineHeight": "1.8"
+    },
+    "accent": {
+      "family": "Lora",
+      "weight": "400",
+      "italic": true
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "800px",
+    "gridGap": "32px",
+    "cardGap": "24px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.04)",
+      "md": "0 2px 12px rgba(0,0,0,0.05)",
+      "lg": "0 8px 24px rgba(0,0,0,0.08)",
+      "xl": "0 16px 40px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "8px",
+      "xl": "12px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["blog", "personal", "writing", "lifestyle", "minimal", "warm"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["blog", "newsletter", "social-sharing", "comments"]
+    }
+  }
+}

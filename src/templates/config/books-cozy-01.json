@@ -1,0 +1,294 @@
+{
+  "id": "books-cozy-01",
+  "name": "Cozy Books 01",
+  "slug": "books-cozy-01",
+  "category": "books",
+  "subcategory": "bookstore",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Warm, inviting bookstore template with classic typography. Perfect for bookstores, publishers, and literary collections.",
+  "previewImage": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800",
+  "structure": {
+    "home": {
+      "layout": "split-hero-right",
+      "sections": ["hero", "genres", "featured-books", "bestsellers", "author-spotlight", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": true,
+        "overlayOpacity": 0.4,
+        "showScrollIndicator": false
+      },
+      "productGrid": {
+        "columns": 5,
+        "aspectRatio": "2/3",
+        "showQuickView": true,
+        "showAddToCart": true
+      },
+      "navigation": {
+        "style": "top-bar",
+        "sticky": true,
+        "showSearch": true,
+        "showCart": true,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "detailed",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": true
+      }
+    },
+    "category": {
+      "layout": "sidebar-filter-left",
+      "grid": {
+        "columns": 4,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "2/3"
+      },
+      "sidebar": {
+        "width": "260px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "numbered",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": false,
+        "showThumbnails": true,
+        "thumbnailColumns": 3
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": true,
+        "showSku": true,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": true,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "carousel",
+        "columns": 5
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/books"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "shipping", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": true,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#4A3728",
+      "primaryHover": "#5D4A3A",
+      "secondary": "#6B5344",
+      "secondaryHover": "#7A6152",
+      "accent": "#C4A77D",
+      "accentHover": "#B39668",
+      "background": "#FDF8F3",
+      "surface": "#F9F3EB",
+      "surfaceAlt": "#F2E9DD",
+      "textPrimary": "#3D2E22",
+      "textSecondary": "#6B5D4D",
+      "textMuted": "#9B8B7B",
+      "border": "#E5DDD1",
+      "borderLight": "#F0E8DE",
+      "success": "#5D8A4A",
+      "warning": "#D4A84B",
+      "error": "#B85C4A",
+      "info": "#5A7A8A"
+    },
+    "dark": {
+      "background": "#1F1A15",
+      "surface": "#2A231D",
+      "textPrimary": "#F5F0E8",
+      "textSecondary": "#A09585"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "shadow": "none",
+        "hoverEffect": "color"
+      },
+      "secondary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "6px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.06)",
+      "shadowHover": "0 6px 20px rgba(0,0,0,0.1)",
+      "border": "1px solid #E5DDD1",
+      "padding": "16px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "4px",
+      "border": "1px solid #E5DDD1",
+      "focusBorder": "#4A3728",
+      "padding": "12px 16px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "3px",
+      "padding": "4px 10px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "32px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "2/3",
+      "showBadges": true,
+      "showQuickView": true,
+      "showAddToCart": true,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "second-image"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Libre Baskerville",
+      "weight": "400",
+      "transform": "none",
+      "letterSpacing": "0"
+    },
+    "body": {
+      "family": "Merriweather",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.8"
+    },
+    "accent": {
+      "family": "Lora",
+      "weight": "400",
+      "italic": true
+    }
+  },
+  "spacing": {
+    "sectionPadding": "60px 0",
+    "containerWidth": "1280px",
+    "gridGap": "20px",
+    "cardGap": "16px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.04)",
+      "md": "0 2px 12px rgba(0,0,0,0.06)",
+      "lg": "0 6px 20px rgba(0,0,0,0.08)",
+      "xl": "0 12px 32px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "6px",
+      "xl": "8px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["books", "bookstore", "literary", "cozy", "warm", "publishing"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "audiobooks", "ebooks", "author-events"]
+    }
+  }
+}

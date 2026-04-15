@@ -1,0 +1,44 @@
+{
+  "id": "fashion-winter-01",
+  "name": "Fashion Winter",
+  "category": "fashion",
+  "subcategory": "winter-collection",
+  "description": "Cozy winter fashion with warm tones and layered looks",
+  "version": "1.0.0",
+  "tags": ["fashion", "winter", "cozy", "outerwear"],
+  "components": {
+    "header": {
+      "layout": "sticky-dark",
+      "logo": { "type": "image", "position": "left" },
+      "navigation": { "type": "dropdown", "position": "center" },
+      "actions": ["search", "account", "cart"]
+    },
+    "footer": {
+      "layout": "minimal-dark",
+      "columns": ["links", "newsletter", "social"]
+    },
+    "productCard": { "layout": "vertical-card", "showWishlist": true },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "split-hero", "sections": ["hero", "categories", "new-arrivals", "winter-essentials", "sale"] },
+    "category": { "layout": "grid-list", "filters": "sidebar" },
+    "product": { "layout": "gallery-right" }
+  },
+  "colors": {
+    "primary": "#8B4513",
+    "secondary": "#2F4F4F",
+    "accent": "#D4A574",
+    "background": "#F5F5F5",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Cormorant Garamond", "weight": "600" },
+    "body": { "font": "Lato", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 2px 8px rgba(0,0,0,0.1)" }
+}

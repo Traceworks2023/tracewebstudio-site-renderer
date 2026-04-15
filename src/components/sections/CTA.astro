@@ -1,0 +1,130 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  buttonUrl?: string;
+  secondaryButtonText?: string;
+  secondaryButtonUrl?: string;
+}
+
+const {
+  title = "Ready to Get Started?",
+  subtitle = "Join thousands of satisfied customers and transform your online presence today.",
+  buttonText = "Start Free Trial",
+  buttonUrl = "/signup",
+  secondaryButtonText = "Talk to Sales",
+  secondaryButtonUrl = "/contact",
+} = Astro.props;
+---
+
+<section class="cta">
+  <div class="cta-container">
+    <div class="cta-content">
+      <h2 class="cta-title">{title}</h2>
+      <p class="cta-subtitle">{subtitle}</p>
+      <div class="cta-actions">
+        <a href={buttonUrl} class="btn btn-primary">{buttonText}</a>
+        <a href={secondaryButtonUrl} class="btn btn-secondary">{secondaryButtonText}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #000032 0%, #1a1a5e 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FA5014' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 1rem 0;
+  }
+
+  .cta-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.9);
+    margin: 0 0 2rem 0;
+    line-height: 1.6;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background-color: #FA5014;
+    color: white;
+    border: 2px solid #FA5014;
+  }
+
+  .btn-primary:hover {
+    background-color: #e04a12;
+    border-color: #e04a12;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(250, 80, 20, 0.4);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background-color: white;
+    color: #000032;
+  }
+
+  @media (max-width: 768px) {
+    .cta {
+      padding: 3rem 1rem;
+    }
+
+    .cta-title {
+      font-size: 2rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+    }
+  }
+</style>

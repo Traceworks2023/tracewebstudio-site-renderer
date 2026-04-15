@@ -3,15 +3,18 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 import Contact from '../components/Contact.astro';
+import { fetchHomePage, type Page, type SectionContent } from '../lib/api';
 
 const tenant = Astro.locals.tenant;
-const language = Astro.locals.language;
+const language = Astro.locals.language || 'en';
 
-const content = {
+// Default content for development/fallback
+const defaultContent: SectionContent = {
   hero: {
     heading: language === 'fr' ? 'Bienvenue' : language === 'ta' ? 'வரவேற்பு' : 'Welcome',
     subheading: language === 'fr' ? 'Votre site web professionnel' : language === 'ta' ? 'உங்கள் தொழில்முறை வலைத்தளம்' : 'Your professional website',
-    cta: language === 'fr' ? 'Commencer' : language === 'ta' ? 'தொடங்குங்கள்' : 'Get Started',
+    cta_text: language === 'fr' ? 'Commencer' : language === 'ta' ? 'தொடங்குங்கள்' : 'Get Started',
+    cta_link: '/contact',
   },
   features: language === 'fr' ? [
     { title: 'Facile', description: 'Configurez en minutes' },
@@ -26,17 +29,61 @@ const content = {
     { title: 'Fast', description: 'Ultra-fast hosting' },
     { title: 'Secure', description: 'SSL and automatic backups' },
   ],
+  contact: {
+    title: language === 'fr' ? 'Contactez-nous' : language === 'ta' ? 'எங்களைத் தொடர்பு கொள்ளுங்கள்' : 'Contact Us',
+    email: 'hello@tracewebstudio.com',
+  },
 };
+
+// Try to fetch content from API
+let content: SectionContent = defaultContent;
+
+if (tenant?.siteId && tenant.siteId !== 'dev-site-id') {
+  try {
+    const page = await fetchHomePage(tenant.siteId, language);
+    if (page?.sections?.length) {
+      // Find section content by section_type
+      const heroSection = page.sections.find(s => s.section_type === 'hero');
+      const featuresSection = page.sections.find(s => s.section_type === 'features');
+      const contactSection = page.sections.find(s => s.section_type === 'contact');
+
+      if (heroSection?.content) {
+        content.hero = {
+          heading: heroSection.content.heading as string || defaultContent.hero!.heading,
+          subheading: heroSection.content.subheading as string || defaultContent.hero!.subheading,
+          cta_text: heroSection.content.cta_text as string || defaultContent.hero!.cta_text,
+          cta_link: heroSection.content.cta_link as string || defaultContent.hero!.cta_link,
+        };
+      }
+      if (featuresSection?.content?.items) {
+        content.features = featuresSection.content.items as typeof defaultContent.features;
+      }
+      if (contactSection?.content) {
+        content.contact = {
+          title: contactSection.content.title as string || defaultContent.contact!.title,
+          email: contactSection.content.email as string || defaultContent.contact!.email,
+          phone: contactSection.content.phone as string || defaultContent.contact?.phone,
+          address: contactSection.content.address as string || defaultContent.contact?.address,
+        };
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch page content, using defaults:', error);
+  }
+}
 ---
 
 <SiteLayout tenant={tenant} language={language}>
   <Hero 
-    heading={content.hero.heading}
-    subheading={content.hero.subheading}
-    cta={content.hero.cta}
+    heading={content.hero?.heading || 'Welcome'}
+    subheading={content.hero?.subheading || ''}
+    cta={content.hero?.cta_text || 'Get Started'}
   />
   
-  <Features items={content.features} />
+  <Features items={content.features || []} />
   
-  <Contact language={language} />
+  <Contact 
+    title={content.contact?.title || 'Contact Us'}
+    email={content.contact?.email || 'hello@example.com'}
+  />
 </SiteLayout>

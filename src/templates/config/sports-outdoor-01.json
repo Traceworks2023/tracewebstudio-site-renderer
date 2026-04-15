@@ -1,0 +1,294 @@
+{
+  "id": "sports-outdoor-01",
+  "name": "Outdoor Sports 01",
+  "slug": "sports-outdoor-01",
+  "category": "sports",
+  "subcategory": "outdoor",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Rugged outdoor sports template with adventure feel. Perfect for camping gear, hiking equipment, and outdoor sports retailers.",
+  "previewImage": "https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=800",
+  "structure": {
+    "home": {
+      "layout": "parallax-scroll",
+      "sections": ["hero", "categories", "featured-products", "adventures", "testimonials", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "full",
+        "textAlignment": "left",
+        "showOverlay": true,
+        "overlayOpacity": 0.5,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 4,
+        "aspectRatio": "1/1",
+        "showQuickView": true,
+        "showAddToCart": true
+      },
+      "navigation": {
+        "style": "minimal",
+        "sticky": true,
+        "showSearch": true,
+        "showCart": true,
+        "showWishlist": false
+      },
+      "footer": {
+        "style": "detailed",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": true
+      }
+    },
+    "category": {
+      "layout": "sidebar-filter-left",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "1/1"
+      },
+      "sidebar": {
+        "width": "280px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "numbered",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "full-width"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "left",
+        "showZoom": true,
+        "showThumbnails": true,
+        "thumbnailColumns": 4
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": true,
+        "showSku": true,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": true,
+        "showSizeSelector": true,
+        "swatchStyle": "square"
+      },
+      "addToCart": {
+        "showQuantity": true,
+        "buttonStyle": "split"
+      },
+      "tabs": {
+        "style": "box",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "carousel",
+        "columns": 4
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/products"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "shipping", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": true
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "260px",
+        "collapsible": true
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "split",
+      "showSocialLogin": false,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#2E7D32",
+      "primaryHover": "#1E6D22",
+      "secondary": "#3E2723",
+      "secondaryHover": "#4E3733",
+      "accent": "#FF8F00",
+      "accentHover": "#EF7F00",
+      "background": "#F5F5F0",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#E8E8E0",
+      "textPrimary": "#1B5E20",
+      "textSecondary": "#4E6A4F",
+      "textMuted": "#8A9A7F",
+      "border": "#D4D4C4",
+      "borderLight": "#E4E4D8",
+      "success": "#4CAF50",
+      "warning": "#FFB300",
+      "error": "#E53935",
+      "info": "#039BE5"
+    },
+    "dark": {
+      "background": "#1A1F1A",
+      "surface": "#252F25",
+      "textPrimary": "#F5F5F0",
+      "textSecondary": "#8A9A7F"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "shadow": "0 4px 12px rgba(46, 125, 50, 0.25)",
+        "hoverEffect": "scale"
+      },
+      "secondary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "hoverEffect": "shadow"
+      },
+      "outline": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "8px",
+      "shadow": "0 4px 16px rgba(0,0,0,0.1)",
+      "shadowHover": "0 8px 28px rgba(46, 125, 50, 0.15)",
+      "border": "1px solid #D4D4C4",
+      "padding": "16px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "4px",
+      "border": "1px solid #D4D4C4",
+      "focusBorder": "#2E7D32",
+      "padding": "12px 16px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "4px",
+      "padding": "4px 10px",
+      "fontSize": "11px",
+      "fontWeight": "700",
+      "textTransform": "uppercase"
+    },
+    "navigation": {
+      "itemSpacing": "28px",
+      "activeIndicator": "background",
+      "dropdownStyle": "flyout"
+    },
+    "productCard": {
+      "imageAspectRatio": "1/1",
+      "showBadges": true,
+      "showQuickView": true,
+      "showAddToCart": true,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "overlay"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Oswald",
+      "weight": "500",
+      "transform": "uppercase",
+      "letterSpacing": "0.03em"
+    },
+    "body": {
+      "family": "Roboto Condensed",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.5"
+    },
+    "accent": {
+      "family": "Roboto",
+      "weight": "500"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1280px",
+    "gridGap": "20px",
+    "cardGap": "16px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 2px 8px rgba(0,0,0,0.08)",
+      "md": "0 4px 16px rgba(0,0,0,0.1)",
+      "lg": "0 8px 28px rgba(0,0,0,0.12)",
+      "xl": "0 16px 48px rgba(0,0,0,0.15)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "8px",
+      "xl": "12px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "100ms ease",
+      "normal": "200ms ease",
+      "slow": "300ms ease"
+    },
+    "animations": {
+      "entrance": "slide-up",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["sports", "outdoor", "camping", "hiking", "adventure", "rugged"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "size-guides", "weather-rating"]
+    }
+  }
+}

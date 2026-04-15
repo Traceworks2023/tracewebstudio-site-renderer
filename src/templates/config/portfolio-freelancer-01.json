@@ -1,0 +1,294 @@
+{
+  "id": "portfolio-freelancer-01",
+  "name": "Freelancer Portfolio 01",
+  "slug": "portfolio-freelancer-01",
+  "category": "portfolio",
+  "subcategory": "freelancer",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Modern freelancer portfolio with creative energy. Perfect for designers, developers, writers, and creative professionals.",
+  "previewImage": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800",
+  "structure": {
+    "home": {
+      "layout": "hero-with-sidebar",
+      "sections": ["hero", "services", "portfolio", "experience", "testimonials", "contact", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": false,
+        "overlayOpacity": 0,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 3,
+        "aspectRatio": "4/3",
+        "showQuickView": false,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "minimal",
+        "sticky": true,
+        "showSearch": false,
+        "showCart": false,
+        "showWishlist": false
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 3,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "no-filter",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "4/3"
+      },
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false,
+        "showClearAll": false
+      },
+      "pagination": {
+        "style": "infinite-scroll",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": false,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "bottom",
+        "showResultCount": false
+      }
+    },
+    "product": {
+      "layout": "gallery-full-left",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": true,
+        "showThumbnails": false,
+        "thumbnailColumns": 1
+      },
+      "info": {
+        "showRating": false,
+        "showPrice": false,
+        "showStock": false,
+        "showSku": false,
+        "showShare": true,
+        "showWishlist": false
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": false,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-info"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 3
+      }
+    },
+    "cart": {
+      "layout": "minimal",
+      "showImages": false,
+      "showQuantities": false,
+      "showRemove": false,
+      "showCoupon": false,
+      "showSummary": false,
+      "continueShoppingUrl": "/work"
+    },
+    "checkout": {
+      "layout": "minimal",
+      "steps": ["contact"],
+      "showOrderSummary": false,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "minimal",
+      "sidebar": {
+        "width": "220px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": false
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": false,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "minimal",
+      "showFilters": false,
+      "showRecent": false,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#6366F1",
+      "primaryHover": "#5558E3",
+      "secondary": "#1E1B4B",
+      "secondaryHover": "#2E2B5B",
+      "accent": "#F472B6",
+      "accentHover": "#E462A6",
+      "background": "#FAFAFA",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#F0F0FF",
+      "textPrimary": "#1E1B4B",
+      "textSecondary": "#5A5A7B",
+      "textMuted": "#9A9ABB",
+      "border": "#E0E0F0",
+      "borderLight": "#F0F0FF",
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#3B82F6"
+    },
+    "dark": {
+      "background": "#0F0F1A",
+      "surface": "#1A1A2E",
+      "textPrimary": "#F5F5FF",
+      "textSecondary": "#9A9ABB"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "8px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "shadow": "0 4px 14px rgba(99, 102, 241, 0.3)",
+        "hoverEffect": "scale"
+      },
+      "secondary": {
+        "borderRadius": "8px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "shadow"
+      },
+      "outline": {
+        "borderRadius": "8px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "12px",
+      "shadow": "0 4px 16px rgba(0,0,0,0.06)",
+      "shadowHover": "0 8px 28px rgba(99, 102, 241, 0.12)",
+      "border": "none",
+      "padding": "24px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "8px",
+      "border": "1px solid #E0E0F0",
+      "focusBorder": "#6366F1",
+      "padding": "14px 18px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "6px",
+      "padding": "6px 14px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "32px",
+      "activeIndicator": "background",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "4/3",
+      "showBadges": false,
+      "showQuickView": false,
+      "showAddToCart": false,
+      "showWishlist": false,
+      "showRating": false,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Space Grotesk",
+      "weight": "600",
+      "transform": "none",
+      "letterSpacing": "-0.02em"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.6"
+    },
+    "accent": {
+      "family": "Space Grotesk",
+      "weight": "400",
+      "italic": true
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1200px",
+    "gridGap": "24px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 2px 8px rgba(0,0,0,0.05)",
+      "md": "0 4px 16px rgba(0,0,0,0.06)",
+      "lg": "0 8px 28px rgba(0,0,0,0.08)",
+      "xl": "0 16px 40px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "slide-up",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["portfolio", "freelancer", "creative", "modern", "designer", "developer"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["portfolio", "services", "experience", "testimonials", "contact"]
+    }
+  }
+}

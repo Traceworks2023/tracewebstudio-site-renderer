@@ -1,0 +1,43 @@
+{
+  "id": "blog-fashion-01",
+  "name": "Blog Fashion Editorial",
+  "category": "blog",
+  "subcategory": "fashion",
+  "description": "Fashion editorial blog with magazine layout",
+  "version": "1.0.0",
+  "tags": ["blog", "fashion", "editorial", "style"],
+  "components": {
+    "header": {
+      "layout": "editorial-light",
+      "logo": { "type": "fashion-masthead", "position": "center" },
+      "navigation": { "type": "editorial", "position": "below" },
+      "actions": ["shop", "instagram"]
+    },
+    "footer": {
+      "layout": "fashion-dark",
+      "columns": ["features", "style", "shopping", "social"]
+    },
+    "postCard": { "layout": "editorial-spread" }
+  },
+  "pages": {
+    "home": { "layout": "fashion-magazine", "sections": ["hero", "features", "trend", "street-style", "shop"] },
+    "category": { "layout": "editorial-grid" },
+    "post": { "layout": "editorial-article" }
+  },
+  "colors": {
+    "primary": "#1A1A1A",
+    "secondary": "#FFFFFF",
+    "accent": "#E91E63",
+    "background": "#FFFFFF",
+    "surface": "#F5F5F5",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Didot", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

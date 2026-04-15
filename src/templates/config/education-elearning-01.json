@@ -1,0 +1,293 @@
+{
+  "id": "education-elearning-01",
+  "name": "E-Learning 01",
+  "slug": "education-elearning-01",
+  "category": "education",
+  "subcategory": "elearning",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Modern e-learning template with engaging design. Perfect for online courses, training platforms, and educational institutions.",
+  "previewImage": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800",
+  "structure": {
+    "home": {
+      "layout": "hero-with-sidebar",
+      "sections": ["hero", "categories", "featured-courses", "how-it-works", "testimonials", "pricing", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": false,
+        "overlayOpacity": 0,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 3,
+        "aspectRatio": "16/10",
+        "showQuickView": false,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "top-bar",
+        "sticky": true,
+        "showSearch": true,
+        "showCart": false,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "detailed",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "sidebar-filter-left",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "16/10"
+      },
+      "sidebar": {
+        "width": "280px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "load-more",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": false,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": false,
+        "showThumbnails": false,
+        "thumbnailColumns": 1
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": false,
+        "showSku": false,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": false,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 3
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": false,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/courses"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "billing", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "260px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": true,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#4F46E5",
+      "primaryHover": "#4338CA",
+      "secondary": "#1E1B4B",
+      "secondaryHover": "#2E2B5B",
+      "accent": "#10B981",
+      "accentHover": "#0EA571",
+      "background": "#FFFFFF",
+      "surface": "#F9FAFB",
+      "surfaceAlt": "#F3F4F6",
+      "textPrimary": "#1E1B4B",
+      "textSecondary": "#6B7280",
+      "textMuted": "#9CA3AF",
+      "border": "#E5E7EB",
+      "borderLight": "#F3F4F6",
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#3B82F6"
+    },
+    "dark": {
+      "background": "#0F0F1A",
+      "surface": "#1A1A2E",
+      "textPrimary": "#F9FAFB",
+      "textSecondary": "#9CA3AF"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "8px",
+        "padding": "14px 24px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "shadow": "0 4px 14px rgba(79, 70, 229, 0.3)",
+        "hoverEffect": "scale"
+      },
+      "secondary": {
+        "borderRadius": "8px",
+        "padding": "14px 24px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "shadow"
+      },
+      "outline": {
+        "borderRadius": "8px",
+        "padding": "14px 24px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "12px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.06)",
+      "shadowHover": "0 8px 24px rgba(79, 70, 229, 0.12)",
+      "border": "1px solid #E5E7EB",
+      "padding": "0px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "8px",
+      "border": "1px solid #E5E7EB",
+      "focusBorder": "#4F46E5",
+      "padding": "14px 18px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "6px",
+      "padding": "4px 10px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "28px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "16/10",
+      "showBadges": true,
+      "showQuickView": false,
+      "showAddToCart": false,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Poppins",
+      "weight": "600",
+      "transform": "none",
+      "letterSpacing": "-0.01em"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.6"
+    },
+    "accent": {
+      "family": "Poppins",
+      "weight": "500"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1280px",
+    "gridGap": "24px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.05)",
+      "md": "0 2px 12px rgba(0,0,0,0.06)",
+      "lg": "0 8px 24px rgba(0,0,0,0.08)",
+      "xl": "0 16px 40px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "slide-up",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["education", "elearning", "courses", "learning", "online", "training"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["courses", "certificates", "progress-tracking", "video-content"]
+    }
+  }
+}

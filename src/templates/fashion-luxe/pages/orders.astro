@@ -1,0 +1,299 @@
+---
+// Fashion Luxe Account Orders Page
+import BaseLayout from '../lib/BaseLayout.astro';
+import { getCurrentTheme } from '../lib/theme-loader';
+import { buildThemeCSSVars } from '../lib/theme-components';
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const orders = [
+  { id: 'ORD-2024-1047', date: 'Mar 15, 2024', status: 'Delivered', total: 108.48, items: 2, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=100' },
+  { id: 'ORD-2024-1038', date: 'Mar 10, 2024', status: 'Shipped', total: 79.99, items: 1, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=100' },
+  { id: 'ORD-2024-1025', date: 'Feb 28, 2024', status: 'Delivered', total: 229.97, items: 3, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100' },
+  { id: 'ORD-2024-1018', date: 'Feb 20, 2024', status: 'Delivered', total: 149.99, items: 1, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=100' },
+  { id: 'ORD-2024-1005', date: 'Feb 10, 2024', status: 'Delivered', total: 89.99, items: 2, image: 'https://images.unsplash.com/photo-1601370690183-1c7796ecec61?w=100' }
+];
+---
+
+<BaseLayout title="My Orders - LUXE Account" showHeader={true} showFooter={true}>
+  <section class="orders" style={cssVars}>
+    <div class="orders__container">
+      <div class="orders__header">
+        <h1 class="orders__title">My Orders</h1>
+        <p class="orders__subtitle">Track and manage your orders</p>
+      </div>
+
+      {orders.length === 0 ? (
+        <div class="orders__empty">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <path d="M3 6h18"></path>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <h2>No orders yet</h2>
+          <p>Start shopping to see your orders here</p>
+          <a href="/" class="orders__shop-btn">Start Shopping</a>
+        </div>
+      ) : (
+        <div class="orders__list">
+          {orders.map((order) => (
+            <div class="orders__order">
+              <div class="orders__order-header">
+                <div class="orders__order-info">
+                  <span class="orders__order-id">{order.id}</span>
+                  <span class="orders__order-date">Placed on {order.date}</span>
+                </div>
+                <span class={`orders__order-status orders__order-status--${order.status.toLowerCase()}`}>
+                  {order.status}
+                </span>
+              </div>
+
+              <div class="orders__order-content">
+                <div class="orders__order-items">
+                  <img src={order.image} alt="Order item" class="orders__order-image" />
+                  <div class="orders__order-details">
+                    <span class="orders__order-products">{order.items} item{order.items > 1 ? 's' : ''}</span>
+                    <span class="orders__order-total">${order.total.toFixed(2)}</span>
+                  </div>
+                </div>
+
+                <div class="orders__order-actions">
+                  <a href={`/account/orders/${order.id}`} class="orders__action-btn">View Details</a>
+                  <button class="orders__action-btn orders__action-btn--secondary">Reorder</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style define:vars={cssVars}>
+  .orders {
+    padding: 60px 24px;
+    min-height: 60vh;
+  }
+
+  .orders__container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .orders__header {
+    margin-bottom: 40px;
+  }
+
+  .orders__title {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--theme-text);
+  }
+
+  .orders__subtitle {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .orders__empty {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+  }
+
+  .orders__empty svg {
+    color: var(--theme-text-muted);
+    opacity: 0.5;
+    margin-bottom: 24px;
+  }
+
+  .orders__empty h2 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    margin: 0 0 12px;
+    color: var(--theme-text);
+  }
+
+  .orders__empty p {
+    color: var(--theme-text-muted);
+    margin: 0 0 32px;
+  }
+
+  .orders__shop-btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    border-radius: var(--btn-radius);
+    transition: background 0.2s ease;
+  }
+
+  .orders__shop-btn:hover {
+    background: var(--theme-primary-hover);
+  }
+
+  .orders__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .orders__order {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+  }
+
+  .orders__order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: var(--theme-background);
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .orders__order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .orders__order-id {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--theme-text);
+  }
+
+  .orders__order-date {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+  }
+
+  .orders__order-status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .orders__order-status--delivered {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--theme-success);
+  }
+
+  .orders__order-status--shipped {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--theme-info);
+  }
+
+  .orders__order-status--processing {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--theme-warning);
+  }
+
+  .orders__order-status--cancelled {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--theme-error);
+  }
+
+  .orders__order-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+  }
+
+  .orders__order-items {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .orders__order-image {
+    width: 70px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--btn-radius);
+  }
+
+  .orders__order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .orders__order-products {
+    font-size: 14px;
+    color: var(--theme-text-secondary);
+  }
+
+  .orders__order-total {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--theme-text);
+  }
+
+  .orders__order-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .orders__action-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    border: 1px solid var(--theme-primary);
+  }
+
+  .orders__action-btn:hover {
+    background: var(--theme-primary-hover);
+    border-color: var(--theme-primary-hover);
+  }
+
+  .orders__action-btn--secondary {
+    background: transparent;
+    color: var(--theme-text);
+    border-color: var(--theme-border);
+  }
+
+  .orders__action-btn--secondary:hover {
+    border-color: var(--theme-primary);
+    color: var(--theme-primary);
+    background: transparent;
+  }
+
+  @media (max-width: 640px) {
+    .orders__order-content {
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .orders__order-actions {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .orders__action-btn {
+      text-align: center;
+    }
+  }
+</style>

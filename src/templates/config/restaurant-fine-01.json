@@ -1,0 +1,44 @@
+{
+  "id": "restaurant-fine-01",
+  "name": "Restaurant Fine Dining",
+  "category": "restaurant",
+  "subcategory": "fine-dining",
+  "description": "Upscale fine dining restaurant with sophisticated atmosphere",
+  "version": "1.0.0",
+  "tags": ["restaurant", "fine-dining", "gourmet", "elegant"],
+  "components": {
+    "header": {
+      "layout": "transparent-light",
+      "logo": { "type": "text", "position": "center" },
+      "navigation": { "type": "minimal", "position": "below" },
+      "actions": ["reservations"]
+    },
+    "footer": {
+      "layout": "dark-elegant",
+      "columns": ["hours", "location", "contact", "social"]
+    },
+    "menuCard": { "layout": "elegant-list" },
+    "reservationForm": { "layout": "minimal-inputs" }
+  },
+  "pages": {
+    "home": { "layout": "full-screen-hero", "sections": ["hero", "philosophy", "menu-highlights", "chefs-table", "testimonials"] },
+    "menu": { "layout": "course-by-course" },
+    "reservations": { "layout": "elegant-form" }
+  },
+  "colors": {
+    "primary": "#2C2C2C",
+    "secondary": "#FFFFFF",
+    "accent": "#C9A961",
+    "background": "#F8F6F2",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Playfair Display", "weight": "400" },
+    "body": { "font": "Raleway", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "100px" },
+  "borderRadius": { "buttons": "2px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

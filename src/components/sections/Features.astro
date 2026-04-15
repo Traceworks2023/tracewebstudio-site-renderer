@@ -1,0 +1,135 @@
+---
+interface Feature {
+  icon?: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  features?: Feature[];
+}
+
+const {
+  title = "Why Choose Us",
+  subtitle = "Everything you need",
+  features = [
+    { title: "Free Shipping", description: "On all orders over $50" },
+    { title: "24/7 Support", description: "We're here to help" },
+    { title: "Secure Payment", description: "100% secure transactions" },
+    { title: "Easy Returns", description: "30-day return policy" },
+  ],
+} = Astro.props;
+---
+
+<section class="features">
+  <div class="features-container">
+    <div class="features-header">
+      <h2 class="features-title">{title}</h2>
+      {subtitle && <p class="features-subtitle">{subtitle}</p>}
+    </div>
+    <div class="features-grid">
+      {features.map((feature, index) => (
+        <div class="feature-card">
+          <div class="feature-icon">
+            <span class="icon-placeholder">{feature.icon || String.fromCharCode(10003)}</span>
+          </div>
+          <h3 class="feature-title">{feature.title}</h3>
+          <p class="feature-description">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    padding: 5rem 2rem;
+    background-color: #F9FAFB;
+  }
+
+  .features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .features-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .features-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000032;
+    margin: 0 0 1rem 0;
+  }
+
+  .features-subtitle {
+    font-size: 1.125rem;
+    color: #6B7280;
+    margin: 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #FA5014 0%, #000032 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .icon-placeholder {
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .feature-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .feature-description {
+    color: #6B7280;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .features {
+      padding: 3rem 1rem;
+    }
+
+    .features-title {
+      font-size: 2rem;
+    }
+  }
+</style>

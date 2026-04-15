@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-podcast-01",
+  "name": "Portfolio Podcast",
+  "category": "portfolio",
+  "subcategory": "podcast",
+  "description": "Podcast host portfolio with audio-focused design",
+  "version": "1.0.0",
+  "tags": ["portfolio", "podcast", "audio", "host"],
+  "components": {
+    "header": {
+      "layout": "audio-dark",
+      "logo": { "type": "wave", "position": "center" },
+      "navigation": { "type": "episodes", "position": "below" },
+      "actions": ["subscribe"]
+    },
+    "footer": {
+      "layout": "soundwave-dark",
+      "columns": ["episodes", "about", "sponsors", "contact"]
+    },
+    "episodeCard": { "layout": "audio-player" }
+  },
+  "pages": {
+    "home": { "layout": "airwaves", "sections": ["hero", "latest", "episodes", "about", "subscribe"] },
+    "episodes": { "layout": "episode-list" },
+    "episode": { "layout": "full-player" }
+  },
+  "colors": {
+    "primary": "#FF5722",
+    "secondary": "#1A1A1A",
+    "accent": "#FFFFFF",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Bebas Neue", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 5px 20px rgba(255,87,34,0.25)" }
+}

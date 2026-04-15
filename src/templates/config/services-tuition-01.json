@@ -1,0 +1,44 @@
+{
+  "id": "services-tuition-01",
+  "name": "Services Tutoring",
+  "category": "services",
+  "subcategory": "tutoring",
+  "description": "Tutoring service with encouraging, educational design",
+  "version": "1.0.0",
+  "tags": ["services", "tutoring", "education", "learning"],
+  "components": {
+    "header": {
+      "layout": "learn-light",
+      "logo": { "type": "smart", "position": "left" },
+      "navigation": { "type": "subjects", "position": "center" },
+      "actions": ["sessions", "contact"]
+    },
+    "footer": {
+      "layout": "study-dark",
+      "columns": ["subjects", "levels", "about", "contact"]
+    },
+    "subjectCard": { "layout": "topic-card" },
+    "sessionForm": { "layout": "lesson-request" }
+  },
+  "pages": {
+    "home": { "layout": "learn-success", "sections": ["hero", "subjects", "approach", "testimonials", "sessions"] },
+    "subjects": { "layout": "subject-grid" },
+    "session": { "layout": "booking-form" }
+  },
+  "colors": {
+    "primary": "#5C6BC0",
+    "secondary": "#E8EAF6",
+    "accent": "#00BCD4",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#1A237E",
+    "textMuted": "#5C6BC0"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "600" },
+    "body": { "font": "Open Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "8px", "cards": "8px" },
+  "shadows": { "cards": "0 2px 8px rgba(0,0,0,0.08)" }
+}

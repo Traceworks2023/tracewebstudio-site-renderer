@@ -1,0 +1,44 @@
+{
+  "id": "sports-cycling-01",
+  "name": "Sports Cycling",
+  "category": "sports",
+  "subcategory": "cycling",
+  "description": "Cycling shop with dynamic, energetic design",
+  "version": "1.0.0",
+  "tags": ["sports", "cycling", "bikes", "outdoor"],
+  "components": {
+    "header": {
+      "layout": "dynamic-dark",
+      "logo": { "type": "image", "position": "left" },
+      "navigation": { "type": "bike-types", "position": "center" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "trail-dark",
+      "columns": ["bikes", "parts", "apparel", "routes"]
+    },
+    "productCard": { "layout": "bike-card", "showSpecs": true },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "road-hero", "sections": ["hero", "road-bikes", "mountain", "apparel", "routes"] },
+    "category": { "layout": "spec-comparison" },
+    "product": { "layout": "bike-builder" }
+  },
+  "colors": {
+    "primary": "#00ACC1",
+    "secondary": "#1A1A1A",
+    "accent": "#FF6D00",
+    "background": "#0D0D0D",
+    "surface": "#1F1F1F",
+    "text": "#FFFFFF",
+    "textMuted": "#9E9E9E"
+  },
+  "typography": {
+    "heading": { "font": "Bebas Neue", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(0,172,193,0.2)" }
+}

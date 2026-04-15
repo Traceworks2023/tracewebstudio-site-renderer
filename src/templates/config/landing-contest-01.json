@@ -1,0 +1,41 @@
+{
+  "id": "landing-contest-01",
+  "name": "Landing Contest Entry",
+  "category": "landing",
+  "subcategory": "contest",
+  "description": "Contest entry landing page with excitement-driven design",
+  "version": "1.0.0",
+  "tags": ["landing", "contest", "sweepstakes", "giveaway"],
+  "components": {
+    "header": {
+      "layout": "exciting-dark",
+      "logo": { "type": "bold", "position": "center" },
+      "navigation": { "type": "none" },
+      "actions": []
+    },
+    "footer": {
+      "layout": "minimal",
+      "columns": ["rules", "terms", "privacy"]
+    },
+    "entryForm": { "layout": "contest-entry" }
+  },
+  "pages": {
+    "home": { "layout": "win-big", "sections": ["headline", "prizes", "how-to", "enter"] }
+  },
+  "colors": {
+    "primary": "#FFD600",
+    "secondary": "#1A1A1A",
+    "accent": "#FF5722",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Bebas Neue", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "500" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "4px", "cards": "12px" },
+  "shadows": { "cards": "0 8px 40px rgba(255,214,0,0.2)" }
+}

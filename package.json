@@ -5,15 +5,18 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "lint": "echo 'No linter configured'"
   },
   "dependencies": {
-    "@astrojs/solid-js": "^3.0.0",
-    "@tracewebstudio/shared": "workspace:*",
+    "@astrojs/node": "^8.0.0",
+    "@astrojs/solid-js": "^4.0.0",
     "astro": "^4.0.0",
     "solid-js": "^1.8.0"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
     "typescript": "^5.3.0"
   }
 }

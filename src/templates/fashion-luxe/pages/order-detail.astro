@@ -1,0 +1,470 @@
+---
+import BaseLayout from '../lib/BaseLayout.astro';
+import { getCurrentTheme } from '../lib/theme-loader';
+import { buildThemeCSSVars } from '../lib/theme-components';
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const order = {
+  id: 'ORD-2024-1047',
+  date: 'Mar 15, 2024',
+  status: 'Delivered',
+  total: 108.48,
+  paymentMethod: 'Visa ****4242',
+  shippingAddress: {
+    name: 'John Doe',
+    line1: '123 Main Street',
+    line2: 'Apt 4B',
+    city: 'New York',
+    state: 'NY',
+    zip: '10001',
+    country: 'United States'
+  }
+};
+
+const items = [
+  { 
+    id: 1,
+    name: 'Summer Floral Dress', 
+    sku: 'FLX-DRS-001', 
+    price: 79.99, 
+    quantity: 1, 
+    image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=200',
+    options: 'Size: M, Color: Blue'
+  },
+  { 
+    id: 2,
+    name: 'Silk Scarf', 
+    sku: 'FLX-SCF-002', 
+    price: 28.49, 
+    quantity: 1, 
+    image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=200',
+    options: 'Color: Ivory'
+  }
+];
+
+const timeline = [
+  { status: 'Delivered', date: 'Mar 18, 2024 - 2:30 PM', completed: true, description: 'Package delivered' },
+  { status: 'Out for Delivery', date: 'Mar 17, 2024 - 8:45 AM', completed: true, description: 'Package out for delivery' },
+  { status: 'Shipped', date: 'Mar 15, 2024 - 4:20 PM', completed: true, description: 'Package shipped via FedEx' },
+  { status: 'Processing', date: 'Mar 15, 2024 - 9:00 AM', completed: true, description: 'Order confirmed' }
+];
+---
+
+<BaseLayout title={`Order ${order.id} - LUXE Account`} showHeader={true} showFooter={true}>
+  <section class="order-detail" style={cssVars}>
+    <div class="order-detail__container">
+      <div class="order-detail__header">
+        <a href="/account/orders" class="order-detail__back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Orders
+        </a>
+        <h1 class="order-detail__title">Order {order.id}</h1>
+        <p class="order-detail__date">Placed on {order.date}</p>
+      </div>
+
+      <div class="order-detail__grid">
+        <div class="order-detail__main">
+          <section class="order-detail__section">
+            <h2 class="order-detail__section-title">Items Ordered</h2>
+            <div class="order-detail__items">
+              {items.map((item) => (
+                <div class="order-detail__item">
+                  <img src={item.image} alt={item.name} class="order-detail__item-image" />
+                  <div class="order-detail__item-info">
+                    <h3 class="order-detail__item-name">{item.name}</h3>
+                    <p class="order-detail__item-options">{item.options}</p>
+                    <p class="order-detail__item-sku">SKU: {item.sku}</p>
+                  </div>
+                  <div class="order-detail__item-price">
+                    <span class="order-detail__item-qty">Qty: {item.quantity}</span>
+                    <span class="order-detail__item-amount">${item.price.toFixed(2)}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="order-detail__section">
+            <h2 class="order-detail__section-title">Order Timeline</h2>
+            <div class="order-detail__timeline">
+              {timeline.map((step, index) => (
+                <div class={`order-detail__timeline-item ${step.completed ? 'order-detail__timeline-item--completed' : ''}`}>
+                  <div class="order-detail__timeline-marker">
+                    {step.completed && (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    )}
+                  </div>
+                  {index < timeline.length - 1 && <div class="order-detail__timeline-line"></div>}
+                  <div class="order-detail__timeline-content">
+                    <span class="order-detail__timeline-status">{step.status}</span>
+                    <span class="order-detail__timeline-date">{step.date}</span>
+                    <span class="order-detail__timeline-desc">{step.description}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <div class="order-detail__sidebar">
+          <section class="order-detail__section">
+            <h2 class="order-detail__section-title">Order Summary</h2>
+            <div class="order-detail__summary">
+              <div class="order-detail__summary-row">
+                <span>Subtotal</span>
+                <span>$108.48</span>
+              </div>
+              <div class="order-detail__summary-row">
+                <span>Shipping</span>
+                <span>$0.00</span>
+              </div>
+              <div class="order-detail__summary-row">
+                <span>Tax</span>
+                <span>$0.00</span>
+              </div>
+              <div class="order-detail__summary-row order-detail__summary-row--total">
+                <span>Total</span>
+                <span>${order.total.toFixed(2)}</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="order-detail__section">
+            <h2 class="order-detail__section-title">Shipping Address</h2>
+            <div class="order-detail__address">
+              <p class="order-detail__address-name">{order.shippingAddress.name}</p>
+              <p>{order.shippingAddress.line1}</p>
+              {order.shippingAddress.line2 && <p>{order.shippingAddress.line2}</p>}
+              <p>{order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zip}</p>
+              <p>{order.shippingAddress.country}</p>
+            </div>
+          </section>
+
+          <section class="order-detail__section">
+            <h2 class="order-detail__section-title">Payment Method</h2>
+            <div class="order-detail__payment">
+              <p>{order.paymentMethod}</p>
+            </div>
+          </section>
+
+          <div class="order-detail__actions">
+            <button class="order-detail__btn order-detail__btn--primary">Reorder</button>
+            <button class="order-detail__btn order-detail__btn--secondary">Request Return</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style define:vars={cssVars}>
+  .order-detail {
+    padding: 40px 24px 60px;
+    min-height: 60vh;
+  }
+
+  .order-detail__container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .order-detail__header {
+    margin-bottom: 32px;
+  }
+
+  .order-detail__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--theme-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 16px;
+    transition: color 0.2s ease;
+  }
+
+  .order-detail__back:hover {
+    color: var(--theme-primary);
+  }
+
+  .order-detail__title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--theme-text);
+  }
+
+  .order-detail__date {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .order-detail__grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 32px;
+  }
+
+  .order-detail__section {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .order-detail__section-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    color: var(--theme-text);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .order-detail__items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .order-detail__item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: var(--theme-background);
+    border-radius: var(--btn-radius);
+  }
+
+  .order-detail__item-image {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: var(--btn-radius);
+  }
+
+  .order-detail__item-info {
+    flex: 1;
+  }
+
+  .order-detail__item-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--theme-text);
+  }
+
+  .order-detail__item-options {
+    font-size: 13px;
+    color: var(--theme-text-secondary);
+    margin: 0 0 4px;
+  }
+
+  .order-detail__item-sku {
+    font-size: 12px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .order-detail__item-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .order-detail__item-qty {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+  }
+
+  .order-detail__item-amount {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--theme-text);
+  }
+
+  .order-detail__timeline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .order-detail__timeline-item {
+    display: flex;
+    gap: 16px;
+    position: relative;
+    padding-bottom: 24px;
+  }
+
+  .order-detail__timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .order-detail__timeline-marker {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--theme-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .order-detail__timeline-item--completed .order-detail__timeline-marker {
+    background: var(--theme-success);
+    color: white;
+  }
+
+  .order-detail__timeline-line {
+    position: absolute;
+    left: 13px;
+    top: 28px;
+    width: 2px;
+    height: calc(100% - 28px);
+    background: var(--theme-border);
+  }
+
+  .order-detail__timeline-item--completed .order-detail__timeline-line {
+    background: var(--theme-success);
+  }
+
+  .order-detail__timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 4px;
+  }
+
+  .order-detail__timeline-status {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .order-detail__timeline-date {
+    font-size: 12px;
+    color: var(--theme-text-muted);
+  }
+
+  .order-detail__timeline-desc {
+    font-size: 13px;
+    color: var(--theme-text-secondary);
+  }
+
+  .order-detail__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .order-detail__summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--theme-text-secondary);
+  }
+
+  .order-detail__summary-row--total {
+    padding-top: 12px;
+    border-top: 1px solid var(--theme-border);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--theme-text);
+  }
+
+  .order-detail__address {
+    font-size: 14px;
+    color: var(--theme-text-secondary);
+    line-height: 1.6;
+  }
+
+  .order-detail__address-name {
+    font-weight: 600;
+    color: var(--theme-text);
+    margin: 0 0 4px;
+  }
+
+  .order-detail__address p {
+    margin: 0;
+  }
+
+  .order-detail__payment {
+    font-size: 14px;
+    color: var(--theme-text-secondary);
+  }
+
+  .order-detail__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .order-detail__btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .order-detail__btn--primary {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    border: 1px solid var(--theme-primary);
+  }
+
+  .order-detail__btn--primary:hover {
+    background: var(--theme-primary-hover);
+    border-color: var(--theme-primary-hover);
+  }
+
+  .order-detail__btn--secondary {
+    background: transparent;
+    color: var(--theme-text);
+    border: 1px solid var(--theme-border);
+  }
+
+  .order-detail__btn--secondary:hover {
+    border-color: var(--theme-primary);
+    color: var(--theme-primary);
+  }
+
+  @media (max-width: 900px) {
+    .order-detail__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .order-detail__sidebar {
+      order: -1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .order-detail__item {
+      flex-direction: column;
+    }
+
+    .order-detail__item-image {
+      width: 100%;
+      height: 200px;
+    }
+
+    .order-detail__item-price {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+</style>

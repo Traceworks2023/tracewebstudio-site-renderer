@@ -1,0 +1,41 @@
+{
+  "id": "landing-saas-multi-01",
+  "name": "Landing SaaS Multi Feature",
+  "category": "landing",
+  "subcategory": "saas-multi",
+  "description": "SaaS product with multiple feature highlights",
+  "version": "1.0.0",
+  "tags": ["landing", "saas", "product", "features"],
+  "components": {
+    "header": {
+      "layout": "product-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "features", "position": "center" },
+      "actions": ["demo", "signup"]
+    },
+    "footer": {
+      "layout": "product-dark",
+      "columns": ["features", "integrations", "pricing", "company"]
+    },
+    "featureCard": { "layout": "deep-feature" }
+  },
+  "pages": {
+    "home": { "layout": "product-launch", "sections": ["hero", "features", "integrations", "pricing", "testimonials", "cta"] }
+  },
+  "colors": {
+    "primary": "#6200EA",
+    "secondary": "#1A1A2E",
+    "accent": "#00E5FF",
+    "background": "#0D0D1A",
+    "surface": "#1A1A2E",
+    "text": "#FFFFFF",
+    "textMuted": "#8892B0"
+  },
+  "typography": {
+    "heading": { "font": "Inter", "weight": "700" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "8px", "cards": "12px" },
+  "shadows": { "cards": "0 8px 40px rgba(98,0,234,0.3)" }
+}

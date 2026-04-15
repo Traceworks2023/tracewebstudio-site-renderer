@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-hair-stylist-01",
+  "name": "Portfolio Hair Stylist",
+  "category": "portfolio",
+  "subcategory": "hair-stylist",
+  "description": "Hair stylist portfolio with glamorous transformations",
+  "version": "1.0.0",
+  "tags": ["portfolio", "hair", "beauty", "stylist"],
+  "components": {
+    "header": {
+      "layout": "glam-light",
+      "logo": { "type": "name", "position": "center" },
+      "navigation": { "type": "services", "position": "below" },
+      "actions": ["book"]
+    },
+    "footer": {
+      "layout": "salon-light",
+      "columns": ["services", "looks", "about", "contact"]
+    },
+    "lookCard": { "layout": "transformation" }
+  },
+  "pages": {
+    "home": { "layout": "glamour", "sections": ["hero", "styles", "color", "updos", "book"] },
+    "looks": { "layout": "before-after" },
+    "service": { "layout": "menu-booking" }
+  },
+  "colors": {
+    "primary": "#D4AF37",
+    "secondary": "#FFFFFF",
+    "accent": "#E91E63",
+    "background": "#FFFFFF",
+    "surface": "#FFF5F8",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Cormorant Garamond", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "30px", "cards": "8px" },
+  "shadows": { "cards": "0 4px 15px rgba(212,175,55,0.15)" }
+}

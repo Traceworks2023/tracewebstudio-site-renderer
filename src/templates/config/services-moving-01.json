@@ -1,0 +1,293 @@
+{
+  "id": "services-moving-01",
+  "name": "Moving Company 01",
+  "slug": "services-moving-01",
+  "category": "services",
+  "subcategory": "moving",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Reliable moving company template with trustworthy design. Perfect for moving companies, logistics, and relocation services.",
+  "previewImage": "https://images.unsplash.com/photo-1600518464441-9154a4dea21b?w=800",
+  "structure": {
+    "home": {
+      "layout": "split-hero-left",
+      "sections": ["hero", "services", "how-it-works", "testimonials", "pricing", "contact", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": true,
+        "overlayOpacity": 0.5,
+        "showScrollIndicator": true
+      },
+      "productGrid": {
+        "columns": 3,
+        "aspectRatio": "4/3",
+        "showQuickView": false,
+        "showAddToCart": false
+      },
+      "navigation": {
+        "style": "top-bar",
+        "sticky": true,
+        "showSearch": false,
+        "showCart": false,
+        "showWishlist": false
+      },
+      "footer": {
+        "style": "detailed",
+        "columns": 4,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "no-filter",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "4/3"
+      },
+      "sidebar": {
+        "width": "260px",
+        "collapsible": false,
+        "showClearAll": false
+      },
+      "pagination": {
+        "style": "numbered",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": false,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "bottom",
+        "showResultCount": false
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": false,
+        "showThumbnails": false,
+        "thumbnailColumns": 1
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": false,
+        "showSku": false,
+        "showShare": true,
+        "showWishlist": false
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": false,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": false,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-info"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 3
+      }
+    },
+    "cart": {
+      "layout": "minimal",
+      "showImages": false,
+      "showQuantities": false,
+      "showRemove": false,
+      "showCoupon": false,
+      "showSummary": false,
+      "continueShoppingUrl": "/services"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["quote", "contact", "schedule"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "250px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": false,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "minimal",
+      "showFilters": false,
+      "showRecent": false,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#1565C0",
+      "primaryHover": "#1465B0",
+      "secondary": "#0D47A1",
+      "secondaryHover": "#1D57B1",
+      "accent": "#FF6F00",
+      "accentHover": "#EF5F00",
+      "background": "#FFFFFF",
+      "surface": "#F5F8FF",
+      "surfaceAlt": "#EEF2FF",
+      "textPrimary": "#1A1A1A",
+      "textSecondary": "#5A5A5A",
+      "textMuted": "#9A9A9A",
+      "border": "#D0D8E8",
+      "borderLight": "#E8EEF8",
+      "success": "#2E7D32",
+      "warning": "#F9A825",
+      "error": "#C62828",
+      "info": "#0277BD"
+    },
+    "dark": {
+      "background": "#0D1B2A",
+      "surface": "#1A2D3F",
+      "textPrimary": "#F5F8FF",
+      "textSecondary": "#8A9AB0"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "shadow": "0 2px 8px rgba(21, 101, 192, 0.2)",
+        "hoverEffect": "shadow"
+      },
+      "secondary": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "4px",
+        "padding": "14px 28px",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "8px",
+      "shadow": "0 2px 12px rgba(0,0,0,0.06)",
+      "shadowHover": "0 8px 24px rgba(0,0,0,0.1)",
+      "border": "1px solid #D0D8E8",
+      "padding": "24px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "4px",
+      "border": "1px solid #D0D8E8",
+      "focusBorder": "#1565C0",
+      "padding": "14px 18px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "4px",
+      "padding": "6px 12px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "28px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "4/3",
+      "showBadges": false,
+      "showQuickView": false,
+      "showAddToCart": false,
+      "showWishlist": false,
+      "showRating": true,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Poppins",
+      "weight": "600",
+      "transform": "none",
+      "letterSpacing": "-0.01em"
+    },
+    "body": {
+      "family": "Inter",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.6"
+    },
+    "accent": {
+      "family": "Poppins",
+      "weight": "500"
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1200px",
+    "gridGap": "24px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.05)",
+      "md": "0 2px 12px rgba(0,0,0,0.06)",
+      "lg": "0 8px 24px rgba(0,0,0,0.08)",
+      "xl": "0 16px 40px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "2px",
+      "md": "4px",
+      "lg": "8px",
+      "xl": "12px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["services", "moving", "logistics", "relocation", "professional", "trustworthy"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["services", "quote-calculator", "scheduling", "testimonials"]
+    }
+  }
+}

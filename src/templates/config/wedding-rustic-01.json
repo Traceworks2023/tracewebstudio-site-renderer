@@ -1,0 +1,44 @@
+{
+  "id": "wedding-rustic-01",
+  "name": "Wedding Rustic",
+  "category": "wedding",
+  "subcategory": "rustic",
+  "description": "Rustic wedding invitations and decorations",
+  "version": "1.0.0",
+  "tags": ["wedding", "rustic", "boho", "vineyard"],
+  "components": {
+    "header": {
+      "layout": "romantic-floral",
+      "logo": { "type": "script", "position": "center" },
+      "navigation": { "type": "elegant", "position": "below" },
+      "actions": ["inquiries"]
+    },
+    "footer": {
+      "layout": "vineyard-dark",
+      "columns": ["suites", "pricing", "reviews", "contact"]
+    },
+    "suiteCard": { "layout": "invitation-preview" },
+    "inquiryForm": { "layout": "date-check" }
+  },
+  "pages": {
+    "home": { "layout": "love-story", "sections": ["hero", "collections", "process", "reviews", "inquiry"] },
+    "collections": { "layout": "suite-gallery" },
+    "inquiry": { "layout": "consultation" }
+  },
+  "colors": {
+    "primary": "#8D6E63",
+    "secondary": "#EFEBE9",
+    "accent": "#A1887F",
+    "background": "#FFFBF5",
+    "surface": "#FFFFFF",
+    "text": "#4E342E",
+    "textMuted": "#6D4C41"
+  },
+  "typography": {
+    "heading": { "font": "Script", "weight": "400" },
+    "body": { "font": "Cormorant Garamond", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "4px" },
+  "shadows": { "cards": "0 4px 15px rgba(141,110,99,0.1)" }
+}

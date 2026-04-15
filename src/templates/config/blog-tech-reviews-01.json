@@ -1,0 +1,43 @@
+{
+  "id": "blog-tech-reviews-01",
+  "name": "Blog Tech Reviews",
+  "category": "blog",
+  "subcategory": "tech-reviews",
+  "description": "Tech review blog with detailed analysis aesthetic",
+  "version": "1.0.0",
+  "tags": ["blog", "tech", "reviews", "gadgets"],
+  "components": {
+    "header": {
+      "layout": "tech-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "categories", "position": "center" },
+      "actions": ["search"]
+    },
+    "footer": {
+      "layout": "gadget-dark",
+      "columns": ["phones", "laptops", "audio", "about"]
+    },
+    "reviewCard": { "layout": "score-summary" }
+  },
+  "pages": {
+    "home": { "layout": "tested-tech", "sections": ["hero", "latest", "phones", "laptops", "audio"] },
+    "category": { "layout": "review-grid" },
+    "review": { "layout": "full-benchmark" }
+  },
+  "colors": {
+    "primary": "#00ACC1",
+    "secondary": "#1A1A1A",
+    "accent": "#FFD600",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Inter", "weight": "600" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 4px 15px rgba(0,172,193,0.2)" }
+}

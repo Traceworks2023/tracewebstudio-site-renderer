@@ -1,0 +1,44 @@
+{
+  "id": "services-home-care-01",
+  "name": "Services Home Care",
+  "category": "services",
+  "subcategory": "home-care",
+  "description": "Home care services with warm, trustworthy design",
+  "version": "1.0.0",
+  "tags": ["services", "home-care", "senior-care", "nurturing"],
+  "components": {
+    "header": {
+      "layout": "caring-light",
+      "logo": { "type": "image", "position": "left" },
+      "navigation": { "type": "services", "position": "center" },
+      "actions": ["caregivers", "contact"]
+    },
+    "footer": {
+      "layout": "supportive",
+      "columns": ["services", "caregivers", "resources", "contact"]
+    },
+    "serviceCard": { "layout": "care-option" },
+    "caregiverCard": { "layout": "profile-trust" }
+  },
+  "pages": {
+    "home": { "layout": "compassionate", "sections": ["hero", "services", "caregivers", "testimonials", "contact"] },
+    "services": { "layout": "service-detail" },
+    "caregivers": { "layout": "trust-profiles" }
+  },
+  "colors": {
+    "primary": "#7E57C2",
+    "secondary": "#EDE7F6",
+    "accent": "#26A69A",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#37474F",
+    "textMuted": "#78909C"
+  },
+  "typography": {
+    "heading": { "font": "Nunito", "weight": "600" },
+    "body": { "font": "Open Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "20px", "cards": "12px" },
+  "shadows": { "cards": "0 3px 12px rgba(126,87,194,0.15)" }
+}

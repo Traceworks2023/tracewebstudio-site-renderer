@@ -1,0 +1,203 @@
+---
+interface Testimonial {
+  name: string;
+  role?: string;
+  company?: string;
+  avatar?: string;
+  quote: string;
+  rating?: number;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  testimonials?: Testimonial[];
+}
+
+const {
+  title = "What Our Customers Say",
+  subtitle = "Join thousands of satisfied customers",
+  testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "Small Business Owner",
+      company: "Sarah's Crafts",
+      quote: "This platform transformed my business! I was able to launch my online store in just a few hours. The templates are beautiful and the support team is amazing.",
+      rating: 5,
+    },
+    {
+      name: "Michael Chen",
+      role: "Marketing Director",
+      company: "TechStart Inc",
+      quote: "The best website builder we've used. Intuitive interface, great features, and the SEO tools helped us rank #1 on Google within months.",
+      rating: 5,
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Entrepreneur",
+      quote: "I switched from another platform and never looked back. The performance is outstanding and the pricing is unbeatable for the value provided.",
+      rating: 5,
+    },
+  ],
+} = Astro.props;
+---
+
+<section class="testimonials">
+  <div class="testimonials-container">
+    <div class="testimonials-header">
+      <h2 class="testimonials-title">{title}</h2>
+      {subtitle && <p class="testimonials-subtitle">{subtitle}</p>}
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map((testimonial) => (
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            {Array(testimonial.rating || 5).fill(null).map(() => (
+              <span class="star">★</span>
+            ))}
+          </div>
+          <blockquote class="testimonial-quote">
+            "{testimonial.quote}"
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              {testimonial.avatar ? (
+                <img src={testimonial.avatar} alt={testimonial.name} />
+              ) : (
+                <span>{testimonial.name.charAt(0)}</span>
+              )}
+            </div>
+            <div class="author-info">
+              <div class="author-name">{testimonial.name}</div>
+              {(testimonial.role || testimonial.company) && (
+                <div class="author-role">
+                  {testimonial.role}{testimonial.role && testimonial.company && " at "}{testimonial.company}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    padding: 5rem 2rem;
+    background-color: white;
+  }
+
+  .testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .testimonials-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000032;
+    margin: 0 0 1rem 0;
+  }
+
+  .testimonials-subtitle {
+    font-size: 1.125rem;
+    color: #6B7280;
+    margin: 0;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    background: #F9FAFB;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #E5E7EB;
+    transition: all 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-color: #FA5014;
+  }
+
+  .testimonial-rating {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .star {
+    color: #FA5014;
+    font-size: 1.25rem;
+  }
+
+  .testimonial-quote {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: #111827;
+    margin: 0 0 1.5rem 0;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FA5014 0%, #000032 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .author-avatar span {
+    color: white;
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+
+  .author-name {
+    font-weight: 600;
+    color: #111827;
+    font-family: 'Exo 2', sans-serif;
+  }
+
+  .author-role {
+    font-size: 0.875rem;
+    color: #6B7280;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials {
+      padding: 3rem 1rem;
+    }
+
+    .testimonials-title {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+// Street Hero - Bold, full-screen hero
+interface Props {
+  content: {
+    heading: string;
+    subheading?: string;
+    cta_text?: string;
+    cta_url?: string;
+    background_image?: string;
+    overlay_opacity?: number;
+    height?: 'full' | 'large' | 'medium' | 'small';
+  };
+}
+
+const { content } = Astro.props;
+const {
+  heading = 'STREET STYLE',
+  subheading = '',
+  cta_text = 'SHOP NOW',
+  cta_url = '/products',
+  background_image = 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1920',
+  overlay_opacity = 0.7,
+  height = 'large'
+} = content;
+
+const heightClass = {
+  full: 'min-h-screen',
+  large: 'min-h-[90vh]',
+  medium: 'min-h-[60vh]',
+  small: 'min-h-[40vh]'
+}[height];
+---
+
+<section class={`relative ${heightClass} flex items-center justify-center overflow-hidden`}>
+  <!-- Background Image -->
+  <div 
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={`background-image: url('${background_image}');`}
+  ></div>
+  
+  <!-- Dark Overlay -->
+  <div 
+    class="absolute inset-0 bg-black"
+    style={`opacity: ${overlay_opacity};`}
+  ></div>
+  
+  <!-- Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+  
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4">
+    <h1 class="font-display text-6xl md:text-8xl lg:text-9xl tracking-widest text-white mb-6 glitch">
+      {heading}
+    </h1>
+    {subheading && (
+      <p class="font-heading text-lg md:text-xl text-gray-300 tracking-wider mb-10 max-w-xl mx-auto">
+        {subheading}
+      </p>
+    )}
+    <a 
+      href={cta_url}
+      class="inline-block bg-accent text-white px-10 py-4 font-heading text-sm tracking-widest hover:bg-white hover:text-black transition-all duration-300"
+    >
+      {cta_text}
+    </a>
+  </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>

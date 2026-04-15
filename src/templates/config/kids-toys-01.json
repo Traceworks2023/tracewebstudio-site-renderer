@@ -1,0 +1,44 @@
+{
+  "id": "kids-toys-01",
+  "name": "Kids Educational Toys",
+  "category": "kids",
+  "subcategory": "educational",
+  "description": "Educational toys store with playful, colorful design",
+  "version": "1.0.0",
+  "tags": ["kids", "toys", "educational", "learning"],
+  "components": {
+    "header": {
+      "layout": "playful",
+      "logo": { "type": "fun", "position": "center" },
+      "navigation": { "type": "age-groups", "position": "below" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "fun-dark",
+      "columns": ["toys", "age", "gifts", "about"]
+    },
+    "productCard": { "layout": "toy-photo", "showAge": true },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "play-and-learn", "sections": ["hero", "by-age", "categories", "gifts", "learning"] },
+    "category": { "layout": "age-grouped" },
+    "product": { "layout": "play-detail" }
+  },
+  "colors": {
+    "primary": "#FF9800",
+    "secondary": "#E3F2FD",
+    "accent": "#4CAF50",
+    "background": "#FFFFF5",
+    "surface": "#FFFFFF",
+    "text": "#37474F",
+    "textMuted": "#78909C"
+  },
+  "typography": {
+    "heading": { "font": "Fredoka One", "weight": "400" },
+    "body": { "font": "Nunito", "weight": "600" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "20px", "cards": "16px" },
+  "shadows": { "cards": "0 4px 15px rgba(255,152,0,0.15)" }
+}

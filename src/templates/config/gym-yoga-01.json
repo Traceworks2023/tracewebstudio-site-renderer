@@ -1,0 +1,44 @@
+{
+  "id": "gym-yoga-01",
+  "name": "Gym Yoga Studio",
+  "category": "gym",
+  "subcategory": "yoga-wellness",
+  "description": "Serene yoga studio with calm, peaceful atmosphere",
+  "version": "1.0.0",
+  "tags": ["gym", "yoga", "wellness", "zen"],
+  "components": {
+    "header": {
+      "layout": "soft-transparent",
+      "logo": { "type": "text", "position": "center" },
+      "navigation": { "type": "soft", "position": "below" },
+      "actions": ["book"]
+    },
+    "footer": {
+      "layout": "peaceful",
+      "columns": ["classes", "teachers", "retreats", "contact"]
+    },
+    "classCard": { "layout": "meditation-card" },
+    "scheduleCard": { "layout": "flow-schedule" }
+  },
+  "pages": {
+    "home": { "layout": "serene-intro", "sections": ["hero", "philosophy", "classes", "teachers", "retreats"] },
+    "schedule": { "layout": "calendar-flow" },
+    "retreats": { "layout": "escape-gallery" }
+  },
+  "colors": {
+    "primary": "#9C88B5",
+    "secondary": "#F5F3F0",
+    "accent": "#81C784",
+    "background": "#FDFCFB",
+    "surface": "#F5F3F0",
+    "text": "#4A4A4A",
+    "textMuted": "#8A8A8A"
+  },
+  "typography": {
+    "heading": { "font": "Cormorant Garamond", "weight": "400" },
+    "body": { "font": "Lato", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "30px", "cards": "20px" },
+  "shadows": { "cards": "0 4px 15px rgba(156,136,181,0.15)" }
+}

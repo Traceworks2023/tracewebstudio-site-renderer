@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-writing-01",
+  "name": "Portfolio Writing",
+  "category": "portfolio",
+  "subcategory": "writing",
+  "description": "Writer and content creator portfolio with editorial design",
+  "version": "1.0.0",
+  "tags": ["portfolio", "writing", "content", "editorial"],
+  "components": {
+    "header": {
+      "layout": "editorial-light",
+      "logo": { "type": "name-only", "position": "left" },
+      "navigation": { "type": "simple", "position": "right" },
+      "actions": ["hire"]
+    },
+    "footer": {
+      "layout": "minimal-white",
+      "columns": ["articles", "clips", "services", "contact"]
+    },
+    "articleCard": { "layout": "preview-text" }
+  },
+  "pages": {
+    "home": { "layout": "editorial", "sections": ["hero", "featured", "services", "testimonials", "contact"] },
+    "articles": { "layout": "article-grid" },
+    "article": { "layout": "reading-view" }
+  },
+  "colors": {
+    "primary": "#1A1A1A",
+    "secondary": "#F5F5F5",
+    "accent": "#C62828",
+    "background": "#FFFFFF",
+    "surface": "#FAFAFA",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Merriweather", "weight": "700" },
+    "body": { "font": "Merriweather", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "2px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

@@ -1,0 +1,491 @@
+---
+// Fashion Luxe Account Dashboard
+import BaseLayout from '../lib/BaseLayout.astro';
+import { getCurrentTheme } from '../lib/theme-loader';
+import { buildThemeCSSVars } from '../lib/theme-components';
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const user = {
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'john.doe@email.com',
+  memberSince: 'January 2023',
+  points: 2450
+};
+
+const recentOrders = [
+  { id: 'ORD-2024-001', date: 'Mar 15, 2024', status: 'Delivered', total: 149.97, items: 2 },
+  { id: 'ORD-2024-002', date: 'Mar 10, 2024', status: 'Shipped', total: 79.99, items: 1 },
+  { id: 'ORD-2024-003', date: 'Feb 28, 2024', status: 'Delivered', total: 229.97, items: 3 }
+];
+---
+
+<BaseLayout title="My Account - LUXE" showHeader={true} showFooter={true}>
+  <section class="account" style={cssVars}>
+    <div class="account__container">
+      {/* Sidebar */}
+      <aside class="account__sidebar">
+        <div class="account__user">
+          <div class="account__avatar">
+            {user.firstName.charAt(0)}{user.lastName.charAt(0)}
+          </div>
+          <div class="account__user-info">
+            <h2 class="account__user-name">{user.firstName} {user.lastName}</h2>
+            <p class="account__user-email">{user.email}</p>
+          </div>
+        </div>
+
+        <nav class="account__nav">
+          <a href="/account" class="account__nav-link account__nav-link--active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Dashboard
+          </a>
+          <a href="/account/orders" class="account__nav-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+              <path d="M3 6h18"></path>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            Orders
+          </a>
+          <a href="/account/wishlist" class="account__nav-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+            </svg>
+            Wishlist
+          </a>
+          <a href="/account/addresses" class="account__nav-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Addresses
+          </a>
+          <a href="/account/profile" class="account__nav-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            Profile
+          </a>
+          <a href="/account/logout" class="account__nav-link account__nav-link--logout">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" x2="9" y1="12" y2="12"></line>
+            </svg>
+            Logout
+          </a>
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main class="account__main">
+        <div class="account__header">
+          <h1 class="account__title">Dashboard</h1>
+          <p class="account__welcome">Welcome back, {user.firstName}!</p>
+        </div>
+
+        {/* Quick Stats */}
+        <div class="account__stats">
+          <div class="account__stat">
+            <span class="account__stat-value">{user.points}</span>
+            <span class="account__stat-label">Reward Points</span>
+          </div>
+          <div class="account__stat">
+            <span class="account__stat-value">3</span>
+            <span class="account__stat-label">Active Orders</span>
+          </div>
+          <div class="account__stat">
+            <span class="account__stat-value">12</span>
+            <span class="account__stat-label">Items in Wishlist</span>
+          </div>
+        </div>
+
+        {/* Recent Orders */}
+        <div class="account__section">
+          <div class="account__section-header">
+            <h2 class="account__section-title">Recent Orders</h2>
+            <a href="/account/orders" class="account__section-link">View All</a>
+          </div>
+          <div class="account__orders">
+            {recentOrders.map((order) => (
+              <div class="account__order">
+                <div class="account__order-info">
+                  <span class="account__order-id">{order.id}</span>
+                  <span class="account__order-date">{order.date}</span>
+                </div>
+                <div class="account__order-status">
+                  <span class={`account__order-status-badge account__order-status-badge--${order.status.toLowerCase()}`}>
+                    {order.status}
+                  </span>
+                </div>
+                <div class="account__order-details">
+                  <span>{order.items} item{order.items > 1 ? 's' : ''}</span>
+                  <span class="account__order-total">${order.total.toFixed(2)}</span>
+                </div>
+                <a href={`/account/orders/${order.id}`} class="account__order-view">View Details</a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Account Links */}
+        <div class="account__links">
+          <a href="/account/wishlist" class="account__link-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+            </svg>
+            <span class="account__link-title">My Wishlist</span>
+            <span class="account__link-count">12 items</span>
+          </a>
+          <a href="/account/addresses" class="account__link-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="account__link-title">Shipping Addresses</span>
+            <span class="account__link-count">2 addresses</span>
+          </a>
+          <a href="/account/profile" class="account__link-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="account__link-title">Edit Profile</span>
+            <span class="account__link-count">Update your info</span>
+          </a>
+        </div>
+      </main>
+    </div>
+  </section>
+</BaseLayout>
+
+<style define:vars={cssVars}>
+  .account {
+    padding: 60px 24px;
+    min-height: 100vh;
+    background: var(--theme-background);
+  }
+
+  .account__container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .account__sidebar {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 24px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+  }
+
+  .account__user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--theme-border);
+    margin-bottom: 24px;
+  }
+
+  .account__avatar {
+    width: 56px;
+    height: 56px;
+    background: var(--theme-primary);
+    color: var(--theme-background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .account__user-name {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--theme-text);
+  }
+
+  .account__user-email {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .account__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .account__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--btn-radius);
+    color: var(--theme-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .account__nav-link:hover {
+    background: var(--theme-background);
+    color: var(--theme-text);
+  }
+
+  .account__nav-link--active {
+    background: var(--theme-background);
+    color: var(--theme-primary);
+    font-weight: 500;
+  }
+
+  .account__nav-link--logout {
+    margin-top: 16px;
+    color: var(--theme-error);
+  }
+
+  .account__main {
+    flex: 1;
+  }
+
+  .account__header {
+    margin-bottom: 32px;
+  }
+
+  .account__title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--theme-text);
+  }
+
+  .account__welcome {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .account__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .account__stat {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .account__stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--theme-primary);
+    margin-bottom: 4px;
+  }
+
+  .account__stat-label {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+  }
+
+  .account__section {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+
+  .account__section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .account__section-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--theme-text);
+  }
+
+  .account__section-link {
+    font-size: 13px;
+    color: var(--theme-primary);
+    text-decoration: none;
+  }
+
+  .account__section-link:hover {
+    text-decoration: underline;
+  }
+
+  .account__orders {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .account__order {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 16px;
+    background: var(--theme-background);
+    border-radius: var(--btn-radius);
+  }
+
+  .account__order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .account__order-id {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .account__order-date {
+    font-size: 12px;
+    color: var(--theme-text-muted);
+  }
+
+  .account__order-status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .account__order-status-badge--delivered {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--theme-success);
+  }
+
+  .account__order-status-badge--shipped {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--theme-info);
+  }
+
+  .account__order-status-badge--processing {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--theme-warning);
+  }
+
+  .account__order-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--theme-text-secondary);
+  }
+
+  .account__order-total {
+    font-weight: 600;
+    color: var(--theme-text);
+  }
+
+  .account__order-view {
+    padding: 8px 16px;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--btn-radius);
+    font-size: 12px;
+    color: var(--theme-text);
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .account__order-view:hover {
+    border-color: var(--theme-primary);
+  }
+
+  .account__links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .account__link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 32px 24px;
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    text-decoration: none;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .account__link-card:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .account__link-card svg {
+    color: var(--theme-primary);
+  }
+
+  .account__link-title {
+    font-weight: 500;
+    color: var(--theme-text);
+  }
+
+  .account__link-count {
+    font-size: 12px;
+    color: var(--theme-text-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .account__container {
+      grid-template-columns: 1fr;
+    }
+
+    .account__sidebar {
+      position: static;
+    }
+
+    .account__stats {
+      grid-template-columns: 1fr;
+    }
+
+    .account__order {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .account__order-details {
+      align-items: flex-start;
+    }
+
+    .account__links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

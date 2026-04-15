@@ -1,0 +1,44 @@
+{
+  "id": "music-streaming-01",
+  "name": "Music Streaming Platform",
+  "category": "music",
+  "subcategory": "streaming",
+  "description": "Music streaming platform with dark, immersive design",
+  "version": "1.0.0",
+  "tags": ["music", "streaming", "audio", "platform"],
+  "components": {
+    "header": {
+      "layout": "app-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "library", "position": "center" },
+      "actions": ["search", "profile"]
+    },
+    "footer": {
+      "layout": "sound-dark",
+      "columns": ["discover", "playlists", "artists", "about"]
+    },
+    "trackCard": { "layout": "waveform" },
+    "playlistCard": { "layout": "cover-art" }
+  },
+  "pages": {
+    "home": { "layout": "sound", "sections": ["hero", "discover", "new-releases", "playlists", "artists"] },
+    "library": { "layout": "track-list" },
+    "artist": { "layout": "bio-player" }
+  },
+  "colors": {
+    "primary": "#1DB954",
+    "secondary": "#1A1A1A",
+    "accent": "#FFFFFF",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Circular", "weight": "700" },
+    "body": { "font": "Circular", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "20px", "cards": "8px" },
+  "shadows": { "cards": "0 4px 20px rgba(29,185,84,0.2)" }
+}

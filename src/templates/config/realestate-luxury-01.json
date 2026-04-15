@@ -1,0 +1,44 @@
+{
+  "id": "realestate-luxury-01",
+  "name": "Real Estate Luxury",
+  "category": "realestate",
+  "subcategory": "luxury",
+  "description": "Luxury real estate with exclusive, premium design",
+  "version": "1.0.0",
+  "tags": ["realestate", "luxury", "million-dollar", "premium"],
+  "components": {
+    "header": {
+      "layout": "exclusive-dark",
+      "logo": { "type": "classic", "position": "center" },
+      "navigation": { "type": "property-types", "position": "below" },
+      "actions": ["viewings"]
+    },
+    "footer": {
+      "layout": "brokerage-dark",
+      "columns": ["properties", "agents", "markets", "contact"]
+    },
+    "propertyCard": { "layout": "mansion-photo" },
+    "searchForm": { "layout": "luxury-search" }
+  },
+  "pages": {
+    "home": { "layout": "exclusive", "sections": ["hero", "featured", "newest", "agents", "contact"] },
+    "listings": { "layout": "gallery-luxury" },
+    "property": { "layout": "virtual-tour" }
+  },
+  "colors": {
+    "primary": "#1A1A1A",
+    "secondary": "#D4AF37",
+    "accent": "#FFFFFF",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Didot", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "100px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "0 10px 50px rgba(0,0,0,0.5)" }
+}

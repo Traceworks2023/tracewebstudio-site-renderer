@@ -1,0 +1,44 @@
+{
+  "id": "sports-camping-01",
+  "name": "Sports Camping",
+  "category": "sports",
+  "subcategory": "camping",
+  "description": "Camping gear with outdoor adventure design",
+  "version": "1.0.0",
+  "tags": ["sports", "camping", "outdoor", "gear"],
+  "components": {
+    "header": {
+      "layout": "trail-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "gear-types", "position": "center" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "campfire-dark",
+      "columns": ["tents", "sleeping", "cooking", "accessories"]
+    },
+    "productCard": { "layout": "gear-ready" },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "venture-out", "sections": ["hero", "tents", "sleeping", "cooking", "deals"] },
+    "category": { "layout": "camp-grid" },
+    "product": { "layout": "outdoor-spec" }
+  },
+  "colors": {
+    "primary": "#2E7D32",
+    "secondary": "#1A1A1A",
+    "accent": "#FF6F00",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Bebas Neue", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "500" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(46,125,50,0.25)" }
+}

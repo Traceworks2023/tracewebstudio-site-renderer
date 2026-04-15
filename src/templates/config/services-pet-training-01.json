@@ -1,0 +1,44 @@
+{
+  "id": "services-pet-training-01",
+  "name": "Services Pet Training",
+  "category": "services",
+  "subcategory": "pet-training",
+  "description": "Pet training services with friendly, approachable design",
+  "version": "1.0.0",
+  "tags": ["services", "pet", "training", "dogs"],
+  "components": {
+    "header": {
+      "layout": "friendly-light",
+      "logo": { "type": "paw", "position": "left" },
+      "navigation": { "type": "programs", "position": "center" },
+      "actions": ["book", "contact"]
+    },
+    "footer": {
+      "layout": "pawsome-dark",
+      "columns": ["training", "programs", "resources", "contact"]
+    },
+    "programCard": { "layout": "trick-card" },
+    "testimonialCard": { "layout": "puppy-story" }
+  },
+  "pages": {
+    "home": { "layout": "good-boy", "sections": ["hero", "programs", "methods", "testimonials", "book"] },
+    "programs": { "layout": "program-grid" },
+    "book": { "layout": "training-form" }
+  },
+  "colors": {
+    "primary": "#8D6E63",
+    "secondary": "#EFEBE9",
+    "accent": "#FF7043",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#4E342E",
+    "textMuted": "#6D4C41"
+  },
+  "typography": {
+    "heading": { "font": "Fredoka One", "weight": "400" },
+    "body": { "font": "Nunito", "weight": "600" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "20px", "cards": "12px" },
+  "shadows": { "cards": "0 3px 12px rgba(0,0,0,0.08)" }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "blog-news-01",
+  "name": "Blog News Publication",
+  "category": "blog",
+  "subcategory": "news",
+  "description": "News publication with bold, media-forward design",
+  "version": "1.0.0",
+  "tags": ["blog", "news", "publication", "media"],
+  "components": {
+    "header": {
+      "layout": "masthead",
+      "logo": { "type": "masthead", "position": "center" },
+      "navigation": { "type": "sections", "position": "below" },
+      "actions": ["subscribe", "search"]
+    },
+    "footer": {
+      "layout": "newsroom-dark",
+      "columns": ["sections", "opinion", "about", "subscribe"]
+    },
+    "articleCard": { "layout": "headline-first" }
+  },
+  "pages": {
+    "home": { "layout": "news-landing", "sections": ["hero", "top-stories", "sections", "opinion", "subscribe"] },
+    "section": { "layout": "article-feed" },
+    "article": { "layout": "news-article" }
+  },
+  "colors": {
+    "primary": "#D32F2F",
+    "secondary": "#1A1A1A",
+    "accent": "#1976D2",
+    "background": "#FFFFFF",
+    "surface": "#F5F5F5",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Georgia", "weight": "700" },
+    "body": { "font": "Georgia", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "none" }
+}

@@ -1,0 +1,324 @@
+---
+// Fashion Ethnic - Indian Traditional & Ethnic Fashion
+// Warm colors, elegant traditional aesthetic
+
+const siteConfig = {
+  site_name: 'VASUNDHARA',
+  site_tagline: 'Traditional Elegance, Modern Grace'
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{siteConfig.site_name} - {siteConfig.site_tagline}</title>
+  
+  <!-- Google Fonts - Elegant traditional fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            body: ['Poppins', 'sans-serif'],
+            hindi: ['Tiro Devanagari Hindi', 'sans-serif'],
+          },
+          colors: {
+            saffron: '#FF671F',
+            maroon: '#800020',
+            gold: '#D4AF37',
+            cream: '#FFF8F0',
+            warm: '#F5EDE0'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style is:global>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #FFFBF5; }
+    .font-serif { font-family: 'Cormorant Garamond', serif; }
+    
+    /* Gold gradient */
+    .gold-gradient {
+      background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 50%, #D4AF37 100%);
+    }
+    
+    /* Decorative border */
+    .ethnic-border {
+      border: 2px solid #D4AF37;
+      position: relative;
+    }
+    .ethnic-border::before,
+    .ethnic-border::after {
+      content: '❋';
+      position: absolute;
+      color: #D4AF37;
+      font-size: 1.5rem;
+    }
+    .ethnic-border::before { top: -12px; left: 50%; transform: translateX(-50%); background: #FFFBF5; padding: 0 10px; }
+    .ethnic-border::after { bottom: -12px; left: 50%; transform: translateX(-50%); background: #FFFBF5; padding: 0 10px; }
+    
+    /* Pattern overlay */
+    .pattern-overlay {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-cream">
+  <!-- Top Bar -->
+  <div class="bg-maroon text-white text-center py-2 text-sm">
+    <p class="tracking-wider">✦ Free Shipping on Orders Above ₹2,999 ✦ Use Code: VASUNDHARA15 for 15% Off ✦</p>
+  </div>
+  
+  <!-- Header -->
+  <header class="bg-cream border-b border-gold/30 sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="font-serif text-3xl md:text-4xl font-semibold text-maroon tracking-wider">
+          {siteConfig.site_name}
+        </a>
+        
+        <!-- Navigation -->
+        <nav class="hidden lg:flex items-center space-x-8">
+          {['New Arrivals', 'Sarees', 'Kurtis', 'Lehengas', 'Jewelry', 'Sale'].map((item) => (
+            <a 
+              href={`/${item.toLowerCase().replace(' ', '-')}`}
+              class="font-body text-sm tracking-wider text-gray-700 hover:text-saffron transition-colors relative group"
+            >
+              {item}
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-saffron group-hover:w-full transition-all duration-300"></span>
+            </a>
+          ))}
+        </nav>
+        
+        <!-- Actions -->
+        <div class="flex items-center space-x-6">
+          <button class="text-maroon hover:text-saffron transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <button class="text-maroon hover:text-saffron transition-colors relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+            <span class="absolute -top-2 -right-2 w-5 h-5 bg-saffron text-white text-xs rounded-full flex items-center justify-center">2</span>
+          </button>
+          <button class="text-maroon hover:text-saffron transition-colors relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+            <span class="absolute -top-2 -right-2 w-5 h-5 bg-saffron text-white text-xs rounded-full flex items-center justify-center">3</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="flex-1">
+    <!-- Hero -->
+    <section class="relative min-h-[80vh] flex items-center">
+      <div class="absolute inset-0">
+        <img 
+          src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1920"
+          alt="Ethnic Fashion"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-maroon/80 via-maroon/40 to-transparent"></div>
+      </div>
+      
+      <div class="relative z-10 container mx-auto px-4">
+        <div class="max-w-2xl">
+          <p class="font-hindi text-gold text-lg mb-4">पारंपरिक ऐश्वर्य, आधुनिक सुंदरता</p>
+          <h1 class="font-serif text-5xl md:text-7xl font-semibold text-white mb-6 leading-tight">
+            Timeless<br/><span class="text-gold">Elegance</span>
+          </h1>
+          <p class="text-white/90 text-lg mb-8 max-w-lg">
+            Discover our exquisite collection of traditional Indian wear, crafted with love and heritage.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/new" class="bg-gold text-maroon px-8 py-4 font-semibold tracking-wider hover:bg-white transition-colors">
+              SHOP NEW ARRIVALS
+            </a>
+            <a href="/collections" class="border-2 border-gold text-gold px-8 py-4 font-semibold tracking-wider hover:bg-gold hover:text-maroon transition-colors">
+              VIEW COLLECTIONS
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Categories -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="font-serif text-4xl text-center text-maroon mb-4">Shop by Category</h2>
+        <p class="text-center text-gray-600 mb-12 tracking-wider">Find your perfect traditional ensemble</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            { name: 'Sarees', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400', count: 245 },
+            { name: 'Kurtis', image: 'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=400', count: 189 },
+            { name: 'Lehengas', image: 'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400', count: 76 },
+            { name: 'Jewelry', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400', count: 312 }
+          ].map((cat) => (
+            <a href={`/${cat.name.toLowerCase()}`} class="group relative aspect-[3/4] overflow-hidden rounded-lg">
+              <img src={cat.image} alt={cat.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-center">
+                <h3 class="font-serif text-2xl text-white mb-1">{cat.name}</h3>
+                <p class="text-white/70 text-sm">{cat.count} Products</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section class="py-16 pattern-overlay">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="font-serif text-4xl text-maroon mb-4">Bestsellers</h2>
+          <div class="w-24 h-1 gold-gradient mx-auto"></div>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            { name: 'Silk Saree', price: 8999, original: 12999, image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400', badge: '20% OFF' },
+            { name: 'Embroidered Kurti', price: 3499, image: 'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=400', badge: 'NEW' },
+            { name: 'Velvet Lehenga', price: 24999, original: 35000, image: 'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400', badge: 'BESTSELLER' },
+            { name: 'Gold Necklace Set', price: 5999, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400', rating: 4.8 }
+          ].map((product) => (
+            <a href={`/product/${product.name.toLowerCase().replace(' ', '-')}`} class="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+              <div class="relative aspect-[3/4] overflow-hidden">
+                <img src={product.image} alt={product.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                {product.badge && (
+                  <span class="absolute top-3 left-3 bg-maroon text-gold text-xs font-semibold px-3 py-1 tracking-wider">
+                    {product.badge}
+                  </span>
+                )}
+              </div>
+              <div class="p-4 text-center">
+                <h3 class="font-serif text-lg text-gray-900 mb-2">{product.name}</h3>
+                <div class="flex items-center justify-center gap-2">
+                  <span class="font-semibold text-maroon">₹{product.price.toLocaleString()}</span>
+                  {product.original && (
+                    <span class="text-gray-500 line-through text-sm">₹{product.original.toLocaleString()}</span>
+                  )}
+                </div>
+                {product.rating && (
+                  <div class="flex items-center justify-center gap-1 mt-2">
+                    {[...Array(5)].map((_, i) => (
+                      <svg class={`w-4 h-4 ${i < Math.floor(product.rating) ? 'text-gold' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                      </svg>
+                    ))}
+                    <span class="text-sm text-gray-500 ml-1">({product.rating})</span>
+                  </div>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Promo Banner -->
+    <section class="relative py-20 bg-maroon overflow-hidden">
+      <div class="absolute inset-0 pattern-overlay opacity-20"></div>
+      <div class="relative z-10 container mx-auto px-4 text-center">
+        <p class="text-gold tracking-widest text-sm mb-4">FESTIVE COLLECTION 2024</p>
+        <h2 class="font-serif text-5xl md:text-7xl text-white mb-6">Up to 40% Off</h2>
+        <p class="text-white/80 text-lg mb-8 max-w-xl mx-auto">
+          Celebrate the season in style with our exclusive festive collection. Traditional elegance meets modern grace.
+        </p>
+        <a href="/sale" class="inline-block bg-gold text-maroon px-10 py-4 font-semibold tracking-wider hover:bg-white transition-colors">
+          SHOP FESTIVE OFFERS
+        </a>
+      </div>
+    </section>
+    
+    <!-- Trust Badges -->
+    <section class="py-12 bg-warm border-y border-gold/20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { icon: '🚚', title: 'Free Shipping', desc: 'On orders above ₹2,999' },
+            { icon: '💳', title: 'Secure Payment', desc: '100% secure transactions' },
+            { icon: '↩️', title: 'Easy Returns', desc: '7 day return policy' },
+            { icon: '📞', title: '24/7 Support', desc: 'Dedicated help' }
+          ].map((item) => (
+            <div>
+              <span class="text-3xl mb-2 block">{item.icon}</span>
+              <h4 class="font-semibold text-maroon mb-1">{item.title}</h4>
+              <p class="text-gray-600 text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-2xl text-center">
+        <h2 class="font-serif text-3xl text-maroon mb-4">Join Our Family</h2>
+        <p class="text-gray-600 mb-8">Subscribe to receive exclusive offers, new arrivals, and styling tips.</p>
+        <form class="flex flex-col sm:flex-row gap-4">
+          <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 border border-gold/30 rounded focus:outline-none focus:border-gold" required />
+          <button type="submit" class="bg-maroon text-white px-8 py-4 font-semibold tracking-wider hover:bg-saffron transition-colors">
+            SUBSCRIBE
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="bg-maroon text-white">
+    <div class="container mx-auto px-4 py-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <h3 class="font-serif text-3xl mb-4">{siteConfig.site_name}</h3>
+          <p class="text-white/70 text-sm mb-6">Celebrating the rich heritage of Indian craftsmanship with modern elegance.</p>
+          <div class="flex space-x-4">
+            {['Instagram', 'Facebook', 'Pinterest'].map((social) => (
+              <a href="#" class="w-10 h-10 border border-white/30 rounded-full flex items-center justify-center hover:border-gold hover:text-gold transition-colors text-sm">
+                {social.charAt(0)}
+              </a>
+            ))}
+          </div>
+        </div>
+        {[
+          { title: 'Quick Links', links: ['New Arrivals', 'Best Sellers', 'Sale', 'Collections'] },
+          { title: 'Help', links: ['Contact Us', 'FAQs', 'Shipping', 'Returns'] },
+          { title: 'About', links: ['Our Story', 'Craftsmanship', 'Stores', 'Careers'] }
+        ].map((col) => (
+          <div>
+            <h4 class="font-semibold mb-4 tracking-wider">{col.title}</h4>
+            <ul class="space-y-2">
+              {col.links.map((link) => (
+                <li><a href="#" class="text-white/70 hover:text-gold transition-colors text-sm">{link}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div class="border-t border-white/20 pt-8 text-center text-white/50 text-sm">
+        <p>© {new Date().getFullYear()} {siteConfig.site_name}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

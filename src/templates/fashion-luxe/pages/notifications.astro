@@ -1,0 +1,508 @@
+---
+import BaseLayout from '../lib/BaseLayout.astro';
+import { getCurrentTheme } from '../lib/theme-loader';
+import { buildThemeCSSVars } from '../lib/theme-components';
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const preferences = {
+  orderUpdates: { email: true, sms: true, push: true },
+  promotions: { email: true, sms: false, push: false },
+  priceDrops: { email: true, sms: false, push: true },
+  newArrivals: { email: false, sms: false, push: false },
+  reviewsReminders: { email: true, sms: false, push: false },
+  accountSecurity: { email: true, sms: true, push: true },
+  newsletter: { email: true, sms: false, push: false }
+};
+---
+
+<BaseLayout title="Notifications - LUXE Account" showHeader={true} showFooter={true}>
+  <section class="notifications" style={cssVars}>
+    <div class="notifications__container">
+      <div class="notifications__header">
+        <h1 class="notifications__title">Notification Preferences</h1>
+        <p class="notifications__subtitle">Choose how you want to be notified</p>
+      </div>
+
+      <form class="notifications__form">
+        <section class="notifications__section">
+          <h2 class="notifications__section-title">Order Updates</h2>
+          <p class="notifications__section-desc">Get notified about your order status</p>
+          <div class="notifications__toggles">
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.orderUpdates.email} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Email</span>
+                <span class="notifications__toggle-desc">order@luxe.com</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.orderUpdates.sms} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">SMS</span>
+                <span class="notifications__toggle-desc">+1 (555) ***-4567</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.orderUpdates.push} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Push Notification</span>
+                <span class="notifications__toggle-desc">Device notifications</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="notifications__section">
+          <h2 class="notifications__section-title">Promotions & Deals</h2>
+          <p class="notifications__section-desc">Receive offers and promotional content</p>
+          <div class="notifications__toggles">
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.promotions.email} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Email</span>
+                <span class="notifications__toggle-desc">Weekly deals and offers</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.promotions.sms} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">SMS</span>
+                <span class="notifications__toggle-desc">Exclusive mobile offers</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.promotions.push} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Push Notification</span>
+                <span class="notifications__toggle-desc">Flash sale alerts</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="notifications__section">
+          <h2 class="notifications__section-title">Price Drops</h2>
+          <p class="notifications__section-desc">Get alerted when items in your wishlist drop in price</p>
+          <div class="notifications__toggles">
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.priceDrops.email} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Email</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.priceDrops.sms} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">SMS</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.priceDrops.push} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Push Notification</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="notifications__section">
+          <h2 class="notifications__section-title">New Arrivals</h2>
+          <p class="notifications__section-desc">Be the first to know about new collections</p>
+          <div class="notifications__toggles">
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.newArrivals.email} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Email</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.newArrivals.sms} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">SMS</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.newArrivals.push} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Push Notification</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="notifications__section">
+          <h2 class="notifications__section-title">Review Reminders</h2>
+          <p class="notifications__section-desc">Remind me to review purchased items</p>
+          <div class="notifications__toggles">
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.reviewsReminders.email} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Email</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.reviewsReminders.sms} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">SMS</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.reviewsReminders.push} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Push Notification</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="notifications__section">
+          <h2 class="notifications__section-title">Account Security</h2>
+          <p class="notifications__section-desc">Important alerts about your account safety</p>
+          <div class="notifications__toggles">
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.accountSecurity.email} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Email</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.accountSecurity.sms} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">SMS</span>
+              </span>
+            </label>
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.accountSecurity.push} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Push Notification</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="notifications__section">
+          <h2 class="notifications__section-title">Newsletter</h2>
+          <p class="notifications__section-desc">Subscribe to our curated fashion newsletter</p>
+          <div class="notifications__toggles">
+            <label class="notifications__toggle">
+              <input type="checkbox" checked={preferences.newsletter.email} />
+              <span class="notifications__toggle-track">
+                <span class="notifications__toggle-thumb"></span>
+              </span>
+              <span class="notifications__toggle-info">
+                <span class="notifications__toggle-label">Email Newsletter</span>
+                <span class="notifications__toggle-desc">Monthly fashion tips and trends</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <div class="notifications__actions">
+          <button type="button" class="notifications__btn notifications__btn--secondary">Cancel</button>
+          <button type="submit" class="notifications__btn notifications__btn--primary">Save Preferences</button>
+        </div>
+      </form>
+
+      <section class="notifications__info">
+        <h3 class="notifications__info-title">Communication Channels</h3>
+        <div class="notifications__info-grid">
+          <div class="notifications__info-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <h4>Email</h4>
+            <p>Updates sent to order@luxe.com</p>
+          </div>
+          <div class="notifications__info-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <h4>SMS</h4>
+            <p>Text messages to +1 (555) ***-4567</p>
+          </div>
+          <div class="notifications__info-card">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <h4>Push</h4>
+            <p>Browser and app notifications</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<style define:vars={cssVars}>
+  .notifications {
+    padding: 60px 24px;
+    min-height: 60vh;
+  }
+
+  .notifications__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .notifications__header {
+    margin-bottom: 40px;
+  }
+
+  .notifications__title {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--theme-text);
+  }
+
+  .notifications__subtitle {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  .notifications__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .notifications__section {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 24px;
+  }
+
+  .notifications__section-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: var(--theme-text);
+  }
+
+  .notifications__section-desc {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+    margin: 0 0 20px;
+  }
+
+  .notifications__toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .notifications__toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+  }
+
+  .notifications__toggle input {
+    display: none;
+  }
+
+  .notifications__toggle-track {
+    width: 48px;
+    height: 26px;
+    background: var(--theme-border);
+    border-radius: 13px;
+    position: relative;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .notifications__toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .notifications__toggle input:checked + .notifications__toggle-track {
+    background: var(--theme-primary);
+  }
+
+  .notifications__toggle input:checked + .notifications__toggle-track .notifications__toggle-thumb {
+    transform: translateX(22px);
+  }
+
+  .notifications__toggle-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .notifications__toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--theme-text);
+  }
+
+  .notifications__toggle-desc {
+    font-size: 12px;
+    color: var(--theme-text-muted);
+  }
+
+  .notifications__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 16px;
+  }
+
+  .notifications__btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border: none;
+  }
+
+  .notifications__btn--primary {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+  }
+
+  .notifications__btn--primary:hover {
+    background: var(--theme-primary-hover);
+  }
+
+  .notifications__btn--secondary {
+    background: var(--theme-surface);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-border);
+  }
+
+  .notifications__btn--secondary:hover {
+    background: var(--theme-background);
+  }
+
+  .notifications__info {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--theme-border);
+  }
+
+  .notifications__info-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    color: var(--theme-text);
+  }
+
+  .notifications__info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .notifications__info-card {
+    text-align: center;
+    padding: 24px 16px;
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+  }
+
+  .notifications__info-card svg {
+    color: var(--theme-primary);
+    margin-bottom: 12px;
+  }
+
+  .notifications__info-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: var(--theme-text);
+  }
+
+  .notifications__info-card p {
+    font-size: 12px;
+    color: var(--theme-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .notifications__info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .notifications__actions {
+      flex-direction: column;
+    }
+
+    .notifications__btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

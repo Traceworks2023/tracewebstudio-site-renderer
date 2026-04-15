@@ -1,0 +1,44 @@
+{
+  "id": "furniture-luxury-01",
+  "name": "Furniture Luxury",
+  "category": "furniture",
+  "subcategory": "luxury",
+  "description": "Luxury furniture with opulent, designer aesthetic",
+  "version": "1.0.0",
+  "tags": ["furniture", "luxury", "designer", "premium"],
+  "components": {
+    "header": {
+      "layout": "opulent-dark",
+      "logo": { "type": "classic", "position": "center" },
+      "navigation": { "type": "collections", "position": "below" },
+      "actions": ["appointments", "cart"]
+    },
+    "footer": {
+      "layout": "showroom-dark",
+      "columns": ["collections", "designers", "showrooms", "contact"]
+    },
+    "productCard": { "layout": "showroom-shot" },
+    "cartDrawer": { "layout": "consultation-slide" }
+  },
+  "pages": {
+    "home": { "layout": "design-showcase", "sections": ["hero", "collections", "designers", "showrooms", "appointments"] },
+    "category": { "layout": "gallery-luxury" },
+    "product": { "layout": "bespoke-detail" }
+  },
+  "colors": {
+    "primary": "#1A1A1A",
+    "secondary": "#D4AF37",
+    "accent": "#8D6E63",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Didot", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "100px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "0 8px 40px rgba(212,175,55,0.15)" }
+}

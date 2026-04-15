@@ -1,0 +1,44 @@
+{
+  "id": "jewelry-fashion-01",
+  "name": "Jewelry Fashion",
+  "category": "jewelry",
+  "subcategory": "fashion",
+  "description": "Fashion jewelry with trendy, affordable designs",
+  "version": "1.0.0",
+  "tags": ["jewelry", "fashion", "trendy", "affordable"],
+  "components": {
+    "header": {
+      "layout": "trendy-light",
+      "logo": { "type": "bold", "position": "center" },
+      "navigation": { "type": "trends", "position": "below" },
+      "actions": ["search", "cart"]
+    },
+    "footer": {
+      "layout": "style-light",
+      "columns": ["necklaces", "bracelets", "earrings", "sets"]
+    },
+    "productCard": { "layout": "trend-shot" },
+    "cartDrawer": { "layout": "slide-right" }
+  },
+  "pages": {
+    "home": { "layout": "statement", "sections": ["hero", "trends", "bestsellers", "sets", "gift"] },
+    "category": { "layout": "trend-grid" },
+    "product": { "layout": "style-detail" }
+  },
+  "colors": {
+    "primary": "#E91E63",
+    "secondary": "#FCE4EC",
+    "accent": "#D4AF37",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "600" },
+    "body": { "font": "Montserrat", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 3px 10px rgba(0,0,0,0.08)" }
+}

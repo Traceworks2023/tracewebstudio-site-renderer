@@ -1,0 +1,44 @@
+{
+  "id": "beauty-perfume-01",
+  "name": "Beauty Perfume",
+  "category": "beauty",
+  "subcategory": "perfume",
+  "description": "Luxury perfumes with elegant, aromatic design",
+  "version": "1.0.0",
+  "tags": ["beauty", "perfume", "fragrance", "luxury"],
+  "components": {
+    "header": {
+      "layout": "scent-dark",
+      "logo": { "type": "elegant", "position": "center" },
+      "navigation": { "type": "notes", "position": "below" },
+      "actions": ["discovery", "cart"]
+    },
+    "footer": {
+      "layout": "fragrance-dark",
+      "columns": ["womens", "mens", "discovery", "about"]
+    },
+    "productCard": { "layout": "bottle-art" },
+    "cartDrawer": { "layout": "elegant-slide" }
+  },
+  "pages": {
+    "home": { "layout": "scent-story", "sections": ["hero", "signature", "womens", "mens", "discovery"] },
+    "category": { "layout": "note-pyramid" },
+    "product": { "layout": "fragrance-journey" }
+  },
+  "colors": {
+    "primary": "#4A148C",
+    "secondary": "#1A1A1A",
+    "accent": "#D4AF37",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Didot", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "0 5px 30px rgba(74,20,140,0.25)" }
+}

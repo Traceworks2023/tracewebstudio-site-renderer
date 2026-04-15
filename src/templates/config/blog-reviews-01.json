@@ -1,0 +1,43 @@
+{
+  "id": "blog-reviews-01",
+  "name": "Blog Product Reviews",
+  "category": "blog",
+  "subcategory": "reviews",
+  "description": "Product review blog with honest, detailed analysis",
+  "version": "1.0.0",
+  "tags": ["blog", "reviews", "products", "honest"],
+  "components": {
+    "header": {
+      "layout": "reviewer-dark",
+      "logo": { "type": "verdict", "position": "left" },
+      "navigation": { "type": "categories", "position": "center" },
+      "actions": ["search"]
+    },
+    "footer": {
+      "layout": "verdict-dark",
+      "columns": ["reviews", "categories", "about", "contact"]
+    },
+    "reviewCard": { "layout": "verdict-summary" }
+  },
+  "pages": {
+    "home": { "layout": "tested", "sections": ["hero", "latest", "top-rated", "categories", "about"] },
+    "category": { "layout": "review-grid" },
+    "review": { "layout": "full-analysis" }
+  },
+  "colors": {
+    "primary": "#FF6B35",
+    "secondary": "#1A1A1A",
+    "accent": "#FFD600",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "600" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 4px 15px rgba(255,107,53,0.2)" }
+}

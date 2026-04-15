@@ -1,0 +1,294 @@
+{
+  "id": "flowers-bloom-01",
+  "name": "Flower Shop 01",
+  "slug": "flowers-bloom-01",
+  "category": "flowers",
+  "subcategory": "florist",
+  "isPremium": false,
+  "isActive": true,
+  "description": "Elegant flower shop template with soft aesthetics. Perfect for florists, flower delivery, and gift shops.",
+  "previewImage": "https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=800",
+  "structure": {
+    "home": {
+      "layout": "split-hero-right",
+      "sections": ["hero", "occasions", "featured-products", "about", "testimonials", "newsletter", "footer"],
+      "heroStyle": {
+        "height": "large",
+        "textAlignment": "left",
+        "showOverlay": true,
+        "overlayOpacity": 0.35,
+        "showScrollIndicator": false
+      },
+      "productGrid": {
+        "columns": 4,
+        "aspectRatio": "1/1",
+        "showQuickView": false,
+        "showAddToCart": true
+      },
+      "navigation": {
+        "style": "minimal",
+        "sticky": true,
+        "showSearch": false,
+        "showCart": true,
+        "showWishlist": true
+      },
+      "footer": {
+        "style": "minimal",
+        "columns": 3,
+        "showSocial": true,
+        "showPayment": false
+      }
+    },
+    "category": {
+      "layout": "top-filter-bar",
+      "grid": {
+        "columns": 3,
+        "style": "grid",
+        "showImage": true,
+        "aspectRatio": "1/1"
+      },
+      "sidebar": {
+        "width": "260px",
+        "collapsible": true,
+        "showClearAll": true
+      },
+      "pagination": {
+        "style": "load-more",
+        "position": "bottom"
+      },
+      "hero": {
+        "showBanner": true,
+        "bannerStyle": "contained"
+      },
+      "sortOptions": {
+        "position": "top",
+        "showResultCount": true
+      }
+    },
+    "product": {
+      "layout": "gallery-left-info-right",
+      "gallery": {
+        "thumbnailPosition": "bottom",
+        "showZoom": true,
+        "showThumbnails": true,
+        "thumbnailColumns": 4
+      },
+      "info": {
+        "showRating": true,
+        "showPrice": true,
+        "showStock": true,
+        "showSku": false,
+        "showShare": true,
+        "showWishlist": true
+      },
+      "variants": {
+        "showColorSwatches": false,
+        "showSizeSelector": true,
+        "swatchStyle": "circle"
+      },
+      "addToCart": {
+        "showQuantity": true,
+        "buttonStyle": "full-width"
+      },
+      "tabs": {
+        "style": "underline",
+        "position": "below-gallery"
+      },
+      "relatedProducts": {
+        "show": true,
+        "style": "grid",
+        "columns": 4
+      }
+    },
+    "cart": {
+      "layout": "page",
+      "showImages": true,
+      "showQuantities": true,
+      "showRemove": true,
+      "showCoupon": true,
+      "showSummary": true,
+      "continueShoppingUrl": "/bouquets"
+    },
+    "checkout": {
+      "layout": "single-page",
+      "steps": ["contact", "delivery", "message", "payment"],
+      "showOrderSummary": true,
+      "summaryPosition": "right",
+      "expressCheckout": false
+    },
+    "account": {
+      "layout": "sidebar-nav",
+      "sidebar": {
+        "width": "240px",
+        "collapsible": false
+      },
+      "showAvatar": true,
+      "showQuickStats": true
+    },
+    "auth": {
+      "layout": "centered",
+      "showSocialLogin": true,
+      "showRememberMe": true,
+      "showForgotPassword": true
+    },
+    "search": {
+      "layout": "full-page",
+      "showFilters": true,
+      "showRecent": true,
+      "showSuggestions": true,
+      "autocomplete": true
+    }
+  },
+  "theme": {
+    "mode": "light",
+    "defaultMode": "light",
+    "colors": {
+      "primary": "#7C3A8D",
+      "primaryHover": "#6C2A7D",
+      "secondary": "#4A5568",
+      "secondaryHover": "#5A6578",
+      "accent": "#F687B3",
+      "accentHover": "#E677A3",
+      "background": "#FDF8FC",
+      "surface": "#FFFFFF",
+      "surfaceAlt": "#F5EBF5",
+      "textPrimary": "#2D3748",
+      "textSecondary": "#6B7280",
+      "textMuted": "#A0AEC0",
+      "border": "#E9D5EC",
+      "borderLight": "#F2E8F2",
+      "success": "#68D391",
+      "warning": "#F6E05E",
+      "error": "#FC8181",
+      "info": "#76E4F7"
+    },
+    "dark": {
+      "background": "#1A0F1B",
+      "surface": "#2A152A",
+      "textPrimary": "#FDF8FC",
+      "textSecondary": "#A0AEC0"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": {
+        "borderRadius": "50px",
+        "padding": "14px 28px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "shadow": "none",
+        "hoverEffect": "color"
+      },
+      "secondary": {
+        "borderRadius": "50px",
+        "padding": "14px 28px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "border"
+      },
+      "outline": {
+        "borderRadius": "50px",
+        "padding": "14px 28px",
+        "fontWeight": "500",
+        "textTransform": "none",
+        "hoverEffect": "color"
+      }
+    },
+    "cards": {
+      "borderRadius": "12px",
+      "shadow": "0 2px 16px rgba(0,0,0,0.06)",
+      "shadowHover": "0 8px 28px rgba(124, 58, 141, 0.12)",
+      "border": "none",
+      "padding": "20px",
+      "hoverEffect": "lift"
+    },
+    "inputs": {
+      "borderRadius": "12px",
+      "border": "1px solid #E9D5EC",
+      "focusBorder": "#7C3A8D",
+      "padding": "14px 18px",
+      "background": "#FFFFFF"
+    },
+    "badges": {
+      "borderRadius": "20px",
+      "padding": "6px 14px",
+      "fontSize": "11px",
+      "fontWeight": "600"
+    },
+    "navigation": {
+      "itemSpacing": "36px",
+      "activeIndicator": "underline",
+      "dropdownStyle": "default"
+    },
+    "productCard": {
+      "imageAspectRatio": "1/1",
+      "showBadges": true,
+      "showQuickView": false,
+      "showAddToCart": true,
+      "showWishlist": true,
+      "showRating": true,
+      "hoverEffect": "zoom"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Playfair Display",
+      "weight": "500",
+      "transform": "none",
+      "letterSpacing": "0.02em"
+    },
+    "body": {
+      "family": "Nunito",
+      "weight": "400",
+      "size": "15px",
+      "lineHeight": "1.7"
+    },
+    "accent": {
+      "family": "Cormorant Garamond",
+      "weight": "400",
+      "italic": true
+    }
+  },
+  "spacing": {
+    "sectionPadding": "80px 0",
+    "containerWidth": "1200px",
+    "gridGap": "24px",
+    "cardGap": "20px"
+  },
+  "effects": {
+    "shadows": {
+      "sm": "0 1px 4px rgba(0,0,0,0.04)",
+      "md": "0 2px 16px rgba(0,0,0,0.06)",
+      "lg": "0 8px 28px rgba(0,0,0,0.08)",
+      "xl": "0 16px 40px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "6px",
+      "md": "12px",
+      "lg": "20px",
+      "xl": "30px",
+      "full": "9999px"
+    },
+    "transitions": {
+      "fast": "150ms ease",
+      "normal": "250ms ease",
+      "slow": "400ms ease"
+    },
+    "animations": {
+      "entrance": "fade",
+      "hover": "lift"
+    }
+  },
+  "metadata": {
+    "author": "Tracewebstudio",
+    "version": "1.0.0",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "tags": ["flowers", "florist", "bouquet", "gift", "romantic", "elegant"],
+    "compatibility": {
+      "minVersion": "1.0.0",
+      "features": ["ecommerce", "same-day-delivery", "gift-messages", "occasions"]
+    }
+  }
+}

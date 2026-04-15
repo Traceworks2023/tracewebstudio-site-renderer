@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-web-dev-01",
+  "name": "Portfolio Web Developer",
+  "category": "portfolio",
+  "subcategory": "web-dev",
+  "description": "Web developer portfolio with technical, code-focused design",
+  "version": "1.0.0",
+  "tags": ["portfolio", "web-dev", "developer", "frontend"],
+  "components": {
+    "header": {
+      "layout": "code-dark",
+      "logo": { "type": "<dev>", "position": "left" },
+      "navigation": { "type": "skills", "position": "center" },
+      "actions": ["resume", "contact"]
+    },
+    "footer": {
+      "layout": "terminal-dark",
+      "columns": ["projects", "skills", "opensource", "contact"]
+    },
+    "projectCard": { "layout": "screenshot-tech" }
+  },
+  "pages": {
+    "home": { "layout": "code-portfolio", "sections": ["hero", "projects", "skills", "opensource", "contact"] },
+    "projects": { "layout": "project-grid" },
+    "project": { "layout": "repo-detail" }
+  },
+  "colors": {
+    "primary": "#00E676",
+    "secondary": "#1A1A1A",
+    "accent": "#FFFFFF",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Fira Code", "weight": "400" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(0,230,118,0.2)" }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "landing-affiliate-01",
+  "name": "Landing Affiliate Program",
+  "category": "landing",
+  "subcategory": "affiliate",
+  "description": "Affiliate program recruitment with partnership design",
+  "version": "1.0.0",
+  "tags": ["landing", "affiliate", "partnership", "commission"],
+  "components": {
+    "header": {
+      "layout": "partner-dark",
+      "logo": { "type": "bold", "position": "left" },
+      "navigation": { "type": "benefits", "position": "center" },
+      "actions": ["join"]
+    },
+    "footer": {
+      "layout": "partnership-dark",
+      "columns": ["program", "commission", "resources", "contact"]
+    },
+    "benefitCard": { "layout": "partner-perk" }
+  },
+  "pages": {
+    "home": { "layout": "partner-with-us", "sections": ["hero", "benefits", "commission", "testimonials", "join"] }
+  },
+  "colors": {
+    "primary": "#7C4DFF",
+    "secondary": "#1A1A1A",
+    "accent": "#00E676",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#888888"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "600" },
+    "body": { "font": "Inter", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "8px", "cards": "12px" },
+  "shadows": { "cards": "0 8px 40px rgba(124,77,255,0.25)" }
+}

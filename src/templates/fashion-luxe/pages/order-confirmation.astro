@@ -1,0 +1,346 @@
+---
+// Fashion Luxe Order Confirmation Page
+import BaseLayout from '../lib/BaseLayout.astro';
+import { getCurrentTheme } from '../lib/theme-loader';
+import { buildThemeCSSVars } from '../lib/theme-components';
+
+const theme = getCurrentTheme();
+const cssVars = buildThemeCSSVars(theme);
+
+const order = {
+  id: 'ORD-2024-1047',
+  date: 'March 15, 2024',
+  email: 'john.doe@email.com',
+  shippingAddress: {
+    name: 'John Doe',
+    address: '123 Main Street',
+    city: 'New York',
+    state: 'NY',
+    zip: '10001',
+    country: 'United States'
+  },
+  items: [
+    { id: '1', name: 'Elegant Silk Dress', price: 4999, quantity: 1, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=100' },
+    { id: '2', name: 'Designer Handbag', price: 4999, quantity: 1, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=100' }
+  ],
+  subtotal: 9998,
+  shipping: 0,
+  tax: 850,
+  total: 10848
+};
+---
+
+<BaseLayout title="Order Confirmed - LUXE" showHeader={true} showFooter={true}>
+  <section class="confirmation" style={cssVars}>
+    <div class="confirmation__container">
+      <div class="confirmation__icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+
+      <h1 class="confirmation__title">Thank You for Your Order!</h1>
+      <p class="confirmation__subtitle">Your order has been confirmed and will be shipped soon.</p>
+
+      <div class="confirmation__details">
+        <div class="confirmation__order-info">
+          <div class="confirmation__info-row">
+            <span class="confirmation__info-label">Order Number</span>
+            <span class="confirmation__info-value">{order.id}</span>
+          </div>
+          <div class="confirmation__info-row">
+            <span class="confirmation__info-label">Order Date</span>
+            <span class="confirmation__info-value">{order.date}</span>
+          </div>
+          <div class="confirmation__info-row">
+            <span class="confirmation__info-label">Email</span>
+            <span class="confirmation__info-value">{order.email}</span>
+          </div>
+        </div>
+
+        <div class="confirmation__shipping">
+          <h3 class="confirmation__section-title">Shipping Address</h3>
+          <address class="confirmation__address">
+            {order.shippingAddress.name}<br />
+            {order.shippingAddress.address}<br />
+            {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zip}<br />
+            {order.shippingAddress.country}
+          </address>
+        </div>
+      </div>
+
+      <div class="confirmation__items">
+        <h3 class="confirmation__section-title">Order Summary</h3>
+        <div class="confirmation__items-list">
+          {order.items.map((item) => (
+            <div class="confirmation__item">
+              <img src={item.image} alt={item.name} class="confirmation__item-image" />
+              <div class="confirmation__item-info">
+                <span class="confirmation__item-name">{item.name}</span>
+                <span class="confirmation__item-qty">Qty: {item.quantity}</span>
+              </div>
+              <span class="confirmation__item-price">${(item.price / 100).toFixed(2)}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="confirmation__totals">
+          <div class="confirmation__total-row">
+            <span>Subtotal</span>
+            <span>${(order.subtotal / 100).toFixed(2)}</span>
+          </div>
+          <div class="confirmation__total-row">
+            <span>Shipping</span>
+            <span>{order.shipping === 0 ? 'Free' : `$${(order.shipping / 100).toFixed(2)}`}</span>
+          </div>
+          <div class="confirmation__total-row">
+            <span>Tax</span>
+            <span>${(order.tax / 100).toFixed(2)}</span>
+          </div>
+          <div class="confirmation__total-row confirmation__total-row--grand">
+            <span>Total</span>
+            <span>${(order.total / 100).toFixed(2)}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirmation__actions">
+        <a href="/account/orders" class="confirmation__btn confirmation__btn--primary">View Order Details</a>
+        <a href="/" class="confirmation__btn confirmation__btn--secondary">Continue Shopping</a>
+      </div>
+
+      <div class="confirmation__help">
+        <p>Questions about your order? <a href="/contact">Contact our support team</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style define:vars={cssVars}>
+  .confirmation {
+    padding: 80px 24px;
+    min-height: 60vh;
+  }
+
+  .confirmation__container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .confirmation__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 50%;
+    color: var(--theme-success);
+    margin-bottom: 32px;
+  }
+
+  .confirmation__title {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: var(--theme-text);
+  }
+
+  .confirmation__subtitle {
+    font-size: 16px;
+    color: var(--theme-text-muted);
+    margin: 0 0 48px;
+  }
+
+  .confirmation__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    text-align: left;
+    padding: 32px;
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    margin-bottom: 32px;
+  }
+
+  .confirmation__info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .confirmation__info-row:last-child {
+    border-bottom: none;
+  }
+
+  .confirmation__info-label {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+  }
+
+  .confirmation__info-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--theme-text);
+  }
+
+  .confirmation__section-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    color: var(--theme-text);
+  }
+
+  .confirmation__address {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--theme-text-secondary);
+  }
+
+  .confirmation__items {
+    background: var(--theme-surface);
+    border-radius: var(--card-radius);
+    padding: 32px;
+    margin-bottom: 32px;
+    text-align: left;
+  }
+
+  .confirmation__items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--theme-border);
+    margin-bottom: 24px;
+  }
+
+  .confirmation__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .confirmation__item-image {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: var(--btn-radius);
+  }
+
+  .confirmation__item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .confirmation__item-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--theme-text);
+  }
+
+  .confirmation__item-qty {
+    font-size: 13px;
+    color: var(--theme-text-muted);
+  }
+
+  .confirmation__item-price {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--theme-text);
+  }
+
+  .confirmation__totals {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .confirmation__total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--theme-text-secondary);
+  }
+
+  .confirmation__total-row--grand {
+    padding-top: 16px;
+    border-top: 1px solid var(--theme-border);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--theme-text);
+  }
+
+  .confirmation__actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .confirmation__btn {
+    padding: 16px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: var(--btn-radius);
+    transition: background 0.2s ease;
+  }
+
+  .confirmation__btn--primary {
+    background: var(--theme-primary);
+    color: var(--theme-background);
+  }
+
+  .confirmation__btn--primary:hover {
+    background: var(--theme-primary-hover);
+  }
+
+  .confirmation__btn--secondary {
+    background: transparent;
+    border: 1px solid var(--theme-border);
+    color: var(--theme-text);
+  }
+
+  .confirmation__btn--secondary:hover {
+    border-color: var(--theme-primary);
+  }
+
+  .confirmation__help {
+    font-size: 14px;
+    color: var(--theme-text-muted);
+  }
+
+  .confirmation__help a {
+    color: var(--theme-primary);
+    text-decoration: none;
+  }
+
+  .confirmation__help a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .confirmation__details {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .confirmation__actions {
+      flex-direction: column;
+    }
+
+    .confirmation__btn {
+      text-align: center;
+    }
+  }
+</style>

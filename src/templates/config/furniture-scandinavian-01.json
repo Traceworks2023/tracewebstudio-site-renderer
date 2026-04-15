@@ -1,0 +1,44 @@
+{
+  "id": "furniture-scandinavian-01",
+  "name": "Furniture Scandinavian",
+  "category": "furniture",
+  "subcategory": "scandinavian",
+  "description": "Clean Scandinavian furniture with Nordic design principles",
+  "version": "1.0.0",
+  "tags": ["furniture", "scandinavian", "nordic", "minimal"],
+  "components": {
+    "header": {
+      "layout": "white-minimal",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "simple", "position": "right" },
+      "actions": ["search", "account", "cart"]
+    },
+    "footer": {
+      "layout": "light-grid",
+      "columns": ["rooms", "designers", "about", "newsletter"]
+    },
+    "productCard": { "layout": "room-context" },
+    "cartDrawer": { "layout": "minimal-slide" }
+  },
+  "pages": {
+    "home": { "layout": "room-by-room", "sections": ["hero", "living", "bedroom", "dining", "studio"] },
+    "category": { "layout": "gallery-masonry" },
+    "product": { "layout": "lifestyle-gallery" }
+  },
+  "colors": {
+    "primary": "#607D8B",
+    "secondary": "#ECEFF1",
+    "accent": "#FF6F00",
+    "background": "#FFFFFF",
+    "surface": "#FAFAFA",
+    "text": "#37474F",
+    "textMuted": "#78909C"
+  },
+  "typography": {
+    "heading": { "font": "Montserrat", "weight": "500" },
+    "body": { "font": "Nunito Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "0 1px 3px rgba(0,0,0,0.08)" }
+}

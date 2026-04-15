@@ -1,0 +1,43 @@
+{
+  "id": "portfolio-interior-01",
+  "name": "Portfolio Interior Design",
+  "category": "portfolio",
+  "subcategory": "interior-design",
+  "description": "Interior designer portfolio with room-focused presentation",
+  "version": "1.0.0",
+  "tags": ["portfolio", "interior", "design", "rooms"],
+  "components": {
+    "header": {
+      "layout": "elegant-light",
+      "logo": { "type": "text", "position": "center" },
+      "navigation": { "type": "spaces", "position": "below" },
+      "actions": ["consultation"]
+    },
+    "footer": {
+      "layout": "design-dark",
+      "columns": ["residential", "commercial", "process", "contact"]
+    },
+    "projectCard": { "layout": "room-shot" }
+  },
+  "pages": {
+    "home": { "layout": "room-showcase", "sections": ["hero", "residential", "commercial", "process", "contact"] },
+    "projects": { "layout": "room-grid" },
+    "project": { "layout": "gallery-tour" }
+  },
+  "colors": {
+    "primary": "#5D4037",
+    "secondary": "#EFEBE9",
+    "accent": "#9E9E9E",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#3E2723",
+    "textMuted": "#6D4C41"
+  },
+  "typography": {
+    "heading": { "font": "Playfair Display", "weight": "400" },
+    "body": { "font": "Lato", "weight": "300" }
+  },
+  "spacing": { "base": "16px", "section": "80px" },
+  "borderRadius": { "buttons": "0px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(0,0,0,0.08)" }
+}

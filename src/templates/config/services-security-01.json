@@ -1,0 +1,44 @@
+{
+  "id": "services-security-01",
+  "name": "Services Security",
+  "category": "services",
+  "subcategory": "security",
+  "description": "Security services with professional, authoritative design",
+  "version": "1.0.0",
+  "tags": ["services", "security", "protection", "professional"],
+  "components": {
+    "header": {
+      "layout": "secure-dark",
+      "logo": { "type": "image", "position": "left" },
+      "navigation": { "type": "services", "position": "center" },
+      "actions": ["contact", "login"]
+    },
+    "footer": {
+      "layout": "protected-dark",
+      "columns": ["residential", "commercial", "monitoring", "contact"]
+    },
+    "serviceCard": { "layout": "protection-plan" },
+    "planCard": { "layout": "security-tier" }
+  },
+  "pages": {
+    "home": { "layout": "safety-first", "sections": ["hero", "services", "plans", "monitoring", "contact"] },
+    "services": { "layout": "service-detail" },
+    "plans": { "layout": "tier-comparison" }
+  },
+  "colors": {
+    "primary": "#37474F",
+    "secondary": "#1A1A1A",
+    "accent": "#FFD600",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#9E9E9E"
+  },
+  "typography": {
+    "heading": { "font": "Roboto Condensed", "weight": "700" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 4px 15px rgba(55,71,79,0.3)" }
+}

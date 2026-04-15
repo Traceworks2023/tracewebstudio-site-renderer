@@ -1,0 +1,44 @@
+{
+  "id": "business-nonprofit-01",
+  "name": "Business Nonprofit",
+  "category": "business",
+  "subcategory": "nonprofit",
+  "description": "Nonprofit organization with mission-driven design",
+  "version": "1.0.0",
+  "tags": ["business", "nonprofit", "charity", "mission"],
+  "components": {
+    "header": {
+      "layout": "mission-light",
+      "logo": { "type": "impact", "position": "left" },
+      "navigation": { "type": "causes", "position": "center" },
+      "actions": ["donate", "volunteer"]
+    },
+    "footer": {
+      "layout": "cause-dark",
+      "columns": ["causes", "impact", "get-involved", "contact"]
+    },
+    "causeCard": { "layout": "mission-story" },
+    "impactCard": { "layout": "numbers-matter" }
+  },
+  "pages": {
+    "home": { "layout": "make-impact", "sections": ["hero", "causes", "impact", "stories", "get-involved"] },
+    "causes": { "layout": "cause-grid" },
+    "donate": { "layout": "impact-form" }
+  },
+  "colors": {
+    "primary": "#FF5722",
+    "secondary": "#263238",
+    "accent": "#4CAF50",
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "text": "#1A1A1A",
+    "textMuted": "#666666"
+  },
+  "typography": {
+    "heading": { "font": "Poppins", "weight": "600" },
+    "body": { "font": "Open Sans", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 3px 12px rgba(0,0,0,0.08)" }
+}

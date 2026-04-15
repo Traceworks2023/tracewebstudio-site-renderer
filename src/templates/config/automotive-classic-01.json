@@ -1,0 +1,44 @@
+{
+  "id": "automotive-classic-01",
+  "name": "Automotive Classic Cars",
+  "category": "automotive",
+  "subcategory": "classic-cars",
+  "description": "Classic and vintage car dealership with collector focus",
+  "version": "1.0.0",
+  "tags": ["automotive", "classic", "vintage", "collector"],
+  "components": {
+    "header": {
+      "layout": "sleek-dark",
+      "logo": { "type": "text", "position": "left" },
+      "navigation": { "type": "inventory", "position": "center" },
+      "actions": ["sell-trade", "contact"]
+    },
+    "footer": {
+      "layout": "garage-dark",
+      "columns": ["inventory", "services", "events", "newsletter"]
+    },
+    "carCard": { "layout": "showroom", "showSpecs": true },
+    "inventoryFilter": { "layout": "advanced-search" }
+  },
+  "pages": {
+    "home": { "layout": "showroom-hero", "sections": ["hero", "featured", "new-arrivals", "services", "events"] },
+    "inventory": { "layout": "grid-gallery" },
+    "vehicle": { "layout": "full-gallery" }
+  },
+  "colors": {
+    "primary": "#1A237E",
+    "secondary": "#263238",
+    "accent": "#FFD700",
+    "background": "#0D0D0D",
+    "surface": "#1A1A1A",
+    "text": "#FFFFFF",
+    "textMuted": "#B0B0B0"
+  },
+  "typography": {
+    "heading": { "font": "Oswald", "weight": "500" },
+    "body": { "font": "Roboto", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "0px" },
+  "shadows": { "cards": "0 5px 20px rgba(0,0,0,0.4)" }
+}

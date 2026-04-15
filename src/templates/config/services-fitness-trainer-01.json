@@ -1,0 +1,44 @@
+{
+  "id": "services-fitness-trainer-01",
+  "name": "Services Fitness Trainer",
+  "category": "services",
+  "subcategory": "fitness-trainer",
+  "description": "Personal fitness trainer with energetic, motivating design",
+  "version": "1.0.0",
+  "tags": ["services", "fitness", "trainer", "personal"],
+  "components": {
+    "header": {
+      "layout": "energy-dark",
+      "logo": { "type": "text", "position": "center" },
+      "navigation": { "type": "programs", "position": "below" },
+      "actions": ["start-training"]
+    },
+    "footer": {
+      "layout": "motivation-dark",
+      "columns": ["training", "nutrition", "testimonials", "contact"]
+    },
+    "programCard": { "layout": "transformation" },
+    "testimonialCard": { "layout": "result-story" }
+  },
+  "pages": {
+    "home": { "layout": "get-fit", "sections": ["hero", "programs", "results", "testimonials", "start"] },
+    "programs": { "layout": "program-detail" },
+    "start": { "layout": "consultation-form" }
+  },
+  "colors": {
+    "primary": "#FF5722",
+    "secondary": "#1A1A1A",
+    "accent": "#FFD54F",
+    "background": "#0D0D0D",
+    "surface": "#1F1F1F",
+    "text": "#FFFFFF",
+    "textMuted": "#B0B0B0"
+  },
+  "typography": {
+    "heading": { "font": "Bebas Neue", "weight": "400" },
+    "body": { "font": "Montserrat", "weight": "400" }
+  },
+  "spacing": { "base": "16px", "section": "60px" },
+  "borderRadius": { "buttons": "4px", "cards": "8px" },
+  "shadows": { "cards": "0 5px 20px rgba(255,87,34,0.25)" }
+}
