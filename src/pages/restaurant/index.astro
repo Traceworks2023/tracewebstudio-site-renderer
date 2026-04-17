@@ -1,0 +1,154 @@
+---
+const siteConfig = { site_name: 'Restaurant', site_tagline: 'Fine Dining Experience' };
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{siteConfig.site_name} - {siteConfig.site_tagline}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Lato', sans-serif; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="min-h-screen bg-stone-900">
+  <header class="bg-transparent absolute top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
+      <h1 class="text-2xl font-serif text-white">SAVOR</h1>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-white/80">
+        <a href="#menu" class="hover:text-white transition">Menu</a>
+        <a href="#reservations" class="hover:text-white transition">Reservations</a>
+        <a href="#events" class="hover:text-white transition">Events</a>
+        <a href="#about" class="hover:text-white transition">About</a>
+      </nav>
+      <a href="#reservations" class="bg-white text-black px-5 py-2 rounded text-sm hover:bg-stone-200 transition">Book Table</a>
+    </div>
+  </header>
+
+  <section class="relative min-h-screen flex items-center justify-center">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+    <div class="relative text-center text-white px-4">
+      <span class="text-amber-400 text-sm tracking-widest">FINE DINING • BENGALURU</span>
+      <h1 class="text-5xl md:text-7xl font-serif mt-4 mb-6">A Culinary<br/><span class="text-amber-400">Journey</span></h1>
+      <p class="text-lg text-white/70 max-w-2xl mx-auto mb-10">Experience the art of fine dining. Fresh ingredients, masterful preparation, unforgettable flavors.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#menu" class="bg-amber-500 text-white px-8 py-4 rounded font-medium hover:bg-amber-400 transition">View Menu</a>
+        <a href="#reservations" class="border-2 border-white px-8 py-4 rounded font-medium hover:bg-white hover:text-black transition">Reserve a Table</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="py-20 bg-stone-50">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="text-amber-600 text-sm tracking-widest">OUR OFFERINGS</span>
+        <h2 class="text-4xl font-serif mt-2 text-stone-800">The Menu</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-xl font-serif text-stone-800 mb-6 pb-2 border-b border-stone-300">Starters</h3>
+          <div class="space-y-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-medium">Truffle Mushroom Soup</h4>
+                <p class="text-stone-500 text-sm">Wild mushrooms, truffle oil, crème fraîche</p>
+              </div>
+              <span class="font-bold text-amber-600">₹450</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-medium">Grilled Prawns</h4>
+                <p class="text-stone-500 text-sm">Tiger prawns, garlic butter, herbs</p>
+              </div>
+              <span class="font-bold text-amber-600">₹650</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-medium">Burrata Salad</h4>
+                <p class="text-stone-500 text-sm">Fresh burrata, heirloom tomatoes, basil</p>
+              </div>
+              <span class="font-bold text-amber-600">₹550</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-serif text-stone-800 mb-6 pb-2 border-b border-stone-300">Main Course</h3>
+          <div class="space-y-6">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-medium">Filet Mignon</h4>
+                <p class="text-stone-500 text-sm">8oz prime beef, red wine reduction, vegetables</p>
+              </div>
+              <span class="font-bold text-amber-600">₹1,850</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-medium">Pan-Seared Salmon</h4>
+                <p class="text-stone-500 text-sm">Atlantic salmon, lemon butter, asparagus</p>
+              </div>
+              <span class="font-bold text-amber-600">₹1,250</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-medium">Lobster Risotto</h4>
+                <p class="text-stone-500 text-sm">Maine lobster, arborio rice, parmesan</p>
+              </div>
+              <span class="font-bold text-amber-600">₹1,450</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reservations" class="py-20 bg-stone-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="text-amber-400 text-sm tracking-widest">RESERVATIONS</span>
+      <h2 class="text-4xl font-serif mt-2 mb-8">Book Your Table</h2>
+      <form class="grid md:grid-cols-2 gap-4 text-left">
+        <input type="text" placeholder="Your Name" class="px-4 py-3 rounded bg-stone-700 border border-stone-600 text-white" />
+        <input type="tel" placeholder="Phone Number" class="px-4 py-3 rounded bg-stone-700 border border-stone-600 text-white" />
+        <input type="date" class="px-4 py-3 rounded bg-stone-700 border border-stone-600 text-white" />
+        <select class="px-4 py-3 rounded bg-stone-700 border border-stone-600 text-white">
+          <option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5+ Guests</option>
+        </select>
+        <input type="email" placeholder="Email Address" class="px-4 py-3 rounded bg-stone-700 border border-stone-600 text-white md:col-span-2" />
+        <button type="submit" class="md:col-span-2 bg-amber-500 text-white py-3 rounded font-medium hover:bg-amber-400 transition">Request Reservation</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="about" class="py-20 bg-stone-900 text-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800" class="rounded-lg" />
+        <div>
+          <span class="text-amber-400 text-sm tracking-widest">OUR STORY</span>
+          <h2 class="text-4xl font-serif mt-2 mb-6">About Savor</h2>
+          <p class="text-stone-300 mb-4">Since 2015, Savor has been Bengaluru's destination for exceptional fine dining. Our chef combines global techniques with local flavors to create unforgettable dishes.</p>
+          <p class="text-stone-300 mb-6">We source the finest ingredients—from Hokkaido scallops to Wagyu beef—to deliver a truly world-class experience.</p>
+          <div class="grid grid-cols-3 gap-4 text-center">
+            <div class="bg-stone-800 p-4 rounded"><span class="text-2xl font-bold text-amber-400">9+</span><p class="text-xs text-stone-400 mt-1">Years</p></div>
+            <div class="bg-stone-800 p-4 rounded"><span class="text-2xl font-bold text-amber-400">50K+</span><p class="text-xs text-stone-400 mt-1">Guests</p></div>
+            <div class="bg-stone-800 p-4 rounded"><span class="text-2xl font-bold text-amber-400">4.9</span><p class="text-xs text-stone-400 mt-1">Rating</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black text-stone-400 py-12">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+      <p class="mb-4">123 Restaurant Row, MG Road, Bengaluru 560001 | +91 98765 43215</p>
+      <p>&copy; 2024 Savor Restaurant. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

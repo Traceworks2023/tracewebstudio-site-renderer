@@ -1,0 +1,142 @@
+---
+const siteConfig = { site_name: 'Medical Clinic', site_tagline: 'Healthcare Excellence' };
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{siteConfig.site_name} - {siteConfig.site_tagline}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Merriweather', serif; }
+  </style>
+</head>
+<body class="min-h-screen bg-blue-50">
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">+</div>
+        <div>
+          <h1 class="text-lg font-bold text-blue-900">HEALTHFIRST</h1>
+          <span class="text-xs text-blue-600">Medical Clinic</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#services" class="text-gray-700 hover:text-blue-600">Services</a>
+        <a href="#doctors" class="text-gray-700 hover:text-blue-600">Doctors</a>
+        <a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
+        <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+      </nav>
+      <a href="#book" class="bg-blue-600 text-white px-5 py-2 rounded text-sm hover:bg-blue-700 transition">Book Appointment</a>
+    </div>
+  </header>
+
+  <section class="relative bg-blue-900 text-white">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920" class="w-full h-full object-cover opacity-30" />
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 py-32 text-center">
+      <span class="text-blue-300 text-sm tracking-widest">YOUR HEALTH, OUR PRIORITY</span>
+      <h1 class="text-5xl md:text-6xl font-bold mt-4 mb-6">Expert Care You<br/><span class="text-blue-300">Can Trust</span></h1>
+      <p class="text-lg text-blue-100 max-w-2xl mx-auto mb-10">Board-certified physicians, advanced facilities, and compassionate care. Your health is in the best hands.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#book" class="bg-blue-500 text-white px-8 py-4 rounded font-medium hover:bg-blue-400 transition">Book Appointment</a>
+        <a href="tel:+919876543210" class="border-2 border-white px-8 py-4 rounded font-medium hover:bg-white hover:text-blue-900 transition">Call +91 98765 43210</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="bg-blue-50 rounded-xl p-6 text-center">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">👨‍⚕️</div>
+          <h3 class="font-bold mb-2">General Medicine</h3>
+          <p class="text-gray-600 text-sm">Comprehensive primary care for all ages</p>
+        </div>
+        <div class="bg-blue-50 rounded-xl p-6 text-center">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🦷</div>
+          <h3 class="font-bold mb-2">Dental Care</h3>
+          <p class="text-gray-600 text-sm">Complete dental health services</p>
+        </div>
+        <div class="bg-blue-50 rounded-xl p-6 text-center">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">👁️</div>
+          <h3 class="font-bold mb-2">Eye Care</h3>
+          <p class="text-gray-600 text-sm">Comprehensive ophthalmology</p>
+        </div>
+        <div class="bg-blue-50 rounded-xl p-6 text-center">
+          <div class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🧬</div>
+          <h3 class="font-bold mb-2">Diagnostics</h3>
+          <p class="text-gray-600 text-sm">State-of-the-art lab and imaging</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="doctors" class="py-16 bg-blue-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Meet Our Doctors</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+          <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+          <h3 class="font-bold">Dr. Rajesh Kumar</h3>
+          <p class="text-blue-600 text-sm mb-3">General Physician</p>
+          <p class="text-gray-500 text-sm">MBBS, MD | 15+ years exp</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+          <h3 class="font-bold">Dr. Priya Sharma</h3>
+          <p class="text-blue-600 text-sm mb-3">Dentist</p>
+          <p class="text-gray-500 text-sm">BDS, MDS | 12+ years exp</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+          <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=300" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+          <h3 class="font-bold">Dr. Amit Patel</h3>
+          <p class="text-blue-600 text-sm mb-3">Cardiologist</p>
+          <p class="text-gray-500 text-sm">MBBS, DM | 18+ years exp</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">Book an Appointment</h2>
+      <p class="text-gray-600 mb-8">Fill in your details and we'll call you to confirm your appointment</p>
+      <form class="bg-blue-50 rounded-xl p-8 text-left grid md:grid-cols-2 gap-4">
+        <input type="text" placeholder="Your Name" class="px-4 py-3 rounded border border-gray-200 w-full" />
+        <input type="tel" placeholder="Phone Number" class="px-4 py-3 rounded border border-gray-200 w-full" />
+        <select class="px-4 py-3 rounded border border-gray-200 w-full">
+          <option>Select Department</option>
+          <option>General Medicine</option>
+          <option>Dental</option>
+          <option>Eye Care</option>
+        </select>
+        <input type="date" class="px-4 py-3 rounded border border-gray-200 w-full" />
+        <button type="submit" class="md:col-span-2 bg-blue-600 text-white py-3 rounded font-medium hover:bg-blue-700 transition">Request Appointment</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="contact" class="py-16 bg-blue-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+      <p class="text-blue-200 mb-8">123 Health Street, Indiranagar, Bangalore 560038</p>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div><strong>Phone:</strong><br/><span class="text-blue-200">+91 98765 43210</span></div>
+        <div><strong>Email:</strong><br/><span class="text-blue-200">care@healthfirst.in</span></div>
+        <div><strong>Hours:</strong><br/><span class="text-blue-200">Mon-Sat: 8AM-8PM</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-blue-950 text-blue-200 py-8 text-center text-sm">
+    <p>&copy; 2024 HealthFirst Clinic. All rights reserved.</p>
+  </footer>
+</body>
+</html>
