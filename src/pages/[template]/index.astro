@@ -213,6 +213,7 @@ const sectionComponents: Record<string, any> = {
   'herosplit': HeroSplit,
   'heroeditorial': getCategoryHero(templateSlug),
   'herocinematic': getCategoryHero(templateSlug),
+  'herosection': getCategoryHero(templateSlug),
   // Content sections - shared but with good variety
   'category-grid': CategoryGrid,
   'product-carousel': ProductCarousel,
@@ -223,6 +224,7 @@ const sectionComponents: Record<string, any> = {
   'splitmedia': SplitMedia,
   'gallery-grid': GalleryGrid,
   'features': Features,
+  'featureshorizontal': FeaturesHorizontal,
   'faq': FAQ,
   'stats': StatsSection,
   'logo-strip': LogoStrip,
@@ -311,7 +313,7 @@ const PageComponent = pageId === 'category' ? categoryPage : pageComponents[page
       <link href="/src/styles/premium.css" rel="stylesheet" />
       <style is:global set:html={cssVariables}></style>
     </head>
-    <body class="min-h-screen bg-white">
+    <body class="min-h-screen" style={`background-color: ${colors.background || '#ffffff'};`}>
       {/* Tracewebstudio Branding Bar */}
       {!pageId?.startsWith('admin-') && (
         <div class="bg-navy text-white/80 py-2 px-4 text-center text-sm">
