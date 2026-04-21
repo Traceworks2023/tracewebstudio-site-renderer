@@ -446,31 +446,6 @@ const PageComponent = null;
             )}
           </main>
 
-          {/* Purchase Template Banner */}
-          {!pageId?.startsWith('admin-') && (
-            <div class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] py-8 px-6">
-              <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="text-center md:text-left">
-                  <h3 class="text-2xl font-bold text-white mb-1">Ready to use this template?</h3>
-                  <p class="text-white/80">Get full access to all pages, features, and lifetime updates.</p>
-                </div>
-                <div class="flex items-center gap-4">
-                  <div class="text-white">
-                    <span class="text-3xl font-bold">$49</span>
-                    <span class="text-white/60 line-through ml-2">$199</span>
-                  </div>
-                  <a
-                    href={`http://localhost:8080/checkout?template=${template}`}
-                    target="_blank"
-                    class="px-8 py-4 bg-white text-[var(--color-primary)] font-bold rounded-full hover:scale-105 transition-transform shadow-lg whitespace-nowrap"
-                  >
-                    Purchase Template
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
-
           <PremiumFooter
             content={{
               logo: generatedContent.brand.name,
