@@ -413,71 +413,86 @@ export function applyGeneratedContentToSection(
   }
 
   if (sectionType === 'features' && section.content) {
+    // Only use generated content if template doesn't define its own features
     updatedSection.content = {
       ...section.content,
-      title: `Why Choose ${content.brand.name}`,
-      subtitle: 'Everything you need to succeed',
-      features: content.services.slice(0, 4).map((svc, i) => ({
-        icon: ['🚀', '🎨', '📱', '🔒'][i] || '✓',
-        title: svc.name,
-        description: svc.description
-      }))
+      title: section.content.title || `Why Choose ${content.brand.name}`,
+      subtitle: section.content.subtitle || 'Everything you need to succeed',
+      features: section.content.features?.length > 0
+        ? section.content.features
+        : content.services.slice(0, 4).map((svc, i) => ({
+            icon: ['🚀', '🎨', '📱', '🔒'][i] || '✓',
+            title: svc.name,
+            description: svc.description
+          }))
     };
   }
 
   if (sectionType === 'faq' && section.content) {
+    // Only use generated content if template doesn't define its own FAQs
     updatedSection.content = {
       ...section.content,
-      title: 'Frequently Asked Questions',
-      subtitle: 'Find answers to common questions',
-      faqs: [
-        { question: 'How do I get started?', answer: 'Simply sign up for a free account and you can start building immediately. No credit card required.' },
-        { question: 'Can I use my own domain?', answer: 'Yes! You can connect any domain you own to your website. We provide free SSL certificates.' },
-        { question: 'What payment methods do you accept?', answer: 'We accept all major credit cards, PayPal, and bank transfers for annual plans.' },
-        { question: 'Can I cancel anytime?', answer: 'Yes, you can cancel your subscription at any time. No long-term contracts required.' },
-        { question: 'Do you offer support?', answer: 'We offer 24/7 email support for all plans. Priority support available for professional accounts.' }
-      ]
+      title: section.content.title || 'Frequently Asked Questions',
+      subtitle: section.content.subtitle || 'Find answers to common questions',
+      faqs: section.content.faqs?.length > 0
+        ? section.content.faqs
+        : [
+            { question: 'How do I get started?', answer: 'Simply sign up for a free account and you can start building immediately. No credit card required.' },
+            { question: 'Can I use my own domain?', answer: 'Yes! You can connect any domain you own to your website. We provide free SSL certificates.' },
+            { question: 'What payment methods do you accept?', answer: 'We accept all major credit cards, PayPal, and bank transfers for annual plans.' },
+            { question: 'Can I cancel anytime?', answer: 'Yes, you can cancel your subscription at any time. No long-term contracts required.' },
+            { question: 'Do you offer support?', answer: 'We offer 24/7 email support for all plans. Priority support available for professional accounts.' }
+          ]
     };
   }
 
   if (sectionType === 'stats' && section.content) {
+    // Only use generated content if template doesn't define its own stats
     updatedSection.content = {
       ...section.content,
-      title: 'Our Impact',
-      subtitle: 'Key metrics that define our success',
-      stats: [
-        { value: '500', suffix: '+', label: 'Projects Completed' },
-        { value: '98', suffix: '%', label: 'Client Satisfaction' },
-        { value: '15', suffix: '+', label: 'Years Experience' },
-        { value: '50', suffix: '+', label: 'Team Members' }
-      ]
+      title: section.content.title || 'Our Impact',
+      subtitle: section.content.subtitle || 'Key metrics that define our success',
+      stats: section.content.stats?.length > 0
+        ? section.content.stats
+        : [
+            { value: '500', suffix: '+', label: 'Projects Completed' },
+            { value: '98', suffix: '%', label: 'Client Satisfaction' },
+            { value: '15', suffix: '+', label: 'Years Experience' },
+            { value: '50', suffix: '+', label: 'Team Members' }
+          ]
     };
   }
 
   if (sectionType === 'logo-strip' && section.content) {
+    // Only use generated content if template doesn't define its own logos
     updatedSection.content = {
       ...section.content,
-      title: 'Trusted by Industry Leaders',
-      subtitle: 'Partnering with brands that share our vision',
-      logos: content.categories.slice(0, 6).map((cat) => ({
-        name: cat.name,
-        image: `https://picsum.photos/seed/${cat.id}/200/80`
-      }))
+      title: section.content.title || 'Trusted by Industry Leaders',
+      subtitle: section.content.subtitle || 'Partnering with brands that share our vision',
+      logos: section.content.logos?.length > 0
+        ? section.content.logos
+        : content.categories.slice(0, 6).map((cat) => ({
+            name: cat.name,
+            image: `https://picsum.photos/seed/${cat.id}/200/80`
+          }))
     };
   }
 
   if (sectionType === 'testimonials' && section.content) {
+    // Only use generated content if template doesn't define its own testimonials
     updatedSection.content = {
       ...section.content,
-      title: 'What Our Clients Say',
-      subtitle: 'Join thousands of satisfied customers',
-      testimonials: content.testimonials.slice(0, 3).map((test, i) => ({
-        name: test.name,
-        role: test.role,
-        company: test.company,
-        quote: test.quote,
-        rating: 5
-      }))
+      title: section.content.title || 'What Our Clients Say',
+      subtitle: section.content.subtitle || 'Join thousands of satisfied customers',
+      testimonials: section.content.testimonials?.length > 0
+        ? section.content.testimonials
+        : content.testimonials.slice(0, 3).map((test, i) => ({
+            name: test.name,
+            role: test.role,
+            company: test.company,
+            quote: test.quote,
+            rating: 5
+          }))
     };
   }
 
