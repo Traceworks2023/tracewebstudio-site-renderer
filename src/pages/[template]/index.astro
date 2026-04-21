@@ -301,10 +301,12 @@ const pageComponents: Record<string, any> = {
   'forms': FormBuilderPage
 };
 
-// Only render page components that are EXPLICITLY defined in this template's config
-// NO FALLBACKS - if a page isn't defined, it will not render
-const pageExistsInConfig = templatePageIds.includes(pageId);
-const PageComponent = pageExistsInConfig ? pageComponents[pageId] : null;
+// NEVER use generic page components - ALWAYS render the template's own sections
+// Generic page components (AboutPage, ContactPage, etc.) are ONLY used as fallback
+// for pages that the template doesn't define - but since we're removing fallbacks,
+// we will NEVER use them. Templates must define ALL pages they want to show.
+// If a page isn't defined in template config, it will show "Page Not Found"
+const PageComponent = null;
 ---
 
 {!templateConfig ? (
