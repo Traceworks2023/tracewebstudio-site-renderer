@@ -1,0 +1,279 @@
+---
+interface MembershipTier {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  billingPeriod?: 'month' | 'year';
+  features: string[];
+  notIncluded?: string[];
+  badge?: string;
+  highlighted?: boolean;
+  ctaText?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    tiers?: MembershipTier[];
+    showAnnualToggle?: boolean;
+    annualDiscount?: number;
+    ctaText?: string;
+  };
+  settings?: {
+    motionLevel?: 1 | 2 | 3 | 4;
+    style?: 'cards' | 'minimal' | 'comparison';
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+
+const {
+  title = 'Choose Your Membership',
+  subtitle = 'Flexible plans designed to fit your lifestyle and fitness goals',
+  tiers = [
+    {
+      id: 'basic',
+      name: 'Basic',
+      description: 'Perfect for getting started with your fitness journey',
+      price: 29,
+      billingPeriod: 'month',
+      features: [
+        'Access to gym floor',
+        'Locker room access',
+        'Free fitness assessment',
+        '2 group classes per week',
+        'Mobile app access'
+      ],
+      notIncluded: [
+        'Personal training sessions',
+        'Nutrition coaching',
+        'Unlimited classes'
+      ],
+      ctaText: 'Get Started'
+    },
+    {
+      id: 'premium',
+      name: 'Premium',
+      description: 'Our most popular plan for serious fitness enthusiasts',
+      price: 59,
+      billingPeriod: 'month',
+      badge: 'Most Popular',
+      highlighted: true,
+      features: [
+        'Unlimited gym access',
+        'All group classes',
+        'Nutrition coaching',
+        'Guest passes (2/month)',
+        'Sauna & steam room',
+        'Priority class booking',
+        'Monthly fitness assessment'
+      ],
+      notIncluded: [
+        'Personal training sessions'
+      ],
+      ctaText: 'Join Premium'
+    },
+    {
+      id: 'elite',
+      name: 'Elite',
+      description: 'The ultimate experience with personalized attention',
+      price: 119,
+      billingPeriod: 'month',
+      features: [
+        'Everything in Premium',
+        '4 personal training sessions/month',
+        'Custom meal plans',
+        'Unlimited guest passes',
+        'VIP parking',
+        'Exclusive member events',
+        'Recovery zone access',
+        'Priority support'
+      ],
+      notIncluded: [],
+      ctaText: 'Go Elite'
+    }
+  ],
+  showAnnualToggle = true,
+  annualDiscount = 20,
+  ctaText = 'Start Free Trial',
+} = content;
+
+const {
+  motionLevel = 2,
+  style = 'cards',
+} = settings;
+---
+
+<div class="membership-page py-20 bg-white" data-style={style} data-motion-level={motionLevel}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <div class="text-center mb-12">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-4">
+        Membership Plans
+      </span>
+      {title && <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>}
+      {subtitle && <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>}
+    </div>
+
+    {/* Annual/Monthly Toggle */}
+    {showAnnualToggle && (
+      <div class="flex items-center justify-center gap-4 mb-12">
+        <span class="text-sm font-medium text-gray-600">Monthly</span>
+        <button
+          class="relative w-16 h-8 bg-gray-200 rounded-full transition-colors"
+          data-toggle="annual"
+          id="billing-toggle"
+        >
+          <span class="absolute left-1 top-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform"></span>
+        </button>
+        <span class="text-sm font-medium text-gray-900">
+          Annual
+          <span class="ml-1 text-green-600 font-semibold">(-{annualDiscount}%)</span>
+        </span>
+      </div>
+    )}
+
+    {/* Pricing Cards */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      {tiers.map((tier, index) => (
+        <div
+          class={`membership-card relative rounded-2xl overflow-hidden transition-all duration-300 ${
+            tier.highlighted
+              ? 'bg-[var(--color-primary)] text-white scale-105 shadow-2xl z-10'
+              : 'bg-white border border-gray-200 text-gray-900 hover:shadow-xl'
+          }`}
+          data-tier-id={tier.id}
+        >
+          {/* Badge */}
+          {tier.badge && (
+            <div class="absolute top-0 left-0 right-0 text-center">
+              <span class={`inline-block px-4 py-1 text-xs font-bold uppercase tracking-wider ${
+                tier.highlighted
+                  ? 'bg-[var(--color-accent)] text-white'
+                  : 'bg-gray-900 text-white'
+              }`}>
+                {tier.badge}
+              </span>
+            </div>
+          )}
+
+          <div class="p-8">
+            {/* Tier Name */}
+            <h3 class={`text-2xl font-bold mb-2 ${tier.highlighted ? 'text-white' : 'text-gray-900'}`}>
+              {tier.name}
+            </h3>
+            <p class={`text-sm mb-6 ${tier.highlighted ? 'text-white/80' : 'text-gray-600'}`}>
+              {tier.description}
+            </p>
+
+            {/* Price */}
+            <div class="mb-6">
+              <div class="flex items-baseline gap-1">
+                <span class={`text-5xl font-bold ${tier.highlighted ? 'text-white' : 'text-gray-900'}`}>
+                  ${tier.price}
+                </span>
+                <span class={`text-sm ${tier.highlighted ? 'text-white/70' : 'text-gray-500'}`}>
+                  /{tier.billingPeriod || 'month'}
+                </span>
+              </div>
+              {showAnnualToggle && tier.price > 0 && (
+                <p class={`text-sm mt-1 ${tier.highlighted ? 'text-white/70' : 'text-gray-500'}`}>
+                  or ${Math.round(tier.price * 12 * (1 - annualDiscount / 100))}/year
+                </p>
+              )}
+            </div>
+
+            {/* Features */}
+            <ul class="space-y-3 mb-8">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-3">
+                  <svg class={`w-5 h-5 flex-shrink-0 ${tier.highlighted ? 'text-white' : 'text-green-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class={`text-sm ${tier.highlighted ? 'text-white/90' : 'text-gray-600'}`}>{feature}</span>
+                </li>
+              ))}
+              {tier.notIncluded?.map((feature) => (
+                <li class="flex items-start gap-3 opacity-50">
+                  <svg class="w-5 h-5 flex-shrink-0 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span class={`text-sm ${tier.highlighted ? 'text-white/70' : 'text-gray-400'}`}>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA Button */}
+            <a
+              href={`/signup?plan=${tier.id}`}
+              class={`block w-full py-3 text-center font-semibold rounded-lg transition-colors ${
+                tier.highlighted
+                  ? 'bg-white text-[var(--color-primary)] hover:bg-gray-100'
+                  : 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-accent)]'
+              }`}
+            >
+              {tier.ctaText || ctaText}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* FAQ Link */}
+    <div class="text-center mt-12 pt-8 border-t border-gray-200">
+      <p class="text-gray-600 mb-4">Have questions about our membership plans?</p>
+      <a href="/faq" class="inline-flex items-center gap-2 text-[var(--color-accent)] font-semibold hover:underline">
+        View Membership FAQ
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .membership-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: membership-reveal 0.6s ease-out forwards;
+  }
+
+  .membership-card:nth-child(1) { animation-delay: 0ms; }
+  .membership-card:nth-child(2) { animation-delay: 100ms; }
+  .membership-card:nth-child(3) { animation-delay: 200ms; }
+
+  @keyframes membership-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .membership-card:nth-child(2).highlighted {
+    animation-delay: 100ms;
+  }
+
+  /* Toggle styling */
+  #billing-toggle.active {
+    background: var(--color-accent);
+  }
+
+  #billing-toggle.active span {
+    transform: translateX(32px);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('billing-toggle');
+    toggle?.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      const isAnnual = toggle.classList.contains('active');
+      // Update prices based on annual/monthly
+      console.log('Billing period changed:', isAnnual ? 'annual' : 'monthly');
+    });
+  });
+</script>

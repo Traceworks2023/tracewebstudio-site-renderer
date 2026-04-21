@@ -1,0 +1,367 @@
+---
+// Gallery Grid - Premium image gallery with lightbox and hover effects
+interface GalleryImage {
+  src: string;
+  alt: string;
+  title?: string;
+  category?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    images?: GalleryImage[];
+    layout?: 'grid' | 'masonry' | 'carousel' | 'lightbox';
+  };
+  settings?: {
+    columns?: 2 | 3 | 4;
+    variant?: 'default' | 'overlay' | 'minimal';
+    motionLevel?: 1 | 2 | 3 | 4;
+    showLightbox?: boolean;
+    showTitles?: boolean;
+    gap?: 'small' | 'medium' | 'large';
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Our Gallery',
+  subtitle = 'Capturing moments of beauty and elegance',
+  images = [
+    { src: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600', alt: 'Fashion model in elegant dress', category: 'Fashion' },
+    { src: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600', alt: 'Shopping experience', category: 'Lifestyle' },
+    { src: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600', alt: 'Fashion collection', category: 'Collection' },
+    { src: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600', alt: 'Elegant accessories', category: 'Accessories' },
+    { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600', alt: 'Beauty products', category: 'Beauty' },
+    { src: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600', alt: 'Fashion editorial', category: 'Editorial' },
+  ],
+  layout = 'grid',
+} = content;
+
+const {
+  columns = 3,
+  variant = 'overlay',
+  motionLevel = 3,
+  showLightbox = true,
+  showTitles = true,
+  gap = 'medium',
+} = settings;
+
+const gapClass = gap === 'small' ? 'gap-3' : gap === 'large' ? 'gap-8' : 'gap-6';
+---
+
+<section class="gallery-section py-20 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    {/* Section Header */}
+    <div class="text-center mb-12">
+      <span class="inline-block px-4 py-1.5 bg-navy/5 text-navy rounded-full text-sm font-semibold mb-4">
+        Gallery
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-navy mb-4">
+        {title}
+      </h2>
+      {subtitle && (
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    {/* Gallery Grid */}
+    <div
+      class={`gallery-grid grid ${gapClass} ${
+        columns === 2 ? 'grid-cols-2' :
+        columns === 4 ? 'grid-cols-2 md:grid-cols-4' :
+        'grid-cols-2 md:grid-cols-3'
+      }`}
+      data-variant={variant}
+      data-motion-level={motionLevel}
+      data-layout={layout}
+    >
+      {images.map((image, index) => (
+        <div
+          class={`gallery-item group relative rounded-2xl overflow-hidden cursor-pointer ${
+            index === 0 && layout === 'masonry' ? 'md:row-span-2' : ''
+          }`}
+          data-index={index}
+        >
+          {/* Image */}
+          <div class="gallery-image-wrapper aspect-square">
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="gallery-image w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Overlay */}
+          {variant === 'overlay' && (
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="absolute inset-0 flex flex-col justify-end p-6">
+                {image.category && (
+                  <span class="text-[var(--color-accent)] text-sm font-medium mb-2">{image.category}</span>
+                )}
+                {image.title && (
+                  <h3 class="text-white text-xl font-bold">{image.title}</h3>
+                )}
+              </div>
+
+              {/* Zoom Icon */}
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Border Glow */}
+          <div class="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-white/30 transition-colors duration-300 pointer-events-none" />
+
+          {/* Lightbox Trigger */}
+          {showLightbox && (
+            <button class="lightbox-trigger absolute inset-0 z-10" aria-label="View full image" />
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Lightbox Modal */}
+  {showLightbox && (
+    <div id="lightbox" class="lightbox fixed inset-0 z-50 hidden">
+      <div class="lightbox-overlay absolute inset-0 bg-black/95 backdrop-blur-sm" />
+
+      {/* Close Button */}
+      <button class="lightbox-close absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors" aria-label="Close lightbox">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      {/* Navigation */}
+      <button class="lightbox-prev absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors" aria-label="Previous image">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button class="lightbox-next absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors" aria-label="Next image">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Image Container */}
+      <div class="lightbox-content absolute inset-0 flex items-center justify-center p-20">
+        <img id="lightbox-image" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg" />
+      </div>
+
+      {/* Caption */}
+      <div class="lightbox-caption absolute bottom-0 left-0 right-0 p-6 text-center">
+        <p id="lightbox-caption-text" class="text-white text-lg"></p>
+      </div>
+
+      {/* Counter */}
+      <div class="lightbox-counter absolute top-6 left-6 z-20 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm">
+        <span id="lightbox-current">1</span> / <span id="lightbox-total">{images.length}</span>
+      </div>
+    </div>
+  )}
+</section>
+
+<style>
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gallery-image {
+    will-change: transform;
+  }
+
+  /* Smooth transition for overlay */
+  .gallery-item .absolute {
+    transition: opacity 0.3s ease;
+  }
+
+  /* Lightbox animations */
+  #lightbox {
+    transition: opacity 0.3s ease;
+  }
+
+  #lightbox.active {
+    display: block;
+  }
+
+  #lightbox.active img {
+    animation: lightbox-zoom 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes lightbox-zoom {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes gallery-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .gallery-item {
+    animation: gallery-reveal 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Staggered animation */
+  .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+  .gallery-item:nth-child(2) { animation-delay: 0.15s; }
+  .gallery-item:nth-child(3) { animation-delay: 0.2s; }
+  .gallery-item:nth-child(4) { animation-delay: 0.25s; }
+  .gallery-item:nth-child(5) { animation-delay: 0.3s; }
+  .gallery-item:nth-child(6) { animation-delay: 0.35s; }
+
+  /* Masonry layout */
+  [data-layout="masonry"] .gallery-item:nth-child(1) {
+    grid-row: span 2;
+  }
+
+  [data-layout="masonry"] .gallery-item:nth-child(1) .gallery-image-wrapper {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.gallery-section') as HTMLElement;
+    if (!section) return;
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+    const lightboxCaption = document.getElementById('lightbox-caption-text');
+    const lightboxCurrent = document.getElementById('lightbox-current');
+    const lightboxTotal = document.getElementById('lightbox-total');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    const overlay = document.querySelector('.lightbox-overlay');
+
+    const items = section.querySelectorAll('.gallery-item');
+    let currentIndex = 0;
+
+    const images = Array.from(items).map(item => {
+      const img = item.querySelector('img');
+      return {
+        src: img?.src || '',
+        alt: img?.alt || '',
+        title: item.querySelector('h3')?.textContent || '',
+      };
+    });
+
+    if (lightboxTotal) lightboxTotal.textContent = String(images.length);
+
+    function openLightbox(index: number) {
+      currentIndex = index;
+      updateLightbox();
+      lightbox?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      gsap.fromTo(lightboxImage,
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: 'power3.out' }
+      );
+    }
+
+    function closeLightbox() {
+      lightbox?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function updateLightbox() {
+      const image = images[currentIndex];
+      if (lightboxImage) lightboxImage.src = image.src;
+      if (lightboxCaption) lightboxCaption.textContent = image.title || image.alt;
+      if (lightboxCurrent) lightboxCurrent.textContent = String(currentIndex + 1);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      gsap.to(lightboxImage, {
+        opacity: 0,
+        x: 20,
+        duration: 0.2,
+        onComplete: () => {
+          updateLightbox();
+          gsap.to(lightboxImage, { opacity: 1, x: 0, duration: 0.3 });
+        },
+      });
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      gsap.to(lightboxImage, {
+        opacity: 0,
+        x: -20,
+        duration: 0.2,
+        onComplete: () => {
+          updateLightbox();
+          gsap.to(lightboxImage, { opacity: 1, x: 0, duration: 0.3 });
+        },
+      });
+    }
+
+    // Event listeners
+    items.forEach((item, i) => {
+      item.querySelector('.lightbox-trigger')?.addEventListener('click', () => openLightbox(i));
+    });
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    overlay?.addEventListener('click', closeLightbox);
+    prevBtn?.addEventListener('click', prevImage);
+    nextBtn?.addEventListener('click', nextImage);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox?.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    });
+
+    // Scroll-triggered reveal
+    const motionLevel = parseInt(section.dataset.motionLevel || '3');
+    if (motionLevel >= 3) {
+      gsap.from(items, {
+        opacity: 0,
+        y: 50,
+        scale: 0.95,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+        },
+      });
+    }
+  });
+</script>

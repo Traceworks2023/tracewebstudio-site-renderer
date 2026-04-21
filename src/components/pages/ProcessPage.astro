@@ -1,0 +1,232 @@
+---
+interface ProcessStep {
+  id: string;
+  stepNumber: number;
+  title: string;
+  description: string;
+  icon?: string;
+  image?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    steps?: ProcessStep[];
+    layout?: 'vertical' | 'horizontal' | 'cards';
+    showNumbers?: boolean;
+    showIcons?: boolean;
+    ctaText?: string;
+  };
+  settings?: {
+    motionLevel?: 1 | 2 | 3 | 4;
+    style?: 'minimal' | 'bold' | 'elegant';
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+
+const {
+  title = 'How It Works',
+  subtitle = 'Our simple process to get you started on your journey',
+  steps = [
+    {
+      id: 'step-1',
+      stepNumber: 1,
+      title: 'Discover Your Goals',
+      description: 'We start by understanding your unique goals, preferences, and challenges through a comprehensive consultation.',
+      icon: '🔍'
+    },
+    {
+      id: 'step-2',
+      stepNumber: 2,
+      title: 'Custom Plan Design',
+      description: 'Our experts create a personalized plan tailored specifically to your needs, lifestyle, and timeline.',
+      icon: '📋'
+    },
+    {
+      id: 'step-3',
+      stepNumber: 3,
+      title: 'Implementation',
+      description: 'Work alongside our team to implement your plan with ongoing support and adjustments as needed.',
+      icon: '🚀'
+    },
+    {
+      id: 'step-4',
+      stepNumber: 4,
+      title: 'Achieve Results',
+      description: 'Track your progress, celebrate milestones, and enjoy sustained results with our continued guidance.',
+      icon: '🎯'
+    }
+  ],
+  layout = 'vertical',
+  showNumbers = true,
+  showIcons = true,
+  ctaText = 'Start Your Journey',
+} = content;
+
+const {
+  motionLevel = 2,
+  style = 'modern',
+} = settings;
+---
+
+<div class="process-page py-20 bg-white" data-layout={layout} data-motion-level={motionLevel}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-4">
+        Our Process
+      </span>
+      {title && <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>}
+      {subtitle && <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>}
+    </div>
+
+    {/* Process Steps */}
+    {layout === 'vertical' && (
+      <div class="relative max-w-3xl mx-auto">
+        {/* Connection Line */}
+        <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 transform md:-translate-x-1/2"></div>
+
+        <div class="space-y-12">
+          {steps.map((step, index) => (
+            <div
+              class={`process-step relative flex items-start gap-8 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+              data-step-id={step.id}
+            >
+              {/* Step Indicator */}
+              <div class="relative z-10 flex-shrink-0">
+                <div class={`w-16 h-16 rounded-full flex items-center justify-center ${
+                  step.stepNumber <= 2
+                    ? 'bg-[var(--color-primary)] text-white'
+                    : 'bg-[var(--color-accent)] text-white'
+                }`}>
+                  {showNumbers && (
+                    <span class="text-2xl font-bold">{step.stepNumber}</span>
+                  )}
+                  {showIcons && !showNumbers && (
+                    <span class="text-3xl">{step.icon}</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div class={`flex-1 ${index % 2 === 1 ? 'md:text-right' : ''}`}>
+                <div class={`bg-gray-50 rounded-2xl p-6 ${index % 2 === 1 ? 'md:ml-8' : 'md:mr-8'}`}>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+                  <p class="text-gray-600">{step.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {layout === 'horizontal' && (
+      <div class="relative">
+        {/* Connection Line */}
+        <div class="absolute top-16 left-0 right-0 h-0.5 bg-gray-200"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {steps.map((step, index) => (
+            <div
+              class="process-step relative text-center"
+              data-step-id={step.id}
+            >
+              {/* Step Indicator */}
+              <div class={`relative z-10 w-32 h-32 mx-auto rounded-full flex items-center justify-center ${
+                step.stepNumber <= 2
+                  ? 'bg-[var(--color-primary)] text-white'
+                  : 'bg-[var(--color-accent)] text-white'
+              }`}>
+                {showNumbers && (
+                  <span class="text-4xl font-bold">{step.stepNumber}</span>
+                )}
+                {showIcons && !showNumbers && (
+                  <span class="text-5xl">{step.icon}</span>
+                )}
+              </div>
+
+              {/* Content */}
+              <div class="mt-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+                <p class="text-gray-600 text-sm">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {layout === 'cards' && (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((step, index) => (
+          <div
+            class={`process-step relative rounded-2xl p-6 ${
+              step.stepNumber <= 2
+                ? 'bg-[var(--color-primary)] text-white'
+                : 'bg-gray-50 text-gray-900'
+            }`}
+            data-step-id={step.id}
+          >
+            {/* Step Number */}
+            <span class={`text-5xl font-bold opacity-20 absolute top-4 right-4 ${
+              step.stepNumber <= 2 ? 'text-white' : 'text-gray-300'
+            }`}>
+              {step.stepNumber}
+            </span>
+
+            {/* Icon */}
+            {showIcons && (
+              <span class="text-4xl mb-4 block">{step.icon}</span>
+            )}
+
+            <h3 class="text-lg font-bold mb-2">{step.title}</h3>
+            <p class={`text-sm ${step.stepNumber <= 2 ? 'text-white/80' : 'text-gray-600'}`}>
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* CTA */}
+    <div class="text-center mt-16">
+      <p class="text-gray-600 mb-6">Ready to get started? Our team is here to guide you every step of the way.</p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-primary)] text-white font-semibold rounded-full hover:bg-[var(--color-accent)] transition-colors"
+      >
+        {ctaText}
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .process-step {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: step-reveal 0.6s ease-out forwards;
+  }
+
+  @keyframes step-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .process-step:nth-child(1) { animation-delay: 0ms; }
+  .process-step:nth-child(2) { animation-delay: 200ms; }
+  .process-step:nth-child(3) { animation-delay: 400ms; }
+  .process-step:nth-child(4) { animation-delay: 600ms; }
+
+  [data-motion-level="4"] .process-step:hover {
+    transform: translateY(-4px);
+  }
+</style>

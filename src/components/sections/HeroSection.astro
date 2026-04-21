@@ -1,0 +1,791 @@
+---
+// Hero Section with Multiple Layout Variants
+// Supports: center, left, right, split, video, carousel, cinematic
+
+interface HeroItem {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  buttonText?: string;
+  buttonUrl?: string;
+  secondaryButtonText?: string;
+  secondaryButtonUrl?: string;
+  backgroundImage?: string;
+  backgroundVideo?: string;
+  badge?: string;
+  image?: string;
+}
+
+interface Props {
+  content?: {
+    items?: HeroItem[];
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    buttonText?: string;
+    buttonUrl?: string;
+    secondaryButtonText?: string;
+    secondaryButtonUrl?: string;
+    backgroundImage?: string;
+    backgroundVideo?: string;
+    badge?: string;
+    image?: string;
+  };
+  settings?: {
+    variant?: 'center' | 'left' | 'right' | 'split' | 'split-reverse' | 'video' | 'carousel' | 'cinematic' | 'minimal' | 'boxed';
+    templateSlug?: string;
+    height?: 'full' | 'large' | 'medium' | 'compact';
+    overlayStyle?: 'dark' | 'light' | 'gradient' | 'none';
+    textAlign?: 'left' | 'center' | 'right';
+    showScrollIndicator?: boolean;
+    showBadge?: boolean;
+    showImage?: boolean;
+    imagePosition?: 'left' | 'right';
+    carouselType?: string;
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    motionLevel?: 1 | 2 | 3 | 4;
+    animationPreset?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+
+const {
+  items = [{
+    id: '1',
+    title: 'Welcome to Our Platform',
+    subtitle: 'Best products & services online',
+    description: 'Discover amazing products at great prices with exceptional customer service.',
+    buttonText: 'Shop Now',
+    buttonUrl: '/products',
+    secondaryButtonText: 'Learn More',
+    secondaryButtonUrl: '/about',
+    backgroundImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920',
+    badge: 'New Collection',
+    image: 'https://images.unsplash.com/photo-1560472354-b33c1dc1b5b9?w=800',
+  }],
+  title = items[0].title,
+  subtitle = items[0].subtitle,
+  description = items[0].description,
+  buttonText = items[0].buttonText,
+  buttonUrl = items[0].buttonUrl,
+  secondaryButtonText = items[0].secondaryButtonText,
+  secondaryButtonUrl = items[0].secondaryButtonUrl,
+  backgroundImage = items[0].backgroundImage,
+  backgroundVideo = items[0].backgroundVideo,
+  badge = items[0].badge,
+  image = items[0].image,
+} = content;
+
+const {
+  variant = 'center',
+  templateSlug = '',
+  height = 'large',
+  overlayStyle = 'dark',
+  textAlign = 'center',
+  showScrollIndicator = false,
+  showBadge = true,
+  showImage = false,
+  imagePosition = 'right',
+  carouselType = 'classic',
+  autoplay = true,
+  autoplayDelay = 6000,
+  motionLevel = 2,
+  animationPreset = 'fadeUp',
+} = settings;
+
+const getTemplateLink = (link: string) => {
+  if (!link || link === '#') return '#';
+  if (link.startsWith('http')) return link;
+  return `/${templateSlug}${link.startsWith('/') ? link : `/${link}`}`;
+};
+
+const sectionId = `hero-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section
+  id={sectionId}
+  class={`hero-section hero-variant-${variant} hero-height-${height} text-${textAlign}`}
+  data-variant={variant}
+  data-motion-level={motionLevel}
+  data-animation={animationPreset}
+  data-overlay={overlayStyle}
+>
+  {/* Background */}
+  {backgroundVideo ? (
+    <div class="hero-media">
+      <video autoplay muted loop playsinline class="hero-video">
+        <source src={backgroundVideo} type="video/mp4" />
+      </video>
+    </div>
+  ) : backgroundImage ? (
+    <div class="hero-bg" style={`background-image: url(${backgroundImage})`}></div>
+  ) : null}
+
+  {/* Overlay */}
+  {overlayStyle !== 'none' && (
+    <div class={`hero-overlay overlay-${overlayStyle}`}></div>
+  )}
+
+  {/* Scroll Indicator */}
+  {showScrollIndicator && (
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  )}
+
+  {/* Content */}
+  <div class="hero-container">
+    {/* Carousel Variant */}
+    {variant === 'carousel' && (
+      <div class="hero-carousel" data-carousel-type={carouselType} data-autoplay={autoplay} data-delay={autoplayDelay}>
+        <div class="carousel-track">
+          {items.map((item, index) => (
+            <div class="carousel-slide" data-slide={index}>
+              <div class="slide-content">
+                {item.badge && showBadge && (
+                  <span class="hero-badge">{item.badge}</span>
+                )}
+                <h1 class="hero-title">{item.title}</h1>
+                {item.subtitle && <p class="hero-subtitle">{item.subtitle}</p>}
+                {item.description && <p class="hero-description">{item.description}</p>}
+                <div class="hero-actions">
+                  {item.buttonText && (
+                    <a href={getTemplateLink(item.buttonUrl)} class="btn btn-primary">{item.buttonText}</a>
+                  )}
+                  {item.secondaryButtonText && (
+                    <a href={getTemplateLink(item.secondaryButtonUrl)} class="btn btn-secondary">{item.secondaryButtonText}</a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Carousel Controls */}
+        <div class="carousel-controls">
+          <button class="carousel-prev" aria-label="Previous">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <div class="carousel-dots">
+            {items.map((_, i) => (
+              <button class={`carousel-dot ${i === 0 ? 'active' : ''}`} data-dot={i}></button>
+            ))}
+          </div>
+          <button class="carousel-next" aria-label="Next">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+    )}
+
+    {/* Center Variant */}
+    {variant === 'center' && (
+      <div class="hero-content text-center">
+        {badge && showBadge && <span class="hero-badge">{badge}</span>}
+        <h1 class="hero-title">{title}</h1>
+        {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+        {description && <p class="hero-description">{description}</p>}
+        <div class="hero-actions justify-center">
+          {buttonText && <a href={getTemplateLink(buttonUrl)} class="btn btn-primary">{buttonText}</a>}
+          {secondaryButtonText && <a href={getTemplateLink(secondaryButtonUrl)} class="btn btn-secondary">{secondaryButtonText}</a>}
+        </div>
+      </div>
+    )}
+
+    {/* Left Variant */}
+    {variant === 'left' && (
+      <div class="hero-content text-left">
+        {badge && showBadge && <span class="hero-badge">{badge}</span>}
+        <h1 class="hero-title">{title}</h1>
+        {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+        {description && <p class="hero-description">{description}</p>}
+        <div class="hero-actions">
+          {buttonText && <a href={getTemplateLink(buttonUrl)} class="btn btn-primary">{buttonText}</a>}
+          {secondaryButtonText && <a href={getTemplateLink(secondaryButtonUrl)} class="btn btn-secondary">{secondaryButtonText}</a>}
+        </div>
+      </div>
+    )}
+
+    {/* Right Variant */}
+    {variant === 'right' && (
+      <div class="hero-content text-right">
+        {badge && showBadge && <span class="hero-badge">{badge}</span>}
+        <h1 class="hero-title">{title}</h1>
+        {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+        {description && <p class="hero-description">{description}</p>}
+        <div class="hero-actions justify-end">
+          {buttonText && <a href={getTemplateLink(buttonUrl)} class="btn btn-primary">{buttonText}</a>}
+          {secondaryButtonText && <a href={getTemplateLink(secondaryButtonUrl)} class="btn btn-secondary">{secondaryButtonText}</a>}
+        </div>
+      </div>
+    )}
+
+    {/* Split Variant */}
+    {(variant === 'split' || variant === 'split-reverse') && (
+      <div class={`hero-split ${variant === 'split-reverse' ? 'reverse' : ''}`}>
+        <div class="split-content">
+          {badge && showBadge && <span class="hero-badge">{badge}</span>}
+          <h1 class="hero-title">{title}</h1>
+          {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+          {description && <p class="hero-description">{description}</p>}
+          <div class="hero-actions">
+            {buttonText && <a href={getTemplateLink(buttonUrl)} class="btn btn-primary">{buttonText}</a>}
+            {secondaryButtonText && <a href={getTemplateLink(secondaryButtonUrl)} class="btn btn-secondary">{secondaryButtonText}</a>}
+          </div>
+        </div>
+        {showImage && image && (
+          <div class="split-image">
+            <img src={image} alt={title} class="hero-image" loading="eager" />
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Video Variant */}
+    {variant === 'video' && (
+      <div class="hero-content text-center">
+        {badge && showBadge && <span class="hero-badge">{badge}</span>}
+        <h1 class="hero-title">{title}</h1>
+        {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+        {description && <p class="hero-description">{description}</p>}
+        <div class="hero-actions justify-center">
+          {buttonText && <a href={getTemplateLink(buttonUrl)} class="btn btn-primary">{buttonText}</a>}
+          {secondaryButtonText && <a href={getTemplateLink(secondaryButtonUrl)} class="btn btn-secondary">{secondaryButtonText}</a>}
+        </div>
+      </div>
+    )}
+
+    {/* Minimal Variant */}
+    {variant === 'minimal' && (
+      <div class="hero-content text-center minimal-content">
+        <h1 class="hero-title minimal-title">{title}</h1>
+        {subtitle && <p class="hero-subtitle minimal-subtitle">{subtitle}</p>}
+      </div>
+    )}
+
+    {/* Boxed Variant */}
+    {variant === 'boxed' && (
+      <div class="hero-content text-center boxed-content">
+        <div class="boxed-inner">
+          {badge && showBadge && <span class="hero-badge">{badge}</span>}
+          <h1 class="hero-title">{title}</h1>
+          {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+          {description && <p class="hero-description">{description}</p>}
+          <div class="hero-actions justify-center">
+            {buttonText && <a href={getTemplateLink(buttonUrl)} class="btn btn-primary">{buttonText}</a>}
+            {secondaryButtonText && <a href={getTemplateLink(secondaryButtonUrl)} class="btn btn-secondary">{secondaryButtonText}</a>}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Cinematic Variant */}
+    {variant === 'cinematic' && (
+      <div class="hero-content cinematic-content">
+        <div class="cinematic-inner">
+          {badge && showBadge && <span class="hero-badge cinematic-badge">{badge}</span>}
+          <h1 class="hero-title cinematic-title">{title}</h1>
+          {subtitle && <p class="hero-subtitle cinematic-subtitle">{subtitle}</p>}
+          {description && <p class="hero-description cinematic-description">{description}</p>}
+          <div class="hero-actions cinematic-actions">
+            {buttonText && <a href={getTemplateLink(buttonUrl)} class="btn btn-primary cinematic-btn">{buttonText}</a>}
+            {secondaryButtonText && <a href={getTemplateLink(secondaryButtonUrl)} class="btn btn-secondary cinematic-btn-secondary">{secondaryButtonText}</a>}
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  /* Base Styles */
+  .hero-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-primary, #000032);
+  }
+
+  /* Heights */
+  .hero-height-full { min-height: 100vh; }
+  .hero-height-large { min-height: 85vh; min-height: 100svh; }
+  .hero-height-medium { min-height: 65vh; }
+  .hero-height-compact { min-height: 50vh; }
+
+  /* Background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Overlay */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .overlay-dark { background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,50,0.6) 100%); }
+  .overlay-light { background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%); }
+  .overlay-gradient { background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(var(--color-primary-rgb, 0,0,0),0.4) 100%); }
+  .overlay-none { background: transparent; }
+
+  /* Container */
+  .hero-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  /* Content */
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--color-text, #ffffff);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: var(--color-textMuted, rgba(255,255,255,0.9));
+  }
+
+  .hero-description {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    color: var(--color-textMuted, rgba(255,255,255,0.8));
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-accent, #FA5014);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Actions */
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-actions.justify-center { justify-content: center; }
+  .hero-actions.justify-end { justify-content: flex-end; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--color-primary, #FA5014);
+    color: white;
+    border: 2px solid var(--color-primary, #FA5014);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent, #e04a12);
+    border-color: var(--color-accent, #e04a12);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.5);
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: var(--color-primary, #000032);
+    border-color: white;
+  }
+
+  /* Split Variant */
+  .hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-split.reverse { direction: rtl; }
+  .hero-split.reverse > * { direction: ltr; }
+
+  .split-content {
+    max-width: 600px;
+  }
+
+  .split-image {
+    position: relative;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+  }
+
+  /* Minimal Variant */
+  .minimal-content {
+    padding: 6rem 2rem;
+  }
+
+  .minimal-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .minimal-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    opacity: 0.7;
+  }
+
+  /* Boxed Variant */
+  .boxed-content {
+    perspective: 1000px;
+  }
+
+  .boxed-inner {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 4rem;
+    transform: rotateX(10deg);
+    transition: transform 0.5s ease;
+  }
+
+  .boxed-content:hover .boxed-inner {
+    transform: rotateX(0);
+  }
+
+  /* Cinematic Variant */
+  .cinematic-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .cinematic-inner {
+    max-width: 1000px;
+  }
+
+  .cinematic-title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .cinematic-subtitle {
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+
+  .cinematic-description {
+    font-size: 1.125rem;
+    max-width: 600px;
+    opacity: 0.7;
+    margin-bottom: 3rem;
+  }
+
+  .cinematic-btn {
+    padding: 1.25rem 3rem;
+    font-size: 1.125rem;
+    border-radius: 9999px;
+  }
+
+  /* Carousel Variant */
+  .hero-carousel {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+  }
+
+  .carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  .carousel-slide.active {
+    opacity: 1;
+  }
+
+  .slide-content {
+    text-align: center;
+    max-width: 900px;
+    padding: 2rem;
+  }
+
+  .carousel-controls {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-prev:hover,
+  .carousel-next:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: white;
+  }
+
+  /* Scroll Indicator */
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    z-index: 20;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, white, transparent);
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(10px); opacity: 0.5; }
+  }
+
+  /* Motion Animations */
+  [data-motion-level="3"] .hero-title,
+  [data-motion-level="4"] .hero-title {
+    animation: title-reveal 1s ease-out forwards;
+  }
+
+  [data-motion-level="3"] .hero-subtitle,
+  [data-motion-level="4"] .hero-subtitle {
+    animation: subtitle-reveal 1s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  @keyframes title-reveal {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes subtitle-reveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-split {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .split-content { max-width: 100%; }
+    .hero-actions.justify-end { justify-content: center; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-container { padding: 2rem 1rem; }
+    .boxed-inner { padding: 2rem; }
+    .cinematic-content { text-align: center; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Hero carousel functionality
+    document.querySelectorAll('.hero-carousel').forEach((carousel) => {
+      const el = carousel as HTMLElement;
+      const slides = el.querySelectorAll('.carousel-slide');
+      const dots = el.querySelectorAll('.carousel-dot');
+      const prevBtn = el.querySelector('.carousel-prev');
+      const nextBtn = el.querySelector('.carousel-next');
+      const autoplay = el.dataset.autoplay !== 'false';
+      const delay = parseInt(el.dataset.delay || '6000');
+
+      let currentIndex = 0;
+      let autoplayInterval: ReturnType<typeof setInterval> | null = null;
+
+      function goToSlide(index: number) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        goToSlide((currentIndex + 1) % slides.length);
+      }
+
+      function prevSlide() {
+        goToSlide((currentIndex - 1 + slides.length) % slides.length);
+      }
+
+      nextBtn?.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+      prevBtn?.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { goToSlide(i); resetAutoplay(); });
+      });
+
+      function resetAutoplay() {
+        if (autoplayInterval) clearInterval(autoplayInterval);
+        if (autoplay) {
+          autoplayInterval = setInterval(nextSlide, delay);
+        }
+      }
+
+      if (autoplay) {
+        autoplayInterval = setInterval(nextSlide, delay);
+      }
+
+      // Initial animation
+      gsap.from(el.querySelector('.slide-content'), {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        ease: 'power3.out',
+      });
+    });
+
+    // Motion level animations
+    document.querySelectorAll('.hero-section').forEach((section) => {
+      const el = section as HTMLElement;
+      const motionLevel = parseInt(el.dataset.motionLevel || '2');
+
+      if (motionLevel >= 3) {
+        const title = el.querySelector('.hero-title');
+        const subtitle = el.querySelector('.hero-subtitle');
+        const description = el.querySelector('.hero-description');
+        const badge = el.querySelector('.hero-badge');
+        const actions = el.querySelector('.hero-actions');
+
+        gsap.from([badge, title, subtitle, description, actions].filter(Boolean), {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          delay: 0.3,
+        });
+      }
+    });
+  });
+</script>

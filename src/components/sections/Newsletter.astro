@@ -1,0 +1,141 @@
+---
+// Newsletter signup section
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    buttonText?: string;
+    placeholder?: string;
+    backgroundColor?: string;
+    textColor?: string;
+    buttonColor?: string;
+  };
+  settings?: {
+    style?: 'centered' | 'minimal' | 'with-image';
+    image?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const { 
+  title = 'Stay Updated',
+  subtitle = 'Subscribe to our newsletter for the latest updates and offers',
+  buttonText = 'Subscribe',
+  placeholder = 'Enter your email',
+  backgroundColor = '#000032',
+  textColor = '#ffffff',
+  buttonColor = '#FA5014'
+} = content;
+
+const { style = 'centered', image = '' } = settings;
+
+const isLightBg = backgroundColor === '#ffffff' || backgroundColor === '#f9fafb';
+const textClass = isLightBg ? 'text-gray-900' : 'text-white';
+const subtitleClass = isLightBg ? 'text-gray-600' : 'text-white/80';
+---
+
+<section class="py-16 lg:py-24" style={`background-color: ${backgroundColor}; background-image: ${image ? `url('${image}')` : 'none'}; background-size: cover; background-position: center;`}>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    {style === 'centered' && (
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class={`text-3xl md:text-4xl font-bold mb-4 ${textClass}`}>{title}</h2>
+        {subtitle && <p class={`text-lg mb-8 ${subtitleClass}`}>{subtitle}</p>}
+        
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input 
+            type="email" 
+            placeholder={placeholder}
+            class="flex-1 px-5 py-4 rounded-lg border-2 border-transparent focus:border-[var(--color-accent)] outline-none transition text-gray-900"
+            required
+          />
+          <button 
+            type="submit"
+            class="px-8 py-4 rounded-lg font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
+            style={`background-color: ${buttonColor}`}
+          >
+            {buttonText}
+          </button>
+        </form>
+        
+        <p class="text-xs mt-4 text-white/60">By subscribing, you agree to our Privacy Policy</p>
+      </div>
+    )}
+    
+    {style === 'minimal' && (
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <h2 class={`text-2xl md:text-3xl font-bold mb-2 ${textClass}`}>{title}</h2>
+          {subtitle && <p class={subtitleClass}>{subtitle}</p>}
+        </div>
+        
+        <form class="flex gap-3">
+          <input 
+            type="email" 
+            placeholder={placeholder}
+            class="px-5 py-3 rounded-lg border border-white/20 bg-white/10 text-white placeholder-white/50 focus:border-[var(--color-accent)] outline-none transition"
+            required
+          />
+          <button 
+            type="submit"
+            class="px-6 py-3 rounded-lg font-semibold text-white transition hover:-translate-y-0.5"
+            style={`background-color: ${buttonColor}`}
+          >
+            {buttonText}
+          </button>
+        </form>
+      </div>
+    )}
+    
+    {style === 'with-image' && (
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class={`text-3xl md:text-4xl font-bold mb-4 ${textClass}`}>{title}</h2>
+          {subtitle && <p class={`text-lg mb-6 ${subtitleClass}`}>{subtitle}</p>}
+        </div>
+        
+        <form class="bg-white rounded-2xl p-8 shadow-2xl">
+          <input 
+            type="email" 
+            placeholder={placeholder}
+            class="w-full px-5 py-4 rounded-lg border border-gray-200 focus:border-[var(--color-accent)] outline-none transition text-gray-900 mb-4"
+            required
+          />
+          <button 
+            type="submit"
+            class="w-full py-4 rounded-lg font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
+            style={`background-color: ${buttonColor}`}
+          >
+            {buttonText}
+          </button>
+        </form>
+      </div>
+    )}
+  </div>
+</section>
+
+<script>
+  // Handle newsletter form submission
+  document.querySelectorAll('section').forEach(section => {
+    const form = section.querySelector('form');
+    if (!form) return;
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (form.querySelector('input[type="email"]') as HTMLInputElement)?.value;
+      if (email) {
+        // Show success message (in real app, this would call an API)
+        const btn = form.querySelector('button');
+        if (btn) {
+          const originalText = btn.textContent;
+          btn.textContent = 'Subscribed!';
+          btn.disabled = true;
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+            form.reset();
+          }, 3000);
+        }
+      }
+    });
+  });
+</script>

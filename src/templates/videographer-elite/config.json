@@ -1,0 +1,757 @@
+{
+  "id": "videographer-elite",
+  "name": "Videographer Elite",
+  "slug": "videographer-elite",
+  "description": "Videographer Elite portfolio with Bold Impact design, featuring bold-motion motion effects",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/previews/videographer-elite.jpg",
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosection",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Creative Videographer Portfolio",
+            "subtitle": "Showcasing 🎬 artistry and expertise in videographer work",
+            "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+            "ctaText": "View My Work",
+            "ctaUrl": "/gallery",
+            "motionLevel": 4,
+            "parallaxPreset": "layeredDepth"
+          }
+        },
+        {
+          "id": "about",
+          "type": "statssection",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "About Me",
+            "content": "I am a passionate videographer with years of experience creating stunning work. My approach combines creativity with technical expertise to deliver exceptional results that exceed expectations.",
+            "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "advancedcarousel",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Featured Work",
+            "subtitle": "A selection of my best projects",
+            "items": [
+              {
+                "id": "1",
+                "title": "Wedding Films",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "2",
+                "title": "Corporate Videos",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "3",
+                "title": "Music Videos",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "4",
+                "title": "Documentaries",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              }
+            ]
+          }
+        },
+        {
+          "id": "stats",
+          "type": "stats",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "stats": [
+              {
+                "id": "1",
+                "value": "200+",
+                "label": "Films"
+              },
+              {
+                "id": "2",
+                "value": "Best",
+                "label": "Director Award"
+              },
+              {
+                "id": "3",
+                "value": "4K+8K",
+                "label": "Quality"
+              },
+              {
+                "id": "4",
+                "value": "100K+",
+                "label": "Views"
+              }
+            ]
+          }
+        },
+        {
+          "id": "services",
+          "type": "features",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "Services Offered",
+            "subtitle": "What I can do for you",
+            "features": [
+              {
+                "id": "1",
+                "title": "Wedding Films",
+                "description": "Professional wedding films services tailored to your needs",
+                "icon": "🎬"
+              },
+              {
+                "id": "2",
+                "title": "Corporate Videos",
+                "description": "Professional corporate videos services tailored to your needs",
+                "icon": "🎬"
+              },
+              {
+                "id": "3",
+                "title": "Music Videos",
+                "description": "Professional music videos services tailored to your needs",
+                "icon": "🎬"
+              },
+              {
+                "id": "4",
+                "title": "Documentaries",
+                "description": "Professional documentaries services tailored to your needs",
+                "icon": "🎬"
+              },
+              {
+                "id": "5",
+                "title": "Social Content",
+                "description": "Professional social content services tailored to your needs",
+                "icon": "🎬"
+              }
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonialsmarquee",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Client Reviews",
+            "testimonials": [
+              {
+                "id": "1",
+                "name": "Alexandra Chen",
+                "role": "Creative Director",
+                "company": "Studio Nine",
+                "quote": "Absolutely stunning videographer work! The attention to detail and creative vision exceeded all expectations.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+              },
+              {
+                "id": "2",
+                "name": "Marcus Rivera",
+                "role": "Brand Manager",
+                "company": "Nexus Agency",
+                "quote": "Working with this videographer was an incredible experience. Professional, talented, and truly innovative.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
+              },
+              {
+                "id": "3",
+                "name": "Sophie Williams",
+                "role": "Entrepreneur",
+                "company": "Bloom Brands",
+                "quote": "The videographer work transformed our brand. Highly recommend for any creative project!",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "cta",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Let's Create Something Amazing",
+            "subtitle": "Ready to start your videographer project?",
+            "ctaText": "Get in Touch",
+            "ctaUrl": "/contact"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "type": "gallery",
+      "name": "Gallery",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosection",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "My Portfolio",
+            "subtitle": "A curated collection of my best work",
+            "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920"
+          }
+        },
+        {
+          "id": "gallery",
+          "type": "advancedcarousel",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "All Projects",
+            "items": [
+              {
+                "id": "0-0",
+                "title": "Wedding Films Project 1",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "0-1",
+                "title": "Wedding Films Project 2",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "0-2",
+                "title": "Wedding Films Project 3",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "1-0",
+                "title": "Corporate Videos Project 1",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "1-1",
+                "title": "Corporate Videos Project 2",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "1-2",
+                "title": "Corporate Videos Project 3",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "2-0",
+                "title": "Music Videos Project 1",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "2-1",
+                "title": "Music Videos Project 2",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "2-2",
+                "title": "Music Videos Project 3",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "3-0",
+                "title": "Documentaries Project 1",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "3-1",
+                "title": "Documentaries Project 2",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "3-2",
+                "title": "Documentaries Project 3",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "4-0",
+                "title": "Social Content Project 1",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "4-1",
+                "title": "Social Content Project 2",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              },
+              {
+                "id": "4-2",
+                "title": "Social Content Project 3",
+                "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920",
+                "category": "Videographer"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "cta",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Like What You See?",
+            "ctaText": "Start a Project",
+            "ctaUrl": "/contact"
+          }
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "type": "about",
+      "name": "About",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosection",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "About Me",
+            "subtitle": "The story behind the videographer",
+            "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920"
+          }
+        },
+        {
+          "id": "about",
+          "type": "statssection",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "My Journey",
+            "content": "My passion for videographer began over a decade ago. Since then, I've dedicated my career to mastering this craft and helping clients achieve their creative vision. With a keen eye for detail and a commitment to excellence, I bring a unique perspective to every project.",
+            "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920"
+          }
+        },
+        {
+          "id": "stats",
+          "type": "stats",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "stats": [
+              {
+                "id": "1",
+                "value": "200+",
+                "label": "Films"
+              },
+              {
+                "id": "2",
+                "value": "Best",
+                "label": "Director Award"
+              },
+              {
+                "id": "3",
+                "value": "4K+8K",
+                "label": "Quality"
+              },
+              {
+                "id": "4",
+                "value": "100K+",
+                "label": "Views"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "name": "Contact",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosection",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Get in Touch",
+            "subtitle": "Let's discuss your videographer project",
+            "image": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920"
+          }
+        },
+        {
+          "id": "contact",
+          "type": "contact-form",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Send a Message",
+            "fields": [
+              {
+                "id": "1",
+                "type": "text",
+                "label": "Name",
+                "placeholder": "Your Name",
+                "required": true
+              },
+              {
+                "id": "2",
+                "type": "email",
+                "label": "Email",
+                "placeholder": "your@email.com",
+                "required": true
+              },
+              {
+                "id": "3",
+                "type": "text",
+                "label": "Project Type",
+                "placeholder": "Videographer Project",
+                "required": false
+              },
+              {
+                "id": "4",
+                "type": "textarea",
+                "label": "Message",
+                "placeholder": "Tell me about your project...",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "cta",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Or Reach Out Directly",
+            "subtitle": "+1 (555) 123-4567",
+            "ctaText": "Email Me",
+            "ctaUrl": "mailto:hello@example.com"
+          }
+        }
+      ]
+    }
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#2C3E50",
+      "secondary": "#34495E",
+      "accent": "#E74C3C",
+      "background": "#1A252F",
+      "surface": "#2C3E50",
+      "text": "#ECF0F1",
+      "textMuted": "#95A5A6",
+      "border": "#3D5166"
+    },
+    "fonts": {
+      "heading": "Anton",
+      "body": "Open Sans"
+    },
+    "motion": {
+      "level": 4,
+      "parallax": "layeredDepth",
+      "animations": "bold-motion"
+    },
+    "borderRadius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "16px",
+      "xl": "24px"
+    },
+    "spacing": {
+      "section": "80px",
+      "container": "1200px"
+    },
+    "tier": "elite"
+  },
+  "sections": {
+    "herosection": {
+      "name": "HeroSection",
+      "icon": "🎯",
+      "category": "hero",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": "Hero Image"
+        },
+        {
+          "id": "ctaText",
+          "type": "text",
+          "label": "CTA Button Text"
+        },
+        {
+          "id": "ctaUrl",
+          "type": "url",
+          "label": "CTA Button URL"
+        },
+        {
+          "id": "motionLevel",
+          "type": "number",
+          "label": "Motion Level (1-4)"
+        },
+        {
+          "id": "parallaxPreset",
+          "type": "select",
+          "label": "Parallax Style",
+          "options": [
+            "none",
+            "softBackgroundDrift",
+            "layeredDepth",
+            "foregroundFloat",
+            "pinnedStorytelling"
+          ]
+        }
+      ],
+      "defaultContent": {
+        "title": "Welcome",
+        "subtitle": "Explore my portfolio",
+        "image": "",
+        "ctaText": "View Work",
+        "ctaUrl": "/gallery",
+        "motionLevel": 4,
+        "parallaxPreset": "layeredDepth"
+      }
+    },
+    "advancedcarousel": {
+      "name": "AdvancedCarousel",
+      "icon": "🖼️",
+      "category": "gallery",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "items",
+          "type": "array",
+          "label": "Gallery Items"
+        }
+      ],
+      "defaultContent": {
+        "title": "My Work",
+        "subtitle": "Featured projects",
+        "items": []
+      }
+    },
+    "statssection": {
+      "name": "StatsSection",
+      "icon": "📋",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "content",
+          "type": "textarea",
+          "label": "Content",
+          "translatable": true
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": "Image"
+        }
+      ],
+      "defaultContent": {
+        "title": "About Me",
+        "content": "Learn more about my journey",
+        "image": ""
+      }
+    },
+    "cta": {
+      "name": "CTA",
+      "icon": "📢",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "ctaText",
+          "type": "text",
+          "label": "CTA Button Text"
+        },
+        {
+          "id": "ctaUrl",
+          "type": "url",
+          "label": "CTA Button URL"
+        }
+      ],
+      "defaultContent": {
+        "title": "Ready to start?",
+        "subtitle": "Get in touch today",
+        "ctaText": "Contact Me",
+        "ctaUrl": "/contact"
+      }
+    },
+    "testimonialsmarquee": {
+      "name": "TestimonialsMarquee",
+      "icon": "💬",
+      "category": "social",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "testimonials",
+          "type": "array",
+          "label": "Testimonials"
+        }
+      ],
+      "defaultContent": {
+        "title": "What Clients Say",
+        "testimonials": []
+      }
+    },
+    "stats": {
+      "name": "Stats",
+      "icon": "📊",
+      "category": "content",
+      "fields": [
+        {
+          "id": "stats",
+          "type": "array",
+          "label": "Statistics"
+        }
+      ],
+      "defaultContent": {
+        "stats": []
+      }
+    },
+    "features": {
+      "name": "Features",
+      "icon": "⭐",
+      "category": "features",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "features",
+          "type": "array",
+          "label": "Features"
+        }
+      ],
+      "defaultContent": {
+        "title": "What I Offer",
+        "subtitle": "Services",
+        "features": []
+      }
+    },
+    "logo-strip": {
+      "name": "Logo Strip",
+      "icon": "🏢",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "logos",
+          "type": "array",
+          "label": "Logos"
+        }
+      ],
+      "defaultContent": {
+        "title": "Trusted By",
+        "logos": []
+      }
+    },
+    "contact-form": {
+      "name": "Contact Form",
+      "icon": "📧",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "fields",
+          "type": "array",
+          "label": "Form Fields"
+        }
+      ],
+      "defaultContent": {
+        "title": "Get in Touch",
+        "fields": []
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+---
+// Team Page
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+
+const team = [
+  { name: 'Dr. Sarah Johnson', role: 'Medical Director', bio: '15+ years of experience in patient care', image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400' },
+  { name: 'Michael Chen', role: 'Lead Specialist', bio: 'Expert in advanced treatment techniques', image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400' },
+  { name: 'Emily Rodriguez', role: 'Senior Consultant', bio: 'Passionate about personalized care', image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400' },
+  { name: 'David Kim', role: 'Head of Operations', bio: 'Ensuring seamless patient experiences', image: 'https://images.unsplash.com/photo-1537368910029-e1d0b8c41c17?w=400' }
+];
+
+const departments = [
+  { name: 'Leadership', count: 4 },
+  { name: 'Medical Staff', count: 12 },
+  { name: 'Support Team', count: 8 },
+  { name: 'Administration', count: 6 }
+];
+---
+
+<div class="min-h-screen bg-white">
+  {/* Hero */}
+  <section class="bg-gray-900 text-white py-20 px-4 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Meet Our Team</h1>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Dedicated professionals committed to delivering excellence
+      </p>
+    </div>
+  </section>
+
+  {/* Team Stats */}
+  <section class="py-12 px-4 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {departments.map(dept => (
+          <div class="text-center p-6 bg-white rounded-lg shadow-sm">
+            <p class="text-3xl font-bold text-gray-900 mb-1">{dept.count}</p>
+            <p class="text-gray-600">{dept.name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Team Grid */}
+  <section class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {team.map(member => (
+          <div class="text-center group">
+            <div class="relative mb-4">
+              <img 
+                src={member.image} 
+                alt={member.name}
+                class="w-48 h-48 rounded-full mx-auto object-cover shadow-lg group-hover:shadow-xl transition"
+              />
+            </div>
+            <h3 class="font-bold text-xl text-gray-900 mb-1">{member.name}</h3>
+            <p class="text-blue-600 font-medium mb-2">{member.role}</p>
+            <p class="text-gray-600 text-sm">{member.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</div>

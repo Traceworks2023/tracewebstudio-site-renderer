@@ -1,0 +1,313 @@
+---
+interface Program {
+  id: string;
+  name: string;
+  description: string;
+  duration?: string;
+  level?: string;
+  price?: number;
+  image?: string;
+  icon?: string;
+  features?: string[];
+  link?: string;
+  badge?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    programs?: Program[];
+    layout?: 'grid' | 'list' | 'featured' | 'cards';
+    columns?: 2 | 3 | 4;
+    showPrices?: boolean;
+    showDurations?: boolean;
+    showLevels?: boolean;
+    showFeatures?: boolean;
+    ctaText?: string;
+  };
+  settings?: {
+    motionLevel?: 1 | 2 | 3 | 4;
+    style?: 'minimal' | 'bold' | 'elegant' | 'modern';
+    accentColor?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+
+const {
+  title = 'Our Programs',
+  subtitle = 'Discover the perfect program for your fitness journey',
+  programs = [
+    {
+      id: 'prog-1',
+      name: 'Personal Training',
+      description: 'One-on-one sessions tailored to your specific goals with dedicated instructor attention.',
+      duration: '60 min',
+      level: 'All Levels',
+      price: 150,
+      image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600',
+      features: ['Custom workout plan', 'Nutrition guidance', 'Progress tracking', 'Flexible scheduling'],
+      badge: 'Popular'
+    },
+    {
+      id: 'prog-2',
+      name: 'Group Fitness Classes',
+      description: 'High-energy classes including HIIT, cardio kickboxing, and circuit training.',
+      duration: '45 min',
+      level: 'Intermediate',
+      price: 49,
+      image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600',
+      features: ['Motivating atmosphere', 'Expert instructors', 'Community support', 'Variety of classes'],
+      badge: 'Best Value'
+    },
+    {
+      id: 'prog-3',
+      name: 'Strength Training',
+      description: 'Build muscle and increase strength with our comprehensive weight training programs.',
+      duration: '75 min',
+      level: 'Advanced',
+      price: 89,
+      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600',
+      features: ['Equipment training', 'Form correction', 'Progressive overload', 'Custom program']
+    },
+    {
+      id: 'prog-4',
+      name: 'Yoga & Mindfulness',
+      description: 'Improve flexibility, balance, and mental well-being through ancient practices.',
+      duration: '60 min',
+      level: 'All Levels',
+      price: 39,
+      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600',
+      features: ['Certified instructors', 'Multiple styles', 'Meditation included', 'All levels welcome']
+    },
+    {
+      id: 'prog-5',
+      name: 'Spin & Cycling',
+      description: 'High-intensity indoor cycling sessions that burn calories and build endurance.',
+      duration: '45 min',
+      level: 'Intermediate',
+      price: 35,
+      image: 'https://images.unsplash.com/photo-1534787238-5f1a24e5e9aa?w=600',
+      features: ['Music-driven', 'Performance tracking', 'Calorie burn focus', 'Beginner friendly']
+    },
+    {
+      id: 'prog-6',
+      name: 'Swimming Lessons',
+      description: 'Learn to swim or improve your technique with professional aquatic instruction.',
+      duration: '45 min',
+      level: 'All Levels',
+      price: 55,
+      image: 'https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=600',
+      features: ['Certified lifeguards', 'Small groups', 'All ages', 'Safety first']
+    }
+  ],
+  layout = 'grid',
+  columns = 3,
+  showPrices = true,
+  showDurations = true,
+  showLevels = true,
+  showFeatures = true,
+  ctaText = 'Join Now',
+} = content;
+
+const {
+  motionLevel = 2,
+  style = 'modern',
+  accentColor = 'var(--color-accent)',
+} = settings;
+
+const gridColsClass = {
+  2: 'grid-cols-1 md:grid-cols-2',
+  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+}[columns] || 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
+---
+
+<div class="programs-page py-20 bg-white" data-layout={layout} data-motion-level={motionLevel}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-full text-sm font-semibold mb-4">
+        Our Programs
+      </span>
+      {title && <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>}
+      {subtitle && <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>}
+    </div>
+
+    {/* Programs Grid */}
+    <div class={`programs-grid ${gridColsClass} gap-8`}>
+      {programs.map((program, index) => (
+        <div
+          class={`program-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ${
+            layout === 'featured' && index === 0 ? 'md:col-span-2' : ''
+          }`}
+          data-program-id={program.id}
+        >
+          {/* Image */}
+          <div class="relative aspect-video overflow-hidden">
+            <img
+              src={program.image || `https://picsum.photos/seed/${program.id}/600/400`}
+              alt={program.name}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+
+            {/* Badge */}
+            {program.badge && (
+              <div class="absolute top-4 left-4">
+                <span class="inline-block px-3 py-1 bg-white text-gray-900 text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
+                  {program.badge}
+                </span>
+              </div>
+            )}
+
+            {/* Overlay */}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+
+          {/* Content */}
+          <div class="p-6">
+            {/* Level & Duration */}
+            <div class="flex items-center gap-3 mb-3">
+              {showLevels && program.level && (
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-[var(--color-accent)]">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  {program.level}
+                </span>
+              )}
+              {showDurations && program.duration && (
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-gray-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {program.duration}
+                </span>
+              )}
+            </div>
+
+            {/* Title & Description */}
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[var(--color-accent)] transition-colors">
+              {program.name}
+            </h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">{program.description}</p>
+
+            {/* Features */}
+            {showFeatures && program.features && program.features.length > 0 && (
+              <ul class="space-y-2 mb-6">
+                {program.features.slice(0, 3).map((feature) => (
+                  <li class="flex items-center gap-2 text-sm text-gray-600">
+                    <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {/* Price & CTA */}
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+              {showPrices && program.price !== undefined && (
+                <div class="flex items-baseline gap-1">
+                  <span class="text-2xl font-bold text-gray-900">${program.price}</span>
+                  <span class="text-sm text-gray-500">/session</span>
+                </div>
+              )}
+              <a
+                href={program.link || `/book?program=${program.id}`}
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-primary)] text-white font-semibold rounded-full hover:bg-[var(--color-accent)] transition-colors"
+              >
+                {ctaText}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* CTA Section */}
+    <div class="text-center mt-16 pt-12 border-t border-gray-200">
+      <h3 class="text-2xl font-bold text-gray-900 mb-4">Not sure which program is right for you?</h3>
+      <p class="text-gray-600 mb-8 max-w-xl mx-auto">Our fitness experts will help you create a personalized plan that fits your goals and lifestyle.</p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-900 text-gray-900 font-semibold rounded-full hover:bg-gray-900 hover:text-white transition-colors"
+      >
+        Get a Free Consultation
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .program-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: program-reveal 0.6s ease-out forwards;
+  }
+
+  @keyframes program-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .program-card:nth-child(1) { animation-delay: 0ms; }
+  .program-card:nth-child(2) { animation-delay: 100ms; }
+  .program-card:nth-child(3) { animation-delay: 200ms; }
+  .program-card:nth-child(4) { animation-delay: 300ms; }
+  .program-card:nth-child(5) { animation-delay: 400ms; }
+  .program-card:nth-child(6) { animation-delay: 500ms; }
+
+  /* Featured Layout */
+  [data-layout="featured"] .program-card:first-child {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+  }
+
+  [data-layout="featured"] .program-card:first-child .aspect-video {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 300px;
+  }
+
+  /* Hover Effects */
+  [data-motion-level="4"] .program-card:hover {
+    transform: translateY(-8px);
+  }
+
+  /* Cards Style */
+  [data-layout="cards"] .program-card {
+    border: 1px solid #e5e7eb;
+    box-shadow: none;
+  }
+
+  [data-layout="cards"] .program-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent)/10;
+  }
+
+  /* List Style */
+  [data-layout="list"] .program-card {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    align-items: center;
+  }
+
+  [data-layout="list"] .program-card .aspect-video {
+    aspect-ratio: 1;
+    height: 100%;
+    min-height: 150px;
+  }
+
+  [data-layout="list"] .program-card .aspect-video + div {
+    padding: 1.5rem;
+  }
+</style>

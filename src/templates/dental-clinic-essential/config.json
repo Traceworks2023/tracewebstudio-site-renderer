@@ -1,0 +1,661 @@
+{
+  "id": "dental-clinic-essential",
+  "name": "Dental Clinic Essential",
+  "slug": "dental-clinic-essential",
+  "description": "Dental Clinic Essential template with Premium Smile design using Pearl White color scheme",
+  "category": "business",
+  "tier": "basic",
+  "thumbnail_url": "/previews/dental-clinic-essential.jpg",
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosplit",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Professional Dental Clinic Services",
+            "subtitle": "Trusted expertise for all your dental clinic needs. Quality workmanship guaranteed.",
+            "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920",
+            "ctaText": "Get Free Quote",
+            "ctaUrl": "/contact"
+          }
+        },
+        {
+          "id": "features",
+          "type": "features",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Why Choose Our Dental Clinic Services",
+            "subtitle": "We deliver excellence in every project",
+            "features": [
+              {
+                "id": "1",
+                "title": "General Dentistry",
+                "description": "Expert general dentistry services with guaranteed satisfaction",
+                "icon": "🦷"
+              },
+              {
+                "id": "2",
+                "title": "Cosmetic Dentistry",
+                "description": "Expert cosmetic dentistry services with guaranteed satisfaction",
+                "icon": "🦷"
+              },
+              {
+                "id": "3",
+                "title": "Orthodontics",
+                "description": "Expert orthodontics services with guaranteed satisfaction",
+                "icon": "🦷"
+              },
+              {
+                "id": "4",
+                "title": "Dental Implants",
+                "description": "Expert dental implants services with guaranteed satisfaction",
+                "icon": "🦷"
+              },
+              {
+                "id": "5",
+                "title": "Pediatric Dentistry",
+                "description": "Expert pediatric dentistry services with guaranteed satisfaction",
+                "icon": "🦷"
+              }
+            ]
+          }
+        },
+        {
+          "id": "about",
+          "type": "splitmedia",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "About Our Dental Clinic Company",
+            "content": "With decades of experience, we have built a reputation for excellence in the dental clinic industry. Our team of dedicated professionals ensures every project is completed to the highest standards, on time and within budget.",
+            "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920"
+          }
+        },
+        {
+          "id": "stats",
+          "type": "stats",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "stats": [
+              {
+                "id": "1",
+                "value": "Pain-Free",
+                "label": "Treatments"
+              },
+              {
+                "id": "2",
+                "value": "Latest",
+                "label": "Technology"
+              },
+              {
+                "id": "3",
+                "value": "Experienced",
+                "label": "Team"
+              },
+              {
+                "id": "4",
+                "value": "Flexible",
+                "label": "Payments"
+              }
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonialsslider",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "What Our Clients Say",
+            "testimonials": [
+              {
+                "id": "1",
+                "name": "Sarah Johnson",
+                "role": "Homeowner",
+                "company": "",
+                "quote": "Exceptional dental clinic services! The team was professional, punctual, and the quality exceeded my expectations.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+              },
+              {
+                "id": "2",
+                "name": "Michael Chen",
+                "role": "Business Owner",
+                "company": "Tech Solutions",
+                "quote": "We've been using their dental clinic services for years. Consistent quality and excellent customer service.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
+              },
+              {
+                "id": "3",
+                "name": "Emily Rodriguez",
+                "role": "Property Manager",
+                "company": "Urban Living",
+                "quote": "Highly recommend! They handle all our dental clinic needs with professionalism and attention to detail.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "ctabanner",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Ready to Get Started?",
+            "subtitle": "Contact us today for a free consultation and quote",
+            "ctaText": "Book Now",
+            "ctaUrl": "/contact"
+          }
+        },
+        {
+          "id": "newsletter",
+          "type": "newsletter",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Stay Updated",
+            "subtitle": "Subscribe for tips and exclusive offers"
+          }
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "type": "services",
+      "name": "Services",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosplit",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Our Dental Clinic Services",
+            "subtitle": "Comprehensive solutions for all your needs",
+            "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920"
+          }
+        },
+        {
+          "id": "features",
+          "type": "features",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "What We Offer",
+            "features": [
+              {
+                "id": "1",
+                "title": "General Dentistry",
+                "description": "Expert general dentistry with years of experience and professional approach",
+                "icon": "🦷"
+              },
+              {
+                "id": "2",
+                "title": "Cosmetic Dentistry",
+                "description": "Expert cosmetic dentistry with years of experience and professional approach",
+                "icon": "🦷"
+              },
+              {
+                "id": "3",
+                "title": "Orthodontics",
+                "description": "Expert orthodontics with years of experience and professional approach",
+                "icon": "🦷"
+              },
+              {
+                "id": "4",
+                "title": "Dental Implants",
+                "description": "Expert dental implants with years of experience and professional approach",
+                "icon": "🦷"
+              },
+              {
+                "id": "5",
+                "title": "Pediatric Dentistry",
+                "description": "Expert pediatric dentistry with years of experience and professional approach",
+                "icon": "🦷"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "ctabanner",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Get Your Free Quote",
+            "ctaText": "Contact Us",
+            "ctaUrl": "/contact"
+          }
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "type": "about",
+      "name": "About",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosplit",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "About Dental Clinic Experts",
+            "subtitle": "Your trusted partner for quality services",
+            "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920"
+          }
+        },
+        {
+          "id": "about",
+          "type": "splitmedia",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Our Story",
+            "content": "Founded with a passion for excellence, our dental clinic company has grown to become a leader in the industry. We combine traditional values with modern techniques to deliver outstanding results for every client.",
+            "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920"
+          }
+        },
+        {
+          "id": "stats",
+          "type": "stats",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "stats": [
+              {
+                "id": "1",
+                "value": "Pain-Free",
+                "label": "Treatments"
+              },
+              {
+                "id": "2",
+                "value": "Latest",
+                "label": "Technology"
+              },
+              {
+                "id": "3",
+                "value": "Experienced",
+                "label": "Team"
+              },
+              {
+                "id": "4",
+                "value": "Flexible",
+                "label": "Payments"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "name": "Contact",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosplit",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Get In Touch",
+            "subtitle": "We would love to hear from you",
+            "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920"
+          }
+        },
+        {
+          "id": "contact",
+          "type": "contact-form",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Send Us a Message",
+            "fields": [
+              {
+                "id": "1",
+                "type": "text",
+                "label": "Name",
+                "placeholder": "Your Name",
+                "required": true
+              },
+              {
+                "id": "2",
+                "type": "email",
+                "label": "Email",
+                "placeholder": "your@email.com",
+                "required": true
+              },
+              {
+                "id": "3",
+                "type": "phone",
+                "label": "Phone",
+                "placeholder": "+91 98765 43210",
+                "required": false
+              },
+              {
+                "id": "4",
+                "type": "textarea",
+                "label": "Message",
+                "placeholder": "Tell us about your project...",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "ctabanner",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Call Us Directly",
+            "subtitle": "+91 98765 43210",
+            "ctaText": "WhatsApp Us",
+            "ctaUrl": "https://wa.me/919876543210"
+          }
+        }
+      ]
+    }
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#FFFFFF",
+      "secondary": "#F0FDF4",
+      "accent": "#22C55E",
+      "background": "#FFFFFF",
+      "surface": "#F0FDF4",
+      "text": "#111827",
+      "textMuted": "#6B7280",
+      "border": "#BBF7D0"
+    },
+    "fonts": {
+      "heading": "Playfair Display",
+      "body": "Lato"
+    },
+    "borderRadius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "16px",
+      "xl": "24px"
+    },
+    "spacing": {
+      "section": "80px",
+      "container": "1200px"
+    },
+    "tier": "essential"
+  },
+  "sections": {
+    "herosplit": {
+      "name": "HeroSplit",
+      "icon": "🎯",
+      "category": "hero",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": "Hero Image"
+        },
+        {
+          "id": "ctaText",
+          "type": "text",
+          "label": "CTA Button Text"
+        },
+        {
+          "id": "ctaUrl",
+          "type": "url",
+          "label": "CTA Button URL"
+        }
+      ],
+      "defaultContent": {
+        "title": "Welcome",
+        "subtitle": "Discover our services",
+        "image": "",
+        "ctaText": "Get Started",
+        "ctaUrl": "/contact"
+      }
+    },
+    "features": {
+      "name": "Features",
+      "icon": "⭐",
+      "category": "features",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "features",
+          "type": "array",
+          "label": "Features"
+        }
+      ],
+      "defaultContent": {
+        "title": "Our Features",
+        "subtitle": "What makes us different",
+        "features": []
+      }
+    },
+    "splitmedia": {
+      "name": "SplitMedia",
+      "icon": "📋",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "content",
+          "type": "textarea",
+          "label": "Content",
+          "translatable": true
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": "Image"
+        }
+      ],
+      "defaultContent": {
+        "title": "About Us",
+        "content": "Learn more about our company",
+        "image": ""
+      }
+    },
+    "ctabanner": {
+      "name": "CTABanner",
+      "icon": "📢",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "ctaText",
+          "type": "text",
+          "label": "CTA Button Text"
+        },
+        {
+          "id": "ctaUrl",
+          "type": "url",
+          "label": "CTA Button URL"
+        }
+      ],
+      "defaultContent": {
+        "title": "Ready to start?",
+        "subtitle": "Get in touch today",
+        "ctaText": "Contact Us",
+        "ctaUrl": "/contact"
+      }
+    },
+    "testimonialsslider": {
+      "name": "TestimonialsSlider",
+      "icon": "💬",
+      "category": "social",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "testimonials",
+          "type": "array",
+          "label": "Testimonials"
+        }
+      ],
+      "defaultContent": {
+        "title": "What People Say",
+        "testimonials": []
+      }
+    },
+    "stats": {
+      "name": "Stats",
+      "icon": "📊",
+      "category": "content",
+      "fields": [
+        {
+          "id": "stats",
+          "type": "array",
+          "label": "Statistics"
+        }
+      ],
+      "defaultContent": {
+        "stats": []
+      }
+    },
+    "contact-form": {
+      "name": "Contact Form",
+      "icon": "📧",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "fields",
+          "type": "array",
+          "label": "Form Fields"
+        }
+      ],
+      "defaultContent": {
+        "title": "Get in Touch",
+        "fields": []
+      }
+    },
+    "newsletter": {
+      "name": "Newsletter",
+      "icon": "✉️",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        }
+      ],
+      "defaultContent": {
+        "title": "Stay Updated",
+        "subtitle": "Subscribe to our newsletter"
+      }
+    },
+    "faq": {
+      "name": "FAQ",
+      "icon": "❓",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "faqs",
+          "type": "array",
+          "label": "FAQs"
+        }
+      ],
+      "defaultContent": {
+        "title": "Frequently Asked Questions",
+        "faqs": []
+      }
+    },
+    "logo-strip": {
+      "name": "Logo Strip",
+      "icon": "🏢",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "logos",
+          "type": "array",
+          "label": "Logos"
+        }
+      ],
+      "defaultContent": {
+        "title": "Trusted By",
+        "logos": []
+      }
+    }
+  }
+}

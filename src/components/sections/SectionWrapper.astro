@@ -1,0 +1,328 @@
+---
+interface Props {
+  sectionId: string;
+  sectionType: string;
+  sectionTitle?: string;
+  sectionIndex?: number;
+  visible?: boolean;
+  editable?: boolean;
+  motionLevel?: 1 | 2 | 3 | 4;
+  children?: any;
+}
+
+const {
+  sectionId,
+  sectionType,
+  sectionTitle = '',
+  sectionIndex = 0,
+  visible = true,
+  editable = true,
+  motionLevel = 2,
+} = Astro.props;
+
+const isEditMode = Astro.url.searchParams.get('edit') === 'true';
+---
+
+<div
+  class={`section-wrapper ${isEditMode ? 'edit-mode' : ''} ${!visible ? 'section-hidden' : ''}`}
+  data-section-id={sectionId}
+  data-section-type={sectionType}
+  data-section-index={sectionIndex}
+  data-visible={visible}
+>
+  {isEditMode && editable && (
+    <div class="section-controls absolute top-4 right-4 z-50 flex items-center gap-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+      {/* Visibility Toggle */}
+      <button
+        class="section-visibility w-8 h-8 rounded flex items-center justify-center transition-colors"
+        data-action="toggle-visibility"
+        title={visible ? 'Hide section' : 'Show section'}
+      >
+        {visible ? (
+          <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+        ) : (
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+          </svg>
+        )}
+      </button>
+
+      {/* Move Up */}
+      <button
+        class="section-move w-8 h-8 rounded flex items-center justify-center hover:bg-gray-100 transition-colors"
+        data-action="move-up"
+        title="Move up"
+      >
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+      </button>
+
+      {/* Move Down */}
+      <button
+        class="section-move w-8 h-8 rounded flex items-center justify-center hover:bg-gray-100 transition-colors"
+        data-action="move-down"
+        title="Move down"
+      >
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {/* Drag Handle */}
+      <button
+        class="section-drag w-8 h-8 rounded flex items-center justify-center hover:bg-gray-100 transition-colors cursor-grab active:cursor-grabbing"
+        data-action="drag"
+        title="Drag to reorder"
+      >
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+      </button>
+
+      {/* Section Info */}
+      <div class="px-3 py-1 bg-gray-100 rounded text-xs font-medium text-gray-600">
+        {sectionTitle || sectionType}
+      </div>
+    </div>
+  )}
+
+  {/* Section Content */}
+  <div class={`section-content ${!visible ? 'opacity-50' : ''}`} data-content>
+    <slot />
+  </div>
+
+  {/* Drop Zone Indicator */}
+  {isEditMode && (
+    <div class="drop-zone absolute inset-x-0 h-2 bg-transparent hover:bg-[var(--color-accent)]/20 transition-colors -top-1 rounded-t-lg" data-drop-position="top"></div>
+    <div class="drop-zone absolute inset-x-0 h-2 bg-transparent hover:bg-[var(--color-accent)]/20 transition-colors -bottom-1 rounded-b-lg" data-drop-position="bottom"></div>
+  )}
+</div>
+
+<style>
+  .section-wrapper {
+    position: relative;
+    transition: opacity 0.3s ease;
+  }
+
+  .section-wrapper:hover .section-controls {
+    opacity: 1;
+  }
+
+  .section-wrapper.edit-mode {
+    outline: 2px dashed transparent;
+    outline-offset: -2px;
+    transition: outline-color 0.2s ease;
+  }
+
+  .section-wrapper.edit-mode:hover {
+    outline-color: var(--color-accent, #FA5014);
+  }
+
+  .section-wrapper.section-hidden {
+    opacity: 0.5;
+  }
+
+  .section-wrapper.dragging {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+
+  .section-wrapper.drag-over {
+    outline: 2px solid var(--color-accent, #FA5014);
+    outline-offset: 4px;
+  }
+
+  .drop-zone {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .section-wrapper:hover .drop-zone,
+  .section-wrapper.dragging .drop-zone {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .drop-zone.active {
+    opacity: 1;
+    background: var(--color-accent, #FA5014) !important;
+  }
+
+  /* Motion Level Enhancements */
+  [data-motion-level="3"] .section-content > *,
+  [data-motion-level="4"] .section-content > * {
+    animation: section-fade-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes section-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-motion-level="3"] .section-content > *:nth-child(1),
+  [data-motion-level="4"] .section-content > *:nth-child(1) { animation-delay: 0ms; }
+  [data-motion-level="3"] .section-content > *:nth-child(2),
+  [data-motion-level="4"] .section-content > *:nth-child(2) { animation-delay: 100ms; }
+  [data-motion-level="3"] .section-content > *:nth-child(3),
+  [data-motion-level="4"] .section-content > *:nth-child(3) { animation-delay: 200ms; }
+  [data-motion-level="3"] .section-content > *:nth-child(4),
+  [data-motion-level="4"] .section-content > *:nth-child(4) { animation-delay: 300ms; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sectionWrappers = document.querySelectorAll('.section-wrapper');
+
+    sectionWrappers.forEach((wrapper) => {
+      const el = wrapper as HTMLElement;
+      const controls = el.querySelector('.section-controls');
+      if (!controls) return;
+
+      // Visibility Toggle
+      const visibilityBtn = controls.querySelector('[data-action="toggle-visibility"]');
+      visibilityBtn?.addEventListener('click', () => {
+        const isVisible = el.dataset.visible === 'true';
+        el.dataset.visible = String(!isVisible);
+        el.classList.toggle('section-hidden', isVisible);
+
+        const content = el.querySelector('[data-content]') as HTMLElement;
+        content?.classList.toggle('opacity-50', isVisible);
+
+        // Emit event for state management
+        el.dispatchEvent(new CustomEvent('section:visibility-change', {
+          detail: { sectionId: el.dataset.sectionId, visible: !isVisible }
+        }));
+      });
+
+      // Move Up/Down
+      const moveUpBtn = controls.querySelector('[data-action="move-up"]');
+      const moveDownBtn = controls.querySelector('[data-action="move-down"]');
+
+      moveUpBtn?.addEventListener('click', () => {
+        const prev = el.previousElementSibling;
+        if (prev) {
+          el.parentNode?.insertBefore(el, prev);
+          el.dispatchEvent(new CustomEvent('section:reorder'));
+        }
+      });
+
+      moveDownBtn?.addEventListener('click', () => {
+        const next = el.nextElementSibling;
+        if (next) {
+          el.parentNode?.insertBefore(next, el);
+          el.dispatchEvent(new CustomEvent('section:reorder'));
+        }
+      });
+
+      // Drag and Drop Reorder
+      let isDragging = false;
+      let draggedEl: HTMLElement | null = null;
+
+      const dragHandle = controls.querySelector('[data-action="drag"]');
+
+      dragHandle?.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDragging = true;
+        draggedEl = el;
+        el.classList.add('dragging');
+
+        // Set up drop zones
+        document.querySelectorAll('.drop-zone').forEach((zone) => {
+          (zone as HTMLElement).style.pointerEvents = 'auto';
+        });
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging || !draggedEl) return;
+
+        const mouseY = e.clientY;
+        const sections = Array.from(document.querySelectorAll('.section-wrapper'));
+
+        let insertBefore: HTMLElement | null = null;
+
+        sections.forEach((section) => {
+          if (section === draggedEl) return;
+
+          const rect = (section as HTMLElement).getBoundingClientRect();
+          const midY = rect.top + rect.height / 2;
+
+          if (mouseY < midY && !insertBefore) {
+            insertBefore = section as HTMLElement;
+          }
+        });
+
+        // Update drop zone highlights
+        document.querySelectorAll('.drop-zone').forEach((zone) => {
+          zone.classList.remove('active');
+          const rect = (zone as HTMLElement).getBoundingClientRect();
+          if (mouseY >= rect.top && mouseY <= rect.bottom) {
+            zone.classList.add('active');
+          }
+        });
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (!isDragging || !draggedEl) return;
+
+        isDragging = false;
+        draggedEl.classList.remove('dragging');
+
+        // Find the drop zone that was active
+        const activeDropZone = document.querySelector('.drop-zone.active');
+
+        if (activeDropZone) {
+          const position = activeDropZone.getAttribute('data-drop-position');
+          const wrapper = activeDropZone.closest('.section-wrapper');
+
+          if (position === 'top' && wrapper && wrapper.previousElementSibling !== draggedEl) {
+            wrapper.parentNode?.insertBefore(draggedEl, wrapper);
+          } else if (position === 'bottom' && wrapper) {
+            const next = wrapper.nextElementSibling;
+            if (next) {
+              wrapper.parentNode?.insertBefore(draggedEl, next);
+            } else {
+              wrapper.parentNode?.appendChild(draggedEl);
+            }
+          }
+
+          draggedEl.dispatchEvent(new CustomEvent('section:reorder'));
+        }
+
+        // Reset drop zones
+        document.querySelectorAll('.drop-zone').forEach((zone) => {
+          (zone as HTMLElement).style.pointerEvents = 'none';
+          zone.classList.remove('active');
+        });
+
+        draggedEl = null;
+      });
+
+      // Section Reorder Event
+      el.addEventListener('section:reorder', () => {
+        // Get all sections and their order
+        const sections = Array.from(document.querySelectorAll('.section-wrapper'));
+        const order = sections.map((s, i) => ({
+          id: (s as HTMLElement).dataset.sectionId,
+          index: i
+        }));
+
+        console.log('Section order updated:', order);
+
+        // Emit global event for state sync
+        window.dispatchEvent(new CustomEvent('sections:order-changed', { detail: order }));
+      });
+    });
+  });
+</script>

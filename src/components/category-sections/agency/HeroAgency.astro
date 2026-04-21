@@ -1,0 +1,164 @@
+---
+// Agency Hero - Bold, professional corporate style
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+    image?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'We Build Digital Experiences',
+  subtitle = 'Award-winning agency crafting brands that stand out',
+  ctaText = 'View Our Work',
+  ctaUrl = '#',
+  image = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section class="agency-hero relative min-h-screen flex items-center bg-[#0a0a0a]">
+  <!-- Geometric background -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-[#6366f1]/20 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#ec4899]/20 to-transparent rounded-full blur-3xl"></div>
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 80px 80px;"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: Content -->
+      <div class="space-y-8">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
+          <span class="w-2 h-2 bg-[#6366f1] rounded-full animate-pulse"></span>
+          <span class="text-white/70 text-sm font-medium">Award-Winning Agency</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+          {title}
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-xl text-gray-400 max-w-lg">
+          {subtitle}
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={ctaUrl}
+            class="group inline-flex items-center gap-2 px-6 py-3 bg-[#6366f1] text-white font-semibold rounded-lg hover:bg-[#5558e3] transition-colors"
+          >
+            {ctaText}
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="inline-flex items-center gap-2 px-6 py-3 text-white/70 hover:text-white transition-colors"
+          >
+            Get in Touch
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
+          <div>
+            <div class="text-3xl font-bold text-white">150+</div>
+            <div class="text-gray-500 text-sm">Projects</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-white">50+</div>
+            <div class="text-gray-500 text-sm">Clients</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-white">12</div>
+            <div class="text-gray-500 text-sm">Awards</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Image/Visual -->
+      <div class="hidden lg:block relative">
+        <div class="relative">
+          <!-- Main image -->
+          <div class="rounded-2xl overflow-hidden shadow-2xl">
+            <img src={image} alt={title} class="w-full h-[400px] object-cover" />
+          </div>
+
+          <!-- Floating cards -->
+          <div class="absolute -top-6 -left-6 bg-[#6366f1] rounded-xl p-4 shadow-xl">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                <span class="text-xl">🚀</span>
+              </div>
+              <div>
+                <div class="text-white font-semibold">Fast Delivery</div>
+                <div class="text-white/70 text-sm">On time, every time</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-xl">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-[#ec4899]/10 rounded-lg flex items-center justify-center">
+                <span class="text-xl">⭐</span>
+              </div>
+              <div>
+                <div class="text-gray-900 font-semibold">5.0 Rating</div>
+                <div class="text-gray-500 text-sm">100+ Reviews</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Marquee -->
+  <div class="absolute bottom-0 left-0 right-0 bg-white/5 border-t border-white/10 py-4 overflow-hidden">
+    <div class="flex animate-marquee gap-8 text-white/40 text-sm whitespace-nowrap">
+      <span>BRANDING</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>WEB DESIGN</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>UI/UX</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>MOTION DESIGN</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>DEVELOPMENT</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>BRANDING</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>WEB DESIGN</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>UI/UX</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>MOTION DESIGN</span>
+      <span class="text-[#6366f1]">•</span>
+      <span>DEVELOPMENT</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+</style>

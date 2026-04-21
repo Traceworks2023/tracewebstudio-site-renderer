@@ -1,0 +1,195 @@
+---
+// Doctors Page - Clinic/Hospital
+interface Doctor {
+  id: string;
+  name: string;
+  title: string;
+  specialty: string;
+  image: string;
+  bio?: string;
+  education?: string[];
+  experience?: number;
+  languages?: string[];
+  rating?: number;
+  reviews?: number;
+  availability?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    doctors?: Doctor[];
+  };
+}
+
+const { content = {} } = Astro.props;
+const {
+  title = 'Our Medical Team',
+  subtitle = 'Meet our team of experienced and compassionate healthcare professionals',
+  doctors = [
+    {
+      id: 'dr-1',
+      name: 'Dr. Sarah Mitchell',
+      title: 'Chief Medical Officer',
+      specialty: 'Internal Medicine',
+      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400',
+      bio: 'Board-certified internist with over 20 years of experience in preventive medicine and chronic disease management.',
+      education: ['MD - Harvard Medical School', 'Residency - Massachusetts General Hospital'],
+      experience: 20,
+      languages: ['English', 'Spanish'],
+      rating: 4.9,
+      reviews: 328
+    },
+    {
+      id: 'dr-2',
+      name: 'Dr. Michael Chen',
+      title: 'Cardiology Director',
+      specialty: 'Cardiology',
+      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400',
+      bio: 'Leading cardiologist specializing in interventional cardiology and heart failure management.',
+      education: ['MD - Johns Hopkins', 'Fellowship - Cleveland Clinic'],
+      experience: 15,
+      languages: ['English', 'Mandarin'],
+      rating: 4.8,
+      reviews: 245
+    },
+    {
+      id: 'dr-3',
+      name: 'Dr. Emily Rodriguez',
+      title: 'Orthopedics Lead',
+      specialty: 'Orthopedic Surgery',
+      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400',
+      bio: 'Sports medicine and joint replacement specialist with expertise in minimally invasive techniques.',
+      education: ['MD - Stanford', 'Residency - HSS NY'],
+      experience: 12,
+      languages: ['English', 'Portuguese'],
+      rating: 4.9,
+      reviews: 189
+    },
+    {
+      id: 'dr-4',
+      name: 'Dr. James Thompson',
+      title: 'Neurology Director',
+      specialty: 'Neurology',
+      image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400',
+      bio: 'Expert in treating complex neurological conditions including epilepsy, Parkinson\'s, and stroke.',
+      education: ['MD - Yale', 'Fellowship - UCSF'],
+      experience: 18,
+      languages: ['English'],
+      rating: 4.7,
+      reviews: 156
+    },
+    {
+      id: 'dr-5',
+      name: 'Dr. Lisa Park',
+      title: 'Pediatrics Chief',
+      specialty: 'Pediatrics',
+      image: 'https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400',
+      bio: 'Dedicated pediatrician passionate about child development and preventive care.',
+      education: ['MD - Columbia', 'Residency - Children\'s Hospital'],
+      experience: 10,
+      languages: ['English', 'Korean'],
+      rating: 5.0,
+      reviews: 412
+    },
+    {
+      id: 'dr-6',
+      name: 'Dr. Robert Williams',
+      title: 'Oncology Director',
+      specialty: 'Medical Oncology',
+      image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400',
+      bio: 'Compassionate oncologist specializing in personalized cancer treatment and clinical trials.',
+      education: ['MD - Duke', 'Fellowship - MD Anderson'],
+      experience: 16,
+      languages: ['English', 'French'],
+      rating: 4.8,
+      reviews: 201
+    }
+  ]
+} = content;
+---
+
+<div class="doctors-page py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-4">
+        Medical Team
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {doctors.map((doctor) => (
+        <article class="doctor-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+          <div class="relative">
+            <img
+              src={doctor.image || `https://i.pravatar.cc/400?u=${doctor.id}`}
+              alt={doctor.name}
+              class="w-full aspect-[4/3] object-cover"
+              loading="lazy"
+            />
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-sm font-medium text-gray-700">
+                {doctor.specialty}
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-1">{doctor.name}</h2>
+            <p class="text-[var(--color-accent)] font-medium mb-3">{doctor.title}</p>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">{doctor.bio}</p>
+
+            <div class="space-y-2 mb-4">
+              {doctor.experience && (
+                <div class="flex items-center gap-2 text-sm text-gray-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {doctor.experience} years experience
+                </div>
+              )}
+              {doctor.languages && (
+                <div class="flex items-center gap-2 text-sm text-gray-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                  </svg>
+                  {doctor.languages.join(', ')}
+                </div>
+              )}
+            </div>
+
+            {doctor.rating && (
+              <div class="flex items-center gap-2 mb-4">
+                <div class="flex">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <svg class={`w-4 h-4 ${i <= Math.floor(doctor.rating!) ? 'text-yellow-400' : 'text-gray-300'} fill-current`} viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+                <span class="text-sm text-gray-500">({doctor.reviews} reviews)</span>
+              </div>
+            )}
+
+            <div class="flex gap-3">
+              <a
+                href={`/book?doctor=${doctor.id}`}
+                class="flex-1 py-3 bg-[var(--color-primary)] text-white text-center font-semibold rounded-lg hover:bg-[var(--color-accent)] transition-colors"
+              >
+                Book Appointment
+              </a>
+              <a
+                href={`/doctors/${doctor.id}`}
+                class="px-4 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                View Profile
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</div>

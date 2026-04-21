@@ -1,0 +1,532 @@
+---
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  image: string;
+  badge?: string;
+  rating?: number;
+  reviews?: number;
+  category?: string;
+  link?: string;
+}
+
+interface FilterOption {
+  id: string;
+  label: string;
+  count?: number;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    products?: Product[];
+    categories?: FilterOption[];
+    activeCategory?: string;
+    layout?: 'grid' | 'list';
+    showFilters?: boolean;
+    showSort?: boolean;
+    showPagination?: boolean;
+    productsPerPage?: number;
+  };
+  settings?: {
+    columns?: 2 | 3 | 4;
+    motionLevel?: 1 | 2 | 3 | 4;
+    filterStyle?: 'sidebar' | 'dropdown' | 'inline';
+    sortOptions?: Array<'featured' | 'price-asc' | 'price-desc' | 'newest' | 'popular'>;
+    priceRange?: { min: number; max: number };
+    showRatings?: boolean;
+    showQuickView?: boolean;
+    showAddToCart?: boolean;
+    showCompare?: boolean;
+    showWishlist?: boolean;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+
+const {
+  title = 'Our Products',
+  subtitle = '',
+  products = [],
+  categories = [],
+  activeCategory = 'all',
+  layout = 'grid',
+  showFilters = true,
+  showSort = true,
+  showPagination = true,
+  productsPerPage = 12,
+} = content;
+
+const {
+  columns = 3,
+  motionLevel = 2,
+  filterStyle = 'sidebar',
+  sortOptions = ['featured', 'price-asc', 'price-desc', 'newest', 'popular'],
+  priceRange = { min: 0, max: 1000 },
+  showRatings = true,
+  showQuickView = true,
+  showAddToCart = true,
+  showCompare = true,
+  showWishlist = true,
+} = settings;
+
+const gridColsClass = {
+  2: 'grid-cols-1 sm:grid-cols-2',
+  3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+}[columns] || 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+
+const sortLabels: Record<string, string> = {
+  'featured': 'Featured',
+  'price-asc': 'Price: Low to High',
+  'price-desc': 'Price: High to Low',
+  'newest': 'Newest First',
+  'popular': 'Most Popular',
+};
+---
+
+<div class="product-grid-section bg-white" data-motion-level={motionLevel}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    {/* Header */}
+    {(title || subtitle) && (
+      <div class="text-center mb-10">
+        {title && <h2 class="text-3xl font-bold text-gray-900 mb-2">{title}</h2>}
+        {subtitle && <p class="text-gray-600">{subtitle}</p>}
+      </div>
+    )}
+
+    {/* Filters Bar */}
+    {(showFilters || showSort) && (
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-6 border-b border-gray-200">
+        {/* Category Filters */}
+        {showFilters && categories.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            <button
+              class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all"
+              data-category="all"
+            >
+              All
+            </button>
+            {categories.map((cat) => (
+              <button
+                class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all"
+                data-category={cat.id}
+              >
+                {cat.label}
+                {cat.count && <span class="ml-1 text-gray-500">({cat.count})</span>}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Sort Dropdown */}
+        {showSort && sortOptions.length > 0 && (
+          <div class="relative">
+            <select
+              class="sort-select appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] cursor-pointer"
+              data-sort="featured"
+            >
+              {sortOptions.map((option) => (
+                <option value={option}>{sortLabels[option] || option}</option>
+              ))}
+            </select>
+            <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Active Filters */}
+    <div class="active-filters flex flex-wrap gap-2 mb-6" data-active-filters></div>
+
+    {/* Product Grid */}
+    <div
+      class={`product-grid grid ${gridColsClass} gap-6`}
+      data-products
+      data-layout={layout}
+    >
+      {products.map((product) => (
+        <div
+          class="product-card group"
+          data-id={product.id}
+          data-category={product.category || 'all'}
+          data-price={product.price}
+          data-rating={product.rating || 0}
+          data-date={Date.now()}
+        >
+          <a href={product.link || `/product/${product.id}`} class="block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+            {/* Product Image */}
+            <div class="relative aspect-[3/4] overflow-hidden bg-gray-100">
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              {/* Badges */}
+              {product.badge && (
+                <div class="absolute top-3 left-3">
+                  <span class={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide rounded-full ${
+                    product.badge.toLowerCase().includes('sale') ? 'bg-red-500 text-white' :
+                    product.badge.toLowerCase().includes('new') ? 'bg-green-500 text-white' :
+                    product.badge.toLowerCase().includes('popular') ? 'bg-blue-500 text-white' :
+                    'bg-gray-900 text-white'
+                  }`}>
+                    {product.badge}
+                  </span>
+                </div>
+              )}
+
+              {/* Wishlist Button */}
+              {showWishlist && (
+                <button
+                  class="wishlist-btn absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-white hover:text-red-500"
+                  aria-label="Add to wishlist"
+                  data-product-id={product.id}
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </button>
+              )}
+
+              {/* Quick Actions Overlay */}
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+                {showQuickView && (
+                  <button
+                    class="quick-view-btn w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center hover:bg-gray-100 transition-colors transform translate-y-4 group-hover:translate-y-0"
+                    aria-label="Quick view"
+                    data-product-id={product.id}
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </button>
+                )}
+                {showCompare && (
+                  <button
+                    class="compare-btn w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center hover:bg-gray-100 transition-colors transform translate-y-4 group-hover:translate-y-0"
+                    style="transition-delay: 50ms"
+                    aria-label="Compare"
+                    data-product-id={product.id}
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+
+              {/* Add to Cart Overlay */}
+              {showAddToCart && (
+                <div class="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <button
+                    class="add-to-cart-btn w-full bg-gray-900 text-white py-3 font-semibold rounded-lg hover:bg-[var(--color-accent)] transition-colors"
+                    data-product-id={product.id}
+                    data-product-name={product.name}
+                    data-product-price={product.price}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Product Info */}
+            <div class="p-5">
+              {/* Rating */}
+              {showRatings && product.rating && (
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <svg class={`w-4 h-4 ${i <= Math.floor(product.rating!) ? 'text-yellow-400' : 'text-gray-300'} fill-current`} viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  {product.reviews && (
+                    <span class="text-xs text-gray-500">({product.reviews})</span>
+                  )}
+                </div>
+              )}
+
+              <h3 class="font-semibold text-gray-900 mb-2 group-hover:text-[var(--color-accent)] transition-colors line-clamp-2">
+                {product.name}
+              </h3>
+
+              {/* Price */}
+              <div class="flex items-center gap-2">
+                <span class="text-lg font-bold text-gray-900">${product.price}</span>
+                {product.originalPrice && (
+                  <span class="text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                )}
+              </div>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    {/* Empty State */}
+    <div class="empty-state hidden text-center py-16">
+      <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+      </svg>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">No products found</h3>
+      <p class="text-gray-600">Try adjusting your filters or search terms.</p>
+    </div>
+
+    {/* Pagination */}
+    {showPagination && products.length > productsPerPage && (
+      <div class="pagination flex items-center justify-center gap-2 mt-12" data-pagination>
+        <button class="pagination-btn prev w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <div class="pagination-pages flex gap-2" data-pages></div>
+        <button class="pagination-btn next w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .product-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: product-reveal 0.5s ease-out forwards;
+  }
+
+  @keyframes product-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .product-card:nth-child(1) { animation-delay: 0ms; }
+  .product-card:nth-child(2) { animation-delay: 50ms; }
+  .product-card:nth-child(3) { animation-delay: 100ms; }
+  .product-card:nth-child(4) { animation-delay: 150ms; }
+  .product-card:nth-child(5) { animation-delay: 200ms; }
+  .product-card:nth-child(6) { animation-delay: 250ms; }
+  .product-card:nth-child(7) { animation-delay: 300ms; }
+  .product-card:nth-child(8) { animation-delay: 350ms; }
+
+  /* Filter Button States */
+  .filter-btn {
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200;
+  }
+
+  .filter-btn.active {
+    @apply bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary)];
+  }
+
+  /* Motion Level Enhancements */
+  [data-motion-level="4"] .product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  [data-motion-level="4"] .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  [data-motion-level="4"] .product-card .product-image {
+    transition: transform 0.5s ease;
+  }
+
+  [data-motion-level="4"] .product-card:hover .product-image {
+    transform: scale(1.05);
+  }
+
+  /* Pagination */
+  .pagination-btn.active {
+    @apply bg-[var(--color-primary)] text-white border-[var(--color-primary)];
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.product-grid-section');
+    if (!section) return;
+
+    const grid = section.querySelector('[data-products]') as HTMLElement;
+    const filterBtns = section.querySelectorAll('.filter-btn');
+    const sortSelect = section.querySelector('.sort-select') as HTMLSelectElement;
+    const activeFiltersContainer = section.querySelector('[data-active-filters]') as HTMLElement;
+    const emptyState = section.querySelector('.empty-state') as HTMLElement;
+    const paginationContainer = section.querySelector('[data-pagination]') as HTMLElement;
+    const prevBtn = section.querySelector('.pagination-btn.prev') as HTMLButtonElement;
+    const nextBtn = section.querySelector('.pagination-btn.next') as HTMLButtonElement;
+    const pagesContainer = section.querySelector('[data-pages]') as HTMLElement;
+
+    const cards = grid?.querySelectorAll('.product-card') || [];
+    let currentCategory = 'all';
+    let currentSort = 'featured';
+    let currentPage = 1;
+    const productsPerPage = parseInt(section.getAttribute('data-products-per-page') || '12');
+
+    // Filter functionality
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category') || 'all';
+        currentCategory = category;
+
+        // Update active state
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        filterProducts();
+      });
+    });
+
+    // Sort functionality
+    sortSelect?.addEventListener('change', () => {
+      currentSort = sortSelect.value;
+      filterProducts();
+    });
+
+    function filterProducts() {
+      const allCards = Array.from(cards);
+      let filtered: Element[] = [];
+
+      allCards.forEach((card) => {
+        const cardCategory = card.getAttribute('data-category') || 'all';
+        const shouldShow = currentCategory === 'all' || cardCategory === currentCategory;
+        (card as HTMLElement).style.display = shouldShow ? '' : 'none';
+        if (shouldShow) filtered.push(card);
+      });
+
+      // Sort filtered products
+      if (currentSort !== 'featured') {
+        filtered.sort((a, b) => {
+          if (currentSort === 'price-asc') {
+            return parseInt(a.getAttribute('data-price') || '0') - parseInt(b.getAttribute('data-price') || '0');
+          }
+          if (currentSort === 'price-desc') {
+            return parseInt(b.getAttribute('data-price') || '0') - parseInt(a.getAttribute('data-price') || '0');
+          }
+          if (currentSort === 'newest') {
+            return parseInt(b.getAttribute('data-date') || '0') - parseInt(a.getAttribute('data-date') || '0');
+          }
+          if (currentSort === 'popular') {
+            return parseInt(b.getAttribute('data-rating') || '0') - parseInt(a.getAttribute('data-rating') || '0');
+          }
+          return 0;
+        });
+      }
+
+      // Show/hide empty state
+      if (filtered.length === 0) {
+        emptyState?.classList.remove('hidden');
+        grid.style.display = 'none';
+      } else {
+        emptyState?.classList.add('hidden');
+        grid.style.display = '';
+      }
+
+      // Reorder DOM
+      filtered.forEach((card) => grid.appendChild(card));
+
+      // Update pagination
+      updatePagination(filtered.length);
+    }
+
+    function updatePagination(totalItems: number) {
+      if (!paginationContainer) return;
+
+      const totalPages = Math.ceil(totalItems / productsPerPage);
+      pagesContainer.innerHTML = '';
+
+      if (totalPages <= 1) {
+        paginationContainer.style.display = 'none';
+        return;
+      }
+
+      paginationContainer.style.display = 'flex';
+
+      // Create page buttons
+      for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `pagination-btn w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-sm font-medium transition-all ${i === currentPage ? 'active' : 'text-gray-600 hover:border-[var(--color-primary)]'}`;
+        pageBtn.textContent = String(i);
+        pageBtn.setAttribute('data-page', String(i));
+        pageBtn.addEventListener('click', () => goToPage(i));
+        pagesContainer.appendChild(pageBtn);
+      }
+
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+    }
+
+    function goToPage(page: number) {
+      currentPage = page;
+      const start = (page - 1) * productsPerPage;
+      const end = start + productsPerPage;
+
+      cards.forEach((card, index) => {
+        const isVisible = (card as HTMLElement).style.display !== 'none';
+        if (isVisible) {
+          (card as HTMLElement).style.display = index >= start && index < end ? '' : 'none';
+        }
+      });
+
+      // Update active page button
+      pagesContainer.querySelectorAll('button').forEach((btn) => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-page') === String(page)) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Scroll to top of grid
+      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Wishlist functionality
+    section.querySelectorAll('.wishlist-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const productId = (btn as HTMLElement).dataset.productId;
+        // Toggle wishlist state (would connect to actual wishlist logic)
+        btn.classList.toggle('text-red-500');
+      });
+    });
+
+    // Add to Cart functionality
+    section.querySelectorAll('.add-to-cart-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const name = (btn as HTMLElement).dataset.productName;
+        const price = (btn as HTMLElement).dataset.productPrice;
+        // Add to cart logic would go here
+        console.log(`Added to cart: ${name} at $${price}`);
+
+        // Visual feedback
+        const originalText = btn.textContent;
+        btn.textContent = 'Added!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 1500);
+      });
+    });
+
+    // Initialize
+    filterBtns[0]?.click();
+  });
+</script>

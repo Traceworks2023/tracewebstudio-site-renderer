@@ -1,0 +1,123 @@
+---
+// About Page - Tailwind version
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+
+const stats = [
+  { number: '10M+', label: 'Happy Customers' },
+  { number: '500+', label: 'Brand Partners' },
+  { number: '50+', label: 'Countries Served' },
+  { number: '99%', label: 'Satisfaction Rate' }
+];
+
+const values = [
+  { title: 'Quality First', description: 'We source only the finest materials and partner with trusted manufacturers.', icon: '✓' },
+  { title: 'Sustainable Fashion', description: 'Committed to eco-friendly practices and reducing our environmental footprint.', icon: '🌱' },
+  { title: 'Customer Obsessed', description: 'Your satisfaction is our priority. 24/7 support and hassle-free returns.', icon: '♡' },
+  { title: 'Innovation Driven', description: 'Constantly evolving our technology to bring you the best shopping experience.', icon: '⚡' }
+];
+
+const team = [
+  { name: 'Sarah Johnson', role: 'CEO & Founder', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300' },
+  { name: 'Michael Chen', role: 'Creative Director', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300' },
+  { name: 'Emma Williams', role: 'Head of Operations', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300' },
+  { name: 'David Kim', role: 'Tech Lead', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300' }
+];
+---
+
+<div class="min-h-screen bg-white">
+  <!-- Hero Section -->
+  <section class="bg-gray-900 text-white py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Story</h1>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Founded in 2015, we've grown from a small boutique to a global fashion destination, 
+        serving millions of customers worldwide with curated collections and exceptional service.
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <p class="text-4xl font-bold text-gray-900 mb-2">{stat.number}</p>
+            <p class="text-gray-600">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">The principles that guide everything we do.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {values.map((value) => (
+          <div class="text-center">
+            <div class="w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+              {value.icon}
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">{value.title}</h3>
+            <p class="text-sm text-gray-600">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">The talented people behind our success.</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {team.map((member) => (
+          <div class="text-center">
+            <img 
+              src={member.image} 
+              alt={member.name}
+              class="w-32 h-32 rounded-full mx-auto mb-4 object-cover bg-gray-200"
+            />
+            <h3 class="font-semibold text-gray-900">{member.name}</h3>
+            <p class="text-sm text-gray-600">{member.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Join Our Journey</h2>
+      <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+        Be part of our growing community. Subscribe to our newsletter for exclusive offers 
+        and be the first to know about new arrivals.
+      </p>
+      
+      <div class="flex justify-center gap-4">
+        <a href="/shop" class="px-8 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition">
+          Start Shopping
+        </a>
+        <a href="/contact" class="px-8 py-3 border border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

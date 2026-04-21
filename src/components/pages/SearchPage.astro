@@ -1,0 +1,235 @@
+---
+// Search/Category Page - Dynamic products based on template
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+
+const templateCategory = template?.category || 'ecommerce';
+const templateName = template?.name || 'Store';
+const theme = template?.theme || {};
+const colors = theme.colors || {};
+
+// Generate products based on template category
+const categoryProducts: Record<string, any[]> = {
+  business: [
+    { id: '1', name: 'Consultation Service', price: 2999, originalPrice: 3999, badge: 'Popular', rating: 4.9, reviews: 234, image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400', category: 'Services' },
+    { id: '2', name: 'Health Checkup Package', price: 4999, originalPrice: null, badge: 'New', rating: 4.8, reviews: 189, image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400', category: 'Healthcare' },
+    { id: '3', name: 'Annual Membership', price: 9999, originalPrice: 14999, badge: '-33%', rating: 4.7, reviews: 156, image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400', category: 'Membership' },
+    { id: '4', name: 'Lab Tests Bundle', price: 2499, originalPrice: 3499, badge: '-29%', rating: 4.6, reviews: 312, image: 'https://images.unsplash.com/photo-1578943905398-7494e0b5f9e4?w=400', category: 'Diagnostics' },
+    { id: '5', name: 'Telemedicine Session', price: 999, originalPrice: null, badge: null, rating: 4.5, reviews: 456, image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400', category: 'Telemedicine' },
+    { id: '6', name: 'Dental Care Package', price: 5999, originalPrice: 7999, badge: '-25%', rating: 4.8, reviews: 234, image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400', category: 'Dental' },
+    { id: '7', name: 'Eye Care Package', price: 3999, originalPrice: null, badge: null, rating: 4.7, reviews: 178, image: 'https://images.unsplash.com/photo-1579803923016-7c6de8a4f7f3?w=400', category: 'Eye Care' },
+    { id: '8', name: 'Wellness Program', price: 7999, originalPrice: 9999, badge: '-20%', rating: 4.9, reviews: 445, image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=400', category: 'Wellness' },
+    { id: '9', name: 'Physiotherapy Sessions', price: 4999, originalPrice: null, badge: null, rating: 4.6, reviews: 123, image: 'https://images.unsplash.com/photo-1576091160552-af0338b76783?w=400', category: 'Rehabilitation' },
+  ],
+  beauty: [
+    { id: '1', name: 'Hydrating Serum', price: 1299, originalPrice: 1599, badge: 'Bestseller', rating: 4.8, reviews: 234, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400', category: 'Skincare' },
+    { id: '2', name: 'Velvet Matte Lipstick', price: 899, originalPrice: null, badge: 'New', rating: 4.5, reviews: 89, image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400', category: 'Makeup' },
+    { id: '3', name: 'Rose Face Oil', price: 1499, originalPrice: 1899, badge: '-20%', rating: 4.9, reviews: 167, image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400', category: 'Skincare' },
+    { id: '4', name: 'Volume Mascara', price: 699, originalPrice: 899, badge: '-22%', rating: 4.6, reviews: 312, image: 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=400', category: 'Makeup' },
+    { id: '5', name: 'Glow Primer', price: 1099, originalPrice: null, badge: null, rating: 4.4, reviews: 156, image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400', category: 'Makeup' },
+    { id: '6', name: 'Night Cream', price: 1799, originalPrice: 2199, badge: '-18%', rating: 4.7, reviews: 98, image: 'https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=400', category: 'Skincare' },
+    { id: '7', name: 'Lip Balm Set', price: 499, originalPrice: 599, badge: '-17%', rating: 4.3, reviews: 445, image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400', category: 'Skincare' },
+    { id: '8', name: 'Foundation', price: 1299, originalPrice: null, badge: null, rating: 4.5, reviews: 234, image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400', category: 'Makeup' },
+    { id: '9', name: 'Eye Shadow Palette', price: 1999, originalPrice: 2499, badge: '-20%', rating: 4.8, reviews: 178, image: 'https://images.unsplash.com/photo-1583241475880-083f84372725?w=400', category: 'Makeup' },
+  ],
+  fashion: [
+    { id: '1', name: 'Silk Evening Dress', price: 4999, originalPrice: 6999, badge: '-29%', rating: 4.7, reviews: 89, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400', category: 'Dresses' },
+    { id: '2', name: 'Summer Floral Dress', price: 2999, originalPrice: null, badge: 'New', rating: 4.5, reviews: 124, image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400', category: 'Dresses' },
+    { id: '3', name: 'Casual Maxi Dress', price: 3499, originalPrice: 4499, badge: '-22%', rating: 4.8, reviews: 67, image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400', category: 'Dresses' },
+    { id: '4', name: 'Designer Handbag', price: 3999, originalPrice: 5999, badge: '-33%', rating: 4.9, reviews: 234, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400', category: 'Accessories' },
+    { id: '5', name: 'Gold Necklace', price: 5999, originalPrice: null, badge: null, rating: 4.6, reviews: 156, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400', category: 'Jewelry' },
+    { id: '6', name: 'Leather Boots', price: 3499, originalPrice: 4999, badge: '-30%', rating: 4.4, reviews: 89, image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400', category: 'Shoes' },
+    { id: '7', name: 'Wool Sweater', price: 2299, originalPrice: 2999, badge: '-23%', rating: 4.3, reviews: 312, image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400', category: 'Clothing' },
+    { id: '8', name: 'Denim Jacket', price: 2799, originalPrice: null, badge: null, rating: 4.5, reviews: 178, image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400', category: 'Clothing' },
+    { id: '9', name: 'Sunglasses', price: 1499, originalPrice: 1999, badge: '-25%', rating: 4.7, reviews: 445, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400', category: 'Accessories' },
+  ],
+  restaurant: [
+    { id: '1', name: 'Signature Burger', price: 399, originalPrice: null, badge: null, rating: 4.8, reviews: 234, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400', category: 'Main Course' },
+    { id: '2', name: 'Margherita Pizza', price: 449, originalPrice: 549, badge: '-18%', rating: 4.6, reviews: 189, image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400', category: 'Pizza' },
+    { id: '3', name: 'Caesar Salad', price: 299, originalPrice: null, badge: 'Chef Special', rating: 4.5, reviews: 156, image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400', category: 'Salads' },
+    { id: '4', name: 'Pasta Carbonara', price: 449, originalPrice: null, badge: null, rating: 4.7, reviews: 98, image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400', category: 'Pasta' },
+    { id: '5', name: 'Grilled Salmon', price: 799, originalPrice: 999, badge: '-20%', rating: 4.9, reviews: 167, image: 'https://images.unsplash.com/photo-1485921325833-c519f76c492c?w=400', category: 'Seafood' },
+    { id: '6', name: 'Tiramisu', price: 299, originalPrice: null, badge: null, rating: 4.8, reviews: 312, image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400', category: 'Desserts' },
+    { id: '7', name: 'Espresso', price: 149, originalPrice: null, badge: null, rating: 4.4, reviews: 445, image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400', category: 'Beverages' },
+    { id: '8', name: 'Paneer Tikka', price: 349, originalPrice: 399, badge: '-13%', rating: 4.6, reviews: 234, image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400', category: 'Appetizers' },
+    { id: '9', name: 'Red Wine', price: 599, originalPrice: null, badge: null, rating: 4.5, reviews: 178, image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400', category: 'Beverages' },
+  ],
+  ecommerce: [
+    { id: '1', name: 'Premium Headphones', price: 2999, originalPrice: 4999, badge: '-40%', rating: 4.8, reviews: 456, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400', category: 'Electronics' },
+    { id: '2', name: 'Smart Watch', price: 4999, originalPrice: null, badge: 'New', rating: 4.6, reviews: 234, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400', category: 'Electronics' },
+    { id: '3', name: 'Leather Wallet', price: 999, originalPrice: 1499, badge: '-33%', rating: 4.5, reviews: 189, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=400', category: 'Accessories' },
+    { id: '4', name: 'Running Shoes', price: 2499, originalPrice: 3999, badge: '-38%', rating: 4.7, reviews: 312, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400', category: 'Footwear' },
+    { id: '5', name: 'Designer Sunglasses', price: 1799, originalPrice: null, badge: null, rating: 4.4, reviews: 98, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400', category: 'Accessories' },
+    { id: '6', name: 'Cotton T-Shirt', price: 699, originalPrice: 999, badge: '-30%', rating: 4.3, reviews: 567, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400', category: 'Clothing' },
+    { id: '7', name: 'Backpack', price: 1499, originalPrice: 1999, badge: '-25%', rating: 4.6, reviews: 234, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400', category: 'Accessories' },
+    { id: '8', name: 'Perfume', price: 2299, originalPrice: null, badge: null, rating: 4.8, reviews: 445, image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400', category: 'Beauty' },
+    { id: '9', name: 'Smart Speaker', price: 3499, originalPrice: 4499, badge: '-22%', rating: 4.5, reviews: 178, image: 'https://images.unsplash.com/photo-1543512214-318c7553f230?w=400', category: 'Electronics' },
+  ],
+  medical: [
+    { id: '1', name: 'Digital Thermometer', price: 299, originalPrice: null, badge: null, rating: 4.7, reviews: 234, image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=400', category: 'Diagnostics' },
+    { id: '2', name: 'Blood Pressure Monitor', price: 1999, originalPrice: 2499, badge: '-20%', rating: 4.8, reviews: 189, image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400', category: 'Medical Devices' },
+    { id: '3', name: 'First Aid Kit', price: 599, originalPrice: null, badge: null, rating: 4.5, reviews: 312, image: 'https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400', category: 'Emergency' },
+    { id: '4', name: 'Vitamin Supplements', price: 899, originalPrice: 1099, badge: '-18%', rating: 4.6, reviews: 456, image: 'https://images.unsplash.com/photo-1550572017-edd951b55104?w=400', category: 'Supplements' },
+    { id: '5', name: 'Face Mask Pack', price: 199, originalPrice: null, badge: null, rating: 4.4, reviews: 678, image: 'https://images.unsplash.com/photo-1586944725629-23d219霞7-9b2d-4af5c0d9d9d9?w=400', category: 'Safety' },
+    { id: '6', name: 'Hand Sanitizer', price: 149, originalPrice: 199, badge: '-25%', rating: 4.3, reviews: 890, image: 'https://images.unsplash.com/photo-1584749909526-8b9f5a4f0f0c?w=400', category: 'Hygiene' },
+    { id: '7', name: 'Pulse Oximeter', price: 799, originalPrice: null, badge: null, rating: 4.7, reviews: 234, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400', category: 'Diagnostics' },
+    { id: '8', name: 'Health Insurance', price: 999, originalPrice: null, badge: 'Popular', rating: 4.5, reviews: 123, image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400', category: 'Insurance' },
+    { id: '9', name: 'Multivitamin Pack', price: 699, originalPrice: 899, badge: '-22%', rating: 4.6, reviews: 345, image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400', category: 'Supplements' },
+  ],
+  realestate: [
+    { id: '1', name: '3BHK Apartment', price: 8500000, originalPrice: null, badge: 'New', rating: 4.9, reviews: 45, image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400', category: 'Apartments' },
+    { id: '2', name: 'Villa with Pool', price: 25000000, originalPrice: 30000000, badge: '-17%', rating: 4.8, reviews: 23, image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400', category: 'Villas' },
+    { id: '3', name: 'Commercial Space', price: 15000000, originalPrice: null, badge: null, rating: 4.7, reviews: 34, image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400', category: 'Commercial' },
+    { id: '4', name: 'Penthouse', price: 45000000, originalPrice: 50000000, badge: '-10%', rating: 4.9, reviews: 12, image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400', category: 'Luxury' },
+    { id: '5', name: 'Studio Apartment', price: 3500000, originalPrice: null, badge: null, rating: 4.5, reviews: 67, image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400', category: 'Apartments' },
+    { id: '6', name: 'Plot Land', price: 2000000, originalPrice: 2500000, badge: '-20%', rating: 4.6, reviews: 89, image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400', category: 'Land' },
+    { id: '7', name: 'Row House', price: 6500000, originalPrice: null, badge: null, rating: 4.7, reviews: 45, image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400', category: 'Houses' },
+    { id: '8', name: 'Office Space', price: 12000000, originalPrice: 14000000, badge: '-14%', rating: 4.4, reviews: 28, image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400', category: 'Commercial' },
+    { id: '9', name: 'Farm House', price: 35000000, originalPrice: null, badge: null, rating: 4.8, reviews: 19, image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400', category: 'Luxury' },
+  ],
+};
+
+// Get products based on template category, default to ecommerce
+const products = categoryProducts[templateCategory] || categoryProducts['ecommerce'];
+const totalResults = products.length * 12; // Simulate more products
+---
+
+<div class="min-h-screen" style={`background-color: ${colors.background || '#f9fafb'}; color: ${colors.text || '#1a1a1a'};`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Search Header -->
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold mb-2" style={`color: ${colors.text || '#1a1a1a'};`}>Shop - {templateName}</h1>
+      <p style={`color: ${colors.textMuted || '#6b7280'};`}>{totalResults} products found</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <!-- Filters Sidebar -->
+      <aside class="lg:col-span-1">
+        <div class="rounded-lg p-6 sticky top-4" style={`background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1);`}>
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="font-semibold" style={`color: ${colors.text || '#1a1a1a'};`}>Filters</h2>
+            <button class="text-sm hover:underline" style={`color: ${colors.accent || '#FA5014'};`}>Clear All</button>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-medium mb-3" style={`color: ${colors.text || '#1a1a1a'};`}>Category</h3>
+              <div class="space-y-2">
+                {[...new Set(products.map(p => p.category))].map(cat => (
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="rounded" />
+                    <span class="text-sm" style={`color: ${colors.textMuted || '#6b7280'};`}>{cat}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 class="font-medium mb-3" style={`color: ${colors.text || '#1a1a1a'};`}>Price Range</h3>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" class="rounded" />
+                  <span class="text-sm" style={`color: ${colors.textMuted || '#6b7280'};`}>Under ₹1,000</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" class="rounded" />
+                  <span class="text-sm" style={`color: ${colors.textMuted || '#6b7280'};`}>₹1,000 - ₹5,000</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" class="rounded" />
+                  <span class="text-sm" style={`color: ${colors.textMuted || '#6b7280'};`}>₹5,000 - ₹10,000</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" class="rounded" />
+                  <span class="text-sm" style={`color: ${colors.textMuted || '#6b7280'};`}>Above ₹10,000</span>
+                </label>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-medium mb-3" style={`color: ${colors.text || '#1a1a1a'};`}>Rating</h3>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" class="rounded" />
+                  <span class="text-sm" style={`color: ${colors.textMuted || '#6b7280'};`}>4★ & above</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" class="rounded" />
+                  <span class="text-sm" style={`color: ${colors.textMuted || '#6b7280'};`}>3★ & above</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Results Grid -->
+      <div class="lg:col-span-3">
+        <!-- Sort Bar -->
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-sm" style={`color: ${colors.textMuted || '#6b7280'};`}>Showing {products.length} of {totalResults} results</span>
+          <select class="border rounded-lg px-3 py-2 text-sm" style={`border-color: ${colors.border || '#e5e7eb'};`}>
+            <option>Sort by: Relevance</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest First</option>
+            <option>Customer Rating</option>
+          </select>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+          {products.map((product) => (
+            <a href={`/${Astro.params.template}?page=product&id=${product.id}`} class="group rounded-lg overflow-hidden transition hover:shadow-lg" style={`background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1);`}>
+              <div class="aspect-[3/4] overflow-hidden bg-gray-100 relative">
+                <img src={product.image} alt={product.name} class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                {product.badge && (
+                  <span class="absolute top-2 left-2 px-2 py-1 text-xs font-medium rounded" style={`background-color: ${colors.accent || '#FA5014'}; color: white;`}>
+                    {product.badge}
+                  </span>
+                )}
+              </div>
+
+              <div class="p-4">
+                <p class="text-xs mb-1" style={`color: ${colors.textMuted || '#6b7280'};`}>{product.category}</p>
+                <h3 class="font-medium mb-1 line-clamp-2" style={`color: ${colors.text || '#1a1a1a'};`}>{product.name}</h3>
+                <div class="flex items-center gap-1 mb-2">
+                  <span class="text-yellow-400 text-sm">{'★'.repeat(Math.floor(product.rating))}</span>
+                  <span class="text-xs" style={`color: ${colors.textMuted || '#6b7280'};`}>({product.rating})</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <p class="font-semibold" style={`color: ${colors.primary || '#000032'};`}>₹{product.price.toLocaleString()}</p>
+                  {product.originalPrice && (
+                    <p class="text-sm line-through" style={`color: ${colors.textMuted || '#6b7280'};`}>₹{product.originalPrice.toLocaleString()}</p>
+                  )}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-center gap-2 mt-8">
+          <button class="px-4 py-2 border rounded-lg hover:bg-gray-50" disabled>Previous</button>
+          <button class="px-4 py-2 font-medium rounded-lg" style={`background-color: ${colors.primary || '#000032'}; color: white;`}>1</button>
+          <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">2</button>
+          <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">3</button>
+          <span class="px-2">...</span>
+          <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">{Math.ceil(totalResults / 9)}</button>
+          <button class="px-4 py-2 border rounded-lg hover:bg-gray-50">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

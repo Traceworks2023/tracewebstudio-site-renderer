@@ -1,0 +1,294 @@
+---
+// Split Media Section - Image + Content with Parallax and Motion
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    image?: string;
+    imagePosition?: 'left' | 'right';
+    ctaText?: string;
+    ctaUrl?: string;
+    stats?: Array<{ value: string; label: string }>;
+  };
+  settings?: {
+    variant?: 'default' | 'overlapped' | 'side-by-side' | 'card';
+    parallaxPreset?: 'none' | 'layeredDepth' | 'foregroundFloat' | 'splitColumn';
+    motionLevel?: 1 | 2 | 3 | 4;
+    showStats?: boolean;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Crafted with Excellence',
+  subtitle = 'Our Philosophy',
+  description = 'We believe in creating products that not only meet the highest standards of quality but also tell a story. Every piece is thoughtfully designed to bring beauty into your everyday life.',
+  image = 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800',
+  imagePosition = 'left',
+  ctaText = 'Learn More',
+  ctaUrl = '#',
+  stats = [
+    { value: '10+', label: 'Years Experience' },
+    { value: '500+', label: 'Projects Completed' },
+    { value: '98%', label: 'Client Satisfaction' },
+  ],
+} = content;
+
+const {
+  variant = 'default',
+  parallaxPreset = 'layeredDepth',
+  motionLevel = 3,
+  showStats = true,
+  templateSlug = '',
+} = settings;
+
+const getTemplateLink = (link: string) => {
+  if (!link || link === '#') return '#';
+  if (link.startsWith('http')) return link;
+  return `/${templateSlug}${link.startsWith('/') ? link : `/${link}`}`;
+};
+
+const isReversed = imagePosition === 'right';
+---
+
+<section
+  class={`split-media-section py-20 md:py-32 overflow-hidden ${variant === 'overlapped' ? 'bg-gray-50' : ''}`}
+  data-variant={variant}
+  data-parallax={parallaxPreset}
+  data-motion-level={motionLevel}
+  data-reversed={isReversed}
+>
+  <div class="max-w-7xl mx-auto px-6">
+    <div class={`split-media-grid grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${isReversed ? 'lg:flex-row-reverse' : ''}`}>
+      {/* Image Column */}
+      <div class="split-media-image-wrapper relative">
+        {variant === 'overlapped' ? (
+          <div class="relative">
+            <div class="absolute -top-6 -left-6 w-full h-full bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] rounded-2xl transform -rotate-3" />
+            <img
+              src={image}
+              alt={title}
+              class="relative rounded-2xl shadow-2xl w-full transform hover:rotate-0 transition-transform duration-500"
+              style="transform: rotate(-2deg);"
+              loading="lazy"
+            />
+          </div>
+        ) : variant === 'card' ? (
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary)]/80 rounded-3xl transform rotate-6" />
+            <img
+              src={image}
+              alt={title}
+              class="relative rounded-3xl shadow-2xl w-full"
+              loading="lazy"
+            />
+            <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-xl p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-[var(--color-accent)] rounded-full flex items-center justify-center text-white text-xl">
+                  ✦
+                </div>
+                <div>
+                  <div class="font-bold text-[var(--color-text)]">Premium Quality</div>
+                  <div class="text-sm text-gray-500">Since 2014</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div class="relative">
+            <div class="absolute -inset-4 bg-gradient-to-br from-navy/20 to-transparent rounded-3xl transform rotate-3" />
+            <img
+              src={image}
+              alt={title}
+              class="relative rounded-2xl shadow-xl w-full"
+              loading="lazy"
+            />
+            <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-[var(--color-accent)] rounded-full flex items-center justify-center text-white text-4xl font-bold">
+              10+
+            </div>
+          </div>
+        )}
+
+        {/* Decorative Elements */}
+        {motionLevel >= 4 && (
+          <div class="absolute -z-10 -inset-8">
+            <div class="absolute top-0 right-0 w-24 h-24 border-2 border-navy/20 rounded-full" />
+            <div class="absolute bottom-0 left-0 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full blur-2xl" />
+          </div>
+        )}
+      </div>
+
+      {/* Content Column */}
+      <div class="split-media-content">
+        <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-6">
+          {subtitle}
+        </span>
+
+        <h2 class="text-4xl md:text-5xl font-bold text-[var(--color-text)] mb-6 leading-tight">
+          {title}
+        </h2>
+
+        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+          {description}
+        </p>
+
+        {/* Stats */}
+        {showStats && stats.length > 0 && (
+          <div class="grid grid-cols-3 gap-6 mb-8">
+            {stats.map((stat, index) => (
+              <div class="stat-item text-center lg:text-left">
+                <div class="text-3xl md:text-4xl font-bold text-[var(--color-text)] mb-1">
+                  {stat.value}
+                </div>
+                <div class="text-sm text-gray-500">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* CTA */}
+        <a
+          href={getTemplateLink(ctaUrl)}
+          class="group inline-flex items-center gap-2 text-[var(--color-text)] font-semibold hover:text-[var(--color-accent)] transition-colors"
+        >
+          <span>{ctaText}</span>
+          <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .split-media-image-wrapper img {
+    will-change: transform;
+  }
+
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stat-item {
+    opacity: 0;
+    animation: reveal-up 0.6s ease-out forwards;
+  }
+
+  .stat-item:nth-child(1) { animation-delay: 0.3s; }
+  .stat-item:nth-child(2) { animation-delay: 0.4s; }
+  .stat-item:nth-child(3) { animation-delay: 0.5s; }
+
+  /* Level 4 parallax */
+  [data-motion-level="4"][data-parallax="layeredDepth"] .split-media-image-wrapper img {
+    transition: transform 0.6s ease-out;
+  }
+
+  [data-motion-level="4"][data-parallax="layeredDepth"] .split-media-image-wrapper:hover img {
+    transform: scale(1.05) rotate(1deg);
+  }
+
+  /* Split column opposing motion */
+  [data-motion-level="4"][data-parallax="splitColumn"] .split-media-image-wrapper {
+    transform: translateX(-30px);
+    transition: transform 0.8s ease-out;
+  }
+
+  [data-motion-level="4"][data-parallax="splitColumn"] .split-media-content {
+    transform: translateX(30px);
+    transition: transform 0.8s ease-out;
+  }
+
+  [data-motion-level="4"][data-parallax="splitColumn"] .split-media-section:has(.split-media-image-wrapper:hover) .split-media-image-wrapper {
+    transform: translateX(0);
+  }
+
+  [data-motion-level="4"][data-parallax="splitColumn"] .split-media-section:has(.split-media-content:hover) .split-media-content {
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.split-media-section') as HTMLElement;
+    if (!section) return;
+
+    const imageWrapper = section.querySelector('.split-media-image-wrapper');
+    const content = section.querySelector('.split-media-content');
+    const parallaxPreset = section.dataset.parallax || 'none';
+    const motionLevel = parseInt(section.dataset.motionLevel || '3');
+
+    // Scroll-triggered animations
+    if (motionLevel >= 3) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      if (imageWrapper) {
+        tl.fromTo(imageWrapper,
+          { opacity: 0, x: -50 },
+          { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' }
+        );
+      }
+
+      if (content) {
+        tl.fromTo(content,
+          { opacity: 0, x: 50 },
+          { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' },
+          '-=0.4'
+        );
+      }
+    }
+
+    // Parallax effect on scroll
+    if (motionLevel >= 3 && parallaxPreset !== 'none') {
+      const img = imageWrapper?.querySelector('img');
+
+      if (img) {
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            switch (parallaxPreset) {
+              case 'layeredDepth':
+                gsap.set(img, {
+                  yPercent: (progress - 0.5) * 20,
+                  scale: 1 + Math.abs(progress - 0.5) * 0.1,
+                });
+                break;
+              case 'foregroundFloat':
+                gsap.set(img, {
+                  y: (progress - 0.5) * -30,
+                  rotation: (progress - 0.5) * 3,
+                });
+                break;
+            }
+          },
+        });
+      }
+    }
+  });
+</script>

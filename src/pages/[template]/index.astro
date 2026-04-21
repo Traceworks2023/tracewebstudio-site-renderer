@@ -1,0 +1,467 @@
+---
+// Dynamic Template Router - Universal page renderer
+export const prerender = false;
+
+import { loadTemplate, getPageById, getVisibleSections } from '../../lib/template-loader';
+import { generateUniqueContent, applyGeneratedContentToSection } from '../../lib/content-generator';
+
+// Premium Section components
+import HeroCinematic from '../../components/sections/HeroCinematic.astro';
+import HeroEditorial from '../../components/sections/HeroEditorial.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import HeroSplit from '../../components/sections/HeroSplit.astro';
+import HeroTypographic from '../../components/sections/HeroTypographic.astro';
+
+// Category-specific Hero components
+import HeroRestaurant from '../../components/category-sections/restaurant/HeroRestaurant.astro';
+import HeroBeauty from '../../components/category-sections/beauty/HeroBeauty.astro';
+import HeroFitness from '../../components/category-sections/fitness/HeroFitness.astro';
+import HeroHotel from '../../components/category-sections/hotel/HeroHotel.astro';
+import HeroPhotographer from '../../components/category-sections/photographer/HeroPhotographer.astro';
+import HeroAgency from '../../components/category-sections/agency/HeroAgency.astro';
+import CategoryGrid from '../../components/sections/CategoryGrid.astro';
+import ProductCarousel from '../../components/sections/ProductCarousel.astro';
+import ProductGrid from '../../components/sections/ProductGrid.astro';
+import CollectionGrid from '../../components/sections/CollectionGrid.astro';
+import AdvancedCarousel from '../../components/sections/AdvancedCarousel.astro';
+import SplitMedia from '../../components/sections/SplitMedia.astro';
+import CTABanner from '../../components/sections/CTABanner.astro';
+import CTAVapor from '../../components/sections/CTAVapor.astro';
+import TestimonialsSlider from '../../components/sections/TestimonialsSlider.astro';
+import Testimonials from '../../components/sections/Testimonials.astro';
+import TestimonialsMarquee from '../../components/sections/TestimonialsMarquee.astro';
+import Newsletter from '../../components/sections/Newsletter.astro';
+import ContactForm from '../../components/sections/ContactForm.astro';
+import GalleryGrid from '../../components/sections/GalleryGrid.astro';
+import Features from '../../components/sections/Features.astro';
+import FeaturesHorizontal from '../../components/sections/FeaturesHorizontal.astro';
+import FAQ from '../../components/sections/FAQ.astro';
+import StatsSection from '../../components/sections/StatsSection.astro';
+import LogoStrip from '../../components/sections/LogoStrip.astro';
+import MotionSection from '../../components/sections/MotionSection.astro';
+
+// Premium Navigation & Footer
+import PremiumNav from '../../components/sections/PremiumNav.astro';
+import PremiumFooter from '../../components/sections/PremiumFooter.astro';
+
+// Customer-facing pages
+import ProductPage from '../../components/pages/ProductPage.astro';
+import CartPage from '../../components/pages/CartPage.astro';
+import CheckoutPage from '../../components/pages/CheckoutPage.astro';
+import WishlistPage from '../../components/pages/WishlistPage.astro';
+import AccountPage from '../../components/pages/AccountPage.astro';
+import SearchPage from '../../components/pages/SearchPage.astro';
+import AboutPage from '../../components/pages/AboutPage.astro';
+import ContactPage from '../../components/pages/ContactPage.astro';
+import FAQPage from '../../components/pages/FAQPage.astro';
+import TrackOrderPage from '../../components/pages/TrackOrderPage.astro';
+
+// Admin pages
+import DashboardPage from '../../components/pages/admin/DashboardPage.astro';
+import OrdersPage from '../../components/pages/admin/OrdersPage.astro';
+import ProductsPage from '../../components/pages/admin/ProductsPage.astro';
+import CustomersPage from '../../components/pages/admin/CustomersPage.astro';
+import AnalyticsPage from '../../components/pages/admin/AnalyticsPage.astro';
+import MarketingPage from '../../components/pages/admin/MarketingPage.astro';
+import SettingsPage from '../../components/pages/admin/SettingsPage.astro';
+
+// Business pages
+import MenuPage from '../../components/pages/MenuPage.astro';
+import ServicesPage from '../../components/pages/ServicesPage.astro';
+import BookingPage from '../../components/pages/BookingPage.astro';
+import TeamPage from '../../components/pages/TeamPage.astro';
+import ProgramsPage from '../../components/pages/ProgramsPage.astro';
+import TrainersPage from '../../components/pages/TrainersPage.astro';
+import MembershipPage from '../../components/pages/MembershipPage.astro';
+import SchedulePage from '../../components/pages/SchedulePage.astro';
+import ReservationsPage from '../../components/pages/ReservationsPage.astro';
+import OffersPage from '../../components/pages/OffersPage.astro';
+import ProcessPage from '../../components/pages/ProcessPage.astro';
+import TestimonialsPage from '../../components/pages/TestimonialsPage.astro';
+import LookbookPage from '../../components/pages/LookbookPage.astro';
+import RoomCollectionsPage from '../../components/pages/RoomCollectionsPage.astro';
+import RoomsPage from '../../components/pages/RoomsPage.astro';
+import DoctorsPage from '../../components/pages/DoctorsPage.astro';
+import DestinationsPage from '../../components/pages/DestinationsPage.astro';
+import HelpCenterPage from '../../components/pages/HelpCenterPage.astro';
+import SupportPortalPage from '../../components/pages/SupportPortalPage.astro';
+import QuoteRequestPage from '../../components/pages/QuoteRequestPage.astro';
+import FormBuilderPage from '../../components/pages/FormBuilderPage.astro';
+
+// Portfolio pages
+import GalleryPage from '../../components/pages/GalleryPage.astro';
+
+const { template } = Astro.params;
+const url = new URL(Astro.request.url);
+const pageId = url.searchParams.get('page') || 'home';
+
+const templateConfig = await loadTemplate(template || '');
+const pageConfig = templateConfig ? getPageById(templateConfig, pageId) : null;
+const templateSections = pageConfig ? getVisibleSections(pageConfig) : [];
+
+// Extract theme configuration first
+const theme = templateConfig?.theme || {};
+const fonts = theme.fonts || { heading: 'Playfair Display', body: 'Inter' };
+const colors = theme.colors || {};
+
+// Generate unique content for this template
+const contentCategory = templateConfig?.category || 'business';
+const generatedContent = generateUniqueContent(template || '', contentCategory);
+
+// Apply generated content to sections with index for bg style variation
+const sections = templateSections.map((section, index) =>
+  applyGeneratedContentToSection(section, generatedContent, section.type, index, colors)
+);
+
+// Build Google Fonts URL with proper weight ranges
+function getGoogleFontsUrl(heading: string, body: string): string {
+  const fontWeights = '300;400;500;600;700';
+  const headingParam = heading.replace(/ /g, '+');
+  const bodyParam = body.replace(/ /g, '+');
+  return `https://fonts.googleapis.com/css2?family=${headingParam}:wght@${fontWeights}&family=${bodyParam}:wght@${fontWeights}&display=swap`;
+}
+
+const googleFontsUrl = getGoogleFontsUrl(fonts.heading, fonts.body);
+
+// Build CSS variables from theme
+const cssVariables = `
+  --color-primary: ${colors.primary || '#000032'};
+  --color-secondary: ${colors.secondary || '#333333'};
+  --color-accent: ${colors.accent || '#FA5014'};
+  --color-background: ${colors.background || '#ffffff'};
+  --color-surface: ${colors.surface || '#f5f5f5'};
+  --color-text: ${colors.text || '#1a1a1a'};
+  --color-text-muted: ${colors.textMuted || '#666666'};
+  --color-border: ${colors.border || '#e5e5e5'};
+  --color-error: ${colors.error || '#dc2626'};
+  --color-success: ${colors.success || '#16a34a'};
+  --font-heading: '${fonts.heading}', serif;
+  --font-body: '${fonts.body}', sans-serif;
+  --radius-sm: ${theme.borderRadius?.sm || '4px'};
+  --radius-md: ${theme.borderRadius?.md || '8px'};
+  --radius-lg: ${theme.borderRadius?.lg || '16px'};
+  --radius-xl: ${theme.borderRadius?.xl || '24px'};
+  --spacing-section: ${theme.spacing?.section || '80px'};
+  --spacing-container: ${theme.spacing?.container || '1200px'};
+`;
+
+// Define navigation pages based on template category
+const templateCategory = templateConfig.category || 'ecommerce';
+
+const ecommercePages = [
+  { id: 'home', label: 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+  { id: 'category', label: 'Shop', icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10' },
+  { id: 'product', label: 'Product', icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' },
+  { id: 'cart', label: 'Cart', icon: 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' },
+  { id: 'checkout', label: 'Checkout', icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z' },
+  { id: 'account', label: 'Account', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
+  { id: 'wishlist', label: 'Wishlist', icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z' },
+  { id: 'search', label: 'Search', icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' },
+  { id: 'about', label: 'About', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { id: 'contact', label: 'Contact', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+];
+
+const portfolioPages = [
+  { id: 'home', label: 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+  { id: 'gallery', label: 'Gallery', icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' },
+  { id: 'services', label: 'Services', icon: 'M21 13.255A23.94 23.94 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+  { id: 'about', label: 'About', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { id: 'team', label: 'Team', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+  { id: 'contact', label: 'Contact', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+];
+
+const businessPages = [
+  { id: 'home', label: 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+  { id: 'services', label: 'Services', icon: 'M21 13.255A23.94 23.94 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+  { id: 'about', label: 'About', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { id: 'team', label: 'Team', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+  { id: 'contact', label: 'Contact', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+  { id: 'booking', label: 'Booking', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
+  { id: 'quote', label: 'Quote', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+  { id: 'support', label: 'Support', icon: 'M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z' },
+  { id: 'help-center', label: 'Help', icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { id: 'forms', label: 'Forms', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+];
+
+const navPages = templateCategory === 'ecommerce' ? ecommercePages : templateCategory === 'portfolio' ? portfolioPages : businessPages;
+
+// Determine template family for category-specific components
+const templateSlug = template || '';
+
+// Category-specific hero components - each category has its own unique design
+function getCategoryHero(slug: string): any {
+  const s = slug.toLowerCase();
+  if (s.includes('restaurant') || s.includes('cafe') || s.includes('food')) return HeroRestaurant;
+  if (s.includes('beauty') || s.includes('makeup')) return HeroBeauty;
+  if (s.includes('fitness') || s.includes('gym')) return HeroFitness;
+  if (s.includes('hotel') || s.includes('resort') || s.includes('travel')) return HeroHotel;
+  if (s.includes('photographer') || s.includes('photo') || s.includes('video')) return HeroPhotographer;
+  if (s.includes('agency') || s.includes('portfolio') || s.includes('designer') || s.includes('developer') || s.includes('freelancer')) return HeroAgency;
+  // Default to premium cinematic hero
+  return HeroCinematic;
+}
+
+// Map section types to components - using category-specific heroes for uniqueness
+const sectionComponents: Record<string, any> = {
+  // Hero sections - category-specific for truly unique designs
+  'hero-cinematic': getCategoryHero(templateSlug),
+  'hero-editorial': getCategoryHero(templateSlug),
+  'hero-section': getCategoryHero(templateSlug),
+  // Content sections - shared but with good variety
+  'category-grid': CategoryGrid,
+  'product-carousel': ProductCarousel,
+  'product-grid': ProductGrid,
+  'collection-grid': CollectionGrid,
+  'advanced-carousel': AdvancedCarousel,
+  'split-media': SplitMedia,
+  'gallery-grid': GalleryGrid,
+  'features': Features,
+  'faq': FAQ,
+  'stats': StatsSection,
+  'logo-strip': LogoStrip,
+  // Social/conversion sections
+  'cta-banner': CTABanner,
+  'testimonials-slider': TestimonialsSlider,
+  'testimonials': Testimonials,
+  'newsletter': Newsletter,
+  'contact-form': ContactForm,
+  // Motion section
+  'motion-section': MotionSection,
+};
+
+// Map page types to full-page components (ecommerce uses SearchPage for category)
+const pageComponents: Record<string, any> = {
+  'product': ProductPage,
+  'cart': CartPage,
+  'checkout': CheckoutPage,
+  'wishlist': WishlistPage,
+  'account': AccountPage,
+  'search': SearchPage,
+  'about': AboutPage,
+  'contact': ContactPage,
+  'faq': FAQPage,
+  'track-order': TrackOrderPage,
+  'admin-dashboard': DashboardPage,
+  'admin-orders': OrdersPage,
+  'admin-products': ProductsPage,
+  'admin-customers': CustomersPage,
+  'admin-analytics': AnalyticsPage,
+  'admin-marketing': MarketingPage,
+  'admin-settings': SettingsPage,
+  'menu': MenuPage,
+  'services': ServicesPage,
+  'booking': BookingPage,
+  'team': TeamPage,
+  'gallery': GalleryPage,
+  'programs': ProgramsPage,
+  'trainers': TrainersPage,
+  'membership': MembershipPage,
+  'schedule': SchedulePage,
+  'reservations': ReservationsPage,
+  'offers': OffersPage,
+  'process': ProcessPage,
+  'testimonials-page': TestimonialsPage,
+  'lookbook': LookbookPage,
+  'room-collections': RoomCollectionsPage,
+  'rooms': RoomsPage,
+  'doctors': DoctorsPage,
+  'destinations': DestinationsPage,
+  'help-center': HelpCenterPage,
+  'support': SupportPortalPage,
+  'quote': QuoteRequestPage,
+  'forms': FormBuilderPage
+};
+
+// Category page varies by template type: ecommerce=SearchPage, portfolio=GalleryPage, business=ServicesPage
+const categoryPage = templateCategory === 'ecommerce' ? SearchPage : templateCategory === 'portfolio' ? GalleryPage : ServicesPage;
+const PageComponent = pageId === 'category' ? categoryPage : pageComponents[pageId];
+---
+
+{!templateConfig ? (
+  <div class="min-h-screen flex items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-2xl font-bold mb-4">Template Not Found</h1>
+      <p class="text-gray-600 mb-4">The template could not be loaded.</p>
+      <a href="/" class="text-blue-600">Go Home</a>
+    </div>
+  </div>
+) : (
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>{pageConfig?.name || templateConfig.name} - Built with Tracewebstudio</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href={googleFontsUrl} rel="stylesheet" />
+      <link href="/src/styles/premium.css" rel="stylesheet" />
+      <style is:global set:html={cssVariables}></style>
+    </head>
+    <body class="min-h-screen bg-white">
+      {/* Tracewebstudio Branding Bar */}
+      {!pageId?.startsWith('admin-') && (
+        <div class="bg-navy text-white/80 py-2 px-4 text-center text-sm">
+          <span>Powered by <span class="text-orange font-semibold">Tracewebstudio</span> - Create your own store today</span>
+          <a href="http://localhost:8080" target="_blank" class="ml-2 text-orange hover:text-orange/80 underline">Get Started →</a>
+        </div>
+      )}
+
+      {pageId?.startsWith('admin-') ? (
+        <div class="flex min-h-screen bg-gray-100" style={`--admin-primary: ${colors.primary || '#000032'}; --admin-accent: ${colors.accent || '#FA5014'};`}>
+          {/* Admin Sidebar */}
+          <aside class="w-64 text-white flex flex-col" style="background: linear-gradient(180deg, var(--admin-primary) 0%, color-mix(in srgb, var(--admin-primary) 80%, black) 100%);">
+            <div class="p-6 border-b border-white/10">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg" style="background: var(--admin-accent);">{templateConfig.name.charAt(0)}</div>
+                <div>
+                  <h1 class="text-lg font-bold">{templateConfig.name}</h1>
+                  <p class="text-xs text-white/60">Admin Panel</p>
+                </div>
+              </div>
+            </div>
+            <nav class="flex-1 p-4 space-y-1">
+              <a href={`/${template}?page=admin-dashboard`} style={pageId === 'admin-dashboard' ? `background: var(--admin-accent)` : ''} class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-white/90 hover:bg-white/10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Dashboard
+              </a>
+              <a href={`/${template}?page=admin-orders`} style={pageId === 'admin-orders' ? `background: var(--admin-accent)` : ''} class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-white/90 hover:bg-white/10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                Orders
+              </a>
+              <a href={`/${template}?page=admin-products`} style={pageId === 'admin-products' ? `background: var(--admin-accent)` : ''} class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-white/90 hover:bg-white/10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                Products
+              </a>
+              <a href={`/${template}?page=admin-customers`} style={pageId === 'admin-customers' ? `background: var(--admin-accent)` : ''} class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-white/90 hover:bg-white/10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/></svg>
+                Customers
+              </a>
+              <a href={`/${template}?page=admin-analytics`} style={pageId === 'admin-analytics' ? `background: var(--admin-accent)` : ''} class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-white/90 hover:bg-white/10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                Analytics
+              </a>
+              <a href={`/${template}?page=admin-marketing`} style={pageId === 'admin-marketing' ? `background: var(--admin-accent)` : ''} class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-white/90 hover:bg-white/10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+                Marketing
+              </a>
+              <div class="border-t border-white/10 my-4"></div>
+              <a href={`/${template}?page=admin-settings`} style={pageId === 'admin-settings' ? `background: var(--admin-accent)` : ''} class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-white/90 hover:bg-white/10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Settings
+              </a>
+              <a href={`/${template}`} class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-white/90 hover:bg-white/10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                View Store
+              </a>
+            </nav>
+            <div class="p-4 border-t border-white/10">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold" style="background: var(--admin-accent);">A</div>
+                <div>
+                  <p class="text-sm font-medium">Admin User</p>
+                  <p class="text-xs text-white/60">admin@store.com</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+          {/* Admin Content */}
+          <main class="flex-1 overflow-auto">
+            {PageComponent ? (
+              <PageComponent template={templateConfig} page={pageConfig} />
+            ) : (
+              <div class="p-8">
+                <h1 class="text-2xl font-bold text-gray-900 mb-4">Page: {pageId}</h1>
+                <p class="text-gray-600">This page component is being built.</p>
+              </div>
+            )}
+          </main>
+        </div>
+      ) : (
+        <>
+          <PremiumNav
+            content={{
+              logo: generatedContent.brand.name,
+              ctaText: generatedContent.ctas.primary,
+              ctaUrl: `?page=checkout`,
+              navItems: generatedContent.navigation.map(n => ({ label: n.label, href: `?page=${n.href.replace('/', '')}` })),
+            }}
+            settings={{ variant: 'glass', position: 'sticky', showSearch: false, showAccount: false, templateSlug: template }}
+          />
+
+          <main>
+            {PageComponent ? (
+              <PageComponent template={templateConfig} page={pageConfig} tenantId={Astro.locals.tenant?.tenantId || '00000000-0000-0000-0000-000000000000'} />
+            ) : (
+              sections.map((section) => {
+                const SectionComponent = sectionComponents[section.type];
+                if (!SectionComponent) return null;
+                return <SectionComponent
+                  content={section.content}
+                  settings={{ ...section.settings, templateSlug: template }}
+                />;
+              })
+            )}
+          </main>
+
+          {/* Purchase Template Banner */}
+          {!pageId?.startsWith('admin-') && (
+            <div class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] py-8 px-6">
+              <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-center md:text-left">
+                  <h3 class="text-2xl font-bold text-white mb-1">Ready to use this template?</h3>
+                  <p class="text-white/80">Get full access to all pages, features, and lifetime updates.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="text-white">
+                    <span class="text-3xl font-bold">$49</span>
+                    <span class="text-white/60 line-through ml-2">$199</span>
+                  </div>
+                  <a
+                    href={`http://localhost:8080/checkout?template=${template}`}
+                    target="_blank"
+                    class="px-8 py-4 bg-white text-[var(--color-primary)] font-bold rounded-full hover:scale-105 transition-transform shadow-lg whitespace-nowrap"
+                  >
+                    Purchase Template
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <PremiumFooter
+            content={{
+              logo: generatedContent.brand.name,
+              description: generatedContent.brand.description,
+            }}
+            settings={{ variant: 'dark', showNewsletter: true, showSocial: true }}
+          />
+
+          {/* Floating Page Switcher */}
+          <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-white/95 backdrop-blur-xl rounded-full shadow-2xl border border-gray-200 p-2 max-w-[95vw] overflow-x-auto">
+            <span class="px-3 text-sm font-medium text-gray-500 whitespace-nowrap">Pages:</span>
+            {navPages.map(p => (
+              <a
+                href={`/${template}?page=${p.id}`}
+                class={`px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+                  pageId === p.id
+                    ? 'text-white'
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+                style={pageId === p.id ? `background: var(--color-primary);` : ''}
+              >
+                {p.label}
+              </a>
+            ))}
+            <div class="w-px h-6 bg-gray-200 mx-2"></div>
+            <a
+              href={`/${template}?page=admin-dashboard`}
+              class="px-3 py-2 rounded-full text-sm font-medium transition-all text-white"
+              style="background: var(--color-accent);"
+            >
+              Edit Dashboard
+            </a>
+          </div>
+        </>
+      )}
+    </body>
+  </html>
+)}

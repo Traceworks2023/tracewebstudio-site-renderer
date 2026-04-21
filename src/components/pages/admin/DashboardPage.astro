@@ -1,0 +1,113 @@
+---
+// Admin Dashboard - Overview Page
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+
+const stats = [
+  { label: 'Total Sales', value: '₹2,45,678', change: '+12.5%', positive: true },
+  { label: 'Orders', value: '1,234', change: '+8.2%', positive: true },
+  { label: 'Customers', value: '5,678', change: '+15.3%', positive: true },
+  { label: 'Avg Order Value', value: '₹1,994', change: '-2.1%', positive: false }
+];
+
+const recentOrders = [
+  { id: 'ORD-001', customer: 'John Doe', amount: 4999, status: 'completed', date: 'Jan 20' },
+  { id: 'ORD-002', customer: 'Jane Smith', amount: 7999, status: 'processing', date: 'Jan 19' },
+  { id: 'ORD-003', customer: 'Mike Johnson', amount: 2999, status: 'pending', date: 'Jan 19' },
+  { id: 'ORD-004', customer: 'Sarah Williams', amount: 12499, status: 'completed', date: 'Jan 18' }
+];
+
+const topProducts = [
+  { name: 'Premium Silk Dress', sales: 245, revenue: '₹12,24,755' },
+  { name: 'Designer Handbag', sales: 189, revenue: '₹24,58,811' },
+  { name: 'Gold Necklace', sales: 156, revenue: '₹14,03,844' },
+  { name: 'Leather Boots', sales: 134, revenue: '₹8,05,266' }
+];
+---
+
+<div class="min-h-screen bg-gray-50">
+  {/* Header */}
+  <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
+    <div class="px-6 py-4 flex items-center justify-between">
+      <h1 class="text-xl font-bold text-gray-900">Dashboard</h1>
+      <div class="flex items-center gap-4">
+        <span class="text-sm text-gray-500">Last updated: Just now</span>
+        <button class="p-2 hover:bg-gray-100 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+          </svg>
+        </button>
+        <div class="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center text-white text-sm font-medium">
+          A
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="p-6">
+    {/* Stats Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      {stats.map((stat) => (
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <p class="text-sm text-gray-500 mb-1">{stat.label}</p>
+          <p class="text-2xl font-bold text-gray-900">{stat.value}</p>
+          <p class={`text-sm mt-2 ${stat.positive ? 'text-green-600' : 'text-red-600'}`}>
+            {stat.change} from last month
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Recent Orders */}
+      <div class="lg:col-span-2 bg-white rounded-lg shadow-sm">
+        <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+          <h2 class="font-semibold text-gray-900">Recent Orders</h2>
+          <a href="/admin/orders" class="text-sm text-blue-600 hover:underline">View all</a>
+        </div>
+        <div class="divide-y divide-gray-200">
+          {recentOrders.map((order) => (
+            <div class="px-6 py-4 flex items-center justify-between">
+              <div>
+                <p class="font-medium text-gray-900">{order.id}</p>
+                <p class="text-sm text-gray-500">{order.customer}</p>
+              </div>
+              <div class="text-right">
+                <p class="font-semibold text-gray-900">₹{order.amount}</p>
+                <span class={`inline-block px-2 py-1 text-xs rounded-full ${
+                  order.status === 'completed' ? 'bg-green-100 text-green-800' :
+                  order.status === 'processing' ? 'bg-blue-100 text-blue-800' :
+                  'bg-yellow-100 text-yellow-800'
+                }`}>
+                  {order.status}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Top Products */}
+      <div class="bg-white rounded-lg shadow-sm">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h2 class="font-semibold text-gray-900">Top Products</h2>
+        </div>
+        <div class="divide-y divide-gray-200">
+          {topProducts.map((product) => (
+            <div class="px-6 py-4">
+              <p class="font-medium text-gray-900 truncate">{product.name}</p>
+              <div class="flex items-center justify-between mt-1">
+                <p class="text-sm text-gray-500">{product.sales} sold</p>
+                <p class="text-sm font-medium text-gray-900">{product.revenue}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+---
+// Lookbook Page - Fashion, Furniture, Home Decor
+interface LookbookEntry {
+  id: string;
+  title: string;
+  description?: string;
+  image: string;
+  items?: Array<{ name: string; price?: number; link?: string }>;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    entries?: LookbookEntry[];
+  };
+}
+
+const { content = {} } = Astro.props;
+const {
+  title = 'Lookbook',
+  subtitle = 'Explore our curated collections and styled looks',
+  entries = [
+    {
+      id: 'look-1',
+      title: 'Summer Essentials',
+      description: 'Light, breathable pieces for warm weather',
+      image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800',
+      items: [
+        { name: 'Linen Shirt', price: 89 },
+        { name: 'Cotton Trousers', price: 120 },
+        { name: 'Straw Hat', price: 45 }
+      ]
+    },
+    {
+      id: 'look-2',
+      title: 'Evening Elegance',
+      description: 'Sophisticated looks for special occasions',
+      image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800',
+      items: [
+        { name: 'Silk Dress', price: 299 },
+        { name: 'Heeled Sandals', price: 180 }
+      ]
+    },
+    {
+      id: 'look-3',
+      title: 'Weekend Casual',
+      description: 'Relaxed yet refined weekend style',
+      image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800',
+      items: [
+        { name: 'Relaxed Blazer', price: 195 },
+        { name: 'Cashmere Sweater', price: 165 }
+      ]
+    },
+    {
+      id: 'look-4',
+      title: 'Workwear Edit',
+      description: 'Power dressing for the modern professional',
+      image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800',
+      items: [
+        { name: 'Tailored Jacket', price: 245 },
+        { name: 'Wide Leg Trousers', price: 135 }
+      ]
+    }
+  ]
+} = content;
+---
+
+<div class="lookbook-page py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-4">
+        Lookbook
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {entries.map((entry, index) => (
+        <article class={`lookbook-entry group ${index === 0 ? 'md:col-span-2' : ''}`}>
+          <div class="relative overflow-hidden rounded-2xl">
+            <img
+              src={entry.image}
+              alt={entry.title}
+              class={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${index === 0 ? 'aspect-[21/9]' : 'aspect-[4/5]'}`}
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-8">
+              <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">{entry.title}</h2>
+              {entry.description && (
+                <p class="text-white/80 mb-4">{entry.description}</p>
+              )}
+              {entry.items && entry.items.length > 0 && (
+                <div class="flex flex-wrap gap-3">
+                  {entry.items.map((item) => (
+                    <span class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                      {item.name}
+                      {item.price && <span class="ml-1 opacity-70">${item.price}</span>}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <a
+                href={`/lookbook/${entry.id}`}
+                class="mt-4 inline-flex items-center gap-2 text-white font-semibold hover:gap-4 transition-all"
+              >
+                View Look
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</div>

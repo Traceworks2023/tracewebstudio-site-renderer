@@ -1,0 +1,161 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    stats?: Stat[];
+  };
+  settings?: {
+    variant?: 'default' | 'minimal' | 'highlight' | 'grid';
+    backgroundStyle?: 'light' | 'dark' | 'gradient' | 'surface';
+    columns?: number;
+    motionLevel?: 1 | 2 | 3 | 4;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Our Impact',
+  subtitle = 'Key metrics that define our success',
+  stats = [
+    { value: '500', suffix: '+', label: 'Projects Completed' },
+    { value: '98', suffix: '%', label: 'Client Satisfaction' },
+    { value: '15', suffix: '+', label: 'Years Experience' },
+    { value: '50', suffix: '+', label: 'Team Members' },
+  ],
+} = content;
+
+const {
+  variant = 'default',
+  backgroundStyle = 'light',
+  columns = 4,
+  motionLevel = 2,
+} = settings;
+
+const sectionId = 'stats-' + Math.random().toString(36).slice(2, 9);
+
+const bgClasses: Record<string, string> = {
+  light: 'bg-gray-50',
+  dark: 'bg-gray-900 text-white',
+  gradient: 'bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] text-white',
+  surface: 'bg-white',
+};
+
+const textClasses: Record<string, string> = {
+  light: 'text-gray-900',
+  dark: 'text-white',
+  gradient: 'text-white',
+  surface: 'text-gray-900',
+};
+
+const gridClass = variant === 'grid' ? 'grid-cols-1 md:grid-cols-' + Math.min(columns, 4) : 'grid-cols-2 md:grid-cols-4';
+
+const itemClass = variant === 'minimal' ? 'py-8' : variant === 'highlight' ? 'py-12 px-6 rounded-2xl' : 'py-8';
+---
+
+<section
+  id={sectionId}
+  class={'stats-section stats-variant-' + variant + ' ' + bgClasses[backgroundStyle] + ' ' + textClasses[backgroundStyle]}
+  data-variant={variant}
+  data-motion-level={motionLevel}
+>
+  <div class="stats-container max-w-7xl mx-auto px-6 py-20">
+    {(title || subtitle) && (
+      <div class="stats-header text-center mb-16">
+        {title && <h2 class="stats-title text-4xl md:text-5xl font-bold mb-4">{title}</h2>}
+        {subtitle && <p class="stats-subtitle text-lg opacity-80">{subtitle}</p>}
+      </div>
+    )}
+
+    <div class={'stats-grid ' + gridClass + ' gap-8'}>
+      {stats.map((stat, index) => (
+        <div class={'stat-item text-center ' + itemClass}>
+          {variant === 'highlight' ? (
+            <div class="stat-highlight-box bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+              <div class="stat-value text-5xl md:text-6xl font-bold mb-2" data-counter>
+                {stat.prefix || ''}{stat.value}{stat.suffix || ''}
+              </div>
+              <div class="stat-label text-lg opacity-80">{stat.label}</div>
+            </div>
+          ) : (
+            <>
+              <div class="stat-value text-5xl md:text-6xl font-bold mb-2" data-counter>
+                {stat.prefix || ''}{stat.value}{stat.suffix || ''}
+              </div>
+              <div class="stat-label text-lg opacity-80">{stat.label}</div>
+            </>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-section {
+    position: relative;
+  }
+  .stats-title {
+    font-family: var(--font-heading);
+    color: inherit;
+  }
+  .stats-subtitle {
+    font-family: var(--font-body);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .stats-grid {
+    position: relative;
+  }
+  .stat-item {
+    position: relative;
+  }
+  .stat-value {
+    font-family: var(--font-heading);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stats-variant-dark .stat-value,
+  .stats-variant-gradient .stat-value {
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label {
+    font-family: var(--font-body);
+  }
+  .stat-highlight-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .stat-highlight-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  [data-motion-level="3"] .stat-item,
+  [data-motion-level="4"] .stat-item {
+    animation: stat-fade-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  [data-motion-level="3"] .stat-item:nth-child(1),
+  [data-motion-level="4"] .stat-item:nth-child(1) { animation-delay: 0.1s; }
+  [data-motion-level="3"] .stat-item:nth-child(2),
+  [data-motion-level="4"] .stat-item:nth-child(2) { animation-delay: 0.2s; }
+  [data-motion-level="3"] .stat-item:nth-child(3),
+  [data-motion-level="4"] .stat-item:nth-child(3) { animation-delay: 0.3s; }
+  [data-motion-level="3"] .stat-item:nth-child(4),
+  [data-motion-level="4"] .stat-item:nth-child(4) { animation-delay: 0.4s; }
+  @keyframes stat-fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

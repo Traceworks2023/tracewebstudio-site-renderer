@@ -1,0 +1,198 @@
+---
+// Logo Strip Section - Displays client logos, partner logos, or trust badges
+// Supports variants: default, marquee, grid, featured
+
+interface Logo {
+  name: string;
+  logo?: string;
+  image?: string;
+  url?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    logos?: Logo[];
+  };
+  settings?: {
+    variant?: 'default' | 'marquee' | 'grid' | 'featured';
+    backgroundStyle?: 'light' | 'dark' | 'surface';
+    autoplay?: boolean;
+    columns?: number;
+    motionLevel?: 1 | 2 | 3 | 4;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Trusted by Industry Leaders',
+  subtitle = 'Partnering with brands that share our vision',
+  logos = [
+    { name: 'TechCorp', image: 'https://picsum.photos/seed/logo1/200/80' },
+    { name: 'Innovate Inc', image: 'https://picsum.photos/seed/logo2/200/80' },
+    { name: 'Design Studio', image: 'https://picsum.photos/seed/logo3/200/80' },
+    { name: 'Creative Agency', image: 'https://picsum.photos/seed/logo4/200/80' },
+    { name: 'Digital First', image: 'https://picsum.photos/seed/logo5/200/80' },
+    { name: 'BrandWorks', image: 'https://picsum.photos/seed/logo6/200/80' },
+  ],
+} = content;
+
+const {
+  variant = 'default',
+  backgroundStyle = 'light',
+  autoplay = true,
+  columns = 5,
+  motionLevel = 1,
+} = settings;
+
+const sectionId = `logos-${Math.random().toString(36).slice(2, 9)}`;
+
+const bgClasses = {
+  light: 'bg-gray-50',
+  dark: 'bg-gray-900',
+  surface: 'bg-white',
+};
+---
+
+<section
+  id={sectionId}
+  class={`logo-strip-section logo-variant-${variant} ${bgClasses[backgroundStyle]}`}
+  data-variant={variant}
+  data-autoplay={autoplay}
+  data-motion-level={motionLevel}
+>
+  <div class="logo-container max-w-7xl mx-auto px-6 py-16">
+    {(title || subtitle) && (
+      <div class="logo-header text-center mb-12">
+        {title && <h3 class="logo-title text-2xl font-semibold text-gray-500 mb-2">{title}</h3>}
+        {subtitle && <p class="logo-subtitle text-gray-400">{subtitle}</p>}
+      </div>
+    )}
+
+    {variant === 'marquee' && (
+      <div class="logo-marquee-wrapper overflow-hidden">
+        <div class="logo-marquee flex gap-16 items-center" data-marquee>
+          {[...logos, ...logos].map((logo, index) => (
+            <div class="logo-item flex-shrink-0" key={index}>
+              <img
+                src={logo.image}
+                alt={logo.name}
+                class="h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {variant === 'grid' && (
+      <div class={`logo-grid grid grid-cols-2 md:grid-cols-${Math.min(columns, 6)} gap-8 items-center`}>
+        {logos.map((logo) => (
+          <div class="logo-item text-center">
+            <img
+              src={logo.image}
+              alt={logo.name}
+              class="h-12 w-auto object-contain mx-auto opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    )}
+
+    {variant === 'featured' && (
+      <div class="logo-featured-grid grid grid-cols-2 md:grid-cols-3 gap-6">
+        {logos.slice(0, 6).map((logo, index) => (
+          <div class="logo-featured-item bg-white rounded-2xl p-8 flex items-center justify-center shadow-sm hover:shadow-lg transition-shadow">
+            <img
+              src={logo.image}
+              alt={logo.name}
+              class="h-16 w-auto object-contain"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    )}
+
+    {variant === 'default' && (
+      <div class="logo-default-grid flex flex-wrap justify-center items-center gap-12">
+        {logos.map((logo) => (
+          <div class="logo-item">
+            <img
+              src={logo.image}
+              alt={logo.name}
+              class="h-10 w-auto object-contain opacity-50 hover:opacity-80 transition-opacity grayscale hover:grayscale-0"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .logo-strip-section {
+    position: relative;
+  }
+
+  .logo-title {
+    font-family: var(--font-body);
+  }
+
+  .logo-subtitle {
+    font-family: var(--font-body);
+  }
+
+  /* Marquee Animation */
+  .logo-variant-marquee .logo-marquee {
+    animation: marquee-scroll 30s linear infinite;
+  }
+
+  .logo-variant-marquee .logo-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Hover effects */
+  .logo-item img {
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+  }
+
+  .logo-item img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+
+  [data-motion-level="3"] .logo-item,
+  [data-motion-level="4"] .logo-item {
+    animation: logo-fade-in 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  [data-motion-level="3"] .logo-item:nth-child(1),
+  [data-motion-level="4"] .logo-item:nth-child(1) { animation-delay: 0.05s; }
+  [data-motion-level="3"] .logo-item:nth-child(2),
+  [data-motion-level="4"] .logo-item:nth-child(2) { animation-delay: 0.1s; }
+  [data-motion-level="3"] .logo-item:nth-child(3),
+  [data-motion-level="4"] .logo-item:nth-child(3) { animation-delay: 0.15s; }
+  [data-motion-level="3"] .logo-item:nth-child(4),
+  [data-motion-level="4"] .logo-item:nth-child(4) { animation-delay: 0.2s; }
+  [data-motion-level="3"] .logo-item:nth-child(5),
+  [data-motion-level="4"] .logo-item:nth-child(5) { animation-delay: 0.25s; }
+  [data-motion-level="3"] .logo-item:nth-child(6),
+  [data-motion-level="4"] .logo-item:nth-child(6) { animation-delay: 0.3s; }
+
+  @keyframes logo-fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

@@ -14,6 +14,9 @@ interface Props {
   title?: string;
   subtitle?: string;
   plans?: Plan[];
+  settings?: {
+    templateSlug?: string;
+  };
 }
 
 const {
@@ -50,6 +53,15 @@ const {
     },
   ],
 } = Astro.props;
+
+const settings = Astro.props.settings || {};
+const templateSlug = settings.templateSlug || '';
+
+const getTemplateLink = (link: string) => {
+  if (!link || link === '#') return '#';
+  if (link.startsWith('http')) return link;
+  return `/${templateSlug}${link.startsWith('/') ? link : `/${link}`}`;
+};
 ---
 
 <section class="pricing">
@@ -76,7 +88,7 @@ const {
               </li>
             ))}
           </ul>
-          <a href={plan.buttonUrl} class={`btn ${plan.highlighted ? 'btn-primary' : 'btn-secondary'}`}>
+          <a href={getTemplateLink(plan.buttonUrl)} class={`btn ${plan.highlighted ? 'btn-primary' : 'btn-secondary'}`}>
             {plan.buttonText}
           </a>
         </div>

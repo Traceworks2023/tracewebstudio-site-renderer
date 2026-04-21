@@ -1,0 +1,215 @@
+---
+interface Collection {
+  id: string;
+  name: string;
+  description?: string;
+  image: string;
+  itemCount?: number;
+  link?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    collections?: Collection[];
+    layout?: 'grid' | 'masonry' | 'featured' | 'list';
+    columns?: 2 | 3 | 4;
+  };
+  settings?: {
+    motionLevel?: 1 | 2 | 3 | 4;
+    showItemCount?: boolean;
+    showDescription?: boolean;
+    hoverEffect?: 'zoom' | 'overlay' | 'tilt' | 'none';
+    aspectRatio?: 'square' | 'portrait' | 'landscape' | 'auto';
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+
+const {
+  title = 'Collections',
+  subtitle = '',
+  collections = [],
+  layout = 'grid',
+  columns = 3,
+} = content;
+
+const {
+  motionLevel = 2,
+  showItemCount = true,
+  showDescription = false,
+  hoverEffect = 'zoom',
+  aspectRatio = 'portrait',
+} = settings;
+
+const gridColsClass = {
+  2: 'grid-cols-1 md:grid-cols-2',
+  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+}[columns] || 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
+
+const aspectClass = {
+  square: 'aspect-square',
+  portrait: 'aspect-[3/4]',
+  landscape: 'aspect-[16/9]',
+  auto: 'aspect-auto',
+}[aspectRatio] || 'aspect-[3/4]';
+---
+
+<div class="collection-grid-section bg-white" data-layout={layout} data-motion-level={motionLevel}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    {/* Header */}
+    {(title || subtitle) && (
+      <div class="text-center mb-12">
+        {title && <h2 class="text-4xl font-bold text-gray-900 mb-4">{title}</h2>}
+        {subtitle && <p class="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>}
+      </div>
+    )}
+
+    {/* Collections Grid */}
+    <div class={`collections-grid ${gridColsClass} gap-6`}>
+      {collections.map((collection, index) => (
+        <a
+          href={collection.link || `/collection/${collection.id}`}
+          class={`collection-card group relative overflow-hidden rounded-2xl ${layout === 'featured' && index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
+          data-collection-id={collection.id}
+        >
+          {/* Image Container */}
+          <div class={`relative ${aspectClass} overflow-hidden bg-gray-100`}>
+            <img
+              src={collection.image}
+              alt={collection.name}
+              class={`w-full h-full object-cover transition-transform duration-700 ${
+                hoverEffect === 'zoom' ? 'group-hover:scale-110' : ''
+              }`}
+              loading="lazy"
+            />
+
+            {/* Overlay */}
+            <div class={`absolute inset-0 transition-all duration-300 ${
+              hoverEffect === 'overlay'
+                ? 'bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:bg-gradient-to-t from-black/90 via-black/40 to-transparent'
+                : 'bg-black/0 group-hover:bg-black/30'
+            }`}></div>
+
+            {/* Content */}
+            <div class={`absolute inset-0 flex flex-col justify-end p-6 transition-all duration-300 ${
+              hoverEffect === 'overlay' ? '' : 'group-hover:bg-gradient-to-t from-black/60 via-transparent to-transparent'
+            }`}>
+              <div class={`transform transition-transform duration-300 ${hoverEffect === 'overlay' ? '' : 'group-hover:-translate-y-2'}`}>
+                <h3 class="text-2xl font-bold text-white mb-2">{collection.name}</h3>
+
+                {showDescription && collection.description && (
+                  <p class="text-white/80 text-sm mb-3 line-clamp-2">{collection.description}</p>
+                )}
+
+                {showItemCount && collection.itemCount !== undefined && (
+                  <div class="inline-flex items-center gap-2 text-white/90 text-sm font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                    </svg>
+                    {collection.itemCount} {collection.itemCount === 1 ? 'item' : 'items'}
+                  </div>
+                )}
+
+                {/* Arrow CTA */}
+                <div class="mt-4 flex items-center gap-2 text-white font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span>Explore</span>
+                  <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Hover Border Effect */}
+            <div class={`absolute inset-0 border-2 border-transparent transition-all duration-300 ${
+              hoverEffect === 'overlay' ? 'group-hover:border-white/50' : ''
+            } rounded-2xl`}></div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {/* View All Link */}
+    <div class="text-center mt-12">
+      <a
+        href="/collections"
+        class="inline-flex items-center gap-2 px-8 py-3 border-2 border-gray-900 text-gray-900 font-semibold rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300"
+      >
+        View All Collections
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .collection-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: collection-reveal 0.6s ease-out forwards;
+  }
+
+  @keyframes collection-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .collection-card:nth-child(1) { animation-delay: 0ms; }
+  .collection-card:nth-child(2) { animation-delay: 100ms; }
+  .collection-card:nth-child(3) { animation-delay: 200ms; }
+  .collection-card:nth-child(4) { animation-delay: 300ms; }
+  .collection-card:nth-child(5) { animation-delay: 400ms; }
+  .collection-card:nth-child(6) { animation-delay: 500ms; }
+
+  /* Layout Variants */
+  [data-layout="masonry"] .collections-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+  }
+
+  [data-layout="masonry"] .collection-card {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+
+  [data-layout="featured"] .collections-grid {
+    grid-auto-flow: dense;
+  }
+
+  [data-layout="list"] .collections-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  [data-layout="list"] .collection-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+
+  [data-layout="list"] .collection-card .aspect-[3\/4] {
+    aspect-ratio: 1;
+  }
+
+  /* Hover Effects */
+  [data-motion-level="4"] .collection-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Tilt Effect */
+  [data-motion-level="3"] .collection-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  [data-motion-level="3"] .collection-card:hover img {
+    transform: rotateY(5deg) rotateX(5deg) scale(1.05);
+  }
+</style>

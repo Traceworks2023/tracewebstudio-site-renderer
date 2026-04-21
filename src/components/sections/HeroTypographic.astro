@@ -1,0 +1,74 @@
+---
+// Hero Typographic - Large text-focused minimal design
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Welcome',
+  subtitle = '',
+  ctaText = 'Get Started',
+  ctaUrl = '#',
+} = content;
+---
+
+<section class="hero-typographic min-h-screen flex items-center justify-center relative bg-[var(--color-background)] overflow-hidden">
+  {/* Background pattern */}
+  <div class="absolute inset-0 opacity-[0.02]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+  {/* Large background text */}
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-bold text-[var(--color-primary)]/[0.02] select-none pointer-events-none whitespace-nowrap">
+    BRAND
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 relative z-10 text-center">
+    <div class="space-y-12">
+      <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter leading-[0.85] text-[var(--color-primary)]">
+        {title}
+      </h1>
+
+      <p class="text-xl md:text-2xl text-[var(--color-text-muted)] max-w-2xl mx-auto leading-relaxed">
+        {subtitle}
+      </p>
+
+      <div class="flex items-center justify-center gap-6">
+        <a
+          href={ctaUrl}
+          class="group inline-flex items-center gap-4 text-xl font-semibold text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors"
+        >
+          <span class="relative">
+            {ctaText}
+            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-current scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+          </span>
+          <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <span class="text-[var(--color-text-muted)]">or</span>
+        <a
+          href="#"
+          class="text-xl font-semibold text-[var(--color-accent)] hover:underline"
+        >
+          Watch Showreel
+        </a>
+      </div>
+
+      {/* Scroll indicator */}
+      <div class="pt-20">
+        <div class="inline-flex flex-col items-center gap-2 text-[var(--color-text-muted)]">
+          <span class="text-xs uppercase tracking-[0.3em]">Scroll</span>
+          <div class="w-px h-12 bg-gradient-to-b from-[var(--color-text-muted)] to-transparent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

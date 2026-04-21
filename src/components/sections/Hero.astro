@@ -6,6 +6,9 @@ interface Props {
   buttonText?: string;
   buttonUrl?: string;
   backgroundImage?: string;
+  settings?: {
+    templateSlug?: string;
+  };
 }
 
 const {
@@ -16,6 +19,15 @@ const {
   buttonUrl = "/products",
   backgroundImage = "",
 } = Astro.props;
+
+const settings = Astro.props.settings || {};
+const templateSlug = settings.templateSlug || '';
+
+const getTemplateLink = (link: string) => {
+  if (!link || link === '#') return '#';
+  if (link.startsWith('http')) return link;
+  return `/${templateSlug}${link.startsWith('/') ? link : `/${link}`}`;
+};
 ---
 
 <section class="hero" style={backgroundImage ? `background-image: url(${backgroundImage})` : ""}>
@@ -25,8 +37,8 @@ const {
       {subtitle && <p class="hero-subtitle">{subtitle}</p>}
       {description && <p class="hero-description">{description}</p>}
       <div class="hero-actions">
-        <a href={buttonUrl} class="btn btn-primary">{buttonText}</a>
-        <a href="/about" class="btn btn-secondary">Learn More</a>
+        <a href={getTemplateLink(buttonUrl)} class="btn btn-primary">{buttonText}</a>
+        <a href={getTemplateLink('/about')} class="btn btn-secondary">Learn More</a>
       </div>
     </div>
   </div>

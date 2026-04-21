@@ -1,0 +1,186 @@
+---
+interface LayoutVariant {
+  id: string;
+  name: string;
+  preview?: string;
+  icon?: string;
+}
+
+interface Props {
+  sectionId: string;
+  sectionType: string;
+  availableVariants: LayoutVariant[];
+  currentVariant?: string;
+  editable?: boolean;
+}
+
+const {
+  sectionId,
+  sectionType,
+  availableVariants = [],
+  currentVariant = 'default',
+  editable = true,
+} = Astro.props;
+
+const isEditMode = Astro.url.searchParams.get('edit') === 'true';
+
+const defaultIcons: Record<string, string> = {
+  default: '▤',
+  grid: '⊞',
+  list: '☰',
+  cards: '▦',
+  minimal: '○',
+  featured: '★',
+  compact: '▣',
+  expanded: '⬜',
+};
+---
+
+{isEditMode && editable && availableVariants.length > 1 && (
+  <div
+    class="layout-switcher inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-2"
+    data-section-id={sectionId}
+    data-section-type={sectionType}
+  >
+    <span class="text-xs font-medium text-gray-500 px-2">Layout:</span>
+
+    <div class="flex gap-1">
+      {availableVariants.map((variant) => (
+        <button
+          class={`layout-btn w-8 h-8 rounded flex items-center justify-center transition-all ${
+            currentVariant === variant.id
+              ? 'bg-[var(--color-primary)] text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+          }`}
+          data-variant-id={variant.id}
+          title={variant.name}
+        >
+          <span class="text-sm">{variant.icon || defaultIcons[variant.id] || '▤'}</span>
+        </button>
+      ))}
+    </div>
+
+    {/* Variant Dropdown for more options */}
+    {availableVariants.length > 5 && (
+      <div class="relative">
+        <select
+          class="layout-select appearance-none bg-gray-100 border-0 rounded px-3 py-1.5 pr-8 text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition-colors"
+          data-variant-select
+        >
+          {availableVariants.map((variant) => (
+            <option value={variant.id} selected={currentVariant === variant.id}>
+              {variant.name}
+            </option>
+          ))}
+        </select>
+        <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    )}
+  </div>
+)}
+
+<style>
+  .layout-switcher {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .section-wrapper:hover .layout-switcher,
+  .layout-switcher:focus-within {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .layout-btn.active {
+    transform: scale(1.1);
+  }
+
+  .layout-btn:hover:not(.active) {
+    transform: scale(1.05);
+  }
+
+  .layout-select:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const layoutSwitchers = document.querySelectorAll('.layout-switcher');
+
+    layoutSwitchers.forEach((switcher) => {
+      const el = switcher as HTMLElement;
+      const sectionId = el.dataset.sectionId;
+      const sectionType = el.dataset.sectionType;
+
+      // Button clicks
+      el.querySelectorAll('.layout-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const variantId = (btn as HTMLElement).dataset.variantId;
+          if (!variantId) return;
+
+          // Update active state
+          el.querySelectorAll('.layout-btn').forEach((b) => {
+            b.classList.remove('active', 'bg-[var(--color-primary)]', 'text-white');
+            b.classList.add('bg-gray-100', 'text-gray-600');
+          });
+          btn.classList.add('active', 'bg-[var(--color-primary)]', 'text-white');
+          btn.classList.remove('bg-gray-100', 'text-gray-600');
+
+          // Update section variant
+          updateSectionVariant(sectionId, variantId);
+        });
+      });
+
+      // Dropdown select
+      const select = el.querySelector('[data-variant-select]') as HTMLSelectElement;
+      select?.addEventListener('change', () => {
+        const variantId = select.value;
+        updateSectionVariant(sectionId, variantId);
+      });
+
+      function updateSectionVariant(sectionId: string | undefined, variantId: string) {
+        if (!sectionId) return;
+
+        // Find the section wrapper
+        const sectionWrapper = document.querySelector(`[data-section-id="${sectionId}"]`);
+        if (!sectionWrapper) return;
+
+        // Update the variant attribute
+        sectionWrapper.setAttribute('data-variant', variantId);
+
+        // Dispatch event for the section to handle variant change
+        sectionWrapper.dispatchEvent(new CustomEvent('section:variant-change', {
+          detail: { sectionId, variantId, sectionType }
+        }));
+
+        // Emit global event for state sync
+        window.dispatchEvent(new CustomEvent('sections:variant-changed', {
+          detail: { sectionId, variantId, sectionType }
+        }));
+
+        console.log(`Section ${sectionId} variant changed to ${variantId}`);
+      }
+    });
+
+    // Listen for variant change events
+    window.addEventListener('sections:variant-changed', ((e: CustomEvent) => {
+      const { sectionId, variantId, sectionType } = e.detail;
+      console.log(`Variant changed: ${sectionId} -> ${variantId} (${sectionType})`);
+
+      // Here you would typically:
+      // 1. Update the section component to render the new variant
+      // 2. Save the change to the editor state
+      // 3. Possibly make an API call to persist the change
+    }) as EventListener);
+  });
+</script>

@@ -1,0 +1,691 @@
+---
+// Motion Preset System - Based on docs: Motion, Parallax, and Carousel System
+// Supports Level 1-4 motion with scroll reveals, staggered animations, parallax
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+  };
+  settings?: {
+    animationPreset?: 'fadeUp' | 'fadeIn' | 'subtleSlide' | 'staggeredCards' | 'maskedReveal'
+      | 'splitHeadline' | 'depthHover' | 'statCounters' | 'stickyStorytelling'
+      | 'layeredReveal' | 'directionalEntrance' | 'richMediaTransition' | 'tabToContent'
+      | 'multiLayerParallax' | 'pinnedStorytelling' | 'cinematicZoom' | 'horizontalNarrative'
+      | 'maskedVideo' | 'immersiveSpotlight';
+    parallaxPreset?: 'none' | 'softDrift' | 'layeredDepth' | 'foregroundFloat'
+      | 'splitColumnOpposing' | 'pinnedStory' | 'galleryStripDrift' | 'productSpotlight'
+      | 'textOverMedia' | 'videoHero';
+    motionLevel?: 1 | 2 | 3 | 4;
+    hoverStyle?: 'scale' | 'lift' | 'glow' | 'tilt';
+    transitionStyle?: 'fade' | 'slide' | 'zoom' | 'flip';
+    staggerDelay?: number;
+    scrollTrigger?: boolean;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Animated Section',
+  subtitle = '',
+  description = '',
+} = content;
+
+const {
+  animationPreset = 'fadeUp',
+  parallaxPreset = 'none',
+  motionLevel = 2,
+  hoverStyle = 'lift',
+  transitionStyle = 'fade',
+  staggerDelay = 100,
+  scrollTrigger = true,
+} = settings;
+
+const sectionId = `motion-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section
+  id={sectionId}
+  class={`motion-section motion-level-${motionLevel} parallax-${parallaxPreset}`}
+  data-animation={animationPreset}
+  data-parallax={parallaxPreset}
+  data-motion-level={motionLevel}
+  data-hover-style={hoverStyle}
+  data-stagger-delay={staggerDelay}
+>
+  <slot />
+
+  {/* Content wrapper for motion effects */}
+  <div class="motion-content" data-motion-content>
+    <div class="motion-item" data-motion-item>
+      {title && <h2 class="text-4xl font-bold">{title}</h2>}
+      {subtitle && <p class="text-xl text-gray-600 mt-2">{subtitle}</p>}
+      {description && <p class="text-gray-500 mt-4">{description}</p>}
+    </div>
+  </div>
+
+  {/* Parallax background layer */}
+  {parallaxPreset !== 'none' && (
+    <div class="parallax-bg" data-parallax-bg>
+      <div class="parallax-layer" data-parallax-layer="bg"></div>
+    </div>
+  )}
+
+  {/* Foreground float element */}
+  {parallaxPreset === 'foregroundFloat' && (
+    <div class="parallax-fg" data-parallax-fg>
+      <slot name="foreground" />
+    </div>
+  )}
+</section>
+
+<style>
+  /* ============================================
+     MOTION LEVELS
+     ============================================ */
+
+  /* Level 1 - Basic */
+  [data-motion-level="1"] {
+    --motion-duration: 0.3s;
+    --motion-ease: ease-out;
+  }
+
+  /* Level 2 - Enhanced */
+  [data-motion-level="2"] {
+    --motion-duration: 0.5s;
+    --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Level 3 - Advanced */
+  [data-motion-level="3"] {
+    --motion-duration: 0.7s;
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Level 4 - Premium */
+  [data-motion-level="4"] {
+    --motion-duration: 1s;
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ============================================
+     ANIMATION PRESETS
+     ============================================ */
+
+  /* Fade Up - Most common */
+  [data-animation="fadeUp"] .motion-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity var(--motion-duration) var(--motion-ease),
+                transform var(--motion-duration) var(--motion-ease);
+  }
+
+  [data-animation="fadeUp"].is-visible .motion-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Fade In */
+  [data-animation="fadeIn"] .motion-item {
+    opacity: 0;
+    transition: opacity var(--motion-duration) ease-out;
+  }
+
+  [data-animation="fadeIn"].is-visible .motion-item {
+    opacity: 1;
+  }
+
+  /* Subtle Slide */
+  [data-animation="subtleSlide"] .motion-item {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity var(--motion-duration) var(--motion-ease),
+                transform var(--motion-duration) var(--motion-ease);
+  }
+
+  [data-animation="subtleSlide"].is-visible .motion-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Staggered Cards */
+  [data-animation="staggeredCards"] .motion-item {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: opacity 0.6s var(--motion-ease),
+                transform 0.6s var(--motion-ease);
+  }
+
+  [data-animation="staggeredCards"].is-visible .motion-item:nth-child(1) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0s; }
+  [data-animation="staggeredCards"].is-visible .motion-item:nth-child(2) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.1s; }
+  [data-animation="staggeredCards"].is-visible .motion-item:nth-child(3) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.2s; }
+  [data-animation="staggeredCards"].is-visible .motion-item:nth-child(4) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.3s; }
+  [data-animation="staggeredCards"].is-visible .motion-item:nth-child(5) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.4s; }
+  [data-animation="staggeredCards"].is-visible .motion-item:nth-child(6) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.5s; }
+
+  /* Masked Reveal */
+  [data-animation="maskedReveal"] .motion-item {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-animation="maskedReveal"].is-visible .motion-item {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Split Headline */
+  [data-animation="splitHeadline"] .motion-item {
+    overflow: hidden;
+  }
+
+  [data-animation="splitHeadline"] .motion-item h2,
+  [data-animation="splitHeadline"] .motion-item h3 {
+    display: block;
+    transform: translateY(100%);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-animation="splitHeadline"].is-visible .motion-item h2,
+  [data-animation="splitHeadline"].is-visible .motion-item h3 {
+    transform: translateY(0);
+  }
+
+  /* Depth Hover (for cards) */
+  [data-hover-style="tilt"] {
+    perspective: 1000px;
+  }
+
+  [data-hover-style="tilt"] .motion-item {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-out;
+  }
+
+  [data-hover-style="tilt"]:hover .motion-item {
+    transform: rotateX(5deg) rotateY(5deg) scale(1.02);
+  }
+
+  /* Scale Hover */
+  [data-hover-style="scale"] .motion-item {
+    transition: transform 0.3s ease-out;
+  }
+
+  [data-hover-style="scale"]:hover .motion-item {
+    transform: scale(1.05);
+  }
+
+  /* Lift Hover */
+  [data-hover-style="lift"] .motion-item {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+
+  [data-hover-style="lift"]:hover .motion-item {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Glow Hover */
+  [data-hover-style="glow"]:hover .motion-item {
+    box-shadow: 0 0 30px rgba(var(--color-primary-rgb, 37, 99, 235), 0.3);
+  }
+
+  /* ============================================
+     LEVEL 3 & 4 ADVANCED ANIMATIONS
+     ============================================ */
+
+  /* Sticky Storytelling */
+  [data-motion-level="3"][data-animation="stickyStorytelling"],
+  [data-motion-level="4"][data-animation="stickyStorytelling"] {
+    position: relative;
+  }
+
+  /* Layered Reveal */
+  [data-motion-level="3"][data-animation="layeredReveal"] .motion-item,
+  [data-motion-level="4"][data-animation="layeredReveal"] .motion-item {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s var(--motion-ease),
+                transform 0.8s var(--motion-ease);
+  }
+
+  [data-animation="layeredReveal"].is-visible .motion-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-animation="layeredReveal"].is-visible .motion-item:nth-child(2) { transition-delay: 0.15s; }
+  [data-animation="layeredReveal"].is-visible .motion-item:nth-child(3) { transition-delay: 0.3s; }
+
+  /* Directional Entrance */
+  [data-animation="directionalEntrance"] .motion-item {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.8s var(--motion-ease),
+                transform 0.8s var(--motion-ease);
+  }
+
+  [data-animation="directionalEntrance"].is-visible .motion-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ============================================
+     PARALLAX PRESETS
+     ============================================ */
+
+  /* None - No parallax */
+  .parallax-none {
+    transform: none;
+  }
+
+  /* Soft Background Drift */
+  .parallax-softDrift .parallax-bg {
+    position: absolute;
+    inset: -20%;
+    overflow: hidden;
+  }
+
+  .parallax-softDrift .parallax-layer {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+  }
+
+  /* Layered Depth */
+  .parallax-layeredDepth .parallax-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .parallax-layeredDepth .parallax-layer {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    will-change: transform;
+  }
+
+  .parallax-layeredDepth .parallax-layer[data-parallax-layer="bg"] {
+    transform: translateZ(-100px) scale(1.5);
+  }
+
+  /* Foreground Float */
+  .parallax-foregroundFloat .parallax-fg {
+    position: relative;
+    z-index: 10;
+    will-change: transform;
+  }
+
+  /* Pinned Storytelling */
+  .parallax-pinnedStory {
+    position: relative;
+  }
+
+  /* Gallery Strip Drift */
+  .parallax-galleryStripDrift .parallax-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .parallax-galleryStripDrift .parallax-layer {
+    display: flex;
+    gap: 2rem;
+    height: 100%;
+    will-change: transform;
+  }
+
+  /* Product Spotlight Parallax */
+  .parallax-productSpotlight .parallax-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .parallax-productSpotlight .parallax-layer {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    will-change: transform;
+  }
+
+  /* Text Over Media Parallax */
+  .parallax-textOverMedia {
+    position: relative;
+  }
+
+  .parallax-textOverMedia .parallax-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .parallax-textOverMedia .parallax-layer {
+    position: absolute;
+    inset: -20%;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+  }
+
+  .parallax-textOverMedia .motion-content {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Video Hero Parallax */
+  .parallax-videoHero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .parallax-videoHero .parallax-bg {
+    position: absolute;
+    inset: -10%;
+    overflow: hidden;
+  }
+
+  .parallax-videoHero .parallax-layer {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+  }
+
+  .parallax-videoHero .motion-content {
+    position: relative;
+    z-index: 20;
+  }
+
+  /* ============================================
+     LEVEL 4 PREMIUM ANIMATIONS
+     ============================================ */
+
+  [data-motion-level="4"] {
+    --motion-duration: 1.2s;
+  }
+
+  /* Multi-layer Parallax handled via JS */
+  [data-motion-level="4"] .parallax-bg {
+    perspective: 1500px;
+  }
+
+  /* Pinned Visual Storytelling */
+  [data-animation="pinnedStorytelling"] {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+  }
+
+  /* Cinematic Zoom Blocks */
+  [data-animation="cinematicZoom"] .motion-item {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 1s var(--motion-ease),
+                transform 1s var(--motion-ease);
+  }
+
+  [data-animation="cinematicZoom"].is-visible .motion-item {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Horizontal Narrative Scroll */
+  [data-animation="horizontalNarrative"] {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  [data-animation="horizontalNarrative"]::-webkit-scrollbar {
+    display: none;
+  }
+
+  [data-animation="horizontalNarrative"] .motion-item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  /* Masked Video Reveals */
+  [data-animation="maskedVideo"] .motion-item {
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-animation="maskedVideo"].is-visible .motion-item {
+    clip-path: circle(100% at 50% 50%);
+  }
+
+  /* Immersive Spotlight Scenes */
+  [data-animation="immersiveSpotlight"] {
+    position: relative;
+  }
+
+  [data-animation="immersiveSpotlight"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+                              transparent 0%,
+                              rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+    transition: background 0.3s ease-out;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize motion sections
+    document.querySelectorAll('.motion-section').forEach((section) => {
+      const el = section as HTMLElement;
+      const animationPreset = el.dataset.animation || 'fadeUp';
+      const parallaxPreset = el.dataset.parallax || 'none';
+      const motionLevel = parseInt(el.dataset.motionLevel || '2');
+      const staggerDelay = parseInt(el.dataset.staggerDelay || '100');
+
+      // Scroll-triggered animations
+      if (animationPreset !== 'horizontalNarrative') {
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 80%',
+          onEnter: () => el.classList.add('is-visible'),
+          once: true,
+        });
+      }
+
+      // Staggered animations
+      if (animationPreset === 'staggeredCards' || animationPreset === 'layeredReveal') {
+        const items = el.querySelectorAll('.motion-item');
+        items.forEach((item, i) => {
+          gsap.set(item, { opacity: 0, y: 50, scale: 0.95 });
+        });
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 80%',
+          onEnter: () => {
+            gsap.to(items, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              stagger: staggerDelay / 1000,
+              ease: 'power3.out',
+            });
+          },
+          once: true,
+        });
+      }
+
+      // Parallax effects
+      if (parallaxPreset !== 'none') {
+        const bg = el.querySelector('.parallax-layer[data-parallax-layer="bg"]') as HTMLElement;
+
+        if (bg) {
+          switch (parallaxPreset) {
+            case 'softDrift':
+              gsap.to(bg, {
+                y: 100,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 1,
+                },
+              });
+              break;
+
+            case 'layeredDepth':
+              gsap.to(bg, {
+                y: 150,
+                scale: 1.2,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 1.5,
+                },
+              });
+              break;
+
+            case 'foregroundFloat':
+              const fg = el.querySelector('[data-parallax-fg]');
+              if (fg) {
+                gsap.to(fg, {
+                  y: -50,
+                  ease: 'none',
+                  scrollTrigger: {
+                    trigger: el,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1,
+                  },
+                });
+              }
+              break;
+
+            case 'productSpotlight':
+              gsap.to(bg, {
+                y: 80,
+                scale: 1.1,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 1,
+                },
+              });
+              break;
+
+            case 'textOverMedia':
+              gsap.to(bg, {
+                y: 120,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 1,
+                },
+              });
+              break;
+
+            case 'videoHero':
+              gsap.to(bg, {
+                y: 100,
+                scale: 1.1,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top bottom',
+                  end: 'center center',
+                  scrub: 1,
+                },
+              });
+              break;
+
+            case 'galleryStripDrift':
+              gsap.to(bg, {
+                x: -200,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top bottom',
+                  end: 'bottom top',
+                  scrub: 2,
+                },
+              });
+              break;
+          }
+        }
+      }
+
+      // Level 4 premium effects
+      if (motionLevel >= 4) {
+        // Multi-layer parallax
+        if (animationPreset === 'multiLayerParallax') {
+          const layers = el.querySelectorAll('[data-parallax-layer]');
+          layers.forEach((layer, i) => {
+            const speed = (i + 1) * 0.5;
+            gsap.to(layer, {
+              y: -100 * speed,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: speed,
+              },
+            });
+          });
+        }
+
+        // Pinned storytelling
+        if (animationPreset === 'pinnedStorytelling') {
+          const items = el.querySelectorAll('.motion-item');
+          items.forEach((item, i) => {
+            gsap.to(item, {
+              opacity: 1,
+              scrollTrigger: {
+                trigger: item,
+                start: 'top center',
+                end: 'bottom center',
+                scrub: true,
+              },
+            });
+          });
+        }
+
+        // Immersive spotlight - follows mouse
+        if (animationPreset === 'immersiveSpotlight') {
+          el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            el.style.setProperty('--spotlight-x', x + '%');
+            el.style.setProperty('--spotlight-y', y + '%');
+          });
+        }
+      }
+    });
+
+    // Refresh ScrollTrigger after all animations are set up
+    ScrollTrigger.refresh();
+  });
+</script>

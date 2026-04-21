@@ -1,0 +1,185 @@
+---
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+---
+
+<div class="min-h-screen bg-gray-50 p-6">
+  {/* Header */}
+  <header class="mb-8">
+    <h1 class="text-2xl font-bold" style="color: var(--color-text, #1a1a1a);">Settings</h1>
+    <p class="text-gray-500 mt-1">Manage your store configuration</p>
+  </header>
+
+  <div class="max-w-4xl">
+    {/* Store Information */}
+    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+      <h2 class="text-lg font-semibold mb-6" style="color: var(--color-text, #1a1a1a);">Store Information</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Store Name</label>
+          <input type="text" value={template?.name || 'My Store'} class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Store URL</label>
+          <input type="text" value="mystore.tracewebstudio.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+          <input type="email" value="contact@mystore.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+          <input type="tel" value="+91 98765 43210" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none" />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
+          <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none">123 Business Street, Tech Park, Mumbai, Maharashtra 400001</textarea>
+        </div>
+      </div>
+      <button class="mt-6 px-6 py-2 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors">Save Changes</button>
+    </div>
+
+    {/* Theme Settings */}
+    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+      <h2 class="text-lg font-semibold mb-6" style="color: var(--color-text, #1a1a1a);">Theme Settings</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Primary Color</label>
+          <div class="flex items-center gap-3">
+            <input type="color" value={template?.theme?.colors?.primary || '#000032'} class="w-12 h-12 rounded-lg border-2 border-gray-200 cursor-pointer" />
+            <input type="text" value={template?.theme?.colors?.primary || '#000032'} class="flex-1 px-3 py-2 border border-gray-300 rounded-lg font-mono text-sm" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Accent Color</label>
+          <div class="flex items-center gap-3">
+            <input type="color" value={template?.theme?.colors?.accent || '#FA5014'} class="w-12 h-12 rounded-lg border-2 border-gray-200 cursor-pointer" />
+            <input type="text" value={template?.theme?.colors?.accent || '#FA5014'} class="flex-1 px-3 py-2 border border-gray-300 rounded-lg font-mono text-sm" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Background</label>
+          <div class="flex items-center gap-3">
+            <input type="color" value={template?.theme?.colors?.background || '#ffffff'} class="w-12 h-12 rounded-lg border-2 border-gray-200 cursor-pointer" />
+            <input type="text" value={template?.theme?.colors?.background || '#ffffff'} class="flex-1 px-3 py-2 border border-gray-300 rounded-lg font-mono text-sm" />
+          </div>
+        </div>
+      </div>
+      <button class="mt-6 px-6 py-2 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors">Apply Theme</button>
+    </div>
+
+    {/* Payment Settings */}
+    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+      <h2 class="text-lg font-semibold mb-6" style="color: var(--color-text, #1a1a1a);">Payment Methods</h2>
+      <div class="space-y-4">
+        <label class="flex items-center justify-between p-4 bg-gray-50 rounded-lg cursor-pointer">
+          <div class="flex items-center gap-3">
+            <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+            <div>
+              <p class="font-medium">Credit/Debit Cards</p>
+              <p class="text-sm text-gray-500">Visa, Mastercard, American Express</p>
+            </div>
+          </div>
+          <span class="text-green-500 text-sm font-medium">Enabled</span>
+        </label>
+        <label class="flex items-center justify-between p-4 bg-gray-50 rounded-lg cursor-pointer">
+          <div class="flex items-center gap-3">
+            <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+            <div>
+              <p class="font-medium">UPI Payments</p>
+              <p class="text-sm text-gray-500">Google Pay, PhonePe, Paytm</p>
+            </div>
+          </div>
+          <span class="text-green-500 text-sm font-medium">Enabled</span>
+        </label>
+        <label class="flex items-center justify-between p-4 bg-gray-50 rounded-lg cursor-pointer">
+          <div class="flex items-center gap-3">
+            <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+            <div>
+              <p class="font-medium">Net Banking</p>
+              <p class="text-sm text-gray-500">All major banks supported</p>
+            </div>
+          </div>
+          <span class="text-green-500 text-sm font-medium">Enabled</span>
+        </label>
+        <label class="flex items-center justify-between p-4 bg-gray-50 rounded-lg cursor-pointer">
+          <div class="flex items-center gap-3">
+            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+            <div>
+              <p class="font-medium">Cash on Delivery</p>
+              <p class="text-sm text-gray-500">Pay when you receive</p>
+            </div>
+          </div>
+          <span class="text-gray-400 text-sm font-medium">Disabled</span>
+        </label>
+      </div>
+    </div>
+
+    {/* Shipping Settings */}
+    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-6">
+      <h2 class="text-lg font-semibold mb-6" style="color: var(--color-text, #1a1a1a);">Shipping Zones</h2>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          <div>
+            <p class="font-medium">Pan India</p>
+            <p class="text-sm text-gray-500">3-5 business days</p>
+          </div>
+          <div class="text-right">
+            <p class="font-bold" style="color: var(--color-primary, #000032);">₹99</p>
+            <p class="text-xs text-gray-500">Free above ₹999</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          <div>
+            <p class="font-medium">Express Delivery</p>
+            <p class="text-sm text-gray-500">1-2 business days</p>
+          </div>
+          <div class="text-right">
+            <p class="font-bold" style="color: var(--color-primary, #000032);">₹199</p>
+            <p class="text-xs text-gray-500">Available in metro cities</p>
+          </div>
+        </div>
+      </div>
+      <button class="mt-4 text-orange-500 hover:text-orange-600 font-medium text-sm">+ Add Shipping Zone</button>
+    </div>
+
+    {/* Notifications */}
+    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <h2 class="text-lg font-semibold mb-6" style="color: var(--color-text, #1a1a1a);">Notifications</h2>
+      <div class="space-y-4">
+        <label class="flex items-center justify-between">
+          <div>
+            <p class="font-medium">Order Confirmations</p>
+            <p class="text-sm text-gray-500">Email customers when order is placed</p>
+          </div>
+          <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+        </label>
+        <label class="flex items-center justify-between">
+          <div>
+            <p class="font-medium">Shipping Updates</p>
+            <p class="text-sm text-gray-500">Notify when order is shipped</p>
+          </div>
+          <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+        </label>
+        <label class="flex items-center justify-between">
+          <div>
+            <p class="font-medium">Low Stock Alerts</p>
+            <p class="text-sm text-gray-500">Alert when product stock is below 10</p>
+          </div>
+          <input type="checkbox" checked class="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+        </label>
+        <label class="flex items-center justify-between">
+          <div>
+            <p class="font-medium">New Customer Signups</p>
+            <p class="text-sm text-gray-500">Alert when new customer registers</p>
+          </div>
+          <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

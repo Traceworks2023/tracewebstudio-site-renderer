@@ -1,0 +1,195 @@
+---
+// Product Detail Page - Dynamic based on template
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+const url = new URL(Astro.request.url);
+const productId = url.searchParams.get('id') || '1';
+
+const templateCategory = template?.category || 'ecommerce';
+const theme = template?.theme || {};
+const colors = theme.colors || {};
+
+// Product database per category
+const productDatabase: Record<string, any[]> = {
+  beauty: [
+    { id: '1', name: 'Hydrating Serum', price: 1299, originalPrice: 1599, description: 'Advanced hydrating serum with hyaluronic acid and vitamin E. Deeply moisturizes and revitalizes skin for a radiant glow.', images: ['https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800', 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800', 'https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=800'], sizes: ['30ml', '50ml', '100ml'], colors: [{name: 'Clear', class: 'bg-transparent border'}, {name: 'Gold', class: 'bg-yellow-400'}], features: ['Hyaluronic Acid', 'Vitamin E', 'Non-greasy', 'Dermatologically tested'] },
+    { id: '2', name: 'Velvet Matte Lipstick', price: 899, originalPrice: null, description: 'Long-lasting velvet matte lipstick with intense color payoff. Smooth application with moisturizing formula.', images: ['https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800', 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800', 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800'], sizes: ['One Size'], colors: [{name: 'Ruby Red', class: 'bg-red-600'}, {name: 'Nude Pink', class: 'bg-pink-200'}, {name: 'Berry', class: 'bg-purple-600'}], features: ['24hr wear', 'Cruelty-free', 'Vitamin E', 'Matte finish'] },
+    { id: '3', name: 'Rose Face Oil', price: 1499, originalPrice: 1899, description: 'Pure rosehip face oil enriched with essential fatty acids. Promotes skin regeneration and reduces fine lines.', images: ['https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800', 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800', 'https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=800'], sizes: ['30ml', '50ml'], colors: [{name: 'Golden', class: 'bg-yellow-600'}], features: ['100% Organic', 'Cold-pressed', 'Anti-aging', 'Brightening'] },
+  ],
+  fashion: [
+    { id: '1', name: 'Premium Silk Dress', price: 4999, originalPrice: 7999, description: 'Crafted from the finest Mulberry silk, this elegant dress features a flowing silhouette and intricate hand-finished details. Perfect for special occasions and evening events.', images: ['https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800', 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800'], sizes: ['XS', 'S', 'M', 'L', 'XL'], colors: [{name: 'Black', class: 'bg-black'}, {name: 'Navy', class: 'bg-blue-900'}, {name: 'Burgundy', class: 'bg-red-900'}], features: ['100% Pure Silk', 'Hand-finished', 'Dry clean only', 'Made in Italy'] },
+    { id: '2', name: 'Designer Handbag', price: 3999, originalPrice: 5999, description: 'Elegant designer handbag crafted from premium Italian leather. Features multiple compartments and gold-tone hardware.', images: ['https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800', 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800', 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800'], sizes: ['One Size'], colors: [{name: 'Tan', class: 'bg-yellow-800'}, {name: 'Black', class: 'bg-black'}, {name: 'Red', class: 'bg-red-700'}], features: ['Italian Leather', 'Gold Hardware', '3 Compartments', 'Adjustable Strap'] },
+  ],
+  restaurant: [
+    { id: '1', name: 'Signature Burger', price: 399, originalPrice: null, description: 'Our signature burger features a juicy wagyu beef patty, caramelized onions, aged cheddar, and our secret sauce on a brioche bun.', images: ['https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800', 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=800', 'https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=800'], sizes: ['Regular', 'Large'], colors: [], features: ['Wagyu Beef', 'Brioche Bun', 'Fresh Ingredients', 'Handcrafted'] },
+    { id: '2', name: 'Margherita Pizza', price: 449, originalPrice: 549, description: 'Classic Neapolitan pizza with San Marzano tomatoes, fresh mozzarella di bufala, and basil on a wood-fired crust.', images: ['https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800', 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800', 'https://images.unsplash.com/photo-1588315029754-2dd089d39a1a?w=800'], sizes: ['Medium', 'Large'], colors: [], features: ['Wood-fired', 'San Marzano', 'Fresh Mozzarella', 'Hand-tossed'] },
+  ],
+  ecommerce: [
+    { id: '1', name: 'Premium Wireless Headphones', price: 2999, originalPrice: 4999, description: 'High-fidelity wireless headphones with active noise cancellation, 30-hour battery life, and premium audio drivers.', images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800', 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800', 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800'], sizes: ['One Size'], colors: [{name: 'Black', class: 'bg-black'}, {name: 'White', class: 'bg-white'}, {name: 'Gold', class: 'bg-yellow-500'}], features: ['ANC', '30hr Battery', 'Bluetooth 5.0', 'Premium Audio'] },
+    { id: '2', name: 'Smart Watch Pro', price: 4999, originalPrice: null, description: 'Advanced smartwatch with health monitoring, GPS, and 7-day battery life. Water-resistant to 50m.', images: ['https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800', 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800', 'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800'], sizes: ['40mm', '44mm'], colors: [{name: 'Black', class: 'bg-black'}, {name: 'Silver', class: 'bg-gray-400'}, {name: 'Rose Gold', class: 'bg-pink-300'}], features: ['Heart Rate', 'GPS', '7-day Battery', 'Water Resistant'] },
+  ],
+  medical: [
+    { id: '1', name: 'Digital Thermometer', price: 299, originalPrice: null, description: 'Fast and accurate digital thermometer with large LCD display. Fever alert and memory function.', images: ['https://images.unsplash.com/photo-1584515933487-779824d29309?w=800', 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800', 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800'], sizes: ['One Size'], colors: [], features: ['Fast 10sec', 'Fever Alert', 'Memory', 'Waterproof'] },
+  ],
+  realestate: [
+    { id: '1', name: '3BHK Luxury Apartment', price: 8500000, originalPrice: null, description: 'Spacious 3BHK apartment with modern amenities, panoramic city views, and premium finishes throughout.', images: ['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800', 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800', 'https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=800'], sizes: ['1500 sqft', '1800 sqft', '2000 sqft'], colors: [], features: ['Central AC', 'Modular Kitchen', 'Club Access', '24/7 Security'] },
+  ],
+};
+
+const products = productDatabase[templateCategory] || productDatabase['ecommerce'];
+const product = products.find(p => p.id === productId) || products[0];
+---
+
+<div class="min-h-screen" style={`background-color: ${colors.background || '#f9fafb'};`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Breadcrumb -->
+    <nav class="flex gap-2 text-sm mb-8" style={`color: ${colors.textMuted || '#6b7280'};`}>
+      <a href={`/${Astro.params.template}`} class="hover:underline">Home</a>
+      <span>/</span>
+      <a href={`/${Astro.params.template}?page=category`} class="hover:underline">Shop</a>
+      <span>/</span>
+      <span style={`color: ${colors.text || '#1a1a1a'};`}>{product.name}</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <!-- Product Images */}
+      <div class="space-y-4">
+        <div class="aspect-[3/4] rounded-lg overflow-hidden" style={`background-color: ${colors.surface || '#f3f4f6'};`}>
+          <img src={product.images[0]} alt={product.name} class="w-full h-full object-cover" />
+        </div>
+        <div class="grid grid-cols-4 gap-4">
+          {product.images.map((img: string) => (
+            <button class="aspect-square rounded-lg overflow-hidden border-2 transition hover:border-orange-500" style={`background-color: ${colors.surface || '#f3f4f6'};`}>
+              <img src={img} alt="Product view" class="w-full h-full object-cover" />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="space-y-6">
+        <div>
+          <h1 class="text-3xl font-bold mb-2" style={`color: ${colors.text || '#1a1a1a'};`}>{product.name}</h1>
+          <div class="flex items-center gap-4">
+            <span class="text-3xl font-bold" style={`color: ${colors.primary || '#000032'};`}>₹{product.price.toLocaleString()}</span>
+            {product.originalPrice && (
+              <>
+                <span class="text-xl line-through" style={`color: ${colors.textMuted || '#9ca3af'};`}>₹{product.originalPrice.toLocaleString()}</span>
+                <span class="px-2 py-1 text-sm font-semibold rounded text-white" style={`background-color: ${colors.accent || '#FA5014'};`}>
+                  {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+
+        <p class="leading-relaxed" style={`color: ${colors.textMuted || '#6b7280'};`}>{product.description}</p>
+
+        {product.sizes.length > 0 && (
+          <div>
+            <h3 class="font-semibold mb-3" style={`color: ${colors.text || '#1a1a1a'};`}>Size</h3>
+            <div class="flex gap-2 flex-wrap">
+              {product.sizes.map((size: string) => (
+                <button class="px-4 py-2 border-2 rounded-lg font-medium transition hover:border-orange-500" style={`border-color: ${colors.border || '#e5e7eb'}; color: ${colors.text || '#1a1a1a'};`}>
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {product.colors.length > 0 && (
+          <div>
+            <h3 class="font-semibold mb-3" style={`color: ${colors.text || '#1a1a1a'};`}>Color</h3>
+            <div class="flex gap-3">
+              {product.colors.map((color: any) => (
+                <button
+                  class={`w-10 h-10 rounded-full border-2 transition hover:scale-110 ${color.class}`}
+                  style="border-color: #e5e7eb;"
+                  title={color.name}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Add to Cart -->
+        <div class="flex gap-4">
+          <div class="flex items-center border-2 rounded-lg" style={`border-color: ${colors.border || '#e5e7eb'};`}>
+            <button class="px-4 py-3 text-xl font-medium hover:bg-gray-100">-</button>
+            <span class="px-4 py-3 font-medium" style={`color: ${colors.text || '#1a1a1a'};`}>1</span>
+            <button class="px-4 py-3 text-xl font-medium hover:bg-gray-100">+</button>
+          </div>
+          <button class="flex-1 text-white font-semibold py-3 px-8 rounded-lg flex items-center justify-center gap-2 transition hover:opacity-90" style={`background-color: ${colors.primary || '#000032'};`}>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+            Add to Cart
+          </button>
+          <button class="w-14 h-14 border-2 rounded-lg flex items-center justify-center transition hover:bg-gray-100" style={`border-color: ${colors.border || '#e5e7eb'};`}>
+            ♡
+          </button>
+        </div>
+
+        {/* Features */}
+        <div class="border-t pt-6" style={`border-color: ${colors.border || '#e5e7eb'};`}>
+          <h3 class="font-semibold mb-4" style={`color: ${colors.text || '#1a1a1a'};`}>Features</h3>
+          <ul class="space-y-2">
+            {product.features.map((feature: string) => (
+              <li class="flex items-center gap-2" style={`color: ${colors.textMuted || '#6b7280'};`}>
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Trust Badges */}
+        <div class="flex gap-6 pt-6 border-t text-sm" style={`border-color: ${colors.border || '#e5e7eb'}; color: ${colors.textMuted || '#6b7280'};`}>
+          <div class="flex items-center gap-2">
+            <span>🚚</span> Free Shipping
+          </div>
+          <div class="flex items-center gap-2">
+            <span>↩️</span> Easy Returns
+          </div>
+          <div class="flex items-center gap-2">
+            <span>🔒</span> Secure Payment
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <section>
+      <h2 class="text-2xl font-bold mb-6" style={`color: ${colors.text || '#1a1a1a'};`}>You May Also Like</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {products.slice(0, 4).map((item) => (
+          <a href={`/${Astro.params.template}?page=product&id=${item.id}`} class="group rounded-lg overflow-hidden transition hover:shadow-lg" style={`background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1);`}>
+            <div class="aspect-[3/4] overflow-hidden" style={`background-color: ${colors.surface || '#f3f4f6'};`}>
+              <img src={item.images[0]} alt={item.name} class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium mb-1 line-clamp-2" style={`color: ${colors.text || '#1a1a1a'};`}>{item.name}</h3>
+              <p class="font-semibold" style={`color: ${colors.primary || '#000032'};`}>₹{item.price.toLocaleString()}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</div>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

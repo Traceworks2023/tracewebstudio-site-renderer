@@ -1,0 +1,340 @@
+---
+// Premium Navigation - Glass morphism, Mega Menu, Mobile Drawer
+interface NavLink {
+  label: string;
+  href: string;
+  badge?: string;
+}
+
+interface NavItem {
+  label: string;
+  href?: string;
+  children?: NavLink[];
+  megaMenu?: boolean;
+}
+
+interface Props {
+  content?: {
+    logo?: string;
+    logoAlt?: string;
+    navItems?: NavItem[];
+    ctaText?: string;
+    ctaUrl?: string;
+  };
+  settings?: {
+    variant?: 'transparent' | 'solid' | 'glass';
+    position?: 'fixed' | 'sticky';
+    showCart?: boolean;
+    showSearch?: boolean;
+    showAccount?: boolean;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  logo = 'Brand',
+  logoAlt = 'Logo',
+  navItems = [
+    { label: 'Products', href: '#', megaMenu: true },
+    { label: 'Solutions', href: '#', megaMenu: true },
+    { label: 'Pricing', href: '#' },
+    { label: 'Resources', href: '#', megaMenu: true },
+    { label: 'Company', href: '#' },
+  ],
+  ctaText = 'Get Started',
+  ctaUrl = '#',
+} = content;
+
+const {
+  variant = 'glass',
+  position = 'sticky',
+  showCart = true,
+  showSearch = true,
+  showAccount = true,
+  templateSlug = '',
+} = settings;
+
+const getTemplateLink = (link: string) => {
+  if (!link || link === '#') return '#';
+  if (link.startsWith('http')) return link;
+  if (link.startsWith('?')) return `/${templateSlug}${link}`;
+  return `/${templateSlug}${link.startsWith('/') ? link : `/${link}`}`;
+};
+
+const variantClasses = {
+  transparent: 'bg-transparent',
+  solid: 'bg-white shadow-lg',
+  glass: 'bg-white/80 backdrop-blur-xl shadow-sm border border-white/20',
+};
+
+const positionClasses = {
+  fixed: 'fixed top-0 left-0 right-0 z-50',
+  sticky: 'sticky top-0 z-50',
+};
+---
+
+<header
+  class={`premium-nav ${positionClasses[position]} transition-all duration-300`}
+  data-variant={variant}
+>
+  <nav class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between h-20">
+      {/* Logo */}
+      <a href={getTemplateLink('/')} class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-primary)] rounded-xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform">
+          {logo.charAt(0)}
+        </div>
+        <span class="text-xl font-bold text-navy hidden sm:block">{logo}</span>
+      </a>
+
+      {/* Desktop Navigation */}
+      <div class="hidden lg:flex items-center gap-8">
+        {navItems.map((item) => (
+          <div class="nav-item relative">
+            {item.megaMenu && item.children ? (
+              <button class="nav-link flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-navy transition-colors group py-6">
+                {item.label}
+                <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                <div class="bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 min-w-[600px]">
+                  <div class="grid grid-cols-3 gap-6">
+                    {item.children.map((child) => (
+                      <a href={getTemplateLink(child.href)} class="mega-link group flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div class="w-10 h-10 bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-accent)]/5 rounded-lg flex items-center justify-center text-[var(--color-accent)] group-hover:from-[var(--color-accent)] group-hover:to-[var(--color-primary)] group-hover:text-white transition-all">
+                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div class="font-medium text-navy flex items-center gap-2">
+                            {child.label}
+                            {child.badge && (
+                              <span class="px-2 py-0.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] text-xs rounded-full">{child.badge}</span>
+                            )}
+                          </div>
+                          <p class="text-sm text-gray-500 mt-0.5">Premium features</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a href={getTemplateLink(item.href || '#')} class="nav-link text-sm font-medium text-gray-700 hover:text-navy transition-colors py-6">
+                {item.label}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Right Actions */}
+      <div class="hidden lg:flex items-center gap-4">
+        {showSearch && (
+          <button class="nav-action w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:text-navy hover:bg-gray-100 transition-all" aria-label="Search">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        )}
+
+        {showCart && (
+          <button class="nav-action relative w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:text-navy hover:bg-gray-100 transition-all" aria-label="Cart">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            <span class="absolute -top-1 -right-1 w-5 h-5 bg-[var(--color-accent)] text-white text-xs font-bold rounded-full flex items-center justify-center">0</span>
+          </button>
+        )}
+
+        {showAccount && (
+          <button class="nav-action w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:text-navy hover:bg-gray-100 transition-all" aria-label="Account">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </button>
+        )}
+
+        <a href={getTemplateLink(ctaUrl)} class="ml-2 px-6 py-2.5 bg-[var(--color-primary)] text-white text-sm font-semibold rounded-full hover:bg-[var(--color-accent)] transition-colors shadow-lg hover:shadow-[var(--color-accent)]/25">
+          {ctaText}
+        </a>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <button class="lg:hidden mobile-menu-btn w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-all" aria-label="Menu">
+        <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg class="w-6 h-6 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  {/* Mobile Drawer */}
+  <div class="mobile-drawer fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="drawer-overlay"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300" id="drawer-panel">
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-8">
+          <span class="text-xl font-bold text-navy">{logo}</span>
+          <button class="drawer-close w-10 h-10 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-all" aria-label="Close">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="space-y-2">
+          {navItems.map((item) => (
+            <div class="mobile-nav-item">
+              <a href={getTemplateLink(item.href || '#')} class="mobile-nav-link flex items-center justify-between py-4 text-lg font-medium text-gray-700 hover:text-navy border-b border-gray-100">
+                {item.label}
+                {item.children && (
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                )}
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-8 space-y-4">
+          <a href={getTemplateLink(ctaUrl)} class="block w-full py-4 bg-[var(--color-primary)] text-white text-center font-semibold rounded-full hover:bg-[var(--color-accent)] transition-colors">
+            {ctaText}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .premium-nav {
+    will-change: transform, background-color;
+  }
+
+  [data-variant="glass"] {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  [data-variant="transparent"] {
+    background: transparent;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-item:hover .nav-link::after {
+    transform: scaleX(1);
+  }
+
+  .mega-menu {
+    transform: translateX(-50%) translateY(10px);
+  }
+
+  .nav-item:hover .mega-menu {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .mobile-drawer.active {
+    display: block;
+  }
+
+  .mobile-drawer.active #drawer-panel {
+    transform: translateX(0);
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mobile-nav-link {
+    animation: slide-in 0.3s ease forwards;
+  }
+
+  .mobile-nav-item:nth-child(1) .mobile-nav-link { animation-delay: 0.05s; }
+  .mobile-nav-item:nth-child(2) .mobile-nav-link { animation-delay: 0.1s; }
+  .mobile-nav-item:nth-child(3) .mobile-nav-link { animation-delay: 0.15s; }
+  .mobile-nav-item:nth-child(4) .mobile-nav-link { animation-delay: 0.2s; }
+  .mobile-nav-item:nth-child(5) .mobile-nav-link { animation-delay: 0.25s; }
+</style>
+
+<script>
+  import Lenis from 'lenis';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('.premium-nav') as HTMLElement;
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const drawer = document.querySelector('.mobile-drawer');
+    const drawerOverlay = document.querySelector('#drawer-overlay');
+    const drawerPanel = document.querySelector('#drawer-panel');
+    const drawerClose = document.querySelector('.drawer-close');
+
+    // Mobile menu toggle
+    function openDrawer() {
+      drawer?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    mobileBtn?.addEventListener('click', openDrawer);
+    drawerOverlay?.addEventListener('click', closeDrawer);
+    drawerClose?.addEventListener('click', closeDrawer);
+
+    // Scroll behavior for sticky nav
+    if (nav?.dataset.variant === 'glass') {
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.scrollY;
+        if (currentScroll > 100) {
+          nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+        } else {
+          nav.style.boxShadow = 'none';
+        }
+        lastScroll = currentScroll;
+      });
+    }
+
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  });
+</script>

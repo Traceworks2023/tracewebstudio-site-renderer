@@ -1,0 +1,215 @@
+---
+// Quote Request Page
+interface Service {
+  id: string;
+  name: string;
+  description: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+  };
+  tenantId?: string;
+}
+
+const { content = {}, tenantId = '00000000-0000-0000-0000-000000000000' } = Astro.props;
+const {
+  title = 'Request a Quote',
+  subtitle = 'Get a personalized quote for your project. Our team will respond within 24 hours.',
+} = content;
+
+const defaultServices = [
+  { id: 'web-design', name: 'Web Design', description: 'Custom website design and development' },
+  { id: 'branding', name: 'Branding & Identity', description: 'Logo, brand guidelines, and visual identity' },
+  { id: 'marketing', name: 'Digital Marketing', description: 'SEO, PPC, social media, and content' },
+  { id: 'consulting', name: 'Consulting', description: 'Strategy and business consulting' },
+  { id: 'development', name: 'Custom Development', description: 'Software and application development' },
+  { id: 'other', name: 'Other Services', description: 'Let us know what you need' }
+];
+
+const services = defaultServices;
+---
+
+<div class="quote-page py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-4">
+        Free Quote
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+    </div>
+
+    <form id="quote-form" class="bg-gray-50 rounded-2xl p-8 space-y-8" data-tenant-id={tenantId}>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-3">What services are you interested in?</label>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {services.map((service) => (
+            <label class="flex items-start gap-3 p-4 bg-white border border-gray-200 rounded-xl cursor-pointer hover:border-[var(--color-accent)] transition-colors has-[:checked]:border-[var(--color-accent)] has-[:checked]:bg-[var(--color-accent)]/5">
+              <input type="checkbox" name="services" value={service.id} class="mt-1" />
+              <div>
+                <p class="font-medium text-gray-900">{service.name}</p>
+                <p class="text-sm text-gray-500">{service.description}</p>
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-3">Estimated Budget</label>
+        <div class="flex flex-wrap gap-3">
+          {['< $5,000', '$5,000 - $10,000', '$10,000 - $25,000', '$25,000 - $50,000', '$50,000+', 'Not Sure'].map((range) => (
+            <label class="px-4 py-2 border border-gray-200 rounded-full cursor-pointer hover:border-[var(--color-accent)] transition-colors has-[:checked]:border-[var(--color-accent)] has-[:checked]:bg-[var(--color-accent)]/5 has-[:checked]:text-[var(--color-accent)]">
+              <input type="radio" name="budget" value={range} class="sr-only" />
+              <span class="text-sm font-medium text-gray-700">{range}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-3">Project Timeline</label>
+        <div class="flex flex-wrap gap-3">
+          {['ASAP', '1-2 weeks', '1 month', '2-3 months', '3+ months', 'Flexible'].map((timeline) => (
+            <label class="px-4 py-2 border border-gray-200 rounded-full cursor-pointer hover:border-[var(--color-accent)] transition-colors has-[:checked]:border-[var(--color-accent)] has-[:checked]:bg-[var(--color-accent)]/5 has-[:checked]:text-[var(--color-accent)]">
+              <input type="radio" name="timeline" value={timeline} class="sr-only" />
+              <span class="text-sm font-medium text-gray-700">{timeline}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+            required
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+            required
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+          <input
+            type="email"
+            name="email"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+            required
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+          />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Company Name</label>
+          <input
+            type="text"
+            name="company"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Tell us about your project</label>
+        <textarea
+          name="details"
+          rows={5}
+          placeholder="Describe your project goals, requirements, and any other relevant details..."
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] resize-none"
+          required
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full py-4 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent)] transition-colors"
+      >
+        Request Quote
+      </button>
+
+      <p class="text-center text-sm text-gray-500">
+        By submitting this form, you agree to our <a href="/privacy" class="text-[var(--color-accent)] hover:underline">Privacy Policy</a>.
+      </p>
+    </form>
+
+    <div id="quote-success" class="hidden text-center py-16">
+      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Quote Request Submitted!</h2>
+      <p class="text-gray-600 mb-6">We'll send you a personalized quote within 24 hours.</p>
+      <a href="/" class="px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition">
+        Back to Home
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('quote-form') as HTMLFormElement;
+    const successDiv = document.getElementById('quote-success');
+    const tenantId = form?.dataset.tenantId || '00000000-0000-0000-0000-000000000000';
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const selectedServices = formData.getAll('services') as string[];
+      const items = selectedServices.map(serviceId => ({
+        description: serviceId,
+        quantity: 1,
+        unit_price: 0,
+        total: 0
+      }));
+
+      const data = {
+        customer_name: `${formData.get('firstName')} ${formData.get('lastName')}`,
+        customer_email: formData.get('email'),
+        items,
+        subtotal: 0,
+        discount_amount: 0,
+        notes: `Budget: ${formData.get('budget') || 'Not specified'}\nTimeline: ${formData.get('timeline') || 'Not specified'}\n\n${formData.get('details')}`,
+        tenant_id: tenantId,
+      };
+
+      try {
+        const res = await fetch('http://localhost:8084/api/v1 addon/quotes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          form.classList.add('hidden');
+          successDiv?.classList.remove('hidden');
+        } else {
+          alert('Failed to submit quote request. Please try again.');
+        }
+      } catch (err) {
+        alert('Failed to submit quote request. Please try again.');
+      }
+    });
+  });
+</script>

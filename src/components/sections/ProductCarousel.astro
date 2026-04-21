@@ -1,0 +1,416 @@
+---
+// Product Carousel - Multiple carousel types including Product Rail
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  image: string;
+  badge?: string;
+  rating?: number;
+  reviews?: number;
+  link?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    products?: Product[];
+    layout?: 'carousel' | 'grid' | 'featured';
+  };
+  settings?: {
+    carouselType?: 'classic' | 'productRail' | 'centerMode' | 'coverflow' | 'stackedCard';
+    slidesPerView?: number;
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    motionLevel?: 1 | 2 | 3 | 4;
+    showRatings?: boolean;
+    showQuickView?: boolean;
+    showAddToCart?: boolean;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Featured Products',
+  subtitle = '',
+  products = [
+    {
+      id: '1',
+      name: 'Premium Wireless Headphones',
+      price: 299,
+      originalPrice: 399,
+      image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
+      badge: 'Sale',
+      rating: 4.5,
+      reviews: 128,
+    },
+    {
+      id: '2',
+      name: 'Designer Leather Bag',
+      price: 599,
+      image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400',
+      badge: 'New',
+      rating: 5,
+      reviews: 64,
+    },
+    {
+      id: '3',
+      name: 'Minimalist Watch',
+      price: 249,
+      originalPrice: 299,
+      image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400',
+      rating: 4,
+      reviews: 256,
+    },
+    {
+      id: '4',
+      name: 'Premium Sunglasses',
+      price: 179,
+      image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400',
+      badge: '-20%',
+      rating: 4.5,
+      reviews: 89,
+    },
+    {
+      id: '5',
+      name: 'Ceramic Vase Set',
+      price: 89,
+      image: 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=400',
+      rating: 4,
+      reviews: 45,
+    },
+    {
+      id: '6',
+      name: 'Silk Scarf',
+      price: 129,
+      image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400',
+      badge: 'Limited',
+      rating: 5,
+      reviews: 32,
+    },
+  ],
+  layout = 'carousel',
+} = content;
+
+const {
+  carouselType = 'productRail',
+  slidesPerView = 4,
+  autoplay = true,
+  autoplayDelay = 4000,
+  motionLevel = 3,
+  showRatings = true,
+  showQuickView = true,
+  showAddToCart = true,
+} = settings;
+---
+
+<section
+  class="product-carousel-section py-20 bg-white overflow-hidden"
+  data-carousel-type={carouselType}
+  data-slides-per-view={slidesPerView}
+  data-motion-level={motionLevel}
+  data-autoplay={autoplay}
+  data-delay={autoplayDelay}
+>
+  <div class="max-w-7xl mx-auto px-6">
+    {/* Section Header */}
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+      <div>
+        <span class="inline-block px-4 py-1.5 bg-navy/10 text-navy rounded-full text-sm font-semibold mb-4">
+          Collection
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold text-navy mb-2">
+          {title}
+        </h2>
+        {subtitle && (
+          <p class="text-lg text-gray-600">{subtitle}</p>
+        )}
+      </div>
+      <div class="flex items-center gap-4 mt-6 md:mt-0">
+        <a href="#" class="inline-flex items-center gap-2 text-[var(--color-text)] font-semibold hover:text-[var(--color-accent)] transition-colors">
+          View All
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <div class="flex gap-2">
+          <button class="product-prev w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-navy hover:text-navy transition-all" aria-label="Previous products">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button class="product-next w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-navy hover:text-navy transition-all" aria-label="Next products">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {/* Product Rail / Carousel */}
+    <div class="product-carousel-container relative overflow-hidden">
+      <div class="product-rail flex gap-6" data-current="0">
+        {products.map((product, index) => (
+          <div
+            class={`product-card group flex-shrink-0 transition-all duration-500 ${carouselType === 'productRail' ? 'w-[280px]' : 'w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]'}`}
+            data-index={index}
+          >
+            <div class="relative bg-gray-50 rounded-2xl overflow-hidden">
+              {/* Product Image */}
+              <div class="relative aspect-[3/4] overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+
+                {/* Badges */}
+                {product.badge && (
+                  <div class="absolute top-4 left-4">
+                    <span class={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide rounded-full ${
+                      product.badge === 'Sale' ? 'bg-[var(--color-accent)] text-white' :
+                      product.badge === 'New' ? 'bg-green-500 text-white' :
+                      product.badge === 'Limited' ? 'bg-purple-500 text-white' :
+                      'bg-red-500 text-white'
+                    }`}>
+                      {product.badge}
+                    </span>
+                  </div>
+                )}
+
+                {/* Quick Actions Overlay */}
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                  {showQuickView && (
+                    <button class="quick-view-btn w-12 h-12 rounded-full bg-white text-[var(--color-primary)] flex items-center justify-center hover:bg-[var(--color-accent)] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0" aria-label="Quick view">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                  )}
+                  <button class="wishlist-btn w-12 h-12 rounded-full bg-white text-[var(--color-primary)] flex items-center justify-center hover:bg-[var(--color-accent)] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0" style="transition-delay: 50ms" aria-label="Add to wishlist">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </button>
+                  <button class="compare-btn w-12 h-12 rounded-full bg-white text-[var(--color-primary)] flex items-center justify-center hover:bg-[var(--color-accent)] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0" style="transition-delay: 100ms" aria-label="Compare">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Product Info */}
+              <div class="p-5">
+                {/* Rating */}
+                {showRatings && product.rating && (
+                  <div class="flex items-center gap-2 mb-3">
+                    <div class="flex gap-0.5">
+                      {Array(5).fill(0).map((_, i) => (
+                        <svg class={`w-4 h-4 ${i < Math.floor(product.rating!) ? 'text-yellow-400' : 'text-gray-300'} fill-current`} viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    {product.reviews && (
+                      <span class="text-xs text-gray-500">({product.reviews})</span>
+                    )}
+                  </div>
+                )}
+
+                <h3 class="font-semibold text-[var(--color-text)] mb-2 group-hover:text-[var(--color-accent)] transition-colors line-clamp-2">
+                  {product.name}
+                </h3>
+
+                {/* Price */}
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-xl font-bold text-navy">${product.price}</span>
+                  {product.originalPrice && (
+                    <span class="text-sm text-gray-400 line-through">${product.originalPrice}</span>
+                  )}
+                </div>
+
+                {/* Add to Cart */}
+                {showAddToCart && (
+                  <button class="w-full py-3 bg-[var(--color-primary)] text-white rounded-lg font-semibold hover:bg-[var(--color-accent)] transition-colors flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    Add to Cart
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-card {
+    will-change: transform, opacity;
+  }
+
+  @keyframes card-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .product-card {
+    animation: card-reveal 0.6s ease-out forwards;
+  }
+
+  /* Continuous Rail Animation */
+  [data-carousel-type="productRail"] .product-rail {
+    animation: rail-scroll 30s linear infinite;
+  }
+
+  [data-carousel-type="productRail"] .product-rail:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes rail-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Level 4 enhancements */
+  [data-motion-level="4"] .product-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Coverflow effect for centerMode */
+  [data-carousel-type="coverflow"] .product-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.product-carousel-section') as HTMLElement;
+    if (!section) return;
+
+    const rail = section.querySelector('.product-rail') as HTMLElement;
+    const cards = section.querySelectorAll('.product-card');
+    const prevBtn = section.querySelector('.product-prev');
+    const nextBtn = section.querySelector('.product-next');
+
+    const carouselType = section.dataset.carouselType || 'productRail';
+    const slidesPerView = parseInt(section.dataset.slidesPerView || '4');
+    const autoplay = section.dataset.autoplay !== 'false';
+    const delay = parseInt(section.dataset.delay || '4000');
+    const motionLevel = parseInt(section.dataset.motionLevel || '3');
+
+    let currentIndex = 0;
+    const cardWidth = cards[0]?.offsetWidth + 24 || 304; // card width + gap
+    let autoplayInterval: ReturnType<typeof setInterval> | null = null;
+
+    // Duplicate cards for infinite scroll
+    if (carouselType === 'productRail') {
+      const cardsArray = Array.from(cards);
+      cardsArray.forEach(card => {
+        rail.appendChild(card.cloneNode(true));
+      });
+    }
+
+    function scrollToIndex(index: number) {
+      const maxIndex = cards.length - slidesPerView;
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+
+      gsap.to(rail, {
+        x: -currentIndex * cardWidth,
+        duration: 0.6,
+        ease: 'power2.out',
+      });
+    }
+
+    function nextSlide() {
+      scrollToIndex(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      scrollToIndex(currentIndex - 1);
+    }
+
+    function resetAutoplay() {
+      if (autoplayInterval) clearInterval(autoplayInterval);
+      if (autoplay && carouselType !== 'productRail') {
+        autoplayInterval = setInterval(nextSlide, delay);
+      }
+    }
+
+    // Event listeners
+    nextBtn?.addEventListener('click', () => {
+      nextSlide();
+      resetAutoplay();
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      prevSlide();
+      resetAutoplay();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Touch/Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    section.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    section.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+        resetAutoplay();
+      }
+    }, { passive: true });
+
+    // Staggered entrance animation
+    if (motionLevel >= 3) {
+      gsap.from(cards, {
+        opacity: 0,
+        y: 50,
+        scale: 0.95,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        delay: 0.3,
+      });
+    }
+
+    // Start autoplay for non-rail carousels
+    if (autoplay && carouselType !== 'productRail' && cards.length > slidesPerView) {
+      autoplayInterval = setInterval(nextSlide, delay);
+    }
+  });
+</script>

@@ -1,0 +1,330 @@
+---
+// Category Grid - Premium grid with glass morphism and hover effects
+interface Category {
+  id: string;
+  name: string;
+  image: string;
+  itemCount?: number;
+  link?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    categories?: Category[];
+    layout?: 'grid' | 'masonry' | 'carousel' | 'featured';
+  };
+  settings?: {
+    columns?: 2 | 3 | 4 | 5;
+    variant?: 'default' | 'overlay' | 'glass' | 'minimal';
+    motionLevel?: 1 | 2 | 3 | 4;
+    showItemCount?: boolean;
+    showHoverEffect?: boolean;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Shop by Category',
+  subtitle = 'Find exactly what you\'re looking for',
+  categories = [
+    { id: '1', name: 'Women', image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600', itemCount: 156, link: '#' },
+    { id: '2', name: 'Men', image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600', itemCount: 124, link: '#' },
+    { id: '3', name: 'Accessories', image: 'https://images.unsplash.com/photo-1611085583191-a1b947a8c3e6?w=600', itemCount: 89, link: '#' },
+    { id: '4', name: 'Sale', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600', itemCount: 45, link: '#' },
+    { id: '5', name: 'New Arrivals', image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600', itemCount: 78, link: '#' },
+    { id: '6', name: 'Best Sellers', image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600', itemCount: 112, link: '#' },
+  ],
+  layout = 'grid',
+} = content;
+
+const {
+  columns = 4,
+  variant = 'glass',
+  motionLevel = 3,
+  showItemCount = true,
+  showHoverEffect = true,
+  templateSlug = '',
+  backgroundStyle = 'light',
+  useDarkText = false,
+  themeColors,
+} = settings;
+
+const getTemplateLink = (link: string) => {
+  if (!link || link === '#') return '#';
+  if (link.startsWith('http')) return link;
+  return `/${templateSlug}${link.startsWith('/') ? link : `/${link}`}`;
+};
+
+const sectionBgClass = {
+  light: 'bg-white',
+  dark: 'bg-[var(--color-primary)] text-white',
+  gradient: 'bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] text-white',
+  surface: 'bg-gray-50',
+  muted: 'bg-gray-100'
+}[backgroundStyle] || 'bg-white';
+
+const textClass = useDarkText ? 'text-[var(--color-text)]' : 'text-white';
+---
+
+<section class={`category-grid-section py-20 overflow-hidden ${sectionBgClass}`}>
+  <div class="max-w-7xl mx-auto px-6">
+    {/* Section Header */}
+    <div class="text-center mb-12">
+      <span class={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-4 ${
+        useDarkText
+          ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
+          : 'bg-white/20 text-white/90'
+      }`}>
+        Categories
+      </span>
+      <h2 class={`text-4xl md:text-5xl font-bold mb-4 ${useDarkText ? 'text-[var(--color-text)]' : 'text-white'}`}>
+        {title}
+      </h2>
+      {subtitle && (
+        <p class={`text-lg max-w-2xl mx-auto ${useDarkText ? 'text-gray-500' : 'text-white/70'}`}>
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    {/* Category Grid */}
+    <div
+      class={`category-grid grid gap-6 ${
+        columns === 2 ? 'grid-cols-2' :
+        columns === 3 ? 'grid-cols-2 md:grid-cols-3' :
+        columns === 5 ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-5' :
+        'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+      }`}
+      data-variant={variant}
+      data-motion-level={motionLevel}
+    >
+      {categories.map((category, index) => (
+        <a
+          href={getTemplateLink(category.link || '#')}
+          class={`category-card group relative rounded-2xl overflow-hidden ${
+            index === 0 && layout === 'featured' ? 'md:col-span-2 md:row-span-2' : ''
+          } ${variant === 'glass' ? 'backdrop-blur-md' : ''}`}
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          {/* Background Image */}
+          <div class="category-image-wrapper aspect-[3/4] relative">
+            <img
+              src={category.image}
+              alt={category.name}
+              class="category-image w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+
+            {/* Gradient Overlay */}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+            {/* Glass Effect */}
+            {variant === 'glass' && (
+              <div class="absolute inset-0 backdrop-blur-md bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            )}
+
+            {/* Hover Overlay */}
+            {showHoverEffect && (
+              <div class="absolute inset-0 bg-[var(--color-primary)]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="px-6 py-3 bg-white text-[var(--color-primary)] font-semibold rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  Shop Now
+                </span>
+              </div>
+            )}
+
+            {/* Content */}
+            <div class="absolute inset-0 flex flex-col justify-end p-6">
+              <div class="transform transition-transform duration-300 group-hover:-translate-y-2">
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-1">
+                  {category.name}
+                </h3>
+                {showItemCount && category.itemCount && (
+                  <p class="text-white/70 text-sm">
+                    {category.itemCount} items
+                  </p>
+                )}
+              </div>
+
+              {/* Arrow Icon */}
+              <div class="mt-4 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                  <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Corner Decoration */}
+            {variant === 'glass' && (
+              <div class="absolute top-4 right-4 w-8 h-8 border-2 border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            )}
+          </div>
+
+          {/* Border Glow Effect */}
+          <div class="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[var(--color-accent)]/50 transition-colors duration-300 pointer-events-none" />
+        </a>
+      ))}
+    </div>
+
+    {/* View All Link */}
+    <div class="text-center mt-12">
+      <a href={getTemplateLink('#')} class="view-all-link inline-flex items-center gap-2 text-[var(--color-text)] font-semibold hover:text-[var(--color-accent)] transition-colors group">
+        View All Categories
+        <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .category-card {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .category-image {
+    will-change: transform;
+  }
+
+  /* Border glow on hover */
+  .category-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-primary), var(--color-accent));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  .category-card:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes card-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .category-card {
+    animation: card-reveal 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Level 4 enhancements */
+  [data-motion-level="4"] .category-card:nth-child(odd) {
+    animation-delay: 0.1s;
+  }
+
+  [data-motion-level="4"] .category-card:nth-child(even) {
+    animation-delay: 0.2s;
+  }
+
+  /* Glass variant */
+  [data-variant="glass"] {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Minimal variant */
+  [data-variant="minimal"] .category-image-wrapper {
+    aspect-ratio: 1;
+  }
+
+  /* Featured layout - first item larger */
+  @media (min-width: 768px) {
+    [data-variant="featured"] .category-card:first-child {
+      grid-row: span 2;
+    }
+
+    [data-variant="featured"] .category-card:first-child .category-image-wrapper {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .category-card:hover {
+      transform: translateY(-4px);
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.category-grid-section') as HTMLElement;
+    if (!section) return;
+
+    const cards = section.querySelectorAll('.category-card');
+    const motionLevel = parseInt(section.dataset.motionLevel || '3');
+
+    // Scroll-triggered reveal
+    if (motionLevel >= 3) {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 80%',
+        onEnter: () => {
+          gsap.from(cards, {
+            opacity: 0,
+            y: 50,
+            scale: 0.95,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out',
+          });
+        },
+      });
+    }
+
+    // Tilt effect for level 4
+    if (motionLevel >= 4) {
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+          gsap.to(card, {
+            rotateY: x * 10,
+            rotateX: -y * 10,
+            duration: 0.3,
+            ease: 'power2.out',
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            rotateY: 0,
+            rotateX: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+          });
+        });
+      });
+    }
+  });
+</script>

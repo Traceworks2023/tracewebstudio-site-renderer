@@ -1,0 +1,840 @@
+---
+// Advanced Carousel System - 16 carousel types
+// Based on docs: Motion, Parallax, and Carousel System
+
+interface CarouselItem {
+  id?: string;
+  image?: string;
+  imageAlt?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  badge?: string;
+  link?: string;
+  logo?: string; // For logo marquee
+  logoAlt?: string;
+  quote?: string; // For testimonials
+  author?: string;
+  role?: string;
+  rating?: number;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    items?: CarouselItem[];
+  };
+  settings?: {
+    carouselType?: 'classic' | 'cinematic' | 'stackedCard' | 'centerMode' | 'splitContent'
+      | 'vertical' | 'filmstrip' | 'logoMarquee' | 'testimonialQuote' | 'productRail'
+      | 'editorialStory' | 'beforeAfter' | 'coverflow' | 'continuousRail' | 'thumbnailGallery';
+    slidesPerView?: number;
+    autoplay?: boolean;
+    autoplayDelay?: number;
+    loop?: boolean;
+    speed?: number;
+    motionLevel?: 1 | 2 | 3 | 4;
+    showControls?: boolean;
+    showPagination?: boolean;
+    showThumbnails?: boolean;
+    peekAmount?: number;
+    direction?: 'horizontal' | 'vertical';
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = '',
+  subtitle = '',
+  items = [
+    { id: '1', image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800', title: 'First Slide', subtitle: 'Subtitle text', badge: 'New' },
+    { id: '2', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800', title: 'Second Slide', subtitle: 'Subtitle text' },
+    { id: '3', image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800', title: 'Third Slide', subtitle: 'Subtitle text' },
+    { id: '4', image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800', title: 'Fourth Slide', subtitle: 'Subtitle text', badge: 'Featured' },
+  ],
+} = content;
+
+const {
+  carouselType = 'classic',
+  slidesPerView = 4,
+  autoplay = true,
+  autoplayDelay = 5000,
+  loop = true,
+  speed = 500,
+  motionLevel = 2,
+  showControls = true,
+  showPagination = true,
+  showThumbnails = false,
+  peekAmount = 0,
+  direction = 'horizontal',
+} = settings;
+
+const sectionId = `carousel-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section
+  id={sectionId}
+  class={`carousel-section carousel-${carouselType} ${direction === 'vertical' ? 'vertical-carousel' : ''}`}
+  data-carousel-type={carouselType}
+  data-slides-per-view={slidesPerView}
+  data-autoplay={autoplay}
+  data-delay={autoplayDelay}
+  data-loop={loop}
+  data-speed={speed}
+  data-motion-level={motionLevel}
+  data-show-thumbnails={showThumbnails}
+  data-peek={peekAmount}
+>
+  {/* Classic Hero Slider */}
+  {carouselType === 'classic' && (
+    <div class="relative h-[80vh] min-h-[600px] overflow-hidden">
+      <div class="carousel-track absolute inset-0 flex" data-track>
+        {items.map((item, index) => (
+          <div class="carousel-slide flex-shrink-0 w-full h-full relative" data-slide={index}>
+            <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover" loading={index === 0 ? 'eager' : 'lazy'} />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 md:p-16 text-white">
+              {item.badge && (
+                <span class="inline-block px-4 py-1 bg-[var(--color-accent)] text-white text-sm font-semibold rounded-full mb-4">
+                  {item.badge}
+                </span>
+              )}
+              <h2 class="text-4xl md:text-6xl font-bold mb-4 max-w-3xl">{item.title}</h2>
+              {item.subtitle && <p class="text-xl text-gray-200 max-w-2xl mb-6">{item.subtitle}</p>}
+              {item.link && (
+                <a href={item.link} class="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-[var(--color-accent)] hover:text-white transition-all">
+                  Learn More
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Controls */}
+      {showControls && (
+        <div class="absolute bottom-8 right-8 flex gap-4">
+          <button class="carousel-prev w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/40 transition-all" aria-label="Previous">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button class="carousel-next w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/40 transition-all" aria-label="Next">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      )}
+      {/* Pagination */}
+      {showPagination && (
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+          {items.map((_, index) => (
+            <button class={`carousel-dot w-3 h-3 rounded-full transition-all ${index === 0 ? 'bg-white w-8' : 'bg-white/50'}`} data-dot={index} aria-label={`Go to slide ${index + 1}`}></button>
+          ))}
+        </div>
+      )}
+    </div>
+  )}
+
+  {/* Cinematic Fullscreen Slider */}
+  {carouselType === 'cinematic' && (
+    <div class="relative h-screen overflow-hidden">
+      <div class="carousel-track absolute inset-0 flex" data-track>
+        {items.map((item, index) => (
+          <div class="carousel-slide flex-shrink-0 w-full h-full relative" data-slide={index}>
+            <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover transition-opacity duration-1000" loading={index === 0 ? 'eager' : 'lazy'} />
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 flex items-center justify-center text-center text-white p-8">
+              <div class="max-w-4xl">
+                <h2 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">{item.title}</h2>
+                {item.subtitle && <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">{item.subtitle}</p>}
+                {item.link && (
+                  <a href={item.link} class="inline-flex items-center gap-3 px-10 py-4 border-2 border-white font-semibold rounded-full hover:bg-white hover:text-black transition-all duration-300">
+                    Explore Collection
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Cinematic Controls */}
+      {showControls && (
+        <div class="absolute bottom-16 right-16 flex flex-col gap-4">
+          <button class="carousel-prev w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all" aria-label="Previous">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button class="carousel-next w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all" aria-label="Next">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      )}
+      {/* Progress Bar */}
+      <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+        <div class="carousel-progress h-full bg-white" style="width: 0%"></div>
+      </div>
+    </div>
+  )}
+
+  {/* Center Mode Showcase */}
+  {carouselType === 'centerMode' && (
+    <div class="py-16 px-8 overflow-hidden">
+      <div class="max-w-7xl mx-auto">
+        {title && <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">{title}</h2>}
+        {subtitle && <p class="text-center text-gray-600 mb-12">{subtitle}</p>}
+        <div class="relative">
+          <div class="carousel-track flex gap-6" data-track>
+            {items.map((item, index) => (
+              <div class="carousel-slide flex-shrink-0 w-[320px] md:w-[380px] transition-all duration-500" data-slide={index}>
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
+                  <div class="aspect-[4/5] overflow-hidden">
+                    <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">{item.title}</h3>
+                    {item.subtitle && <p class="text-gray-600">{item.subtitle}</p>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {showControls && (
+            <>
+              <button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-800 hover:bg-[var(--color-primary)] hover:text-white transition-all z-10" aria-label="Previous">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+              </button>
+              <button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-800 hover:bg-[var(--color-primary)] hover:text-white transition-all z-10" aria-label="Next">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* Stacked Card Carousel */}
+  {carouselType === 'stackedCard' && (
+    <div class="py-20 px-8 overflow-hidden">
+      <div class="max-w-6xl mx-auto">
+        <div class="relative h-[500px]">
+          {items.map((item, index) => (
+            <div
+              class={`carousel-slide absolute w-full md:w-[85%] left-1/2 -translate-x-1/2 transition-all duration-500 ${index === 0 ? 'z-20 -translate-y-4 opacity-100' : index === 1 ? 'z-10 -translate-y-8 opacity-80 scale-95' : 'z-0 -translate-y-12 opacity-60 scale-90'}`}
+              data-slide={index}
+            >
+              <div class="rounded-3xl overflow-hidden shadow-2xl">
+                <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-[450px] object-cover" loading={index === 0 ? 'eager' : 'lazy'} />
+                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
+                  <h3 class="text-2xl font-bold text-white">{item.title}</h3>
+                  {item.subtitle && <p class="text-gray-200 mt-2">{item.subtitle}</p>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {showControls && (
+          <div class="flex justify-center gap-4 mt-8">
+            <button class="carousel-prev w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all" aria-label="Previous">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button class="carousel-next w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all" aria-label="Next">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  {/* Split Content Carousel */}
+  {carouselType === 'splitContent' && (
+    <div class="grid md:grid-cols-2 min-h-[600px]">
+      <div class="bg-[var(--color-primary)] p-12 md:p-16 flex items-center order-2 md:order-1">
+        <div class="carousel-track flex flex-col" data-track>
+          {items.map((item, index) => (
+            <div class="carousel-slide flex-shrink-0 w-full text-white" data-slide={index}>
+              <h2 class="text-4xl font-bold mb-4">{item.title}</h2>
+              {item.description && <p class="text-xl text-gray-200 mb-6">{item.description}</p>}
+              {item.link && (
+                <a href={item.link} class="inline-flex items-center gap-2 text-white font-semibold hover:gap-4 transition-all">
+                  Learn More <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="order-1 md:order-2 relative overflow-hidden">
+        <div class="carousel-track" data-track>
+          {items.map((item, index) => (
+            <div class="carousel-slide w-full h-full absolute inset-0" data-slide={index}>
+              <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover" loading={index === 0 ? 'eager' : 'lazy'} />
+            </div>
+          ))}
+        </div>
+        {showControls && (
+          <div class="absolute bottom-8 right-8 flex gap-3">
+            <button class="carousel-prev w-12 h-12 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/40 transition-all" aria-label="Previous">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button class="carousel-next w-12 h-12 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/40 transition-all" aria-label="Next">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  {/* Vertical Carousel */}
+  {carouselType === 'vertical' && (
+    <div class="py-16 px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex gap-8 items-start">
+          <div class="flex-1">
+            <div class="carousel-track flex flex-col gap-6" data-track>
+              {items.map((item, index) => (
+                <div class="carousel-slide flex-shrink-0" data-slide={index}>
+                  <div class="rounded-2xl overflow-hidden shadow-lg">
+                    <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-[300px] object-cover" loading={index === 0 ? 'eager' : 'lazy'} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="w-80 flex-shrink-0">
+            <div class="carousel-track flex flex-col" data-thumbnails>
+              {items.map((item, index) => (
+                <button class={`carousel-thumb text-left p-4 rounded-lg transition-all ${index === 0 ? 'bg-[var(--color-primary)]/10 border-l-4 border-[var(--color-primary)]' : 'hover:bg-gray-50'}`} data-thumb={index}>
+                  <h3 class="font-bold">{item.title}</h3>
+                  {item.subtitle && <p class="text-sm text-gray-500">{item.subtitle}</p>}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* Filmstrip Carousel */}
+  {carouselType === 'filmstrip' && (
+    <div class="py-16 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-8">
+        {title && <h2 class="text-3xl font-bold text-center mb-12">{title}</h2>}
+        <div class="relative">
+          <div class="carousel-track flex gap-4" data-track>
+            {items.map((item, index) => (
+              <div class="carousel-slide flex-shrink-0 w-[200px] md:w-[280px]" data-slide={index}>
+                <div class="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer">
+                  <div class="aspect-[3/4] overflow-hidden">
+                    <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" loading="lazy" />
+                  </div>
+                  {item.title && <div class="p-4 bg-white"><h3 class="font-semibold text-sm truncate">{item.title}</h3></div>}
+                </div>
+              </div>
+            ))}
+          </div>
+          {showControls && (
+            <>
+              <button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-800 hover:bg-[var(--color-primary)] hover:text-white transition-all z-10" aria-label="Previous">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+              </button>
+              <button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-800 hover:bg-[var(--color-primary)] hover:text-white transition-all z-10" aria-label="Next">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* Logo Marquee */}
+  {carouselType === 'logoMarquee' && (
+    <div class="py-16 bg-gray-50 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-8">
+        {title && <h2 class="text-2xl font-bold text-center text-gray-500 mb-12">{title}</h2>}
+        <div class="relative">
+          <div class="carousel-track flex gap-16 items-center" data-track>
+            {items.map((item, index) => (
+              <div class="carousel-slide flex-shrink-0 w-[160px] md:w-[200px]" data-slide={index}>
+                <img src={item.logo || item.image} alt={item.logoAlt || `Logo ${index + 1}`} class="w-full h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* Testimonial Quote Carousel */}
+  {carouselType === 'testimonialQuote' && (
+    <div class="py-20 px-8 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)]">
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <div class="carousel-track flex" data-track>
+          {items.map((item, index) => (
+            <div class="carousel-slide flex-shrink-0 w-full" data-slide={index}>
+              <svg class="w-16 h-16 mx-auto mb-8 opacity-30" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+              <blockquote class="text-2xl md:text-3xl font-medium leading-relaxed mb-8">
+                "{item.quote || item.description || item.title}"
+              </blockquote>
+              <div class="flex items-center justify-center gap-4">
+                {item.image && <img src={item.image} alt={item.author} class="w-16 h-16 rounded-full object-cover" />}
+                <div class="text-left">
+                  <div class="font-bold text-lg">{item.author}</div>
+                  {item.role && <div class="text-white/70">{item.role}</div>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {showPagination && (
+          <div class="flex justify-center gap-2 mt-12">
+            {items.map((_, index) => (
+              <button class={`carousel-dot w-3 h-3 rounded-full transition-all ${index === 0 ? 'bg-white w-8' : 'bg-white/50'}`} data-dot={index}></button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  {/* Editorial Story Slider */}
+  {carouselType === 'editorialStory' && (
+    <div class="py-16 px-8 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="carousel-track flex" data-images>
+          {items.map((item, index) => (
+            <div class="carousel-slide flex-shrink-0 w-full aspect-[4/5] rounded-3xl overflow-hidden" data-slide={index}>
+              <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover" loading={index === 0 ? 'eager' : 'lazy'} />
+            </div>
+          ))}
+        </div>
+        <div class="carousel-track flex flex-col" data-content>
+          {items.map((item, index) => (
+            <div class="carousel-slide flex-shrink-0" data-slide={index}>
+              <span class="text-sm font-semibold text-[var(--color-accent)] tracking-wider uppercase">Story {index + 1}</span>
+              <h2 class="text-4xl font-bold mt-4 mb-6">{item.title}</h2>
+              <p class="text-gray-600 text-lg mb-8">{item.description || item.subtitle}</p>
+              <a href={item.link || '#'} class="inline-flex items-center gap-2 font-semibold hover:gap-4 transition-all">
+                Read More <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+      {showControls && (
+        <div class="flex justify-center gap-4 mt-12">
+          <button class="carousel-prev w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all" aria-label="Previous">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button class="carousel-next w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all" aria-label="Next">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      )}
+    </div>
+  )}
+
+  {/* Before/After Comparison Slider */}
+  {carouselType === 'beforeAfter' && (
+    <div class="py-16 px-8">
+      <div class="max-w-6xl mx-auto">
+        <div class="relative overflow-hidden rounded-3xl">
+          {/* After Image (Background) */}
+          <img src={items[1]?.image || items[0]?.image} alt="After" class="w-full aspect-video object-cover" />
+          {/* Before Image (Foreground - clipped) */}
+          <div class="carousel-before absolute inset-0 overflow-hidden" style="clip-path: inset(0 50% 0 0)">
+            <img src={items[0]?.image} alt="Before" class="w-full aspect-video object-cover" />
+          </div>
+          {/* Slider Handle */}
+          <div class="carousel-slider absolute inset-y-0 w-1 bg-white cursor-ew-resize" style="left: 50%">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" /></svg>
+            </div>
+          </div>
+          {/* Labels */}
+          <div class="absolute top-4 left-4 px-3 py-1 bg-black/50 text-white text-sm rounded-full">Before</div>
+          <div class="absolute top-4 right-4 px-3 py-1 bg-black/50 text-white text-sm rounded-full">After</div>
+        </div>
+        <div class="text-center mt-6">
+          <p class="text-gray-600">{title || 'Drag the slider to compare'}</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* Coverflow Carousel */}
+  {carouselType === 'coverflow' && (
+    <div class="py-20 overflow-hidden perspective-1000">
+      <div class="max-w-7xl mx-auto px-16">
+        <div class="carousel-track flex gap-6 justify-center" data-track>
+          {items.map((item, index) => (
+            <div
+              class={`carousel-slide flex-shrink-0 w-[300px] md:w-[380px] transition-all duration-500 ${index === 0 ? 'scale-110 z-10' : 'scale-90 opacity-60 z-0'}`}
+              data-slide={index}
+              style="transform-style: preserve-3d"
+            >
+              <div class="rounded-2xl overflow-hidden shadow-2xl">
+                <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-[400px] object-cover" loading="lazy" />
+                {item.title && (
+                  <div class="p-6 bg-white">
+                    <h3 class="text-xl font-bold">{item.title}</h3>
+                    {item.subtitle && <p class="text-gray-500 mt-1">{item.subtitle}</p>}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        {showControls && (
+          <div class="flex justify-center gap-4 mt-8">
+            <button class="carousel-prev w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all" aria-label="Previous">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button class="carousel-next w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all" aria-label="Next">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  {/* Continuous Horizontal Rail */}
+  {carouselType === 'continuousRail' && (
+    <div class="py-12 overflow-hidden bg-gray-50">
+      <div class="carousel-track flex gap-8 items-center" data-track>
+        {[...items, ...items].map((item, index) => (
+          <div class="carousel-slide flex-shrink-0 w-[200px]" data-slide={index % items.length}>
+            <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-32 object-cover rounded-xl" loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {/* Thumbnail Controlled Gallery */}
+  {carouselType === 'thumbnailGallery' && (
+    <div class="py-16 px-8">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          {/* Main Image */}
+          <div class="lg:col-span-3">
+            <div class="carousel-main aspect-[16/10] rounded-2xl overflow-hidden bg-gray-100">
+              <div class="carousel-track relative w-full h-full" data-main>
+                {items.map((item, index) => (
+                  <div class="carousel-slide absolute inset-0" data-slide={index}>
+                    <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover" loading={index === 0 ? 'eager' : 'lazy'} />
+                    {item.title && (
+                      <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                        <h3 class="text-white text-xl font-bold">{item.title}</h3>
+                        {item.subtitle && <p class="text-white/70">{item.subtitle}</p>}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* Thumbnails */}
+          <div class="lg:col-span-1">
+            <div class="carousel-track flex lg:flex-col gap-3 h-full lg:h-[500px] overflow-x-auto lg:overflow-y-auto" data-thumbs>
+              {items.map((item, index) => (
+                <button
+                  class={`carousel-thumb flex-shrink-0 w-[80px] lg:w-full aspect-video rounded-lg overflow-hidden border-2 transition-all ${index === 0 ? 'border-[var(--color-primary)]' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                  data-thumb={index}
+                >
+                  <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* Product Rail (Continuous - for ecommerce) */}
+  {carouselType === 'productRail' && (
+    <div class="py-16 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-8 mb-8">
+        <div class="flex items-center justify-between">
+          <div>
+            {title && <h2 class="text-3xl font-bold">{title}</h2>}
+            {subtitle && <p class="text-gray-600 mt-1">{subtitle}</p>}
+          </div>
+          {showControls && (
+            <div class="flex gap-2">
+              <button class="carousel-prev w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all" aria-label="Previous">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+              </button>
+              <button class="carousel-next w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all" aria-label="Next">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      <div class="carousel-track flex gap-4 px-8" data-track>
+        {[...items, ...items].map((item, index) => (
+          <div class="carousel-slide flex-shrink-0 w-[260px]" data-slide={index % items.length}>
+            <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+              <div class="aspect-[3/4] overflow-hidden">
+                <img src={item.image} alt={item.imageAlt || item.title} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+              </div>
+              <div class="p-4">
+                <h3 class="font-semibold truncate">{item.title}</h3>
+                {item.subtitle && <p class="text-gray-500 text-sm">{item.subtitle}</p>}
+                <div class="mt-2 font-bold text-[var(--color-primary)]">${item.price || '299'}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</section>
+
+<style>
+  /* Carousel Animations */
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(100px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Continuous Rail - always animating */
+  .carousel-continuousRail .carousel-track,
+  .carousel-productRail .carousel-track {
+    animation: rail-scroll 40s linear infinite;
+  }
+
+  .carousel-continuousRail .carousel-track:hover,
+  .carousel-productRail .carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes rail-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Motion Level Enhancements */
+  [data-motion-level="4"] .carousel-slide {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-motion-level="4"] .carousel-slide:hover {
+    transform: scale(1.02);
+  }
+
+  /* Coverflow 3D Effect */
+  .carousel-coverflow .carousel-slide {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  /* Vertical Carousel */
+  .carousel-vertical .carousel-track {
+    transition: transform 0.5s ease-out;
+  }
+
+  /* Before/After Slider */
+  .carousel-beforeAfter .carousel-slider {
+    transition: left 0.1s ease-out;
+  }
+
+  /* Staggered entrance for testimonials */
+  [data-motion-level="3"] .carousel-slide,
+  [data-motion-level="4"] .carousel-slide {
+    animation: fade-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  [data-motion-level="3"] .carousel-slide:nth-child(1),
+  [data-motion-level="4"] .carousel-slide:nth-child(1) { animation-delay: 0.1s; }
+  [data-motion-level="3"] .carousel-slide:nth-child(2),
+  [data-motion-level="4"] .carousel-slide:nth-child(2) { animation-delay: 0.2s; }
+  [data-motion-level="3"] .carousel-slide:nth-child(3),
+  [data-motion-level="4"] .carousel-slide:nth-child(3) { animation-delay: 0.3s; }
+  [data-motion-level="3"] .carousel-slide:nth-child(4),
+  [data-motion-level="4"] .carousel-slide:nth-child(4) { animation-delay: 0.4s; }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all carousels on the page
+    document.querySelectorAll('.carousel-section').forEach((section) => {
+      const el = section as HTMLElement;
+      const type = el.dataset.carouselType || 'classic';
+      const autoplay = el.dataset.autoplay !== 'false';
+      const delay = parseInt(el.dataset.delay || '5000');
+      const loop = el.dataset.loop !== 'false';
+      const speed = parseInt(el.dataset.speed || '500');
+
+      // Get track and slides
+      const track = el.querySelector('[data-track]') as HTMLElement;
+      const slides = el.querySelectorAll('.carousel-slide');
+      const dots = el.querySelectorAll('.carousel-dot');
+      const thumbs = el.querySelectorAll('.carousel-thumb');
+      const prevBtn = el.querySelector('.carousel-prev');
+      const nextBtn = el.querySelector('.carousel-next');
+
+      if (!track || slides.length === 0) return;
+
+      let currentIndex = 0;
+      let autoplayInterval: ReturnType<typeof setInterval> | null = null;
+
+      // Navigation functions
+      function goToSlide(index: number) {
+        if (loop) {
+          currentIndex = ((index % slides.length) + slides.length) % slides.length;
+        } else {
+          currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+        }
+
+        // Animate based on type
+        if (type === 'stackedCard') {
+          slides.forEach((slide, i) => {
+            const s = slide as HTMLElement;
+            if (i === currentIndex) {
+              gsap.to(s, { y: 0, opacity: 1, scale: 1, zIndex: 20, duration: 0.5 });
+            } else if (i === (currentIndex + 1) % slides.length) {
+              gsap.to(s, { y: -20, opacity: 0.6, scale: 0.95, zIndex: 10, duration: 0.5 });
+            } else {
+              gsap.to(s, { y: -40, opacity: 0.4, scale: 0.9, zIndex: 0, duration: 0.5 });
+            }
+          });
+        } else if (type === 'centerMode' || type === 'coverflow') {
+          slides.forEach((slide, i) => {
+            const s = slide as HTMLElement;
+            const offset = (i - currentIndex + slides.length) % slides.length;
+            if (offset === 0) {
+              gsap.to(s, { x: 0, scale: 1, opacity: 1, zIndex: 10, duration: 0.5 });
+            } else {
+              const dir = offset > slides.length / 2 ? -1 : 1;
+              gsap.to(s, { x: dir * 100, scale: 0.85, opacity: 0.5, zIndex: 0, duration: 0.5 });
+            }
+          });
+        } else {
+          gsap.to(track, { x: -currentIndex * 100 + '%', duration: speed / 1000, ease: 'power2.out' });
+        }
+
+        // Update dots
+        dots.forEach((dot, i) => {
+          const d = dot as HTMLElement;
+          d.classList.toggle('bg-white', i === currentIndex);
+          d.classList.toggle('w-8', i === currentIndex);
+          d.classList.toggle('bg-white/50', i !== currentIndex);
+        });
+
+        // Update thumbnails
+        thumbs.forEach((thumb, i) => {
+          const t = thumb as HTMLElement;
+          if (i === currentIndex) {
+            t.classList.add('border-[var(--color-primary)]', 'opacity-100');
+            t.classList.remove('border-transparent', 'opacity-60');
+          } else {
+            t.classList.remove('border-[var(--color-primary)]', 'opacity-100');
+            t.classList.add('border-transparent', 'opacity-60');
+          }
+        });
+      }
+
+      function nextSlide() { goToSlide(currentIndex + 1); }
+      function prevSlide() { goToSlide(currentIndex - 1); }
+
+      // Event listeners
+      nextBtn?.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+      prevBtn?.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { goToSlide(i); resetAutoplay(); });
+      });
+
+      thumbs.forEach((thumb, i) => {
+        thumb.addEventListener('click', () => { goToSlide(i); resetAutoplay(); });
+      });
+
+      // Touch/Swipe
+      let touchStartX = 0;
+      el.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      el.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) {
+          diff > 0 ? nextSlide() : prevSlide();
+          resetAutoplay();
+        }
+      }, { passive: true });
+
+      // Autoplay
+      function startAutoplay() {
+        if (autoplay && type !== 'continuousRail' && type !== 'productRail' && type !== 'logoMarquee') {
+          autoplayInterval = setInterval(nextSlide, delay);
+        }
+      }
+
+      function resetAutoplay() {
+        if (autoplayInterval) clearInterval(autoplayInterval);
+        startAutoplay();
+      }
+
+      startAutoplay();
+
+      // Initial animation
+      if (type !== 'continuousRail' && type !== 'productRail' && type !== 'logoMarquee') {
+        gsap.from(slides, {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+        });
+      }
+    });
+
+    // Before/After slider functionality
+    document.querySelectorAll('.carousel-beforeAfter').forEach((section) => {
+      const el = section as HTMLElement;
+      const slider = el.querySelector('.carousel-slider') as HTMLElement;
+      const beforeDiv = el.querySelector('.carousel-before') as HTMLElement;
+
+      if (!slider || !beforeDiv) return;
+
+      let isDragging = false;
+
+      function updateSlider(x: number) {
+        const rect = el.getBoundingClientRect();
+        let percent = ((x - rect.left) / rect.width) * 100;
+        percent = Math.max(0, Math.min(100, percent));
+        slider.style.left = percent + '%';
+        beforeDiv.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      }
+
+      slider.addEventListener('mousedown', () => isDragging = true);
+      document.addEventListener('mouseup', () => isDragging = false);
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging) updateSlider(e.clientX);
+      });
+
+      slider.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        updateSlider(e.touches[0].clientX);
+      }, { passive: true });
+    });
+  });
+</script>

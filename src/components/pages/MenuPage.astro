@@ -1,0 +1,77 @@
+---
+// Restaurant Menu Page
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+
+const categories = [
+  { id: 'starters', name: 'Starters' },
+  { id: 'mains', name: 'Main Course' },
+  { id: 'desserts', name: 'Desserts' },
+  { id: 'beverages', name: 'Beverages' }
+];
+
+const menuItems = [
+  { id: 1, name: 'Truffle Arancini', description: 'Crispy risotto balls with black truffle and mozzarella', price: 450, category: 'starters', image: 'https://images.unsplash.com/photo-1541529086526-db283c563270?w=300', tags: ['Vegetarian'] },
+  { id: 2, name: 'Bruschetta Trio', description: 'Tomato basil, mushroom ricotta, and olive tapenade', price: 350, category: 'starters', image: 'https://images.unsplash.com/photo-1572695157369-951cc7b47858?w=300' },
+  { id: 3, name: 'Grilled Ribeye Steak', description: 'Prime ribeye with herb butter and roasted vegetables', price: 1850, category: 'mains', image: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=300', tags: ['Chef Special'] },
+  { id: 4, name: 'Lobster Thermidor', description: 'Fresh lobster in creamy wine sauce with gratin', price: 2250, category: 'mains', image: 'https://images.unsplash.com/photo-1553163147-621957516919?w=300' },
+  { id: 5, name: 'Tiramisu', description: 'Classic Italian dessert with espresso and mascarpone', price: 450, category: 'desserts', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=300' },
+  { id: 6, name: 'Artisan Cocktails', description: 'Selection of handcrafted cocktails', price: 650, category: 'beverages', image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=300', tags: ['Happy Hour'] }
+];
+---
+
+<div class="min-h-screen bg-gray-50">
+  {/* Hero */}
+  <div class="relative bg-gray-900 py-24 px-4">
+    <div class="absolute inset-0 opacity-30" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920'); background-size: cover; background-position: center;"></div>
+    <div class="relative max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Menu</h1>
+      <p class="text-xl text-gray-300">Exquisite flavors crafted with passion</p>
+    </div>
+  </div>
+
+  {/* Category Navigation */}
+  <div class="sticky top-16 z-40 bg-white border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex gap-4 overflow-x-auto">
+      {categories.map(cat => (
+        <a href={`#${cat.id}`} class="px-4 py-2 bg-gray-100 hover:bg-gray-900 hover:text-white rounded-full text-sm font-medium transition whitespace-nowrap">
+          {cat.name}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  {/* Menu Items */}
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    {categories.map(category => (
+      <div id={category.id} class="mb-16">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-2 border-b-2 border-gray-900">{category.name}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {menuItems.filter(item => item.category === category.id).map(item => (
+            <div class="flex gap-4 bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition">
+              <img src={item.image} alt={item.name} class="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
+              <div class="flex-1">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="font-semibold text-gray-900">{item.name}</h3>
+                  <span class="font-bold text-gray-900">₹{item.price}</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">{item.description}</p>
+                {item.tags && (
+                  <div class="flex gap-2">
+                    {item.tags.map(tag => (
+                      <span class="text-xs px-2 py-1 bg-amber-100 text-amber-800 rounded">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

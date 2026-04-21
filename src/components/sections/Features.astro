@@ -1,135 +1,242 @@
 ---
+// Features Section - Multiple layout variants with theme integration
+// Supports variants: grid, cards, icons, minimal, featured
+
 interface Feature {
   icon?: string;
   title: string;
-  description: string;
+  description?: string;
+  badge?: string;
+  image?: string;
 }
 
 interface Props {
-  title?: string;
-  subtitle?: string;
-  features?: Feature[];
+  content?: {
+    title?: string;
+    subtitle?: string;
+    features?: Feature[];
+  };
+  settings?: {
+    variant?: 'grid' | 'cards' | 'icons' | 'minimal' | 'featured';
+    backgroundStyle?: 'light' | 'dark' | 'gradient' | 'surface';
+    columns?: number;
+    motionLevel?: 1 | 2 | 3 | 4;
+    animationPreset?: 'fadeUp' | 'staggered' | 'none';
+  };
 }
 
+const { content = {}, settings = {} } = Astro.props;
 const {
-  title = "Why Choose Us",
-  subtitle = "Everything you need",
+  title = 'Why Choose Us',
+  subtitle = 'Everything you need to succeed',
   features = [
-    { title: "Free Shipping", description: "On all orders over $50" },
-    { title: "24/7 Support", description: "We're here to help" },
-    { title: "Secure Payment", description: "100% secure transactions" },
-    { title: "Easy Returns", description: "30-day return policy" },
+    { icon: '🚀', title: 'Fast Performance', description: 'Lightning-fast load times and smooth interactions' },
+    { icon: '🎨', title: 'Premium Design', description: 'Beautiful, professionally designed templates' },
+    { icon: '📱', title: 'Fully Responsive', description: 'Looks great on any device or screen size' },
+    { icon: '🔒', title: 'Secure & Reliable', description: 'Enterprise-grade security for your peace of mind' },
   ],
-} = Astro.props;
+} = content;
+
+const {
+  variant = 'icons',
+  backgroundStyle = 'light',
+  columns = 4,
+  motionLevel = 2,
+  animationPreset = 'staggered',
+} = settings;
+
+const sectionId = `features-${Math.random().toString(36).slice(2, 9)}`;
+
+const bgClasses = {
+  light: 'bg-gray-50',
+  dark: 'bg-gray-900 text-white',
+  gradient: 'bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] text-white',
+  surface: 'bg-white',
+};
 ---
 
-<section class="features">
-  <div class="features-container">
-    <div class="features-header">
-      <h2 class="features-title">{title}</h2>
-      {subtitle && <p class="features-subtitle">{subtitle}</p>}
-    </div>
-    <div class="features-grid">
-      {features.map((feature, index) => (
-        <div class="feature-card">
-          <div class="feature-icon">
-            <span class="icon-placeholder">{feature.icon || String.fromCharCode(10003)}</span>
+<section
+  id={sectionId}
+  class={`features-section features-variant-${variant} ${bgClasses[backgroundStyle]}`}
+  data-variant={variant}
+  data-motion-level={motionLevel}
+  data-animation={animationPreset}
+>
+  <div class="features-container max-w-7xl mx-auto px-6 py-20">
+    {(title || subtitle) && (
+      <div class="features-header text-center mb-16">
+        {title && <h2 class="features-title text-4xl md:text-5xl font-bold mb-4">{title}</h2>}
+        {subtitle && <p class="features-subtitle text-lg opacity-80 max-w-2xl mx-auto">{subtitle}</p>}
+      </div>
+    )}
+
+    {/* Grid Variant */}
+    {variant === 'grid' && (
+      <div class={`features-grid grid-cols-1 md:grid-cols-${Math.min(columns, 4)} gap-8`}>
+        {features.map((feature, index) => (
+          <div class="feature-item" data-feature-index={index}>
+            <h3 class="feature-title text-xl font-bold mb-2">{feature.title}</h3>
+            {feature.description && <p class="feature-description opacity-80">{feature.description}</p>}
           </div>
-          <h3 class="feature-title">{feature.title}</h3>
-          <p class="feature-description">{feature.description}</p>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    )}
+
+    {/* Cards Variant */}
+    {variant === 'cards' && (
+      <div class={`features-grid grid-cols-1 md:grid-cols-${Math.min(columns, 4)} gap-6`}>
+        {features.map((feature, index) => (
+          <div class="feature-card bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300" data-feature-index={index}>
+            {feature.badge && (
+              <span class="inline-block px-3 py-1 bg-[var(--color-accent)]/10 text-[var(--color-accent)] text-sm font-semibold rounded-full mb-4">{feature.badge}</span>
+            )}
+            <h3 class="feature-title text-xl font-bold mb-3 text-gray-900">{feature.title}</h3>
+            {feature.description && <p class="feature-description text-gray-600">{feature.description}</p>}
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Icons Variant */}
+    {(variant === 'icons' || !variant) && (
+      <div class={`features-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${Math.min(columns, 4)} gap-8`}>
+        {features.map((feature, index) => (
+          <div class="feature-item text-center" data-feature-index={index}>
+            <div class="feature-icon-wrapper w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center">
+              {feature.icon ? (
+                <span class="text-3xl">{feature.icon}</span>
+              ) : (
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              )}
+            </div>
+            <h3 class="feature-title text-xl font-bold mb-3">{feature.title}</h3>
+            {feature.description && <p class="feature-description opacity-80">{feature.description}</p>}
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Minimal Variant */}
+    {variant === 'minimal' && (
+      <div class="features-minimal">
+        {features.map((feature, index) => (
+          <div class="feature-minimal-item flex items-start gap-6 py-6 border-b border-white/10 last:border-0" data-feature-index={index}>
+            <div class="feature-minimal-number text-sm font-bold opacity-50 w-8">{String(index + 1).padStart(2, '0')}</div>
+            <div>
+              <h3 class="feature-title text-xl font-bold mb-2">{feature.title}</h3>
+              {feature.description && <p class="feature-description opacity-70">{feature.description}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Featured Variant */}
+    {variant === 'featured' && (
+      <div class="features-featured">
+        {features.slice(0, 2).map((feature, index) => (
+          <div class="feature-featured-item grid md:grid-cols-2 gap-12 items-center mb-16 last:mb-0" data-feature-index={index}>
+            <div class={index % 2 === 1 ? 'md:order-2' : ''}>
+              <div class="feature-image rounded-3xl overflow-hidden shadow-2xl">
+                <img src={feature.image || `https://picsum.photos/seed/feature${index}/800/600`} alt={feature.title} class="w-full h-auto" loading="lazy" />
+              </div>
+            </div>
+            <div class={index % 2 === 1 ? 'md:order-1' : ''}>
+              <span class="text-sm font-semibold uppercase tracking-wider opacity-50 mb-4 block">{`0${index + 1}`}</span>
+              <h3 class="feature-title text-3xl md:text-4xl font-bold mb-4">{feature.title}</h3>
+              {feature.description && <p class="feature-description text-lg opacity-80 mb-6">{feature.description}</p>}
+              {feature.icon && <span class="text-5xl">{feature.icon}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>
 
 <style>
-  .features {
-    padding: 5rem 2rem;
-    background-color: #F9FAFB;
-  }
-
-  .features-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .features-header {
-    text-align: center;
-    margin-bottom: 3rem;
+  .features-section {
+    position: relative;
   }
 
   .features-title {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #000032;
-    margin: 0 0 1rem 0;
+    font-family: var(--font-heading);
+    color: inherit;
   }
 
   .features-subtitle {
-    font-size: 1.125rem;
-    color: #6B7280;
-    margin: 0;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-
-  .feature-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    text-align: center;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-
-  .feature-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, #FA5014 0%, #000032 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-  }
-
-  .icon-placeholder {
-    color: white;
-    font-size: 1.5rem;
+    font-family: var(--font-body);
   }
 
   .feature-title {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #111827;
-    margin: 0 0 0.75rem 0;
+    font-family: var(--font-heading);
+    color: inherit;
   }
 
   .feature-description {
-    color: #6B7280;
-    margin: 0;
-    line-height: 1.6;
+    font-family: var(--font-body);
   }
 
-  @media (max-width: 768px) {
-    .features {
-      padding: 3rem 1rem;
-    }
+  .features-variant-gradient .feature-card,
+  .features-variant-dark .feature-card {
+    background: rgba(255, 255, 255, 0.1);
+  }
 
-    .features-title {
-      font-size: 2rem;
-    }
+  .features-variant-gradient .feature-title,
+  .features-variant-dark .feature-title {
+    color: white;
+  }
+
+  .features-variant-gradient .feature-description,
+  .features-variant-dark .feature-description {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Motion animations */
+  [data-animation="staggered"][data-motion-level="2"] .feature-item,
+  [data-animation="staggered"][data-motion-level="3"] .feature-item,
+  [data-animation="staggered"][data-motion-level="4"] .feature-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: feature-stagger 0.5s ease-out forwards;
+  }
+
+  [data-animation="staggered"] .feature-item:nth-child(1) { animation-delay: 0.1s; }
+  [data-animation="staggered"] .feature-item:nth-child(2) { animation-delay: 0.2s; }
+  [data-animation="staggered"] .feature-item:nth-child(3) { animation-delay: 0.3s; }
+  [data-animation="staggered"] .feature-item:nth-child(4) { animation-delay: 0.4s; }
+  [data-animation="staggered"] .feature-item:nth-child(5) { animation-delay: 0.5s; }
+  [data-animation="staggered"] .feature-item:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes feature-stagger {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  [data-animation="fadeUp"] .feature-item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: feature-fade-up 0.6s ease-out forwards;
+  }
+
+  @keyframes feature-fade-up {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .feature-icon-wrapper {
+    transition: transform 0.3s ease;
+  }
+
+  .feature-item:hover .feature-icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
   }
 </style>

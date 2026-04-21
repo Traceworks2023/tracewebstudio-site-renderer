@@ -1,0 +1,123 @@
+---
+// Track Order Page - Tailwind version
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+
+const orderSteps = [
+  { status: 'completed', label: 'Order Placed', date: 'Jan 15, 2024', time: '10:30 AM' },
+  { status: 'completed', label: 'Order Confirmed', date: 'Jan 15, 2024', time: '11:00 AM' },
+  { status: 'completed', label: 'Shipped', date: 'Jan 16, 2024', time: '02:15 PM' },
+  { status: 'completed', label: 'Out for Delivery', date: 'Jan 18, 2024', time: '08:00 AM' },
+  { status: 'current', label: 'Delivered', date: 'Jan 18, 2024', time: '02:30 PM' }
+];
+
+const orderDetails = {
+  id: 'ORD-123456789',
+  placed: 'January 15, 2024',
+  items: 3,
+  total: 8997,
+  shippingAddress: '123 Main Street, New York, NY 10001',
+  estimated: 'January 18, 2024'
+};
+
+const items = [
+  { name: 'Premium Silk Dress', qty: 1, price: 4999, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=200' },
+  { name: 'Designer Handbag', qty: 1, price: 2998, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=200' }
+];
+---
+
+<div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-2xl font-bold text-gray-900 mb-8">Track Your Order</h1>
+
+    <!-- Track Form -->
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+      <div class="flex gap-4">
+        <input 
+          type="text" 
+          value={orderDetails.id}
+          placeholder="Enter order number"
+          class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+        />
+        <button class="px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition">
+          Track Order
+        </button>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="text-sm text-gray-500">Order #{orderDetails.id}</p>
+          <p class="font-semibold text-gray-900">Placed on {orderDetails.placed}</p>
+        </div>
+        <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+          Delivered
+        </span>
+      </div>
+      
+      <div class="border-t pt-4">
+        <div class="flex items-center justify-between">
+          <span class="text-gray-600">{orderDetails.items} items</span>
+          <span class="font-semibold text-gray-900">Total: ₹{orderDetails.total}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tracking Timeline -->
+    <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+      <h2 class="font-semibold text-gray-900 mb-6">Shipping Updates</h2>
+      
+      <div class="relative">
+        <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+        
+        <div class="space-y-8">
+          {orderSteps.map((step, index) => (
+            <div class="relative flex items-start gap-4">
+              <div class={`w-8 h-8 rounded-full flex items-center justify-center z-10 ${
+                step.status === 'completed' ? 'bg-green-500 text-white' : 
+                step.status === 'current' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}>
+                {step.status === 'completed' ? (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                ) : (
+                  <span class="text-sm">{index + 1}</span>
+                )}
+              </div>
+              
+              <div class="flex-1">
+                <p class="font-medium text-gray-900">{step.label}</p>
+                <p class="text-sm text-gray-500">{step.date} at {step.time}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Items List -->
+    <div class="bg-white rounded-lg shadow-sm p-6">
+      <h2 class="font-semibold text-gray-900 mb-4">Items in this Order</h2>
+      
+      <div class="space-y-4">
+        {items.map((item) => (
+          <div class="flex gap-4">
+            <img src={item.image} alt={item.name} class="w-20 h-20 object-cover rounded-lg bg-gray-100" />
+            <div class="flex-1">
+              <p class="font-medium text-gray-900">{item.name}</p>
+              <p class="text-sm text-gray-500">Qty: {item.qty}</p>
+            </div>
+            <p class="font-semibold text-gray-900">₹{item.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

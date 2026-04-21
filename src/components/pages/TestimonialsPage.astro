@@ -1,0 +1,238 @@
+---
+interface Testimonial {
+  id: string;
+  name: string;
+  role?: string;
+  company?: string;
+  image?: string;
+  quote: string;
+  rating?: number;
+  date?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    testimonials?: Testimonial[];
+    layout?: 'grid' | 'featured' | 'carousel' | 'masonry';
+    showRatings?: boolean;
+    showImages?: boolean;
+    showCompany?: boolean;
+    columns?: 2 | 3 | 4;
+  };
+  settings?: {
+    motionLevel?: 1 | 2 | 3 | 4;
+    style?: 'minimal' | 'bold' | 'elegant';
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+
+const {
+  title = 'What Our Clients Say',
+  subtitle = 'Real stories from real people who have transformed with us',
+  testimonials = [
+    {
+      id: 'test-1',
+      name: 'Sarah Johnson',
+      role: 'Marketing Director',
+      company: 'TechCorp',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100',
+      quote: 'This service completely transformed my approach to wellness. The personalized attention and expert guidance helped me achieve results I never thought possible. Highly recommend to anyone serious about their health journey.',
+      rating: 5,
+      date: '2026-03-15'
+    },
+    {
+      id: 'test-2',
+      name: 'Michael Chen',
+      role: 'Software Engineer',
+      company: 'StartupXYZ',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100',
+      quote: 'The team here is absolutely fantastic. They took the time to understand my specific needs and created a program that fit perfectly into my busy schedule. The results speak for themselves.',
+      rating: 5,
+      date: '2026-03-10'
+    },
+    {
+      id: 'test-3',
+      name: 'Emily Rodriguez',
+      role: 'Small Business Owner',
+      company: 'Bloom & Co',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100',
+      quote: 'I have tried many programs before, but none come close to the level of expertise and care provided here. The results have been incredible, and I feel better than ever.',
+      rating: 5,
+      date: '2026-02-28'
+    },
+    {
+      id: 'test-4',
+      name: 'David Thompson',
+      role: 'Financial Analyst',
+      company: 'Global Finance',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100',
+      quote: 'The transformation I experienced was beyond my expectations. Professional, knowledgeable, and genuinely caring staff made all the difference in my wellness journey.',
+      rating: 5,
+      date: '2026-02-20'
+    },
+    {
+      id: 'test-5',
+      name: 'Jessica Park',
+      role: 'Creative Director',
+      company: 'Design Studio',
+      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100',
+      quote: 'From the moment I walked in, I felt welcomed and valued. The team went above and beyond to help me reach my goals. Cannot recommend them highly enough!',
+      rating: 5,
+      date: '2026-02-15'
+    },
+    {
+      id: 'test-6',
+      name: 'Marcus Williams',
+      role: 'Athlete',
+      company: 'Pro Sports',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100',
+      quote: 'As an athlete, I have high standards. This team exceeded every one of them. The attention to detail and commitment to excellence is unmatched in the industry.',
+      rating: 5,
+      date: '2026-02-10'
+    }
+  ],
+  layout = 'grid',
+  showRatings = true,
+  showImages = true,
+  showCompany = true,
+  columns = 3,
+} = content;
+
+const {
+  motionLevel = 2,
+  style = 'modern',
+} = settings;
+
+const gridColsClass = {
+  2: 'grid-cols-1 md:grid-cols-2',
+  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
+}[columns] || 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
+---
+
+<div class="testimonials-page py-20 bg-gray-50" data-layout={layout} data-motion-level={motionLevel}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-4">
+        Testimonials
+      </span>
+      {title && <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>}
+      {subtitle && <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>}
+    </div>
+
+    {/* Testimonials Grid */}
+    <div class={`testimonials-grid ${gridColsClass} gap-8`}>
+      {testimonials.map((testimonial, index) => (
+        <div
+          class={`testimonial-card bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 ${
+            layout === 'featured' && index === 0 ? 'md:col-span-2' : ''
+          }`}
+          data-testimonial-id={testimonial.id}
+        >
+          {/* Rating */}
+          {showRatings && testimonial.rating && (
+            <div class="flex gap-1 mb-4">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <svg class={`w-5 h-5 ${i <= testimonial.rating! ? 'text-yellow-400' : 'text-gray-300'} fill-current`} viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              ))}
+            </div>
+          )}
+
+          {/* Quote */}
+          <blockquote class="text-gray-700 text-lg mb-6 leading-relaxed">
+            "{testimonial.quote}"
+          </blockquote>
+
+          {/* Author */}
+          <div class="flex items-center gap-4">
+            {showImages && testimonial.image && (
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                class="w-14 h-14 rounded-full object-cover"
+                loading="lazy"
+              />
+            )}
+            <div>
+              <h4 class="font-bold text-gray-900">{testimonial.name}</h4>
+              {(showCompany && testimonial.role) && (
+                <p class="text-sm text-gray-500">
+                  {testimonial.role}
+                  {testimonial.company && ` at ${testimonial.company}`}
+                </p>
+              )}
+              {testimonial.date && (
+                <p class="text-xs text-gray-400 mt-1">
+                  {new Date(testimonial.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Stats */}
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="p-6">
+        <p class="text-4xl font-bold text-[var(--color-primary)]">2,500+</p>
+        <p class="text-gray-600 mt-2">Happy Clients</p>
+      </div>
+      <div class="p-6">
+        <p class="text-4xl font-bold text-[var(--color-primary)]">98%</p>
+        <p class="text-gray-600 mt-2">Satisfaction Rate</p>
+      </div>
+      <div class="p-6">
+        <p class="text-4xl font-bold text-[var(--color-primary)]">15+</p>
+        <p class="text-gray-600 mt-2">Years Experience</p>
+      </div>
+      <div class="p-6">
+        <p class="text-4xl font-bold text-[var(--color-primary)]">50+</p>
+        <p class="text-gray-600 mt-2">Expert Staff</p>
+      </div>
+    </div>
+
+    {/* CTA */}
+    <div class="text-center mt-12">
+      <p class="text-gray-600 mb-6">Ready to become our next success story?</p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-primary)] text-white font-semibold rounded-full hover:bg-[var(--color-accent)] transition-colors"
+      >
+        Get Started Today
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .testimonial-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: testimonial-reveal 0.6s ease-out forwards;
+  }
+
+  @keyframes testimonial-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .testimonial-card:nth-child(1) { animation-delay: 0ms; }
+  .testimonial-card:nth-child(2) { animation-delay: 100ms; }
+  .testimonial-card:nth-child(3) { animation-delay: 200ms; }
+  .testimonial-card:nth-child(4) { animation-delay: 300ms; }
+  .testimonial-card:nth-child(5) { animation-delay: 400ms; }
+  .testimonial-card:nth-child(6) { animation-delay: 500ms; }
+
+  [data-motion-level="4"] .testimonial-card:hover {
+    transform: translateY(-8px);
+  }
+</style>

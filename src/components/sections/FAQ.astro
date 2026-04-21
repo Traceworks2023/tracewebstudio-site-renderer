@@ -1,167 +1,239 @@
 ---
+// FAQ Section - Multiple variants with theme integration
+// Supports variants: accordion, cards, minimal, two-column
+
 interface FAQ {
   question: string;
   answer: string;
+  category?: string;
 }
 
 interface Props {
-  title?: string;
-  subtitle?: string;
-  faqs?: FAQ[];
+  content?: {
+    title?: string;
+    subtitle?: string;
+    faqs?: FAQ[];
+  };
+  settings?: {
+    variant?: 'accordion' | 'cards' | 'minimal' | 'two-column';
+    backgroundStyle?: 'light' | 'dark' | 'gradient' | 'surface';
+    motionLevel?: 1 | 2 | 3 | 4;
+    allowMultiple?: boolean;
+  };
 }
 
+const { content = {}, settings = {} } = Astro.props;
 const {
-  title = "Frequently Asked Questions",
-  subtitle = "Find answers to common questions",
+  title = 'Frequently Asked Questions',
+  subtitle = 'Find answers to common questions',
   faqs = [
-    {
-      question: "How do I get started?",
-      answer: "Simply sign up for a free account and you can start building your website immediately. No credit card required.",
-    },
-    {
-      question: "Can I use my own domain?",
-      answer: "Yes! You can connect any domain you own to your website. We provide free SSL certificates.",
-    },
-    {
-      question: "What payment methods do you accept?",
-      answer: "We accept all major credit cards, PayPal, and bank transfers for annual plans.",
-    },
-    {
-      question: "Can I cancel anytime?",
-      answer: "Yes, you can cancel your subscription at any time. No long-term contracts required.",
-    },
-    {
-      question: "Do you offer support?",
-      answer: "We offer 24/7 email support for all plans. Professional and Enterprise plans include priority phone support.",
-    },
+    { question: 'How do I get started?', answer: 'Simply sign up for a free account and you can start building your website immediately. No credit card required.' },
+    { question: 'Can I use my own domain?', answer: 'Yes! You can connect any domain you own to your website. We provide free SSL certificates for all custom domains.' },
+    { question: 'What payment methods do you accept?', answer: 'We accept all major credit cards, PayPal, and bank transfers for annual plans.' },
+    { question: 'Can I cancel anytime?', answer: 'Yes, you can cancel your subscription at any time. No long-term contracts required.' },
+    { question: 'Do you offer support?', answer: 'We offer 24/7 email support for all plans. Professional and Enterprise plans include priority phone support.' },
   ],
-} = Astro.props;
+} = content;
+
+const {
+  variant = 'accordion',
+  backgroundStyle = 'light',
+  motionLevel = 2,
+  allowMultiple = false,
+} = settings;
+
+const sectionId = `faq-${Math.random().toString(36).slice(2, 9)}`;
+
+const bgClasses = {
+  light: 'bg-gray-50',
+  dark: 'bg-gray-900 text-white',
+  gradient: 'bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] text-white',
+  surface: 'bg-white',
+};
 ---
 
-<section class="faq">
-  <div class="faq-container">
-    <div class="faq-header">
-      <h2 class="faq-title">{title}</h2>
-      {subtitle && <p class="faq-subtitle">{subtitle}</p>}
-    </div>
-    <div class="faq-list">
-      {faqs.map((faq, index) => (
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span class="question-text">{faq.question}</span>
-            <span class="toggle-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            <p>{faq.answer}</p>
+<section
+  id={sectionId}
+  class={`faq-section faq-variant-${variant} ${bgClasses[backgroundStyle]}`}
+  data-variant={variant}
+  data-motion-level={motionLevel}
+  data-allow-multiple={allowMultiple}
+>
+  <div class="faq-container max-w-4xl mx-auto px-6 py-20">
+    {(title || subtitle) && (
+      <div class="faq-header text-center mb-16">
+        {title && <h2 class="faq-title text-4xl md:text-5xl font-bold mb-4">{title}</h2>}
+        {subtitle && <p class="faq-subtitle text-lg opacity-80">{subtitle}</p>}
+      </div>
+    )}
+
+    {/* Accordion Variant */}
+    {variant === 'accordion' && (
+      <div class="faq-accordion space-y-4">
+        {faqs.map((faq, index) => (
+          <details class="faq-item group bg-white rounded-xl border border-gray-200 overflow-hidden" data-faq-index={index}>
+            <summary class="faq-question flex items-center justify-between p-6 cursor-pointer list-none">
+              <span class="faq-question-text text-lg font-semibold text-gray-900 pr-4">{faq.question}</span>
+              <span class="faq-toggle w-8 h-8 flex-shrink-0 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center transition-transform group-open:rotate-180">
+                <svg class="w-4 h-4 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-answer px-6 pb-6">
+              <p class="text-gray-600 leading-relaxed">{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    )}
+
+    {/* Cards Variant */}
+    {variant === 'cards' && (
+      <div class="faq-cards grid md:grid-cols-2 gap-6">
+        {faqs.map((faq, index) => (
+          <div class="faq-card bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow" data-faq-index={index}>
+            <h3 class="faq-card-question text-xl font-bold mb-4 text-gray-900">{faq.question}</h3>
+            <p class="faq-card-answer text-gray-600 leading-relaxed">{faq.answer}</p>
           </div>
-        </details>
-      ))}
-    </div>
+        ))}
+      </div>
+    )}
+
+    {/* Minimal Variant */}
+    {variant === 'minimal' && (
+      <div class="faq-minimal space-y-6">
+        {faqs.map((faq, index) => (
+          <div class="faq-minimal-item py-6 border-b border-gray-200 last:border-0" data-faq-index={index}>
+            <h3 class="faq-minimal-question text-lg font-bold mb-3 text-gray-900">{faq.question}</h3>
+            <p class="faq-minimal-answer text-gray-600 leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Two Column Variant */}
+    {variant === 'two-column' && (
+      <div class="faq-two-column grid md:grid-cols-2 gap-x-12 gap-y-8">
+        {faqs.map((faq, index) => (
+          <div class="faq-two-col-item" data-faq-index={index}>
+            <h3 class="faq-two-col-question text-lg font-bold mb-3 text-gray-900 flex items-start gap-3">
+              <span class="faq-two-col-icon w-6 h-6 rounded-full bg-[var(--color-accent)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              {faq.question}
+            </h3>
+            <p class="faq-two-col-answer text-gray-600 leading-relaxed pl-9">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>
 
 <style>
-  .faq {
-    padding: 5rem 2rem;
-    background-color: #F9FAFB;
-  }
-
-  .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .faq-header {
-    text-align: center;
-    margin-bottom: 3rem;
+  .faq-section {
+    position: relative;
   }
 
   .faq-title {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #000032;
-    margin: 0 0 1rem 0;
+    font-family: var(--font-heading);
+    color: inherit;
   }
 
   .faq-subtitle {
-    font-size: 1.125rem;
-    color: #6B7280;
-    margin: 0;
+    font-family: var(--font-body);
   }
 
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
+  /* Accordion styles */
   .faq-item {
-    background: white;
-    border-radius: 12px;
-    border: 1px solid #E5E7EB;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
   .faq-item:hover {
-    border-color: #FA5014;
+    border-color: var(--color-primary);
   }
 
   .faq-item[open] {
-    border-color: #FA5014;
-    box-shadow: 0 4px 12px rgba(250, 80, 20, 0.1);
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 20px rgba(var(--color-primary-rgb, 0, 0, 0), 0.1);
   }
 
-  .faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 1.5rem;
-    cursor: pointer;
-    list-style: none;
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 600;
-    font-size: 1.125rem;
-    color: #111827;
-  }
-
-  .faq-question::-webkit-details-marker {
-    display: none;
-  }
-
-  .question-text {
-    flex: 1;
-    padding-right: 1rem;
-  }
-
-  .toggle-icon {
-    font-size: 1.5rem;
-    color: #FA5014;
-    transition: transform 0.3s ease;
-  }
-
-  .faq-item[open] .toggle-icon {
-    transform: rotate(45deg);
+  .faq-question-text {
+    font-family: var(--font-heading);
   }
 
   .faq-answer {
-    padding: 0 1.5rem 1.25rem 1.5rem;
-    color: #6B7280;
-    line-height: 1.7;
+    font-family: var(--font-body);
   }
 
-  .faq-answer p {
-    margin: 0;
+  /* Cards variant */
+  .faq-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  @media (max-width: 768px) {
-    .faq {
-      padding: 3rem 1rem;
-    }
+  .faq-card:hover {
+    transform: translateY(-4px);
+  }
 
-    .faq-title {
-      font-size: 2rem;
-    }
+  .faq-card-question {
+    font-family: var(--font-heading);
+  }
+
+  .faq-card-answer {
+    font-family: var(--font-body);
+  }
+
+  /* Two column */
+  .faq-two-col-question {
+    font-family: var(--font-heading);
+  }
+
+  .faq-two-col-answer {
+    font-family: var(--font-body);
+  }
+
+  /* Motion */
+  [data-motion-level="3"] .faq-item,
+  [data-motion-level="4"] .faq-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: faq-stagger 0.5s ease-out forwards;
+  }
+
+  [data-motion-level="3"] .faq-item:nth-child(1),
+  [data-motion-level="4"] .faq-item:nth-child(1) { animation-delay: 0.1s; }
+  [data-motion-level="3"] .faq-item:nth-child(2),
+  [data-motion-level="4"] .faq-item:nth-child(2) { animation-delay: 0.2s; }
+  [data-motion-level="3"] .faq-item:nth-child(3),
+  [data-motion-level="4"] .faq-item:nth-child(3) { animation-delay: 0.3s; }
+  [data-motion-level="3"] .faq-item:nth-child(4),
+  [data-motion-level="4"] .faq-item:nth-child(4) { animation-delay: 0.4s; }
+  [data-motion-level="3"] .faq-item:nth-child(5),
+  [data-motion-level="4"] .faq-item:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes faq-stagger {
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.faq-section').forEach((section) => {
+      const el = section as HTMLElement;
+      const allowMultiple = el.dataset.allowMultiple !== 'true';
+
+      el.querySelectorAll('details').forEach((details) => {
+        details.addEventListener('toggle', (e) => {
+          if (!allowMultiple && (e.target as HTMLElement).open) {
+            el.querySelectorAll('details').forEach((d) => {
+              if (d !== e.target) d.open = false;
+            });
+          }
+        });
+      });
+    });
+  });
+</script>

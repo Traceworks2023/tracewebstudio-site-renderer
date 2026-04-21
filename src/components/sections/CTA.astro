@@ -6,6 +6,9 @@ interface Props {
   buttonUrl?: string;
   secondaryButtonText?: string;
   secondaryButtonUrl?: string;
+  settings?: {
+    templateSlug?: string;
+  };
 }
 
 const {
@@ -16,6 +19,15 @@ const {
   secondaryButtonText = "Talk to Sales",
   secondaryButtonUrl = "/contact",
 } = Astro.props;
+
+const settings = Astro.props.settings || {};
+const templateSlug = settings.templateSlug || '';
+
+const getTemplateLink = (link: string) => {
+  if (!link || link === '#') return '#';
+  if (link.startsWith('http')) return link;
+  return `/${templateSlug}${link.startsWith('/') ? link : `/${link}`}`;
+};
 ---
 
 <section class="cta">
@@ -24,8 +36,8 @@ const {
       <h2 class="cta-title">{title}</h2>
       <p class="cta-subtitle">{subtitle}</p>
       <div class="cta-actions">
-        <a href={buttonUrl} class="btn btn-primary">{buttonText}</a>
-        <a href={secondaryButtonUrl} class="btn btn-secondary">{secondaryButtonText}</a>
+        <a href={getTemplateLink(buttonUrl)} class="btn btn-primary">{buttonText}</a>
+        <a href={getTemplateLink(secondaryButtonUrl)} class="btn btn-secondary">{secondaryButtonText}</a>
       </div>
     </div>
   </div>

@@ -1,0 +1,370 @@
+---
+interface TimeSlot {
+  time: string;
+  available: boolean;
+}
+
+interface TableOption {
+  id: string;
+  name: string;
+  capacity: number;
+  description?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    timeSlots?: TimeSlot[];
+    tableOptions?: TableOption[];
+    locations?: Array<{
+      id: string;
+      name: string;
+      address: string;
+      phone: string;
+    }>;
+    showMap?: boolean;
+    ctaText?: string;
+  };
+  settings?: {
+    motionLevel?: 1 | 2 | 3 | 4;
+    style?: 'modern' | 'elegant' | 'minimal';
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+
+const {
+  title = 'Make a Reservation',
+  subtitle = 'Book your table for an unforgettable dining experience',
+  timeSlots = [
+    { time: '11:00 AM', available: true },
+    { time: '11:30 AM', available: true },
+    { time: '12:00 PM', available: true },
+    { time: '12:30 PM', available: true },
+    { time: '1:00 PM', available: false },
+    { time: '1:30 PM', available: true },
+    { time: '2:00 PM', available: true },
+    { time: '5:00 PM', available: true },
+    { time: '5:30 PM', available: true },
+    { time: '6:00 PM', available: true },
+    { time: '6:30 PM', available: false },
+    { time: '7:00 PM', available: true },
+    { time: '7:30 PM', available: true },
+    { time: '8:00 PM', available: true },
+    { time: '8:30 PM', available: false },
+    { time: '9:00 PM', available: true },
+  ],
+  tableOptions = [
+    { id: 'indoor', name: 'Indoor Dining', capacity: 2, description: 'Cozy indoor seating with ambient lighting' },
+    { id: 'outdoor', name: 'Garden Terrace', capacity: 4, description: 'Beautiful outdoor seating surrounded by greenery' },
+    { id: 'window', name: 'Window Booth', capacity: 4, description: 'Private booth with street views' },
+    { id: 'private', name: 'Private Dining Room', capacity: 10, description: 'Exclusive room for intimate gatherings' },
+    { id: 'bar', name: 'Bar Seating', capacity: 2, description: 'Front row to our cocktail bar' },
+  ],
+  locations = [
+    {
+      id: 'main',
+      name: 'Main Restaurant',
+      address: '123 Culinary Avenue, Downtown',
+      phone: '+1 (555) 123-4567'
+    },
+    {
+      id: 'branch',
+      name: 'Branch Location',
+      address: '456 Food Court, Westside Mall',
+      phone: '+1 (555) 987-6543'
+    }
+  ],
+  showMap = true,
+  ctaText = 'Confirm Reservation',
+} = content;
+
+const {
+  motionLevel = 2,
+  style = 'modern',
+} = settings;
+---
+
+<div class="reservations-page py-20 bg-white" data-style={style} data-motion-level={motionLevel}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <div class="text-center mb-12">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-4">
+        Reservations
+      </span>
+      {title && <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>}
+      {subtitle && <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>}
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      {/* Reservation Form */}
+      <div class="reservation-form bg-gray-50 rounded-2xl p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Select Date & Time</h2>
+
+        <form id="reservation-form" class="space-y-6">
+          {/* Location */}
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+            <div class="space-y-2">
+              {locations.map((loc) => (
+                <label class="flex items-center p-3 bg-white rounded-lg border border-gray-200 cursor-pointer hover:border-[var(--color-accent)] transition-colors">
+                  <input type="radio" name="location" value={loc.id} class="w-4 h-4 text-[var(--color-accent)]" checked={loc.id === 'main'} />
+                  <div class="ml-3">
+                    <p class="font-medium text-gray-900">{loc.name}</p>
+                    <p class="text-sm text-gray-500">{loc.address}</p>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Date */}
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+            <input
+              type="date"
+              name="date"
+              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent"
+              required
+            />
+          </div>
+
+          {/* Party Size */}
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Party Size</label>
+            <div class="flex gap-2 flex-wrap">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((size) => (
+                <button
+                  type="button"
+                  class="party-size-btn w-12 h-12 rounded-lg border-2 border-gray-200 font-semibold text-gray-700 hover:border-[var(--color-accent)] transition-colors"
+                  data-size={size}
+                >
+                  {size}
+                </button>
+              ))}
+              <button
+                type="button"
+                class="party-size-btn w-12 h-12 rounded-lg border-2 border-gray-200 font-semibold text-gray-700 hover:border-[var(--color-accent)] transition-colors"
+                data-size="9+"
+              >
+                9+
+              </button>
+            </div>
+          </div>
+
+          {/* Table Preference */}
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Table Preference</label>
+            <div class="space-y-2">
+              {tableOptions.map((table) => (
+                <label class="flex items-center p-3 bg-white rounded-lg border border-gray-200 cursor-pointer hover:border-[var(--color-accent)] transition-colors">
+                  <input type="radio" name="table" value={table.id} class="w-4 h-4 text-[var(--color-accent)]" />
+                  <div class="ml-3 flex-1">
+                    <p class="font-medium text-gray-900">{table.name}</p>
+                    <p class="text-sm text-gray-500">Up to {table.capacity} guests</p>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Time */}
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Time</label>
+            <div class="grid grid-cols-4 gap-2">
+              {timeSlots.map((slot) => (
+                <button
+                  type="button"
+                  class={`time-slot-btn px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    slot.available
+                      ? 'bg-white border border-gray-200 text-gray-700 hover:border-[var(--color-accent)]'
+                      : 'bg-gray-100 text-gray-400 cursor-not-allowed line-through'
+                  }`}
+                  data-time={slot.time}
+                  disabled={!slot.available}
+                >
+                  {slot.time}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact Info */}
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+              <input
+                type="text"
+                name="firstName"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+                required
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+              <input
+                type="text"
+                name="lastName"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <input
+              type="email"
+              name="email"
+              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+            <input
+              type="tel"
+              name="phone"
+              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+              required
+            />
+          </div>
+
+          {/* Special Requests */}
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Special Requests (Optional)</label>
+            <textarea
+              name="requests"
+              rows={3}
+              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+              placeholder="Dietary restrictions, celebrations, seating preferences..."
+            ></textarea>
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            class="w-full py-4 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent)] transition-colors"
+          >
+            {ctaText}
+          </button>
+        </form>
+      </div>
+
+      {/* Info Side */}
+      <div class="reservation-info space-y-8">
+        {/* Hours */}
+        <div class="bg-gray-50 rounded-2xl p-8">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Opening Hours</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between">
+              <span class="text-gray-600">Monday - Thursday</span>
+              <span class="font-medium text-gray-900">11:00 AM - 10:00 PM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Friday - Saturday</span>
+              <span class="font-medium text-gray-900">11:00 AM - 11:00 PM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Sunday</span>
+              <span class="font-medium text-gray-900">12:00 PM - 9:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact */}
+        <div class="bg-gray-50 rounded-2xl p-8">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Contact Us</h3>
+          {locations.map((loc) => (
+            <div class="mb-6 last:mb-0">
+              <h4 class="font-semibold text-gray-900">{loc.name}</h4>
+              <p class="text-gray-600">{loc.address}</p>
+              <a href={`tel:${loc.phone}`} class="text-[var(--color-accent)] font-medium">{loc.phone}</a>
+            </div>
+          ))}
+        </div>
+
+        {/* Policies */}
+        <div class="bg-gray-50 rounded-2xl p-8">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Reservation Policy</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Reservations are held for 15 minutes past the booking time
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Cancellations must be made at least 2 hours in advance
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              For parties of 8 or more, please call us directly
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Large party reservations may require a deposit
+            </li>
+          </ul>
+        </div>
+
+        {/* Map */}
+        {showMap && (
+          <div class="rounded-2xl overflow-hidden h-64 bg-gray-200">
+            <div class="w-full h-full flex items-center justify-center bg-gray-100">
+              <p class="text-gray-500">Map placeholder - Integrate with Google Maps</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .party-size-btn.selected {
+    @apply bg-[var(--color-primary)] text-white border-[var(--color-primary)];
+  }
+
+  .time-slot-btn.selected {
+    @apply bg-[var(--color-accent)] text-white border-[var(--color-accent)];
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Party size selection
+    document.querySelectorAll('.party-size-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.party-size-btn').forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+
+    // Time slot selection
+    document.querySelectorAll('.time-slot-btn:not([disabled])').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.time-slot-btn').forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+
+    // Form submission
+    const form = document.getElementById('reservation-form') as HTMLFormElement;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Handle reservation submission
+      console.log('Reservation submitted');
+      alert('Reservation confirmed! You will receive a confirmation email shortly.');
+    });
+  });
+</script>

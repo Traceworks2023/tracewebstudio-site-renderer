@@ -1,0 +1,131 @@
+---
+// Media Picker Component
+interface MediaItem {
+  id: string;
+  url: string;
+  type: 'image' | 'video';
+  name: string;
+  size?: string;
+  dimensions?: { width: number; height: number };
+}
+
+interface Props {
+  value?: string;
+  multiple?: boolean;
+  accept?: 'image' | 'video' | 'all';
+  label?: string;
+}
+
+const {
+  value = '',
+  multiple = false,
+  accept = 'image',
+  label = 'Select Media'
+} = Astro.props;
+
+const mockMedia: MediaItem[] = [
+  { id: '1', url: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400', type: 'image', name: 'Room View' },
+  { id: '2', url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400', type: 'image', name: 'Interior' },
+  { id: '3', url: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=400', type: 'image', name: 'Product Shot' },
+  { id: '4', url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400', type: 'image', name: 'Workspace' },
+  { id: '5', url: 'https://images.unsplash.com/photo-1498049794561-7780af7234ab?w=400', type: 'image', name: 'Electronics' },
+  { id: '6', url: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400', type: 'image', name: 'Fashion' }
+];
+---
+
+<div class="media-picker" data-multiple={multiple} data-accept={accept}>
+  {/* Current Value */}
+  {value && (
+    <div class="current-media mb-4">
+      <img src={value} alt="Selected" class="w-32 h-32 object-cover rounded-lg" />
+    </div>
+  )}
+
+  {/* Upload Zone */}
+  <div class="upload-zone border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-[var(--color-accent)] transition-colors cursor-pointer mb-4">
+    <svg class="w-12 h-12 mx-auto text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+    <p class="text-gray-600 font-medium mb-1">Drop files here or click to upload</p>
+    <p class="text-gray-400 text-sm">PNG, JPG, GIF up to 10MB</p>
+    <input type="file" class="hidden" accept={accept === 'all' ? '*' : accept === 'video' ? 'video/*' : 'image/*'} />
+  </div>
+
+  {/* Media Library Toggle */}
+  <button type="button" class="browse-library w-full py-2 px-4 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+    Browse Media Library
+  </button>
+
+  {/* Media Library Modal */}
+  <div class="media-library-modal fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50" data-close></div>
+    <div class="absolute inset-4 md:inset-8 lg:inset-16 bg-white rounded-2xl overflow-hidden flex flex-col">
+      <div class="flex items-center justify-between p-4 border-b">
+        <h3 class="text-lg font-bold">Media Library</h3>
+        <button class="close-btn p-2 hover:bg-gray-100 rounded-lg" data-close>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-auto p-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {mockMedia.map((item) => (
+            <button
+              type="button"
+              class="media-item relative aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-[var(--color-accent)] transition-colors"
+              data-id={item.id}
+              data-url={item.url}
+            >
+              <img src={item.url} alt={item.name} class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-black/0 hover:bg-black/30 transition-colors flex items-center justify-center">
+                <svg class="w-8 h-8 text-white opacity-0 hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div class="p-4 border-t flex justify-end gap-3">
+        <button class="px-6 py-2 border border-gray-300 rounded-lg font-medium hover:bg-gray-50" data-close>Cancel</button>
+        <button class="select-btn px-6 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium hover:bg-[var(--color-accent)]" disabled>Select</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.media-picker').forEach((picker) => {
+    const el = picker as HTMLElement;
+    const modal = el.querySelector('.media-library-modal') as HTMLElement;
+    const browseBtn = el.querySelector('.browse-library') as HTMLButtonElement;
+    const selectBtn = el.querySelector('.select-btn') as HTMLButtonElement;
+    const mediaItems = el.querySelectorAll('.media-item');
+    let selectedItem: HTMLElement | null = null;
+
+    browseBtn?.addEventListener('click', () => modal.classList.remove('hidden'));
+    el.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => modal.classList.add('hidden'));
+    });
+
+    mediaItems.forEach(item => {
+      item.addEventListener('click', () => {
+        mediaItems.forEach(i => i.classList.remove('border-[var(--color-accent)]', 'ring-2', 'ring-[var(--color-accent)]'));
+        item.classList.add('border-[var(--color-accent)]', 'ring-2', 'ring-[var(--color-accent)]');
+        selectedItem = item as HTMLElement;
+        selectBtn.disabled = false;
+      });
+    });
+
+    selectBtn?.addEventListener('click', () => {
+      if (selectedItem) {
+        const url = selectedItem.dataset.url;
+        console.log('Selected media:', url);
+        modal.classList.add('hidden');
+      }
+    });
+  });
+</script>

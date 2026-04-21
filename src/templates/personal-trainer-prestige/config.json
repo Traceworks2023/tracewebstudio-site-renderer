@@ -1,0 +1,728 @@
+{
+  "id": "personal-trainer-prestige",
+  "name": "Personal Trainer Prestige",
+  "slug": "personal-trainer-prestige",
+  "description": "Personal Trainer Prestige portfolio with Extreme Performance design, featuring athletic-reveal motion effects",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/previews/personal-trainer-prestige.jpg",
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosplit",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Creative Personal Trainer Portfolio",
+            "subtitle": "Showcasing 💪 artistry and expertise in personal trainer work",
+            "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+            "ctaText": "View My Work",
+            "ctaUrl": "/gallery",
+            "motionLevel": 4,
+            "parallaxPreset": "layeredDepth"
+          }
+        },
+        {
+          "id": "about",
+          "type": "splitmedia",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "About Me",
+            "content": "I am a passionate personal trainer with years of experience creating stunning work. My approach combines creativity with technical expertise to deliver exceptional results that exceed expectations.",
+            "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "features",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Featured Work",
+            "subtitle": "A selection of my best projects",
+            "items": [
+              {
+                "id": "1",
+                "title": "Personal Training",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "2",
+                "title": "Nutrition Plans",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "3",
+                "title": "Online Coaching",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "4",
+                "title": "Group Classes",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              }
+            ]
+          }
+        },
+        {
+          "id": "stats",
+          "type": "stats",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "stats": [
+              {
+                "id": "1",
+                "value": "1000+",
+                "label": "Clients"
+              },
+              {
+                "id": "2",
+                "value": "Certified",
+                "label": "Trainer"
+              },
+              {
+                "id": "3",
+                "value": "Transformation",
+                "label": "Specialist"
+              },
+              {
+                "id": "4",
+                "value": "24/7",
+                "label": "Support"
+              }
+            ]
+          }
+        },
+        {
+          "id": "services",
+          "type": "features",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "Services Offered",
+            "subtitle": "What I can do for you",
+            "features": [
+              {
+                "id": "1",
+                "title": "Personal Training",
+                "description": "Professional personal training services tailored to your needs",
+                "icon": "💪"
+              },
+              {
+                "id": "2",
+                "title": "Nutrition Plans",
+                "description": "Professional nutrition plans services tailored to your needs",
+                "icon": "💪"
+              },
+              {
+                "id": "3",
+                "title": "Online Coaching",
+                "description": "Professional online coaching services tailored to your needs",
+                "icon": "💪"
+              },
+              {
+                "id": "4",
+                "title": "Group Classes",
+                "description": "Professional group classes services tailored to your needs",
+                "icon": "💪"
+              },
+              {
+                "id": "5",
+                "title": "Fitness Assessment",
+                "description": "Professional fitness assessment services tailored to your needs",
+                "icon": "💪"
+              }
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonials",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Client Reviews",
+            "testimonials": [
+              {
+                "id": "1",
+                "name": "Alexandra Chen",
+                "role": "Creative Director",
+                "company": "Studio Nine",
+                "quote": "Absolutely stunning personal trainer work! The attention to detail and creative vision exceeded all expectations.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+              },
+              {
+                "id": "2",
+                "name": "Marcus Rivera",
+                "role": "Brand Manager",
+                "company": "Nexus Agency",
+                "quote": "Working with this personal trainer was an incredible experience. Professional, talented, and truly innovative.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
+              },
+              {
+                "id": "3",
+                "name": "Sophie Williams",
+                "role": "Entrepreneur",
+                "company": "Bloom Brands",
+                "quote": "The personal trainer work transformed our brand. Highly recommend for any creative project!",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "ctavapor",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Let's Create Something Amazing",
+            "subtitle": "Ready to start your personal trainer project?",
+            "ctaText": "Get in Touch",
+            "ctaUrl": "/contact"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "type": "gallery",
+      "name": "Gallery",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosplit",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "My Portfolio",
+            "subtitle": "A curated collection of my best work",
+            "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920"
+          }
+        },
+        {
+          "id": "gallery",
+          "type": "features",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "All Projects",
+            "items": [
+              {
+                "id": "0-0",
+                "title": "Personal Training Project 1",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "0-1",
+                "title": "Personal Training Project 2",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "0-2",
+                "title": "Personal Training Project 3",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "1-0",
+                "title": "Nutrition Plans Project 1",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "1-1",
+                "title": "Nutrition Plans Project 2",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "1-2",
+                "title": "Nutrition Plans Project 3",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "2-0",
+                "title": "Online Coaching Project 1",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "2-1",
+                "title": "Online Coaching Project 2",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "2-2",
+                "title": "Online Coaching Project 3",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "3-0",
+                "title": "Group Classes Project 1",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "3-1",
+                "title": "Group Classes Project 2",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "3-2",
+                "title": "Group Classes Project 3",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "4-0",
+                "title": "Fitness Assessment Project 1",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "4-1",
+                "title": "Fitness Assessment Project 2",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              },
+              {
+                "id": "4-2",
+                "title": "Fitness Assessment Project 3",
+                "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920",
+                "category": "Personal Trainer"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "ctavapor",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Like What You See?",
+            "ctaText": "Start a Project",
+            "ctaUrl": "/contact"
+          }
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "type": "about",
+      "name": "About",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosplit",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "About Me",
+            "subtitle": "The story behind the personal trainer",
+            "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920"
+          }
+        },
+        {
+          "id": "about",
+          "type": "splitmedia",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "My Journey",
+            "content": "My passion for personal trainer began over a decade ago. Since then, I've dedicated my career to mastering this craft and helping clients achieve their creative vision. With a keen eye for detail and a commitment to excellence, I bring a unique perspective to every project.",
+            "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920"
+          }
+        },
+        {
+          "id": "stats",
+          "type": "stats",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "stats": [
+              {
+                "id": "1",
+                "value": "1000+",
+                "label": "Clients"
+              },
+              {
+                "id": "2",
+                "value": "Certified",
+                "label": "Trainer"
+              },
+              {
+                "id": "3",
+                "value": "Transformation",
+                "label": "Specialist"
+              },
+              {
+                "id": "4",
+                "value": "24/7",
+                "label": "Support"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "name": "Contact",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herosplit",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Get in Touch",
+            "subtitle": "Let's discuss your personal trainer project",
+            "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920"
+          }
+        },
+        {
+          "id": "contact",
+          "type": "contact-form",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Send a Message",
+            "fields": [
+              {
+                "id": "1",
+                "type": "text",
+                "label": "Name",
+                "placeholder": "Your Name",
+                "required": true
+              },
+              {
+                "id": "2",
+                "type": "email",
+                "label": "Email",
+                "placeholder": "your@email.com",
+                "required": true
+              },
+              {
+                "id": "3",
+                "type": "text",
+                "label": "Project Type",
+                "placeholder": "Personal Trainer Project",
+                "required": false
+              },
+              {
+                "id": "4",
+                "type": "textarea",
+                "label": "Message",
+                "placeholder": "Tell me about your project...",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "ctavapor",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Or Reach Out Directly",
+            "subtitle": "+1 (555) 123-4567",
+            "ctaText": "Email Me",
+            "ctaUrl": "mailto:hello@example.com"
+          }
+        }
+      ]
+    }
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#FF6B35",
+      "secondary": "#E85A24",
+      "accent": "#FFD700",
+      "background": "#1A1A1A",
+      "surface": "#2A2A2A",
+      "text": "#FFFFFF",
+      "textMuted": "#BBBBBB",
+      "border": "#3D3D3D"
+    },
+    "fonts": {
+      "heading": "Anton",
+      "body": "Work Sans"
+    },
+    "motion": {
+      "level": 4,
+      "parallax": "layeredDepth",
+      "animations": "athletic-reveal"
+    },
+    "borderRadius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "16px",
+      "xl": "24px"
+    },
+    "spacing": {
+      "section": "80px",
+      "container": "1200px"
+    },
+    "tier": "prestige"
+  },
+  "sections": {
+    "herosplit": {
+      "name": "HeroSplit",
+      "icon": "🎯",
+      "category": "hero",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": "Hero Image"
+        },
+        {
+          "id": "ctaText",
+          "type": "text",
+          "label": "CTA Button Text"
+        },
+        {
+          "id": "ctaUrl",
+          "type": "url",
+          "label": "CTA Button URL"
+        },
+        {
+          "id": "motionLevel",
+          "type": "number",
+          "label": "Motion Level (1-4)"
+        },
+        {
+          "id": "parallaxPreset",
+          "type": "select",
+          "label": "Parallax Style",
+          "options": [
+            "none",
+            "softBackgroundDrift",
+            "layeredDepth",
+            "foregroundFloat",
+            "pinnedStorytelling"
+          ]
+        }
+      ],
+      "defaultContent": {
+        "title": "Welcome",
+        "subtitle": "Explore my portfolio",
+        "image": "",
+        "ctaText": "View Work",
+        "ctaUrl": "/gallery",
+        "motionLevel": 4,
+        "parallaxPreset": "layeredDepth"
+      }
+    },
+    "features": {
+      "name": "Features",
+      "icon": "⭐",
+      "category": "features",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "features",
+          "type": "array",
+          "label": "Features"
+        }
+      ],
+      "defaultContent": {
+        "title": "What I Offer",
+        "subtitle": "Services",
+        "features": []
+      }
+    },
+    "splitmedia": {
+      "name": "SplitMedia",
+      "icon": "📋",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "content",
+          "type": "textarea",
+          "label": "Content",
+          "translatable": true
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": "Image"
+        }
+      ],
+      "defaultContent": {
+        "title": "About Me",
+        "content": "Learn more about my journey",
+        "image": ""
+      }
+    },
+    "ctavapor": {
+      "name": "CTAVapor",
+      "icon": "📢",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "ctaText",
+          "type": "text",
+          "label": "CTA Button Text"
+        },
+        {
+          "id": "ctaUrl",
+          "type": "url",
+          "label": "CTA Button URL"
+        }
+      ],
+      "defaultContent": {
+        "title": "Ready to start?",
+        "subtitle": "Get in touch today",
+        "ctaText": "Contact Me",
+        "ctaUrl": "/contact"
+      }
+    },
+    "testimonials": {
+      "name": "Testimonials",
+      "icon": "💬",
+      "category": "social",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "testimonials",
+          "type": "array",
+          "label": "Testimonials"
+        }
+      ],
+      "defaultContent": {
+        "title": "What Clients Say",
+        "testimonials": []
+      }
+    },
+    "stats": {
+      "name": "Stats",
+      "icon": "📊",
+      "category": "content",
+      "fields": [
+        {
+          "id": "stats",
+          "type": "array",
+          "label": "Statistics"
+        }
+      ],
+      "defaultContent": {
+        "stats": []
+      }
+    },
+    "logo-strip": {
+      "name": "Logo Strip",
+      "icon": "🏢",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "logos",
+          "type": "array",
+          "label": "Logos"
+        }
+      ],
+      "defaultContent": {
+        "title": "Trusted By",
+        "logos": []
+      }
+    },
+    "contact-form": {
+      "name": "Contact Form",
+      "icon": "📧",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "fields",
+          "type": "array",
+          "label": "Form Fields"
+        }
+      ],
+      "defaultContent": {
+        "title": "Get in Touch",
+        "fields": []
+      }
+    }
+  }
+}

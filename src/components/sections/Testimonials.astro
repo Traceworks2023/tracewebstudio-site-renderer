@@ -1,203 +1,313 @@
 ---
+// Testimonials Section - Multiple variants with theme integration
+// Supports variants: grid, cards, slider, featured, minimal
+
 interface Testimonial {
   name: string;
   role?: string;
   company?: string;
   avatar?: string;
+  image?: string;
   quote: string;
   rating?: number;
 }
 
 interface Props {
-  title?: string;
-  subtitle?: string;
-  testimonials?: Testimonial[];
+  content?: {
+    title?: string;
+    subtitle?: string;
+    testimonials?: Testimonial[];
+  };
+  settings?: {
+    variant?: 'grid' | 'cards' | 'slider' | 'featured' | 'minimal';
+    backgroundStyle?: 'light' | 'dark' | 'gradient' | 'surface';
+    columns?: number;
+    motionLevel?: 1 | 2 | 3 | 4;
+    autoplay?: boolean;
+  };
 }
 
+const { content = {}, settings = {} } = Astro.props;
 const {
-  title = "What Our Customers Say",
-  subtitle = "Join thousands of satisfied customers",
+  title = 'What Our Clients Say',
+  subtitle = 'Join thousands of satisfied customers',
   testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "Small Business Owner",
-      company: "Sarah's Crafts",
-      quote: "This platform transformed my business! I was able to launch my online store in just a few hours. The templates are beautiful and the support team is amazing.",
-      rating: 5,
-    },
-    {
-      name: "Michael Chen",
-      role: "Marketing Director",
-      company: "TechStart Inc",
-      quote: "The best website builder we've used. Intuitive interface, great features, and the SEO tools helped us rank #1 on Google within months.",
-      rating: 5,
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "Entrepreneur",
-      quote: "I switched from another platform and never looked back. The performance is outstanding and the pricing is unbeatable for the value provided.",
-      rating: 5,
-    },
+    { name: 'Sarah Johnson', role: 'Small Business Owner', company: 'Sarah\'s Crafts', quote: 'This platform transformed my business! I was able to launch my online store in just a few hours.', rating: 5 },
+    { name: 'Michael Chen', role: 'Marketing Director', company: 'TechStart Inc', quote: 'The best website builder we\'ve used. Intuitive interface, great features, and the SEO tools helped us rank #1 on Google.', rating: 5 },
+    { name: 'Emily Rodriguez', role: 'Entrepreneur', quote: 'I switched from another platform and never looked back. The performance is outstanding and the pricing is unbeatable.', rating: 5 },
   ],
-} = Astro.props;
+} = content;
+
+const {
+  variant = 'cards',
+  backgroundStyle = 'light',
+  columns = 3,
+  motionLevel = 2,
+  autoplay = true,
+} = settings;
+
+const sectionId = `testimonials-${Math.random().toString(36).slice(2, 9)}`;
+
+const bgClasses = {
+  light: 'bg-gray-50',
+  dark: 'bg-gray-900 text-white',
+  gradient: 'bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] text-white',
+  surface: 'bg-white',
+};
 ---
 
-<section class="testimonials">
-  <div class="testimonials-container">
-    <div class="testimonials-header">
-      <h2 class="testimonials-title">{title}</h2>
-      {subtitle && <p class="testimonials-subtitle">{subtitle}</p>}
-    </div>
-    <div class="testimonials-grid">
-      {testimonials.map((testimonial) => (
-        <div class="testimonial-card">
-          <div class="testimonial-rating">
-            {Array(testimonial.rating || 5).fill(null).map(() => (
-              <span class="star">★</span>
-            ))}
-          </div>
-          <blockquote class="testimonial-quote">
-            "{testimonial.quote}"
-          </blockquote>
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              {testimonial.avatar ? (
-                <img src={testimonial.avatar} alt={testimonial.name} />
-              ) : (
-                <span>{testimonial.name.charAt(0)}</span>
-              )}
+<section
+  id={sectionId}
+  class={`testimonials-section testimonials-variant-${variant} ${bgClasses[backgroundStyle]}`}
+  data-variant={variant}
+  data-motion-level={motionLevel}
+  data-autoplay={autoplay}
+>
+  <div class="testimonials-container max-w-7xl mx-auto px-6 py-20">
+    {(title || subtitle) && (
+      <div class="testimonials-header text-center mb-16">
+        {title && <h2 class="testimonials-title text-4xl md:text-5xl font-bold mb-4">{title}</h2>}
+        {subtitle && <p class="testimonials-subtitle text-lg opacity-80">{subtitle}</p>}
+      </div>
+    )}
+
+    {/* Grid Variant */}
+    {variant === 'grid' && (
+      <div class={`testimonials-grid grid-cols-1 md:grid-cols-${Math.min(columns, 3)} gap-8`}>
+        {testimonials.map((testimonial, index) => (
+          <div class="testimonial-card bg-white rounded-2xl p-8 shadow-sm" data-testimonial-index={index}>
+            <div class="testimonial-rating mb-4">
+              {Array(testimonial.rating || 5).fill(null).map(() => (
+                <span class="star text-[var(--color-accent)]">★</span>
+              ))}
             </div>
-            <div class="author-info">
-              <div class="author-name">{testimonial.name}</div>
-              {(testimonial.role || testimonial.company) && (
-                <div class="author-role">
-                  {testimonial.role}{testimonial.role && testimonial.company && " at "}{testimonial.company}
+            <blockquote class="testimonial-quote text-gray-700 mb-6">"{testimonial.quote}"</blockquote>
+            <div class="testimonial-author flex items-center gap-4">
+              <div class="testimonial-avatar w-12 h-12 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white font-bold">
+                {testimonial.avatar || testimonial.name.charAt(0)}
+              </div>
+              <div>
+                <div class="testimonial-name font-semibold text-gray-900">{testimonial.name}</div>
+                {(testimonial.role || testimonial.company) && (
+                  <div class="testimonial-role text-sm text-gray-500">{testimonial.role}{testimonial.role && testimonial.company && ' at '}{testimonial.company}</div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Cards Variant */}
+    {(variant === 'cards' || !variant) && (
+      <div class={`testimonials-grid grid-cols-1 md:grid-cols-${Math.min(columns, 3)} gap-8`}>
+        {testimonials.map((testimonial, index) => (
+          <div class="testimonial-card bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300" data-testimonial-index={index}>
+            <div class="testimonial-rating mb-4">
+              {Array(testimonial.rating || 5).fill(null).map(() => (
+                <span class="star text-[var(--color-accent)]">★</span>
+              ))}
+            </div>
+            <blockquote class="testimonial-quote text-gray-700 mb-6 leading-relaxed">"{testimonial.quote}"</blockquote>
+            <div class="testimonial-author flex items-center gap-4">
+              {testimonial.image ? (
+                <img src={testimonial.image} alt={testimonial.name} class="w-12 h-12 rounded-full object-cover" />
+              ) : (
+                <div class="testimonial-avatar w-12 h-12 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white font-bold">
+                  {testimonial.name.charAt(0)}
                 </div>
               )}
+              <div>
+                <div class="testimonial-name font-semibold text-gray-900">{testimonial.name}</div>
+                {(testimonial.role || testimonial.company) && (
+                  <div class="testimonial-role text-sm text-gray-500">{testimonial.role}{testimonial.role && testimonial.company && ' at '}{testimonial.company}</div>
+                )}
+              </div>
             </div>
           </div>
+        ))}
+      </div>
+    )}
+
+    {/* Slider Variant */}
+    {variant === 'slider' && (
+      <div class="testimonials-slider relative">
+        <div class="testimonials-track flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory" data-slider-track>
+          {testimonials.map((testimonial, index) => (
+            <div class="testimonial-slide flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] snap-start" data-testimonial-index={index}>
+              <div class="testimonial-card bg-white rounded-2xl p-8 h-full">
+                <div class="testimonial-rating mb-4">
+                  {Array(testimonial.rating || 5).fill(null).map(() => (
+                    <span class="star text-[var(--color-accent)]">★</span>
+                  ))}
+                </div>
+                <blockquote class="testimonial-quote text-gray-700 mb-6 leading-relaxed">"{testimonial.quote}"</blockquote>
+                <div class="testimonial-author flex items-center gap-4">
+                  <div class="testimonial-avatar w-12 h-12 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white font-bold">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div class="testimonial-name font-semibold text-gray-900">{testimonial.name}</div>
+                    {(testimonial.role || testimonial.company) && (
+                      <div class="testimonial-role text-sm text-gray-500">{testimonial.role}{testimonial.role && testimonial.company && ' at '}{testimonial.company}</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+        <div class="testimonials-nav flex justify-center gap-4 mt-8">
+          <button class="slider-prev w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors" aria-label="Previous">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button class="slider-next w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors" aria-label="Next">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+    )}
+
+    {/* Featured Variant */}
+    {variant === 'featured' && (
+      <div class="testimonials-featured">
+        {testimonials.slice(0, 2).map((testimonial, index) => (
+          <div class="testimonial-featured-item grid md:grid-cols-2 gap-12 items-center mb-16 last:mb-0" data-testimonial-index={index}>
+            <div class={index % 2 === 1 ? 'md:order-2' : ''}>
+              <div class="testimonial-featured-avatar w-24 h-24 mx-auto md:mx-0 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white text-3xl font-bold mb-6">
+                {testimonial.name.charAt(0)}
+              </div>
+            </div>
+            <div class={index % 2 === 1 ? 'md:order-1' : ''}>
+              <div class="testimonial-rating mb-4">
+                {Array(testimonial.rating || 5).fill(null).map(() => (
+                  <span class="star text-[var(--color-accent)] text-xl">★</span>
+                ))}
+              </div>
+              <blockquote class="testimonial-quote text-2xl font-medium leading-relaxed mb-6">"{testimonial.quote}"</blockquote>
+              <div class="testimonial-name font-bold text-lg">{testimonial.name}</div>
+              {(testimonial.role || testimonial.company) && (
+                <div class="testimonial-role text-gray-500">{testimonial.role}{testimonial.role && testimonial.company && ' at '}{testimonial.company}</div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Minimal Variant */}
+    {variant === 'minimal' && (
+      <div class="testimonials-minimal space-y-8">
+        {testimonials.map((testimonial, index) => (
+          <div class="testimonial-minimal-item flex items-start gap-6" data-testimonial-index={index}>
+            <div class="testimonial-minimal-avatar w-10 h-10 flex-shrink-0 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] font-bold">
+              {testimonial.name.charAt(0)}
+            </div>
+            <div>
+              <div class="testimonial-minimal-rating mb-2">
+                {Array(testimonial.rating || 5).fill(null).map(() => (
+                  <span class="star text-[var(--color-accent)] text-sm">★</span>
+                ))}
+              </div>
+              <blockquote class="testimonial-quote text-gray-700 mb-2">"{testimonial.quote}"</blockquote>
+              <div class="testimonial-meta text-sm">
+                <span class="testimonial-name font-semibold text-gray-900">{testimonial.name}</span>
+                {(testimonial.role || testimonial.company) && (
+                  <span class="text-gray-500"> — {testimonial.role}{testimonial.role && testimonial.company && ' at '}{testimonial.company}</span>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>
 
 <style>
-  .testimonials {
-    padding: 5rem 2rem;
-    background-color: white;
-  }
-
-  .testimonials-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .testimonials-header {
-    text-align: center;
-    margin-bottom: 3rem;
+  .testimonials-section {
+    position: relative;
   }
 
   .testimonials-title {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #000032;
-    margin: 0 0 1rem 0;
+    font-family: var(--font-heading);
+    color: inherit;
   }
 
   .testimonials-subtitle {
-    font-size: 1.125rem;
-    color: #6B7280;
-    margin: 0;
+    font-family: var(--font-body);
   }
 
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+  .testimonial-name {
+    font-family: var(--font-heading);
   }
 
-  .testimonial-card {
-    background: #F9FAFB;
-    padding: 2rem;
-    border-radius: 16px;
-    border: 1px solid #E5E7EB;
-    transition: all 0.3s ease;
-  }
-
-  .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    border-color: #FA5014;
-  }
-
-  .testimonial-rating {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 1rem;
-  }
-
-  .star {
-    color: #FA5014;
-    font-size: 1.25rem;
+  .testimonial-role {
+    font-family: var(--font-body);
   }
 
   .testimonial-quote {
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    color: #111827;
-    margin: 0 0 1.5rem 0;
-    font-style: italic;
+    font-family: var(--font-body);
   }
 
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  .star {
+    display: inline-block;
   }
 
-  .author-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #FA5014 0%, #000032 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  /* Cards hover effect */
+  .testimonials-variant-cards .testimonial-card:hover {
+    transform: translateY(-5px);
   }
 
-  .author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  /* Motion */
+  [data-motion-level="3"] .testimonial-card,
+  [data-motion-level="4"] .testimonial-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: testimonial-stagger 0.5s ease-out forwards;
   }
 
-  .author-avatar span {
-    color: white;
-    font-weight: 600;
-    font-size: 1.25rem;
+  [data-motion-level="3"] .testimonial-card:nth-child(1),
+  [data-motion-level="4"] .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+  [data-motion-level="3"] .testimonial-card:nth-child(2),
+  [data-motion-level="4"] .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+  [data-motion-level="3"] .testimonial-card:nth-child(3),
+  [data-motion-level="4"] .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes testimonial-stagger {
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .author-name {
-    font-weight: 600;
-    color: #111827;
-    font-family: 'Exo 2', sans-serif;
+  /* Slider styles */
+  .testimonials-track {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
   }
 
-  .author-role {
-    font-size: 0.875rem;
-    color: #6B7280;
-  }
-
-  @media (max-width: 768px) {
-    .testimonials {
-      padding: 3rem 1rem;
-    }
-
-    .testimonials-title {
-      font-size: 2rem;
-    }
+  .testimonials-track::-webkit-scrollbar {
+    display: none;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.testimonials-slider').forEach((slider) => {
+      const el = slider as HTMLElement;
+      const track = el.querySelector('[data-slider-track]') as HTMLElement;
+      const prevBtn = el.querySelector('.slider-prev');
+      const nextBtn = el.querySelector('.slider-next');
+
+      if (!track) return;
+
+      const scrollAmount = track.offsetWidth * 0.8;
+
+      nextBtn?.addEventListener('click', () => {
+        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+
+      prevBtn?.addEventListener('click', () => {
+        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+    });
+  });
+</script>

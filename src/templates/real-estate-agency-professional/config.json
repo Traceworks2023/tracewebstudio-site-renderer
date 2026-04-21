@@ -1,0 +1,661 @@
+{
+  "id": "real-estate-agency-professional",
+  "name": "Real Estate Agency Professional",
+  "slug": "real-estate-agency-professional",
+  "description": "Real Estate Agency Professional template with Modern Homes design using Home Green color scheme",
+  "category": "business",
+  "tier": "medium",
+  "thumbnail_url": "/previews/real-estate-agency-professional.jpg",
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herocinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Professional Real Estate Agency Services",
+            "subtitle": "Trusted expertise for all your real estate agency needs. Quality workmanship guaranteed.",
+            "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920",
+            "ctaText": "Get Free Quote",
+            "ctaUrl": "/contact"
+          }
+        },
+        {
+          "id": "features",
+          "type": "featureshorizontal",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Why Choose Our Real Estate Agency Services",
+            "subtitle": "We deliver excellence in every project",
+            "features": [
+              {
+                "id": "1",
+                "title": "Residential Sales",
+                "description": "Expert residential sales services with guaranteed satisfaction",
+                "icon": "🏠"
+              },
+              {
+                "id": "2",
+                "title": "Commercial Properties",
+                "description": "Expert commercial properties services with guaranteed satisfaction",
+                "icon": "🏠"
+              },
+              {
+                "id": "3",
+                "title": "Rental Management",
+                "description": "Expert rental management services with guaranteed satisfaction",
+                "icon": "🏠"
+              },
+              {
+                "id": "4",
+                "title": "Property Valuation",
+                "description": "Expert property valuation services with guaranteed satisfaction",
+                "icon": "🏠"
+              },
+              {
+                "id": "5",
+                "title": "Legal Assistance",
+                "description": "Expert legal assistance services with guaranteed satisfaction",
+                "icon": "🏠"
+              }
+            ]
+          }
+        },
+        {
+          "id": "about",
+          "type": "statssection",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "About Our Real Estate Agency Company",
+            "content": "With decades of experience, we have built a reputation for excellence in the real estate agency industry. Our team of dedicated professionals ensures every project is completed to the highest standards, on time and within budget.",
+            "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920"
+          }
+        },
+        {
+          "id": "stats",
+          "type": "stats",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "stats": [
+              {
+                "id": "1",
+                "value": "5000+",
+                "label": "Properties"
+              },
+              {
+                "id": "2",
+                "value": "Trusted",
+                "label": "Name"
+              },
+              {
+                "id": "3",
+                "value": "Verified",
+                "label": "Listings"
+              },
+              {
+                "id": "4",
+                "value": "Free",
+                "label": "Valuation"
+              }
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonials",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "What Our Clients Say",
+            "testimonials": [
+              {
+                "id": "1",
+                "name": "Sarah Johnson",
+                "role": "Homeowner",
+                "company": "",
+                "quote": "Exceptional real estate agency services! The team was professional, punctual, and the quality exceeded my expectations.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
+              },
+              {
+                "id": "2",
+                "name": "Michael Chen",
+                "role": "Business Owner",
+                "company": "Tech Solutions",
+                "quote": "We've been using their real estate agency services for years. Consistent quality and excellent customer service.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
+              },
+              {
+                "id": "3",
+                "name": "Emily Rodriguez",
+                "role": "Property Manager",
+                "company": "Urban Living",
+                "quote": "Highly recommend! They handle all our real estate agency needs with professionalism and attention to detail.",
+                "rating": 5,
+                "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "cta",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Ready to Get Started?",
+            "subtitle": "Contact us today for a free consultation and quote",
+            "ctaText": "Book Now",
+            "ctaUrl": "/contact"
+          }
+        },
+        {
+          "id": "newsletter",
+          "type": "newsletter",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Stay Updated",
+            "subtitle": "Subscribe for tips and exclusive offers"
+          }
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "type": "services",
+      "name": "Services",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herocinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Our Real Estate Agency Services",
+            "subtitle": "Comprehensive solutions for all your needs",
+            "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920"
+          }
+        },
+        {
+          "id": "features",
+          "type": "featureshorizontal",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "What We Offer",
+            "features": [
+              {
+                "id": "1",
+                "title": "Residential Sales",
+                "description": "Expert residential sales with years of experience and professional approach",
+                "icon": "🏠"
+              },
+              {
+                "id": "2",
+                "title": "Commercial Properties",
+                "description": "Expert commercial properties with years of experience and professional approach",
+                "icon": "🏠"
+              },
+              {
+                "id": "3",
+                "title": "Rental Management",
+                "description": "Expert rental management with years of experience and professional approach",
+                "icon": "🏠"
+              },
+              {
+                "id": "4",
+                "title": "Property Valuation",
+                "description": "Expert property valuation with years of experience and professional approach",
+                "icon": "🏠"
+              },
+              {
+                "id": "5",
+                "title": "Legal Assistance",
+                "description": "Expert legal assistance with years of experience and professional approach",
+                "icon": "🏠"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "cta",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Get Your Free Quote",
+            "ctaText": "Contact Us",
+            "ctaUrl": "/contact"
+          }
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "type": "about",
+      "name": "About",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herocinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "About Real Estate Agency Experts",
+            "subtitle": "Your trusted partner for quality services",
+            "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920"
+          }
+        },
+        {
+          "id": "about",
+          "type": "statssection",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Our Story",
+            "content": "Founded with a passion for excellence, our real estate agency company has grown to become a leader in the industry. We combine traditional values with modern techniques to deliver outstanding results for every client.",
+            "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920"
+          }
+        },
+        {
+          "id": "stats",
+          "type": "stats",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "stats": [
+              {
+                "id": "1",
+                "value": "5000+",
+                "label": "Properties"
+              },
+              {
+                "id": "2",
+                "value": "Trusted",
+                "label": "Name"
+              },
+              {
+                "id": "3",
+                "value": "Verified",
+                "label": "Listings"
+              },
+              {
+                "id": "4",
+                "value": "Free",
+                "label": "Valuation"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "name": "Contact",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "herocinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "title": "Get In Touch",
+            "subtitle": "We would love to hear from you",
+            "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920"
+          }
+        },
+        {
+          "id": "contact",
+          "type": "contact-form",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Send Us a Message",
+            "fields": [
+              {
+                "id": "1",
+                "type": "text",
+                "label": "Name",
+                "placeholder": "Your Name",
+                "required": true
+              },
+              {
+                "id": "2",
+                "type": "email",
+                "label": "Email",
+                "placeholder": "your@email.com",
+                "required": true
+              },
+              {
+                "id": "3",
+                "type": "phone",
+                "label": "Phone",
+                "placeholder": "+91 98765 43210",
+                "required": false
+              },
+              {
+                "id": "4",
+                "type": "textarea",
+                "label": "Message",
+                "placeholder": "Tell us about your project...",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "cta",
+          "type": "cta",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Call Us Directly",
+            "subtitle": "+91 98765 43210",
+            "ctaText": "WhatsApp Us",
+            "ctaUrl": "https://wa.me/919876543210"
+          }
+        }
+      ]
+    }
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#065F46",
+      "secondary": "#047857",
+      "accent": "#10B981",
+      "background": "#ECFDF5",
+      "surface": "#D1FAE5",
+      "text": "#064E3B",
+      "textMuted": "#6B7280",
+      "border": "#A7F3D0"
+    },
+    "fonts": {
+      "heading": "Montserrat",
+      "body": "Open Sans"
+    },
+    "borderRadius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "16px",
+      "xl": "24px"
+    },
+    "spacing": {
+      "section": "80px",
+      "container": "1200px"
+    },
+    "tier": "professional"
+  },
+  "sections": {
+    "herocinematic": {
+      "name": "HeroCinematic",
+      "icon": "🎯",
+      "category": "hero",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": "Hero Image"
+        },
+        {
+          "id": "ctaText",
+          "type": "text",
+          "label": "CTA Button Text"
+        },
+        {
+          "id": "ctaUrl",
+          "type": "url",
+          "label": "CTA Button URL"
+        }
+      ],
+      "defaultContent": {
+        "title": "Welcome",
+        "subtitle": "Discover our services",
+        "image": "",
+        "ctaText": "Get Started",
+        "ctaUrl": "/contact"
+      }
+    },
+    "featureshorizontal": {
+      "name": "FeaturesHorizontal",
+      "icon": "⭐",
+      "category": "features",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "features",
+          "type": "array",
+          "label": "Features"
+        }
+      ],
+      "defaultContent": {
+        "title": "Our Features",
+        "subtitle": "What makes us different",
+        "features": []
+      }
+    },
+    "statssection": {
+      "name": "StatsSection",
+      "icon": "📋",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "content",
+          "type": "textarea",
+          "label": "Content",
+          "translatable": true
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": "Image"
+        }
+      ],
+      "defaultContent": {
+        "title": "About Us",
+        "content": "Learn more about our company",
+        "image": ""
+      }
+    },
+    "cta": {
+      "name": "CTA",
+      "icon": "📢",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        },
+        {
+          "id": "ctaText",
+          "type": "text",
+          "label": "CTA Button Text"
+        },
+        {
+          "id": "ctaUrl",
+          "type": "url",
+          "label": "CTA Button URL"
+        }
+      ],
+      "defaultContent": {
+        "title": "Ready to start?",
+        "subtitle": "Get in touch today",
+        "ctaText": "Contact Us",
+        "ctaUrl": "/contact"
+      }
+    },
+    "testimonials": {
+      "name": "Testimonials",
+      "icon": "💬",
+      "category": "social",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "testimonials",
+          "type": "array",
+          "label": "Testimonials"
+        }
+      ],
+      "defaultContent": {
+        "title": "What People Say",
+        "testimonials": []
+      }
+    },
+    "stats": {
+      "name": "Stats",
+      "icon": "📊",
+      "category": "content",
+      "fields": [
+        {
+          "id": "stats",
+          "type": "array",
+          "label": "Statistics"
+        }
+      ],
+      "defaultContent": {
+        "stats": []
+      }
+    },
+    "contact-form": {
+      "name": "Contact Form",
+      "icon": "📧",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "fields",
+          "type": "array",
+          "label": "Form Fields"
+        }
+      ],
+      "defaultContent": {
+        "title": "Get in Touch",
+        "fields": []
+      }
+    },
+    "newsletter": {
+      "name": "Newsletter",
+      "icon": "✉️",
+      "category": "conversion",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "translatable": true
+        },
+        {
+          "id": "subtitle",
+          "type": "textarea",
+          "label": "Subtitle",
+          "translatable": true
+        }
+      ],
+      "defaultContent": {
+        "title": "Stay Updated",
+        "subtitle": "Subscribe to our newsletter"
+      }
+    },
+    "faq": {
+      "name": "FAQ",
+      "icon": "❓",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "faqs",
+          "type": "array",
+          "label": "FAQs"
+        }
+      ],
+      "defaultContent": {
+        "title": "Frequently Asked Questions",
+        "faqs": []
+      }
+    },
+    "logo-strip": {
+      "name": "Logo Strip",
+      "icon": "🏢",
+      "category": "content",
+      "fields": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Title",
+          "translatable": true
+        },
+        {
+          "id": "logos",
+          "type": "array",
+          "label": "Logos"
+        }
+      ],
+      "defaultContent": {
+        "title": "Trusted By",
+        "logos": []
+      }
+    }
+  }
+}

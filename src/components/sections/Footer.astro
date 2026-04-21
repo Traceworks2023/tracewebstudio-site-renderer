@@ -13,6 +13,9 @@ interface Props {
   columns?: Column[];
   companyName?: string;
   copyright?: string;
+  settings?: {
+    templateSlug?: string;
+  };
 }
 
 const {
@@ -57,6 +60,15 @@ const {
   companyName = "Tracewebstudio",
   copyright = `© ${new Date().getFullYear()} ${companyName}. All rights reserved.`,
 } = Astro.props;
+
+const settings = Astro.props.settings || {};
+const templateSlug = settings.templateSlug || '';
+
+const getTemplateLink = (link: string) => {
+  if (!link || link === '#') return '#';
+  if (link.startsWith('http')) return link;
+  return `/${templateSlug}${link.startsWith('/') ? link : `/${link}`}`;
+};
 ---
 
 <footer class="footer">
@@ -94,7 +106,7 @@ const {
             <ul class="footer-list">
               {column.links.map((link) => (
                 <li>
-                  <a href={link.url} class="footer-link">{link.label}</a>
+                  <a href={getTemplateLink(link.url)} class="footer-link">{link.label}</a>
                 </li>
               ))}
             </ul>

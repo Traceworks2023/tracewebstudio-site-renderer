@@ -1,0 +1,129 @@
+---
+// Account Dashboard - Tailwind version
+interface Props {
+  template?: any;
+  page?: any;
+}
+
+const { template, page } = Astro.props;
+
+const orders = [
+  { id: 'ORD-001', date: '2024-01-15', total: 4999, status: 'Delivered', items: 2 },
+  { id: 'ORD-002', date: '2024-01-20', total: 7999, status: 'Shipped', items: 1 }
+];
+
+const addresses = [
+  { id: '1', name: 'Home', address: '123 Main Street', city: 'New York', zip: '10001', default: true },
+  { id: '2', name: 'Office', address: '456 Business Ave', city: 'New York', zip: '10002', default: false }
+];
+
+const menuItems = [
+  { id: 'dashboard', label: 'Dashboard', active: true },
+  { id: 'orders', label: 'Orders' },
+  { id: 'addresses', label: 'Addresses' },
+  { id: 'profile', label: 'Profile' },
+  { id: 'wishlist', label: 'Wishlist' },
+  { id: 'settings', label: 'Settings' }
+];
+---
+
+<div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-2xl font-bold text-gray-900 mb-8">My Account</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Sidebar Menu -->
+      <aside class="bg-white rounded-lg shadow-sm p-4 h-fit">
+        <nav class="space-y-1">
+          {menuItems.map((item) => (
+            <button
+              class={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition ${
+                item.active ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-100'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+        <button class="w-full text-left px-4 py-2 mt-4 text-red-600 hover:bg-red-50 rounded-lg text-sm font-medium transition">
+          Logout
+        </button>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="md:col-span-3 space-y-6">
+        <!-- Overview Stats -->
+        <div class="grid grid-cols-3 gap-4">
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <p class="text-sm text-gray-500 mb-1">Total Orders</p>
+            <p class="text-2xl font-bold text-gray-900">12</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <p class="text-sm text-gray-500 mb-1">Active Orders</p>
+            <p class="text-2xl font-bold text-gray-900">2</p>
+          </div>
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <p class="text-sm text-gray-500 mb-1">Wishlist Items</p>
+            <p class="text-2xl font-bold text-gray-900">5</p>
+          </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+            <h2 class="font-semibold text-gray-900">Recent Orders</h2>
+            <a href="#" class="text-sm text-blue-600 hover:underline">View All</a>
+          </div>
+          <div class="divide-y divide-gray-200">
+            {orders.map((order) => (
+              <div class="px-6 py-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-medium text-gray-900">{order.id}</p>
+                    <p class="text-sm text-gray-500">{order.date} • {order.items} items</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-semibold text-gray-900">₹{order.total}</p>
+                    <span class={`inline-block px-2 py-1 text-xs font-medium rounded-full ${
+                      order.status === 'Delivered' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+                    }`}>
+                      {order.status}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Saved Addresses -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+            <h2 class="font-semibold text-gray-900">Saved Addresses</h2>
+            <button class="text-sm text-blue-600 hover:underline">Add New</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+            {addresses.map((addr) => (
+              <div class={`p-4 border rounded-lg ${addr.default ? 'border-gray-900' : 'border-gray-200'}`}>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-medium text-gray-900">{addr.name}</span>
+                  {addr.default && (
+                    <span class="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded">Default</span>
+                  )}
+                </div>
+                <p class="text-sm text-gray-600">
+                  {addr.address}<br />
+                  {addr.city}, {addr.zip}
+                </p>
+                <div class="flex gap-4 mt-3">
+                  <button class="text-sm text-blue-600 hover:underline">Edit</button>
+                  <button class="text-sm text-red-600 hover:underline">Delete</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

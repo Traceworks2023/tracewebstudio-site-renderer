@@ -1,0 +1,78 @@
+---
+// Portfolio/Projects Gallery Page - Dynamic content based on template
+import { generateUniqueContent } from '../../lib/content-generator';
+
+interface Props {
+  template?: any;
+  page?: any;
+  tenantId?: string;
+}
+
+const { template, page, tenantId = '00000000-0000-0000-0000-000000000000' } = Astro.props;
+
+const templateCategory = template?.category || 'portfolio';
+const templateSlug = template?.slug || 'portfolio';
+const theme = template?.theme || {};
+const colors = theme.colors || {};
+const fonts = theme.fonts || { heading: 'Playfair Display', body: 'Inter' };
+
+// Generate unique content based on template
+const generatedContent = generateUniqueContent(templateSlug, templateCategory);
+const { brand, categories } = generatedContent;
+
+// Create portfolio projects from categories
+const portfolioCategories = categories.slice(0, 6);
+const projects = portfolioCategories.map((cat, i) => ({
+  id: cat.id,
+  title: cat.name,
+  category: cat.name,
+  image: `https://picsum.photos/seed/${cat.id}-${i}/600/600`
+}));
+
+const filterCategories = ['All', ...portfolioCategories.map(c => c.name)];
+---
+
+<div class="min-h-screen" style={`background-color: ${colors.background || '#ffffff'}; color: ${colors.text || '#1a1a1a'};`}>
+  {/* Header */}
+  <header class="py-16 px-4 text-center" style={`background: linear-gradient(135deg, ${colors.primary || '#000032'}, ${colors.secondary || '#333333'});`}>
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white" style={`font-family: '${fonts.heading}', serif;`}>{brand.name} Portfolio</h1>
+    <p class="text-gray-300 max-w-2xl mx-auto">A curated selection of our finest work</p>
+  </header>
+
+  {/* Filter */}
+  <div class="flex justify-center gap-4 px-4 py-8 flex-wrap">
+    {filterCategories.map((cat, i) => (
+      <button
+        class={`px-6 py-2 rounded-full font-medium transition-all ${i === 0 ? 'text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+        style={i === 0 ? `background: ${colors.primary || '#000032'};` : ''}
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+
+  {/* Gallery Grid */}
+  <div class="max-w-7xl mx-auto px-4 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project, i) => (
+        <a
+          href={`/${templateSlug}?page=project&id=${project.id}`}
+          class="group relative aspect-square overflow-hidden rounded-lg"
+          style={`background: ${colors.surface || '#f9fafb'};`}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+          />
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition" style={`background: ${colors.primary || '#000032'}cc;`}>
+            <div class="text-center text-white p-4">
+              <h3 class="font-bold text-xl mb-1">{project.title}</h3>
+              <p class="text-sm opacity-80">{project.category}</p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

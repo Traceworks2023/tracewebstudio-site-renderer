@@ -1,0 +1,286 @@
+---
+// Booking/Appointment Page
+interface Service {
+  id: string;
+  name: string;
+  description?: string;
+  duration_minutes: number;
+  price: number;
+}
+
+interface BookingSlot {
+  id: string;
+  start_time: string;
+  end_time: string;
+  is_available: boolean;
+}
+
+interface Props {
+  template?: any;
+  page?: any;
+  tenantId?: string;
+}
+
+const { template, page, tenantId = '00000000-0000-0000-0000-000000000000' } = Astro.props;
+
+import { addonApi } from '../../lib/addon-api';
+
+let services: Service[] = [];
+let slots: BookingSlot[] = [];
+
+try {
+  const response = await addonApi.services.list(tenantId);
+  services = response || [];
+} catch (e) {
+  console.error('Failed to fetch services:', e);
+}
+
+if (services.length === 0) {
+  services = [
+    { id: 'default-1', name: 'Consultation', description: '30 minute consultation', duration_minutes: 30, price: 500 },
+    { id: 'default-2', name: 'Signature Treatment', description: '90 minute signature treatment', duration_minutes: 90, price: 2500 },
+    { id: 'default-3', name: 'Express Service', description: '45 minute express service', duration_minutes: 45, price: 1200 },
+    { id: 'default-4', name: 'Premium Package', description: '2 hour premium package', duration_minutes: 120, price: 4500 },
+  ];
+}
+
+const timeSlots = [
+  '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
+  '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM',
+  '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM'
+];
+---
+
+<div class="min-h-screen bg-gray-50 py-12 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">Book Your Appointment</h1>
+      <p class="text-gray-600">Select your preferred service, date, and time</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+      <div class="flex border-b border-gray-200">
+        {['Service', 'Date & Time', 'Details', 'Confirm'].map((step, i) => (
+          <div class={`flex-1 py-4 text-center text-sm font-medium ${
+            i === 0 ? 'text-gray-900 border-b-2 border-gray-900' : 'text-gray-400'
+          }`}>
+            {step}
+          </div>
+        ))}
+      </div>
+
+      <form id="booking-form" class="p-8" data-tenant-id={tenantId}>
+        <div id="step-service">
+          <h2 class="text-lg font-semibold text-gray-900 mb-6">Select a Service</h2>
+          <div class="space-y-4 mb-8">
+            {services.map(service => (
+              <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-gray-900 transition">
+                <input type="radio" name="service" value={service.id} class="w-4 h-4 text-gray-900" />
+                <div class="ml-4 flex-1">
+                  <div class="flex justify-between">
+                    <span class="font-medium text-gray-900">{service.name}</span>
+                    <span class="font-semibold text-gray-900">₹{service.price}</span>
+                  </div>
+                  <span class="text-sm text-gray-500">{service.duration_minutes} min</span>
+                </div>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div id="step-datetime" class="hidden">
+          <h2 class="text-lg font-semibold text-gray-900 mb-6">Select Date & Time</h2>
+          <div class="grid grid-cols-7 gap-2 mb-6">
+            {Array.from({ length: 7 }).map((_, i) => (
+              <button type="button" class="date-btn aspect-square flex flex-col items-center justify-center border border-gray-200 rounded-lg hover:border-gray-900 hover:bg-gray-50 transition" data-date={15 + i}>
+                <span class="text-xs text-gray-500">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][i]}</span>
+                <span class="font-semibold">{15 + i}</span>
+              </button>
+            ))}
+          </div>
+
+          <div class="grid grid-cols-4 gap-3 mb-8">
+            {timeSlots.map(time => (
+              <button type="button" class="time-btn py-2 px-4 border border-gray-200 rounded-lg text-sm hover:border-gray-900 hover:bg-gray-900 hover:text-white transition">
+                {time}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div id="step-details" class="hidden">
+          <h2 class="text-lg font-semibold text-gray-900 mb-6">Your Details</h2>
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+              <input type="text" name="firstName" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+              <input type="text" name="lastName" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required />
+            </div>
+            <div class="col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg" required />
+            </div>
+            <div class="col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+              <input type="tel" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg" />
+            </div>
+          </div>
+        </div>
+
+        <div id="step-confirm" class="hidden">
+          <h2 class="text-lg font-semibold text-gray-900 mb-6">Confirm Your Booking</h2>
+          <div id="booking-summary" class="bg-gray-50 rounded-lg p-6 mb-8"></div>
+        </div>
+
+        <div class="flex gap-4">
+          <button type="button" id="prev-btn" class="hidden px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+            Previous
+          </button>
+          <button type="button" id="next-btn" class="flex-1 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition">
+            Next
+          </button>
+          <button type="submit" id="submit-btn" class="hidden flex-1 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition">
+            Confirm Booking
+          </button>
+        </div>
+      </form>
+
+      <div id="booking-success" class="hidden p-8 text-center">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Booking Confirmed!</h2>
+        <p class="text-gray-600 mb-6">We've sent a confirmation email with your booking details.</p>
+        <a href="/" class="px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition">
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('booking-form') as HTMLFormElement;
+    const tenantId = form?.dataset.tenantId || '00000000-0000-0000-0000-000000000000';
+
+    let currentStep = 0;
+    const steps = ['service', 'datetime', 'details', 'confirm'];
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const successDiv = document.getElementById('booking-success');
+
+    let selectedService = '';
+    let selectedDate = '';
+    let selectedTime = '';
+
+    function showStep(index: number) {
+      steps.forEach((step, i) => {
+        const el = document.getElementById(`step-${step}`);
+        if (el) el.classList.toggle('hidden', i !== index);
+      });
+      prevBtn?.classList.toggle('hidden', index === 0);
+      nextBtn?.classList.toggle('hidden', index === steps.length - 1);
+      submitBtn?.classList.toggle('hidden', index !== steps.length - 1);
+    }
+
+    document.querySelectorAll('input[name="service"]').forEach(input => {
+      input.addEventListener('change', (e) => {
+        selectedService = (e.target as HTMLInputElement).value;
+      });
+    });
+
+    document.querySelectorAll('.date-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        selectedDate = target.dataset.date || '';
+        document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('border-gray-900', 'bg-gray-50'));
+        target.classList.add('border-gray-900', 'bg-gray-50');
+      });
+    });
+
+    document.querySelectorAll('.time-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        selectedTime = target.textContent || '';
+        document.querySelectorAll('.time-btn').forEach(b => {
+          b.classList.remove('border-gray-900', 'bg-gray-900', 'text-white');
+        });
+        target.classList.add('border-gray-900', 'bg-gray-900', 'text-white');
+      });
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      if (currentStep < steps.length - 1) {
+        if (currentStep === 0 && !selectedService) {
+          alert('Please select a service');
+          return;
+        }
+        if (currentStep === 1 && (!selectedDate || !selectedTime)) {
+          alert('Please select a date and time');
+          return;
+        }
+        currentStep++;
+        showStep(currentStep);
+        if (currentStep === 3) updateSummary();
+      }
+    });
+
+    function updateSummary() {
+      const summary = document.getElementById('booking-summary');
+      if (summary) {
+        summary.innerHTML = `
+          <div class="space-y-2">
+            <div class="flex justify-between"><span class="text-gray-600">Service:</span><span class="font-medium">${selectedService}</span></div>
+            <div class="flex justify-between"><span class="text-gray-600">Date:</span><span class="font-medium">${selectedDate}</span></div>
+            <div class="flex justify-between"><span class="text-gray-600">Time:</span><span class="font-medium">${selectedTime}</span></div>
+          </div>
+        `;
+      }
+    }
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = {
+        service_id: selectedService,
+        customer_name: `${formData.get('firstName')} ${formData.get('lastName')}`,
+        customer_email: formData.get('email'),
+        customer_phone: formData.get('phone'),
+        start_time: `${selectedDate} ${selectedTime}`,
+        tenant_id: tenantId,
+      };
+
+      try {
+        const res = await fetch('http://localhost:8084/api/v1 addon/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (res.ok) {
+          form.classList.add('hidden');
+          successDiv?.classList.remove('hidden');
+        } else {
+          alert('Booking failed. Please try again.');
+        }
+      } catch (err) {
+        alert('Booking failed. Please try again.');
+      }
+    });
+
+    showStep(0);
+  });
+</script>

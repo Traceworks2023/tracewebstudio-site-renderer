@@ -1,0 +1,129 @@
+---
+// Room Collections Page - Furniture, Hotel
+interface Room {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  items?: Array<{ name: string; price?: number }>;
+  size?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    rooms?: Room[];
+  };
+}
+
+const { content = {} } = Astro.props;
+const {
+  title = 'Shop by Room',
+  subtitle = 'Find the perfect pieces to complete every space in your home',
+  rooms = [
+    {
+      id: 'living-room',
+      name: 'Living Room',
+      description: 'Create inviting spaces for family gatherings and entertaining.',
+      image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800',
+      size: '250-400 sq ft',
+      items: [
+        { name: 'Modular Sofa', price: 1299 },
+        { name: 'Coffee Table', price: 449 },
+        { name: 'Accent Chair', price: 599 }
+      ]
+    },
+    {
+      id: 'bedroom',
+      name: 'Bedroom',
+      description: 'Design your sanctuary with our bedroom collection.',
+      image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800',
+      size: '200-300 sq ft',
+      items: [
+        { name: 'Platform Bed', price: 899 },
+        { name: 'Dresser', price: 749 },
+        { name: 'Nightstand', price: 299 }
+      ]
+    },
+    {
+      id: 'dining-room',
+      name: 'Dining Room',
+      description: 'Set the stage for memorable meals and conversations.',
+      image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800',
+      size: '180-280 sq ft',
+      items: [
+        { name: 'Dining Table', price: 1099 },
+        { name: 'Dining Chairs (4)', price: 799 },
+        { name: 'Sideboard', price: 649 }
+      ]
+    },
+    {
+      id: 'home-office',
+      name: 'Home Office',
+      description: 'Maximize productivity with our workspace solutions.',
+      image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800',
+      size: '100-150 sq ft',
+      items: [
+        { name: 'Executive Desk', price: 799 },
+        { name: 'Ergonomic Chair', price: 449 },
+        { name: 'Bookshelf', price: 349 }
+      ]
+    }
+  ]
+} = content;
+---
+
+<div class="room-collections-page py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-1.5 bg-[var(--color-accent)]/10 text-[var(--color-accent)] rounded-full text-sm font-semibold mb-4">
+        Room Collections
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {rooms.map((room, index) => (
+        <article class="room-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img
+              src={room.image}
+              alt={room.name}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              {room.size && (
+                <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-full mb-2">
+                  {room.size}
+                </span>
+              )}
+              <h2 class="text-2xl font-bold text-white mb-2">{room.name}</h2>
+              <p class="text-white/80 text-sm">{room.description}</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Featured Items</h3>
+            <div class="space-y-2 mb-4">
+              {room.items?.map((item) => (
+                <div class="flex justify-between items-center text-sm">
+                  <span class="text-gray-600">{item.name}</span>
+                  {item.price && <span class="font-semibold text-gray-900">${item.price}</span>}
+                </div>
+              ))}
+            </div>
+            <a
+              href={`/collections/${room.id}`}
+              class="inline-flex items-center justify-center w-full py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent)] transition-colors"
+            >
+              Shop This Room
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</div>

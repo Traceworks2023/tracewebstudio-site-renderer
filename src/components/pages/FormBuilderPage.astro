@@ -1,0 +1,290 @@
+---
+// Form Builder / Manager Page
+import { addonApi } from '../../lib/addon-api';
+
+interface Form {
+  id: string;
+  tenant_id: string;
+  name: string;
+  description?: string;
+  fields: FormField[];
+  created_at: string;
+}
+
+interface FormField {
+  field_type: 'text' | 'email' | 'number' | 'textarea' | 'select' | 'radio' | 'checkbox';
+  label: string;
+  name: string;
+  required?: boolean;
+  options?: string[];
+}
+
+interface Props {
+  tenantId?: string;
+}
+
+const { tenantId = '00000000-0000-0000-0000-000000000000' } = Astro.props;
+
+let forms: Form[] = [];
+
+try {
+  const response = await addonApi.forms.list(tenantId);
+  forms = response || [];
+} catch (e) {
+  console.error('Failed to fetch forms:', e);
+}
+
+const fieldTypes = [
+  { id: 'text', name: 'Text Input', icon: 'T' },
+  { id: 'email', name: 'Email', icon: '@' },
+  { id: 'number', name: 'Number', icon: '#' },
+  { id: 'textarea', name: 'Text Area', icon: '¶' },
+  { id: 'select', name: 'Dropdown', icon: '▼' },
+  { id: 'radio', name: 'Radio Buttons', icon: '○' },
+  { id: 'checkbox', name: 'Checkboxes', icon: '☐' },
+];
+---
+
+<div class="form-builder-page py-12 px-4 bg-gray-50 min-h-screen">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">Form Builder</h1>
+        <p class="text-gray-600 mt-1">Create and manage custom forms</p>
+      </div>
+      <button
+        id="create-form-btn"
+        class="px-6 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent)] transition-colors"
+      >
+        Create New Form
+      </button>
+    </div>
+
+    {forms.length === 0 ? (
+      <div class="bg-white rounded-xl shadow-sm p-12 text-center">
+        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">No forms yet</h3>
+        <p class="text-gray-600 mb-6">Create your first form to start collecting data</p>
+        <button
+          onclick="document.getElementById('create-form-btn').click()"
+          class="px-6 py-3 bg-[var(--color-accent)] text-white font-semibold rounded-lg hover:bg-[var(--color-primary)] transition-colors"
+        >
+          Create Your First Form
+        </button>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {forms.map(form => (
+          <div class="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h3 class="font-semibold text-gray-900">{form.name}</h3>
+                <p class="text-sm text-gray-500">{form.fields.length} fields</p>
+              </div>
+              <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">
+                Active
+              </span>
+            </div>
+            {form.description && (
+              <p class="text-gray-600 text-sm mb-4">{form.description}</p>
+            )}
+            <div class="flex gap-2">
+              <button
+                class="flex-1 px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+                data-form-id={form.id}
+                onclick={`window.previewForm('${form.id}')`}
+              >
+                Preview
+              </button>
+              <button
+                class="flex-1 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg text-sm font-medium hover:bg-[var(--color-accent)] transition-colors"
+                data-form-id={form.id}
+                onclick={`window.copyFormEmbed('${form.id}')`}
+              >
+                Embed
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* Create Form Modal */}
+  <div id="create-form-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-auto m-4">
+      <div class="p-6 border-b border-gray-200 flex items-center justify-between">
+        <h2 class="text-xl font-bold text-gray-900">Create New Form</h2>
+        <button id="close-modal" class="p-2 hover:bg-gray-100 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <form id="create-form-form" class="p-6 space-y-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Form Name</label>
+          <input
+            type="text"
+            name="name"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+            placeholder="Contact Form"
+            required
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+          <textarea
+            name="description"
+            rows={2}
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+            placeholder="A form for collecting customer inquiries"
+          ></textarea>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <label class="block text-sm font-semibold text-gray-700">Form Fields</label>
+            <button type="button" id="add-field-btn" class="text-sm text-[var(--color-accent)] font-medium hover:underline">
+              + Add Field
+            </button>
+          </div>
+          <div id="fields-container" class="space-y-3"></div>
+          <div id="field-template" class="hidden">
+            <div class="field-item p-4 border border-gray-200 rounded-lg bg-gray-50">
+              <div class="flex items-center justify-between mb-3">
+                <select name="field_type" class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                  {fieldTypes.map(type => (
+                    <option value={type.id}>{type.name}</option>
+                  ))}
+                </select>
+                <button type="button" class="remove-field-btn p-1 text-red-500 hover:bg-red-50 rounded">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </div>
+              <input
+                type="text"
+                name="label"
+                placeholder="Field Label"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-2"
+              />
+              <input
+                type="text"
+                name="name"
+                placeholder="field_name"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-2"
+              />
+              <label class="flex items-center gap-2 text-sm text-gray-600">
+                <input type="checkbox" name="required" class="rounded" />
+                Required field
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4 pt-4">
+          <button type="button" id="cancel-form-btn" class="flex-1 px-6 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+            Cancel
+          </button>
+          <button type="submit" class="flex-1 px-6 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[var(--color-accent)] transition-colors">
+            Create Form
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('create-form-modal');
+  const createFormBtn = document.getElementById('create-form-btn');
+  const closeModalBtn = document.getElementById('close-modal');
+  const cancelBtn = document.getElementById('cancel-form-btn');
+  const addFieldBtn = document.getElementById('add-field-btn');
+  const fieldsContainer = document.getElementById('fields-container');
+  const fieldTemplate = document.getElementById('field-template');
+  const createFormForm = document.getElementById('create-form-form') as HTMLFormElement;
+
+  createFormBtn?.addEventListener('click', () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  });
+
+  closeModalBtn?.addEventListener('click', () => {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+  });
+
+  cancelBtn?.addEventListener('click', () => {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+  });
+
+  addFieldBtn?.addEventListener('click', () => {
+    const template = fieldTemplate?.cloneNode(true) as HTMLElement;
+    if (template) {
+      template.classList.remove('hidden');
+      template.removeAttribute('id');
+      fieldsContainer?.appendChild(template);
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).classList.contains('remove-field-btn')) {
+      (e.target as HTMLElement).closest('.field-item')?.remove();
+    }
+  });
+
+  createFormForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(createFormForm);
+    const tenantId = '00000000-0000-0000-0000-000000000000';
+
+    const fieldItems = fieldsContainer?.querySelectorAll('.field-item');
+    const fields = Array.from(fieldItems || []).map(item => ({
+      field_type: (item.querySelector('[name="field_type"]') as HTMLSelectElement)?.value || 'text',
+      label: (item.querySelector('[name="label"]') as HTMLInputElement)?.value || '',
+      name: (item.querySelector('[name="name"]') as HTMLInputElement)?.value || '',
+      required: (item.querySelector('[name="required"]') as HTMLInputElement)?.checked || false,
+    }));
+
+    const data = {
+      name: formData.get('name'),
+      description: formData.get('description'),
+      fields,
+      tenant_id: tenantId,
+    };
+
+    try {
+      const res = await fetch('http://localhost:8084/api/v1 addon/forms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        window.location.reload();
+      } else {
+        alert('Failed to create form');
+      }
+    } catch (err) {
+      alert('Failed to create form');
+    }
+  });
+
+  (window as any).previewForm = (formId: string) => {
+    alert(`Preview form: ${formId}`);
+  };
+
+  (window as any).copyFormEmbed = (formId: string) => {
+    const embedCode = `<iframe src="/forms/${formId}" width="100%" height="600"></iframe>`;
+    navigator.clipboard.writeText(embedCode);
+    alert('Embed code copied to clipboard!');
+  };
+</script>
