@@ -99,6 +99,9 @@ const templateConfig = await loadTemplate(template || '');
 const pageConfig = templateConfig ? getPageById(templateConfig, pageId) : null;
 const templateSections = pageConfig ? getVisibleSections(pageConfig) : [];
 
+// Get page IDs defined in this template's config - used for filtering navigation
+const templatePageIds = templateConfig?.pages?.map(p => p.id) || [];
+
 // Extract theme configuration first
 const theme = templateConfig?.theme || {};
 const fonts = theme.fonts || { heading: 'Playfair Display', body: 'Inter' };
@@ -183,7 +186,7 @@ const businessPages = [
   { id: 'forms', label: 'Forms', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
 ];
 
-const navPages = templateCategory === 'ecommerce' ? ecommercePages : templateCategory === 'portfolio' ? portfolioPages : businessPages;
+const navPages = (templateCategory === 'ecommerce' ? ecommercePages : templateCategory === 'portfolio' ? portfolioPages : businessPages).filter(p => templatePageIds.includes(p.id));
 
 // Determine template family for category-specific components
 const templateSlug = template || '';
@@ -298,9 +301,10 @@ const pageComponents: Record<string, any> = {
   'forms': FormBuilderPage
 };
 
-// Category page varies by template type: ecommerce=SearchPage, portfolio=GalleryPage, business=ServicesPage
-const categoryPage = templateCategory === 'ecommerce' ? SearchPage : templateCategory === 'portfolio' ? GalleryPage : ServicesPage;
-const PageComponent = pageId === 'category' ? categoryPage : pageComponents[pageId];
+// Only render page components that are EXPLICITLY defined in this template's config
+// NO FALLBACKS - if a page isn't defined, it will not render
+const pageExistsInConfig = templatePageIds.includes(pageId);
+const PageComponent = pageExistsInConfig ? pageComponents[pageId] : null;
 ---
 
 {!templateConfig ? (
@@ -408,7 +412,9 @@ const PageComponent = pageId === 'category' ? categoryPage : pageComponents[page
               logo: generatedContent.brand.name,
               ctaText: generatedContent.ctas.primary,
               ctaUrl: `?page=checkout`,
-              navItems: generatedContent.navigation.map(n => ({ label: n.label, href: `?page=${n.href.replace('/', '')}` })),
+              navItems: generatedContent.navigation
+                .filter(n => templatePageIds.includes(n.href.replace('/', '')))
+                .map(n => ({ label: n.label, href: `?page=${n.href.replace('/', '')}` })),
             }}
             settings={{ variant: 'glass', position: 'sticky', showSearch: false, showAccount: false, templateSlug: template }}
           />
@@ -416,7 +422,7 @@ const PageComponent = pageId === 'category' ? categoryPage : pageComponents[page
           <main>
             {PageComponent ? (
               <PageComponent template={templateConfig} page={pageConfig} tenantId={Astro.locals.tenant?.tenantId || '00000000-0000-0000-0000-000000000000'} />
-            ) : (
+            ) : pageConfig ? (
               sections.map((section) => {
                 const SectionComponent = sectionComponents[section.type];
                 if (!SectionComponent) return null;
@@ -425,6 +431,16 @@ const PageComponent = pageId === 'category' ? categoryPage : pageComponents[page
                   settings={{ ...section.settings, templateSlug: template }}
                 />;
               })
+            ) : (
+              <div class="min-h-[60vh] flex items-center justify-center">
+                <div class="text-center">
+                  <h1 class="text-4xl font-bold mb-4" style="color: var(--color-text);">Page Not Found</h1>
+                  <p class="text-lg mb-8" style="color: var(--color-text-muted);">This page doesn't exist in this template.</p>
+                  <a href={`/${template}`} class="px-6 py-3 rounded-full font-semibold text-white" style="background: var(--color-primary);">
+                    Go to Home
+                  </a>
+                </div>
+              </div>
             )}
           </main>
 
