@@ -1,0 +1,134 @@
+{
+  "id": "fitness_trainer-premium-max",
+  "name": "Fitness Trainer Premium Max",
+  "slug": "fitness_trainer-premium-max",
+  "description": "people wanting strength, mobility, and visible consistency",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/fitness_trainer/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#B116D4",
+      "secondary": "#F32BBA",
+      "accent": "#A990DF",
+      "background": "#286C19",
+      "surface": "#E4F6EA",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Montserrat",
+      "body": "Work Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Fitness Trainer Worldbuilding Entrance",
+            "subheadline": "Present the fitness trainer as a premium specialist for people wanting strength, mobility, and visible consistency",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Use testimonials, recognitions, features, reviews, or outcome metrics",
+            "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Assessment",
+              "Goal Setting",
+              "Premium Programming",
+              "Expert Coaching",
+              "Progress Tracking"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Award Collections",
+              "Client Transformations",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@fitness_trainer",
+            "instagram": "@fitness_trainer",
+            "email": "hello@fitness.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

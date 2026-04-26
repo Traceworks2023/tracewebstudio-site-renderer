@@ -1,0 +1,134 @@
+{
+  "id": "chef-premium",
+  "name": "Chef Premium",
+  "slug": "chef-premium",
+  "description": "private dining, premium events, and food brands",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/chef/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#12D3CD",
+      "secondary": "#239AF6",
+      "accent": "#64D89A",
+      "background": "#901D21",
+      "surface": "#F2E7DE",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Outfit",
+      "body": "Inter"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Chef Signature Presence",
+            "subheadline": "Present the chef as a premium specialist for private dining, premium events, and food brands",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Chef Distinct",
+            "body": "Show 6–10 signature works that prove strength in plating, menus, and flavor-forward culinary experiences",
+            "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Private Dining",
+              "Tasting Menu",
+              "Event Catering",
+              "Menu Design",
+              "Live Counter"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Menu Design",
+              "Preparation",
+              "Execution",
+              "Finishing"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Magazine Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@chef",
+            "instagram": "@chef",
+            "email": "hello@chef.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

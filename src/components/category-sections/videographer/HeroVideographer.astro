@@ -1,0 +1,124 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+    image?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Cinematic Storytelling',
+  subtitle = 'Professional video production for weddings, events, and brands',
+  ctaText = 'View Showreel',
+  ctaUrl = '#',
+  image = '',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section class="videographer-hero relative min-h-screen flex items-center overflow-hidden" style="background: var(--color-background, #0a0a0a);">
+  <div class="absolute inset-0">
+    {image && <img src={image} alt={title} class="w-full h-full object-cover opacity-50" />}
+    <div class="absolute inset-0" style="background: linear-gradient(to right, var(--color-background, #0a0a0a), var(--color-background, #0a0a0a) 70%, transparent);"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg" style="background: var(--color-primary, #B8E22C); opacity: 0.2; border: 1px solid var(--color-primary, #B8E22C);">
+          <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--color-primary, #B8E22C);"></span>
+          <span class="text-sm font-medium tracking-wider uppercase" style="color: var(--color-primary, #B8E22C);">Video Production</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style="color: var(--color-text, #ffffff);">
+          {title}
+        </h1>
+
+        <p class="text-xl max-w-lg" style="color: var(--color-text-muted, #999999);">
+          {subtitle}
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={ctaUrl}
+            class="group inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-colors"
+            style="background: var(--color-primary, #B8E22C); color: var(--color-background, #0a0a0a);"
+          >
+            {ctaText}
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 px-6 py-3 transition-colors" style="color: var(--color-text, #ffffff); opacity: 0.7;">
+            View Portfolio
+          </a>
+        </div>
+
+        <div class="flex gap-8 pt-8 border-t" style="border-color: var(--color-border, rgba(255,255,255,0.1));">
+          <div>
+            <div class="text-3xl font-bold" style="color: var(--color-text, #ffffff);">200+</div>
+            <div class="text-sm" style="color: var(--color-text-muted, #999999);">Videos Produced</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold" style="color: var(--color-text, #ffffff);">50+</div>
+            <div class="text-sm" style="color: var(--color-text-muted, #999999);">Brands Served</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:block relative">
+        <div class="relative">
+          {image && (
+            <>
+              <div class="absolute -inset-4 rounded-3xl blur-xl" style="background: var(--color-primary, #B8E22C); opacity: 0.2;"></div>
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img src={image} alt={title} class="w-full h-[400px] object-cover" />
+                <div class="absolute inset-0 flex items-center justify-center" style="background: rgba(0,0,0,0.3);">
+                  <div class="w-20 h-20 rounded-full flex items-center justify-center cursor-pointer transition-colors" style="background: var(--color-primary, #B8E22C); opacity: 0.9;">
+                    <svg class="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+          {!image && (
+            <div class="w-full h-[400px] rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--color-primary, #B8E22C), var(--color-secondary, #81F051));">
+              <span class="text-8xl font-serif" style="color: var(--color-background, #0a0a0a); opacity: 0.5;">{title.charAt(0)}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 py-3" style="background: var(--color-primary, #B8E22C);">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between text-sm font-medium" style="color: var(--color-background, #0a0a0a);">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          4K Production
+        </span>
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Fast Delivery
+        </span>
+      </div>
+      <span class="font-bold">BOOKING NOW →</span>
+    </div>
+  </div>
+</section>

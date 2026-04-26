@@ -1,0 +1,134 @@
+{
+  "id": "calligrapher-premium-max",
+  "name": "Calligrapher Premium Max",
+  "slug": "calligrapher-premium-max",
+  "description": "wedding, luxury, and gifting clients",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/calligrapher/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#D2CA2D",
+      "secondary": "#A5E34F",
+      "accent": "#E5C1A4",
+      "background": "#1E2052",
+      "surface": "#ECE4F7",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Bricolage Grotesque",
+      "body": "Manrope"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Calligrapher Worldbuilding Entrance",
+            "subheadline": "Present the calligrapher as a premium specialist for wedding, luxury, and gifting clients",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1531310197839-ccf54634509e?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Highlight premium offers across invites, envelopes, signage, gifting tags, branding scripts",
+            "image": "https://images.unsplash.com/photo-1516953957951-e1f53e71849a?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "Artisan Craft",
+              "Premium Materials",
+              "Attention to Detail",
+              "Client Satisfaction",
+              "Award Winning"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Design Development",
+              "Premium Craftsmanship",
+              "Expert Finishing",
+              "Final Delivery"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Magazine Features",
+              "Award Collections",
+              "Client Satisfaction"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@calligrapher",
+            "instagram": "@calligrapher",
+            "email": "hello@calligrapher.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

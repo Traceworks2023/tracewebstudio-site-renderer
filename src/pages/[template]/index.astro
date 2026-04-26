@@ -2,6 +2,8 @@
 // Dynamic Template Router - Universal page renderer
 export const prerender = false;
 
+import '../../styles/premium.css';
+
 import { loadTemplate, getPageById, getVisibleSections } from '../../lib/template-loader';
 import { generateUniqueContent, applyGeneratedContentToSection } from '../../lib/content-generator';
 
@@ -19,6 +21,33 @@ import HeroFitness from '../../components/category-sections/fitness/HeroFitness.
 import HeroHotel from '../../components/category-sections/hotel/HeroHotel.astro';
 import HeroPhotographer from '../../components/category-sections/photographer/HeroPhotographer.astro';
 import HeroAgency from '../../components/category-sections/agency/HeroAgency.astro';
+import HeroVideographer from '../../components/category-sections/videographer/HeroVideographer.astro';
+import HeroHairStylist from '../../components/category-sections/hair_stylist/HeroHairStylist.astro';
+import HeroFashionDesigner from '../../components/category-sections/fashion_designer/HeroFashionDesigner.astro';
+import HeroModel from '../../components/category-sections/model/HeroModel.astro';
+import HeroInteriorDesigner from '../../components/category-sections/interior_designer/HeroInteriorDesigner.astro';
+import HeroArchitect from '../../components/category-sections/architect/HeroArchitect.astro';
+import HeroArtistPainter from '../../components/category-sections/artist_painter/HeroArtistPainter.astro';
+import HeroIllustrator from '../../components/category-sections/illustrator/HeroIllustrator.astro';
+import HeroCalligrapher from '../../components/category-sections/calligrapher/HeroCalligrapher.astro';
+import HeroCraftArtist from '../../components/category-sections/craft_artist/HeroCraftArtist.astro';
+import HeroFloralDesigner from '../../components/category-sections/floral_designer/HeroFloralDesigner.astro';
+import HeroWeddingPlanner from '../../components/category-sections/wedding_planner/HeroWeddingPlanner.astro';
+import HeroEventPlanner from '../../components/category-sections/event_planner/HeroEventPlanner.astro';
+import HeroDecorStylist from '../../components/category-sections/decor_stylist/HeroDecorStylist.astro';
+import HeroBaker from '../../components/category-sections/baker/HeroBaker.astro';
+import HeroChef from '../../components/category-sections/chef/HeroChef.astro';
+import HeroFitnessTrainer from '../../components/category-sections/fitness_trainer/HeroFitnessTrainer.astro';
+import HeroYogaInstructor from '../../components/category-sections/yoga_instructor/HeroYogaInstructor.astro';
+import HeroPersonalCoach from '../../components/category-sections/personal_coach/HeroPersonalCoach.astro';
+import HeroTutor from '../../components/category-sections/tutor/HeroTutor.astro';
+import HeroContentCreator from '../../components/category-sections/content_creator/HeroContentCreator.astro';
+import HeroInfluencer from '../../components/category-sections/influencer/HeroInfluencer.astro';
+import HeroNutritionist from '../../components/category-sections/nutritionist/HeroNutritionist.astro';
+import HeroSkincareSpecialist from '../../components/category-sections/skincare_specialist/HeroSkincareSpecialist.astro';
+import HeroNailArtist from '../../components/category-sections/nail_artist/HeroNailArtist.astro';
+import HeroBoutiqueOwner from '../../components/category-sections/boutique_owner/HeroBoutiqueOwner.astro';
+import HeroCreativeConsultant from '../../components/category-sections/creative_consultant/HeroCreativeConsultant.astro';
 import CategoryGrid from '../../components/sections/CategoryGrid.astro';
 import ProductCarousel from '../../components/sections/ProductCarousel.astro';
 import ProductGrid from '../../components/sections/ProductGrid.astro';
@@ -40,9 +69,48 @@ import StatsSection from '../../components/sections/StatsSection.astro';
 import LogoStrip from '../../components/sections/LogoStrip.astro';
 import MotionSection from '../../components/sections/MotionSection.astro';
 
+// Portfolio-specific components (new masterpieces)
+import ContactCards from '../../components/sections/ContactCards.astro';
+import WeddingContact from '../../components/sections/WeddingContact.astro';
+import MehndiContact from '../../components/sections/MehndiContact.astro';
+import FoodContact from '../../components/sections/FoodContact.astro';
+import TattooContact from '../../components/sections/TattooContact.astro';
+import AboutCentered from '../../components/sections/AboutCentered.astro';
+import ServiceCards from '../../components/sections/ServiceCards.astro';
+import PatternGrid from '../../components/sections/PatternGrid.astro';
+import ProcessTimeline from '../../components/sections/ProcessTimeline.astro';
+
+// Niche-specific hero components
+import WeddingHero from '../../components/sections/WeddingHero.astro';
+import MehndiHero from '../../components/sections/MehndiHero.astro';
+import FoodHero from '../../components/sections/FoodHero.astro';
+import TattooHero from '../../components/sections/TattooHero.astro';
+
+// Alias the new ContactSplit to avoid conflict with premium/ContactSplit
+import PortfolioContactSplit from '../../components/sections/ContactSplit.astro';
+
 // Premium Navigation & Footer
 import PremiumNav from '../../components/sections/PremiumNav.astro';
 import PremiumFooter from '../../components/sections/PremiumFooter.astro';
+
+// Premium 2026 Components
+import {
+  ParallaxHero,
+  BentoGrid,
+  HorizontalScrollGallery,
+  BeforeAfterSlider,
+  AnimatedStats,
+  TestimonialMasonry,
+  CTASplit,
+  CTACenter,
+  MinimalHero,
+  MinimalFooter,
+  SplitHero,
+  Timeline,
+  PricingCards,
+  ContactSplit,
+  MasonryGallery,
+} from '../../components/sections/premium';
 
 // Customer-facing pages
 import ProductPage from '../../components/pages/ProductPage.astro';
@@ -56,14 +124,15 @@ import ContactPage from '../../components/pages/ContactPage.astro';
 import FAQPage from '../../components/pages/FAQPage.astro';
 import TrackOrderPage from '../../components/pages/TrackOrderPage.astro';
 
-// Admin pages
-import DashboardPage from '../../components/pages/admin/DashboardPage.astro';
-import OrdersPage from '../../components/pages/admin/OrdersPage.astro';
-import ProductsPage from '../../components/pages/admin/ProductsPage.astro';
-import CustomersPage from '../../components/pages/admin/CustomersPage.astro';
-import AnalyticsPage from '../../components/pages/admin/AnalyticsPage.astro';
-import MarketingPage from '../../components/pages/admin/MarketingPage.astro';
-import SettingsPage from '../../components/pages/admin/SettingsPage.astro';
+// Admin pages — loaded lazily to avoid prisma dependency in public routes
+// import DashboardPage from '../../components/pages/admin/DashboardPage.astro';
+// import OrdersPage from '../../components/pages/admin/OrdersPage.astro';
+// import ProductsPage from '../../components/pages/admin/ProductsPage.astro';
+// import CustomersPage from '../../components/pages/admin/CustomersPage.astro';
+// import AnalyticsPage from '../../components/pages/admin/AnalyticsPage.astro';
+// import MarketingPage from '../../components/pages/admin/MarketingPage.astro';
+// import SettingsPage from '../../components/pages/admin/SettingsPage.astro';
+// import TemplatesPage from '../../components/pages/admin/TemplatesPage.astro';
 
 // Business pages
 import MenuPage from '../../components/pages/MenuPage.astro';
@@ -94,10 +163,13 @@ import GalleryPage from '../../components/pages/GalleryPage.astro';
 const { template } = Astro.params;
 const url = new URL(Astro.request.url);
 const pageId = url.searchParams.get('page') || 'home';
+const editMode = url.searchParams.get('mode') === 'edit';
 
 const templateConfig = await loadTemplate(template || '');
 const pageConfig = templateConfig ? getPageById(templateConfig, pageId) : null;
 const templateSections = pageConfig ? getVisibleSections(pageConfig) : [];
+const templateNavigation = templateConfig?.navigation || [];
+const templateFooter = templateConfig?.footer || null;
 
 // Get page IDs defined in this template's config - used for filtering navigation
 const templatePageIds = templateConfig?.pages?.map(p => p.id) || [];
@@ -148,7 +220,16 @@ const cssVariables = `
   --spacing-container: ${theme.spacing?.container || '1200px'};
 `;
 
-// Define navigation pages based on template category
+// Determine nav variant based on background brightness
+const navBg = colors.background || '#ffffff';
+const navVariant = (() => {
+  const hex = navBg.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5 ? 'glass' : 'dark';
+})();
 const templateCategory = templateConfig?.category || 'ecommerce';
 
 const ecommercePages = [
@@ -166,7 +247,7 @@ const ecommercePages = [
 
 const portfolioPages = [
   { id: 'home', label: 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-  { id: 'gallery', label: 'Gallery', icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' },
+  { id: 'portfolio', label: 'Portfolio', icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' },
   { id: 'services', label: 'Services', icon: 'M21 13.255A23.94 23.94 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
   { id: 'about', label: 'About', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
   { id: 'team', label: 'Team', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
@@ -193,15 +274,130 @@ const templateSlug = template || '';
 
 // Category-specific hero components - each category has its own unique design
 function getCategoryHero(slug: string): any {
-  const s = slug.toLowerCase();
-  if (s.includes('restaurant') || s.includes('cafe') || s.includes('food')) return HeroRestaurant;
-  if (s.includes('beauty') || s.includes('makeup')) return HeroBeauty;
-  if (s.includes('fitness') || s.includes('gym')) return HeroFitness;
-  if (s.includes('hotel') || s.includes('resort') || s.includes('travel')) return HeroHotel;
-  if (s.includes('photographer') || s.includes('photo') || s.includes('video')) return HeroPhotographer;
-  if (s.includes('agency') || s.includes('portfolio') || s.includes('designer') || s.includes('developer') || s.includes('freelancer')) return HeroAgency;
-  // Default to premium cinematic hero
-  return HeroCinematic;
+  const heroMap: Record<string, any> = {
+    // Existing categories (using underscores to match template directory names)
+    'photographer-premium': HeroPhotographer,
+    'photographer-premium-max': HeroPhotographer,
+    'beauty-premium': HeroBeauty,
+    'beauty-premium-max': HeroBeauty,
+    'restaurant-premium': HeroRestaurant,
+    'restaurant-premium-max': HeroRestaurant,
+    'fitness-premium': HeroFitness,
+    'fitness-premium-max': HeroFitness,
+    'hotel-premium': HeroHotel,
+    'hotel-premium-max': HeroHotel,
+    'agency-premium': HeroAgency,
+    'agency-premium-max': HeroAgency,
+
+    // Videographer
+    'videographer-premium': HeroVideographer,
+    'videographer-premium-max': HeroVideographer,
+
+    // Hair Stylist (using underscore to match directory)
+    'hair_stylist-premium': HeroHairStylist,
+    'hair_stylist-premium-max': HeroHairStylist,
+
+    // Fashion Designer
+    'fashion_designer-premium': HeroFashionDesigner,
+    'fashion_designer-premium-max': HeroFashionDesigner,
+
+    // Model
+    'model-premium': HeroModel,
+    'model-premium-max': HeroModel,
+
+    // Interior Designer (using underscore to match directory)
+    'interior_designer-premium': HeroInteriorDesigner,
+    'interior_designer-premium-max': HeroInteriorDesigner,
+
+    // Architect
+    'architect-premium': HeroArchitect,
+    'architect-premium-max': HeroArchitect,
+
+    // Artist Painter (using underscore to match directory)
+    'artist_painter-premium': HeroArtistPainter,
+    'artist_painter-premium-max': HeroArtistPainter,
+
+    // Illustrator
+    'illustrator-premium': HeroIllustrator,
+    'illustrator-premium-max': HeroIllustrator,
+
+    // Calligrapher
+    'calligrapher-premium': HeroCalligrapher,
+    'calligrapher-premium-max': HeroCalligrapher,
+
+    // Craft Artist (using underscore to match directory)
+    'craft_artist-premium': HeroCraftArtist,
+    'craft_artist-premium-max': HeroCraftArtist,
+
+    // Floral Designer (using underscore to match directory)
+    'floral_designer-premium': HeroFloralDesigner,
+    'floral_designer-premium-max': HeroFloralDesigner,
+
+    // Wedding Planner (using underscore to match directory)
+    'wedding_planner-premium': HeroWeddingPlanner,
+    'wedding_planner-premium-max': HeroWeddingPlanner,
+
+    // Event Planner (using underscore to match directory)
+    'event_planner-premium': HeroEventPlanner,
+    'event_planner-premium-max': HeroEventPlanner,
+
+    // Decor Stylist (using underscore to match directory)
+    'decor_stylist-premium': HeroDecorStylist,
+    'decor_stylist-premium-max': HeroDecorStylist,
+
+    // Baker
+    'baker-premium': HeroBaker,
+    'baker-premium-max': HeroBaker,
+
+    // Chef
+    'chef-premium': HeroChef,
+    'chef-premium-max': HeroChef,
+
+    // Fitness Trainer (using underscore to match directory)
+    'fitness_trainer-premium': HeroFitnessTrainer,
+    'fitness_trainer-premium-max': HeroFitnessTrainer,
+
+    // Yoga Instructor (using underscore to match directory)
+    'yoga_instructor-premium': HeroYogaInstructor,
+    'yoga_instructor-premium-max': HeroYogaInstructor,
+
+    // Personal Coach (using underscore to match directory)
+    'personal_coach-premium': HeroPersonalCoach,
+    'personal_coach-premium-max': HeroPersonalCoach,
+
+    // Tutor
+    'tutor-premium': HeroTutor,
+    'tutor-premium-max': HeroTutor,
+
+    // Content Creator (using underscore to match directory)
+    'content_creator-premium': HeroContentCreator,
+    'content_creator-premium-max': HeroContentCreator,
+
+    // Influencer
+    'influencer-premium': HeroInfluencer,
+    'influencer-premium-max': HeroInfluencer,
+
+    // Nutritionist
+    'nutritionist-premium': HeroNutritionist,
+    'nutritionist-premium-max': HeroNutritionist,
+
+    // Skincare Specialist (using underscore to match directory)
+    'skincare_specialist-premium': HeroSkincareSpecialist,
+    'skincare_specialist-premium-max': HeroSkincareSpecialist,
+
+    // Nail Artist (using underscore to match directory)
+    'nail_artist-premium': HeroNailArtist,
+    'nail_artist-premium-max': HeroNailArtist,
+
+    // Boutique Owner (using underscore to match directory)
+    'boutique_owner-premium': HeroBoutiqueOwner,
+    'boutique_owner-premium-max': HeroBoutiqueOwner,
+
+    // Creative Consultant (using underscore to match directory)
+    'creative_consultant-premium': HeroCreativeConsultant,
+    'creative_consultant-premium-max': HeroCreativeConsultant,
+  };
+  return heroMap[slug] || HeroCinematic;
 }
 
 // Map section types to components - using category-specific heroes for uniqueness
@@ -256,6 +452,39 @@ const sectionComponents: Record<string, any> = {
   'motion-section': MotionSection,
   // Features horizontal
   'features-horizontal': FeaturesHorizontal,
+
+  // Premium 2026 Components - Portfolio
+  'parallax-hero': ParallaxHero,
+  'bento-grid': BentoGrid,
+  'horizontal-scroll': HorizontalScrollGallery,
+  'before-after': BeforeAfterSlider,
+  'animated-stats': AnimatedStats,
+  'testimonial-masonry': TestimonialMasonry,
+  'cta-split': CTASplit,
+  'cta-center': CTACenter,
+  'minimal-hero': MinimalHero,
+  'minimal-footer': MinimalFooter,
+  'split-hero': SplitHero,
+  'timeline': Timeline,
+  'pricing-cards': PricingCards,
+  'contact-split': ContactSplit,
+  'masonry-gallery': MasonryGallery,
+  
+  // Portfolio Masterpiece Components
+  'contact-cards': ContactCards,
+  'wedding-contact': WeddingContact,
+  'mehndi-contact': MehndiContact,
+  'food-contact': FoodContact,
+  'tattoo-contact': TattooContact,
+  'about-centered': AboutCentered,
+  'service-cards': ServiceCards,
+  'pattern-grid': PatternGrid,
+  'process-timeline': ProcessTimeline,
+  'portfolio-contact-split': PortfolioContactSplit,
+  'wedding-hero': WeddingHero,
+  'mehndi-hero': MehndiHero,
+  'food-hero': FoodHero,
+  'tattoo-hero': TattooHero,
 };
 
 // Map page types to full-page components (ecommerce uses SearchPage for category)
@@ -270,6 +499,7 @@ const pageComponents: Record<string, any> = {
   'contact': ContactPage,
   'faq': FAQPage,
   'track-order': TrackOrderPage,
+  /* Admin pages - lazily loaded to avoid prisma dependency
   'admin-dashboard': DashboardPage,
   'admin-orders': OrdersPage,
   'admin-products': ProductsPage,
@@ -277,6 +507,8 @@ const pageComponents: Record<string, any> = {
   'admin-analytics': AnalyticsPage,
   'admin-marketing': MarketingPage,
   'admin-settings': SettingsPage,
+  'admin-templates': TemplatesPage,
+  */
   'menu': MenuPage,
   'services': ServicesPage,
   'booking': BookingPage,
@@ -323,21 +555,11 @@ const PageComponent = null;
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>{pageConfig?.name || templateConfig.name} - Built with Tracewebstudio</title>
-      <script src="https://cdn.tailwindcss.com"></script>
       <link href={googleFontsUrl} rel="stylesheet" />
-      <link href="/src/styles/premium.css" rel="stylesheet" />
       <style is:global set:html={cssVariables}></style>
     </head>
     <body class="min-h-screen" style={`background-color: ${colors.background || '#ffffff'};`}>
-      {/* Tracewebstudio Branding Bar */}
-      {!pageId?.startsWith('admin-') && (
-        <div class="bg-navy text-white/80 py-2 px-4 text-center text-sm">
-          <span>Powered by <span class="text-orange font-semibold">Tracewebstudio</span> - Create your own store today</span>
-          <a href="http://localhost:8080" target="_blank" class="ml-2 text-orange hover:text-orange/80 underline">Get Started →</a>
-        </div>
-      )}
-
-      {pageId?.startsWith('admin-') ? (
+      {pageId?.startsWith('admin-') && templateConfig?.category === 'ecommerce' ? (
         <div class="flex min-h-screen bg-gray-100" style={`--admin-primary: ${colors.primary || '#000032'}; --admin-accent: ${colors.accent || '#FA5014'};`}>
           {/* Admin Sidebar */}
           <aside class="w-64 text-white flex flex-col" style="background: linear-gradient(180deg, var(--admin-primary) 0%, color-mix(in srgb, var(--admin-primary) 80%, black) 100%);">
@@ -411,23 +633,46 @@ const PageComponent = null;
         <>
           <PremiumNav
             content={{
-              logo: generatedContent.brand.name,
-              ctaText: generatedContent.ctas.primary,
-              ctaUrl: `?page=checkout`,
-              navItems: generatedContent.navigation
-                .filter(n => templatePageIds.includes(n.href.replace('/', '')))
-                .map(n => ({ label: n.label, href: `?page=${n.href.replace('/', '')}` })),
+              logo: templateConfig?.name || generatedContent.brand.name,
+              ctaText: 'Contact',
+              ctaUrl: `#contact`,
+              navItems: templateNavigation.length > 0
+                ? templateNavigation.map(n => ({ label: n.label, href: n.href }))
+                : generatedContent.navigation
+                    .filter(n => templatePageIds.includes(n.href.replace('/', '')))
+                    .map(n => ({ label: n.label, href: n.href })),
             }}
-            settings={{ variant: 'glass', position: 'sticky', showSearch: false, showAccount: false, templateSlug: template }}
+            settings={{ variant: navVariant, position: 'fixed', showCart: false, showSearch: false, showAccount: false, templateSlug: template }}
           />
 
-          <main>
+          <main class={editMode ? 'edit-mode' : ''}>
             {PageComponent ? (
               <PageComponent template={templateConfig} page={pageConfig} tenantId={Astro.locals.tenant?.tenantId || '00000000-0000-0000-0000-000000000000'} />
             ) : pageConfig ? (
-              sections.map((section) => {
+sections.map((section, index) => {
                 const SectionComponent = sectionComponents[section.type];
                 if (!SectionComponent) return null;
+                if (editMode) {
+                  return (
+                    <div
+                      class="edit-section"
+                      data-section-id={section.id}
+                      data-section-type={section.type}
+                      data-section-index={index}
+                      data-section-name={section.type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                      data-section-title={section.content?.title || section.content?.name || ''}
+                      data-section-subtitle={section.content?.subtitle || ''}
+                      data-section-description={section.content?.description || ''}
+                      data-section-image={section.content?.image || section.content?.images?.[0] || ''}
+                      data-section-visible={section.visible !== false}
+                    >
+                      <SectionComponent
+                        content={section.content}
+                        settings={{ ...section.settings, templateSlug: template }}
+                      />
+                    </div>
+                  );
+                }
                 return <SectionComponent
                   content={section.content}
                   settings={{ ...section.settings, templateSlug: template }}
@@ -448,38 +693,134 @@ const PageComponent = null;
 
           <PremiumFooter
             content={{
-              logo: generatedContent.brand.name,
-              description: generatedContent.brand.description,
+              logo: templateFooter?.logo || templateConfig?.name || generatedContent.brand.name,
+              description: templateFooter?.tagline || templateConfig?.description || generatedContent.brand.description,
             }}
-            settings={{ variant: 'dark', showNewsletter: true, showSocial: true }}
+            settings={{ variant: 'dark', showNewsletter: false, showSocial: true }}
           />
 
           {/* Floating Page Switcher */}
-          <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-white/95 backdrop-blur-xl rounded-full shadow-2xl border border-gray-200 p-2 max-w-[95vw] overflow-x-auto">
-            <span class="px-3 text-sm font-medium text-gray-500 whitespace-nowrap">Pages:</span>
-            {navPages.map(p => (
-              <a
-                href={`/${template}?page=${p.id}`}
-                class={`px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                  pageId === p.id
-                    ? 'text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-                style={pageId === p.id ? `background: var(--color-primary);` : ''}
-              >
-                {p.label}
-              </a>
-            ))}
-            <div class="w-px h-6 bg-gray-200 mx-2"></div>
-            <a
-              href={`/${template}?page=admin-dashboard`}
-              class="px-3 py-2 rounded-full text-sm font-medium transition-all text-white"
-              style="background: var(--color-accent);"
-            >
-              Edit Dashboard
-            </a>
-          </div>
+          {!pageId?.startsWith('admin-') && (
+            <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-white/95 backdrop-blur-xl rounded-full shadow-2xl border border-gray-200 p-2 max-w-[95vw] overflow-x-auto">
+              <span class="px-3 text-sm font-medium text-gray-500 whitespace-nowrap">Pages:</span>
+              {navPages.map(p => (
+                <a
+                  href={`/${template}?page=${p.id}`}
+                  class={`px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+                    pageId === p.id
+                      ? 'text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  style={pageId === p.id ? `background: var(--color-primary);` : ''}
+                >
+                  {p.label}
+                </a>
+              ))}
+            </div>
+          )}
         </>
+      )}
+
+      {editMode && (
+        <style>
+          .edit-section {
+            position: relative;
+            cursor: pointer;
+            outline: 2px dashed transparent;
+            outline-offset: -2px;
+            transition: outline-color 0.2s;
+          }
+          .edit-section:hover {
+            outline-color: #f97316;
+          }
+          .edit-section.selected {
+            outline-color: #f97316;
+            outline-width: 3px;
+          }
+          .edit-section::before {
+            content: attr(data-section-name);
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #f97316;
+            color: white;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 0 0 8px 0;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+          }
+          .edit-section:hover::before {
+            opacity: 1;
+          }
+        </style>
+        <script define:vars={{ editMode: true }}>
+          document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.edit-section');
+
+            sections.forEach(section => {
+              section.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Remove selected class from all sections
+                sections.forEach(s => s.classList.remove('selected'));
+                // Add selected class to clicked section
+                section.classList.add('selected');
+
+                // Send section data to parent
+                const sectionData = {
+                  type: 'section-selected',
+                  sectionId: section.dataset.sectionId,
+                  sectionType: section.dataset.sectionType,
+                  sectionName: section.dataset.sectionName,
+                  sectionData: {
+                    name: section.dataset.sectionName,
+                    title: section.dataset.sectionTitle,
+                    subtitle: section.dataset.sectionSubtitle,
+                    description: section.dataset.sectionDescription,
+                    image: section.dataset.sectionImage,
+                    bgColor: section.style.backgroundColor || '#0a0a1a',
+                    textColor: getComputedStyle(section).color || '#ffffff',
+                    visible: section.dataset.sectionVisible !== 'false'
+                  }
+                };
+
+                window.parent.postMessage(sectionData, '*');
+              });
+            });
+
+            // Listen for update messages from parent
+            window.addEventListener('message', (event) => {
+              if (event.data.type === 'update-section') {
+                const { sectionId, data } = event.data;
+                const section = document.querySelector(`[data-section-id="${sectionId}"]`);
+                if (section && data) {
+                  // Update section content based on data
+                  // This would need more sophisticated handling based on section type
+                  if (data.bgColor) {
+                    section.style.backgroundColor = data.bgColor;
+                  }
+                  // Update child elements with data attributes
+                  section.dataset.sectionTitle = data.title || '';
+                  section.dataset.sectionSubtitle = data.subtitle || '';
+                  section.dataset.sectionDescription = data.description || '';
+                  section.dataset.sectionImage = data.image || '';
+                  section.dataset.sectionVisible = data.visible;
+
+                  if (data.visible === false) {
+                    section.style.display = 'none';
+                  } else {
+                    section.style.display = '';
+                  }
+                }
+              }
+            });
+          });
+        </script>
       )}
     </body>
   </html>

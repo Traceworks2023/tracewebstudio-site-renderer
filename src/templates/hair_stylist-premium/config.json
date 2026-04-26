@@ -1,0 +1,134 @@
+{
+  "id": "hair_stylist-premium",
+  "name": "Hair Stylist Premium",
+  "slug": "hair_stylist-premium",
+  "description": "bridal and fashion clients wanting polished hair artistry",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/hair_stylist/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#174ECF",
+      "secondary": "#4927F1",
+      "accent": "#A1D9E8",
+      "background": "#5B4615",
+      "surface": "#F0F5DB",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Lora",
+      "body": "Montserrat"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Hair Stylist Signature Presence",
+            "subheadline": "Present the hair stylist as a premium specialist for bridal and fashion clients wanting polished hair artistry",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Hair Stylist Distinct",
+            "body": "Highlight premium offers across bridal hair, occasion styling, blowouts, curls, texture styling, consultations",
+            "image": "https://images.unsplash.com/photo-1562322140-8baeece509a7?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Bridal Package",
+              "Occasion Styling",
+              "Color Treatment",
+              "Texture Service",
+              "Consultation"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Client Review",
+              "Celebrity Endorsement",
+              "Magazine Feature",
+              "Industry Award",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Consultation",
+              "Planning",
+              "Styling",
+              "Finishing",
+              "After Care"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@hair_stylist",
+            "instagram": "@hair_stylist",
+            "email": "hello@hairstylist.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

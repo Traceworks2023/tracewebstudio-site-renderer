@@ -1,0 +1,134 @@
+{
+  "id": "hair_stylist-premium-max",
+  "name": "Hair Stylist Premium Max",
+  "slug": "hair_stylist-premium-max",
+  "description": "bridal and fashion clients wanting polished hair artistry",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/hair_stylist/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#622FD0",
+      "secondary": "#C251E1",
+      "accent": "#899AE6",
+      "background": "#4D6024",
+      "surface": "#D8F4D2",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Forum",
+      "body": "Jost"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Hair Stylist Worldbuilding Entrance",
+            "subheadline": "Present the hair stylist as a premium specialist for bridal and fashion clients wanting polished hair artistry",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Show 6–10 signature works that prove strength in cut, texture, volume, and occasion styling",
+            "image": "https://images.unsplash.com/photo-1562322140-8baeece509a7?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Hair Analysis",
+              "Premium Treatment",
+              "Expert Styling",
+              "After Care Guide"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Celebrity Clientele",
+              "Magazine Features",
+              "Awards"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@hair_stylist",
+            "instagram": "@hair_stylist",
+            "email": "hello@hairstylist.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

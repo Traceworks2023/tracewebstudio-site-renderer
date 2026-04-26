@@ -1,0 +1,134 @@
+{
+  "id": "artist_painter-premium-max",
+  "name": "Artist / Painter Premium Max",
+  "slug": "artist_painter-premium-max",
+  "description": "collectors and clients seeking expressive original art",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/artist_painter/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#6D11D0",
+      "secondary": "#EC1DF7",
+      "accent": "#9092DF",
+      "background": "#446F16",
+      "surface": "#E6F4E6",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Merriweather",
+      "body": "Karla"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Artist / Painter Worldbuilding Entrance",
+            "subheadline": "Present the artist / painter as a premium specialist for collectors and clients seeking expressive original art",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Show 6–10 signature works that prove strength in texture, color, and handcrafted visual storytelling",
+            "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Commission",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Artistic Development",
+              "Premium Craftsmanship",
+              "Expert Finishing",
+              "Collector Delivery"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Collector Recognition",
+              "Magazine Features",
+              "Award Collections",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@artist_painter",
+            "instagram": "@artist_painter",
+            "email": "hello@artist.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

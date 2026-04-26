@@ -1,0 +1,107 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+    image?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Face of the Brand',
+  subtitle = 'Professional modeling for fashion, commercial, and editorial',
+  ctaText = 'View Portfolio',
+  ctaUrl = '#',
+  image = '',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section class="model-hero relative min-h-screen flex items-center overflow-hidden" style="background: var(--color-surface, #f5f5f5);">
+  <div class="absolute inset-0">
+    <div class="absolute top-0 left-0 w-full h-full" style="background: linear-gradient(to bottom right, var(--color-surface, #f5f5f5), var(--color-background, #ffffff), var(--color-surface, #f5f5f5));"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8 order-2 lg:order-1">
+        <div class="inline-block px-4 py-1 text-xs tracking-[0.2em] uppercase rounded-full" style="background: var(--color-primary, #EB3C19); color: var(--color-text, #ffffff);">
+          Portfolio
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight" style="color: var(--color-text, #1a1a1a);">
+          {title}
+        </h1>
+
+        <p class="text-lg max-w-md leading-relaxed" style="color: var(--color-text-muted, #666666);">
+          {subtitle}
+        </p>
+
+        <div class="flex items-center gap-4">
+          <a
+            href={ctaUrl}
+            class="inline-flex items-center gap-2 px-8 py-4 font-medium rounded-full transition-opacity"
+            style="background: var(--color-primary, #EB3C19); color: var(--color-text, #ffffff);"
+          >
+            {ctaText}
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 px-8 py-4 font-medium rounded-full transition-colors" style="border: 1px solid var(--color-border, rgba(26,26,26,0.2)); color: var(--color-text, #1a1a1a);">
+            Book Now
+          </a>
+        </div>
+
+        <div class="flex items-center gap-8 pt-8 border-t" style="border-color: var(--color-border, #e0e0e0);">
+          <div class="text-center">
+            <div class="text-2xl font-serif" style="color: var(--color-text, #1a1a1a);">50+</div>
+            <div class="text-xs" style="color: var(--color-text-muted, #666666);">Magazine Covers</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-serif" style="color: var(--color-text, #1a1a1a);">200+</div>
+            <div class="text-xs" style="color: var(--color-text-muted, #666666);">Campaigns</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:block relative order-1 lg:order-2">
+        <div class="relative">
+          {image && (
+            <>
+              <div class="absolute -inset-4 rounded-3xl blur-xl" style="background: var(--color-secondary, #F7B440); opacity: 0.5;"></div>
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img src={image} alt={title} class="w-full h-[600px] object-cover" />
+              </div>
+            </>
+          )}
+          {!image && (
+            <div class="w-full h-[600px] rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--color-primary, #EB3C19), var(--color-secondary, #F7B440));">
+              <span class="text-8xl font-serif" style="color: var(--color-text, #ffffff); opacity: 0.5;">{title.charAt(0)}</span>
+            </div>
+          )}
+          <div class="absolute -bottom-6 -left-6 rounded-xl shadow-xl p-4 z-20" style="background: var(--color-surface, #ffffff);">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: var(--color-primary, #EB3C19); color: var(--color-text, #ffffff);">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold" style="color: var(--color-text, #1a1a1a);">Available</div>
+                <div class="text-sm" style="color: var(--color-text-muted, #666666);">for bookings</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

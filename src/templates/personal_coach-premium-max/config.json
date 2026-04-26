@@ -1,0 +1,134 @@
+{
+  "id": "personal_coach-premium-max",
+  "name": "Personal Coach Premium Max",
+  "slug": "personal_coach-premium-max",
+  "description": "people navigating growth, clarity, and performance",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/personal_coach/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#B2ED1D",
+      "secondary": "#71F844",
+      "accent": "#E5D7A4",
+      "background": "#28135E",
+      "surface": "#F4E2F8",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Raleway",
+      "body": "Source Sans 3"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Personal Coach Worldbuilding Entrance",
+            "subheadline": "Present the personal coach as a premium specialist for people navigating growth, clarity, and performance",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1548777123-e216912df7d8?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Use testimonials, recognitions, features, reviews, or outcome metrics",
+            "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Discovery",
+              "Deep Assessment",
+              "Premium Strategy",
+              "Expert Coaching",
+              "Progress Review"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Award Collections",
+              "Client Transformations",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@personal_coach",
+            "instagram": "@personal_coach",
+            "email": "hello@coach.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

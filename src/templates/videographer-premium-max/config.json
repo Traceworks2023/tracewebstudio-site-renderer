@@ -1,0 +1,134 @@
+{
+  "id": "videographer-premium-max",
+  "name": "Videographer Premium Max",
+  "slug": "videographer-premium-max",
+  "description": "brands and people needing story-driven motion content",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/videographer/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#2FCD13",
+      "secondary": "#1FF463",
+      "accent": "#BBE274",
+      "background": "#6F1B7E",
+      "surface": "#F1D5E7",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Prata",
+      "body": "Mulish"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Videographer Worldbuilding Entrance",
+            "subheadline": "Present the videographer as a premium specialist for brands and people needing story-driven motion content",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1579566346927-c68383817a25?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Show 6–10 signature works that prove strength in cinematic motion, pacing, and post-production",
+            "image": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "Creative Direction",
+              "Professional Team",
+              "State-of-the-Art",
+              "Industry Leading",
+              "Client Focused"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Initial Consultation",
+              "Concept & Script",
+              "Filming",
+              "Editing",
+              "Final Delivery"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Awards",
+              "Featured Projects",
+              "Client Retention",
+              "Portfolio Highlights"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@videographer",
+            "instagram": "@videographer",
+            "email": "hello@videographer.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

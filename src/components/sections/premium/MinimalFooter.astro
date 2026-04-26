@@ -1,0 +1,126 @@
+---
+interface Props {
+  content?: {
+    logo?: string;
+    tagline?: string;
+    email?: string;
+    instagram?: string;
+    location?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  logo = 'Lumina Studios',
+  tagline = 'Fashion & Portrait Photography',
+  email = 'hello@luminastudios.com',
+  instagram = '@luminastudios',
+  location = 'New York · Paris · Milan',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<footer class="minimal-footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <span class="footer-logo">{logo}</span>
+      <span class="footer-tagline">{tagline}</span>
+    </div>
+
+    <div class="footer-info">
+      <a href={`mailto:${email}`} class="footer-email">{email}</a>
+      <span class="footer-divider">·</span>
+      <a href={`https://instagram.com/${instagram.replace('@', '')}`} class="footer-instagram">{instagram}</a>
+      <span class="footer-divider">·</span>
+      <span class="footer-location">{location}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .minimal-footer {
+    padding: 60px 24px;
+    background: #0a0a0a;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #888888;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-email,
+  .footer-instagram {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #888888;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-email:hover,
+  .footer-instagram:hover {
+    color: #c9a962;
+  }
+
+  .footer-divider {
+    color: #3a3a3a;
+  }
+
+  .footer-location {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #666666;
+  }
+
+  @media (max-width: 640px) {
+    .footer-info {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-divider {
+      display: none;
+    }
+  }
+</style>

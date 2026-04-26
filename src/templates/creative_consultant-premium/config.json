@@ -1,0 +1,134 @@
+{
+  "id": "creative_consultant-premium",
+  "name": "Creative Consultant Premium",
+  "slug": "creative_consultant-premium",
+  "description": "founders and brands refining how they look and communicate",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/creative_consultant/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#EC2251",
+      "secondary": "#F7724A",
+      "accent": "#DD78C2",
+      "background": "#1A7F67",
+      "surface": "#D9EFF7",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "M PLUS 1p",
+      "body": "Inter"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Creative Consultant Signature Presence",
+            "subheadline": "Present the creative consultant as a premium specialist for founders and brands refining how they look and communicate",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Creative Consultant Distinct",
+            "body": "Highlight premium offers across creative direction, brand reviews, launch consulting, visual strategy, advisory",
+            "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Creative Direction",
+              "Brand Reviews",
+              "Launch Consulting",
+              "Visual Strategy",
+              "Advisory"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Discovery",
+              "Strategy",
+              "Development",
+              "Execution",
+              "Review"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Brand Features",
+              "Awards",
+              "Recognition",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@creative_consultant",
+            "instagram": "@creative_consultant",
+            "email": "hello@creative.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

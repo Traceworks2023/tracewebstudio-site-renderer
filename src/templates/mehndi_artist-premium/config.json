@@ -1,0 +1,134 @@
+{
+  "id": "mehndi_artist-premium",
+  "name": "Mehndi Artist Premium",
+  "slug": "mehndi_artist-premium",
+  "description": "brides and celebration clients who want intricate body art",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/mehndi_artist/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#30D53B",
+      "secondary": "#52E5A0",
+      "accent": "#B3DB94",
+      "background": "#62225E",
+      "surface": "#F8ECF1",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Work Sans",
+      "body": "Inter"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Mehendi Artist Signature Presence",
+            "subheadline": "Present the mehendi artist as a premium specialist for brides and celebration clients who want intricate body art",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1595981267035-7b04ca84a2d7?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1601001815894-4bb6c81416d7?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Mehendi Artist Distinct",
+            "body": "Highlight premium offers across bridal mehendi, festive mehendi, guest designs, custom motifs, event bookings",
+            "image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Bridal Mehendi",
+              "Festive Mehendi",
+              "Guest Designs",
+              "Custom Motifs",
+              "Event Bookings"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Design",
+              "Application",
+              "Finishing",
+              "After Care"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Wedding Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@mehndi_artist",
+            "instagram": "@mehndi_artist",
+            "email": "hello@mehndi.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

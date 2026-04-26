@@ -1,0 +1,134 @@
+{
+  "id": "content_creator-premium-max",
+  "name": "Content Creator Premium Max",
+  "slug": "content_creator-premium-max",
+  "description": "brands wanting consistent content and recognisable storytelling",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/content_creator/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#274CB9",
+      "secondary": "#5934DF",
+      "accent": "#B8DEEA",
+      "background": "#433918",
+      "surface": "#F2F6E4",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Noto Serif",
+      "body": "Noto Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Content Creator Worldbuilding Entrance",
+            "subheadline": "Present the content creator as a premium specialist for brands wanting consistent content and recognisable storytelling",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Use testimonials, recognitions, features, reviews, or outcome metrics",
+            "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Brand Discovery",
+              "Strategy Development",
+              "Premium Creation",
+              "Expert Editing",
+              "Perfect Delivery"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Award Collections",
+              "Brand Partnerships",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@content_creator",
+            "instagram": "@content_creator",
+            "email": "hello@content.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

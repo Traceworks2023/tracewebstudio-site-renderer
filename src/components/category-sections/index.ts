@@ -33,6 +33,114 @@ export const JewelrySections = {
   Hero: () => import('./jewelry/HeroJewelry.astro'),
 };
 
+export const VideographerSections = {
+  Hero: () => import('./videographer/HeroVideographer.astro'),
+};
+
+export const HairStylistSections = {
+  Hero: () => import('./hair_stylist/HeroHairStylist.astro'),
+};
+
+export const FashionDesignerSections = {
+  Hero: () => import('./fashion_designer/HeroFashionDesigner.astro'),
+};
+
+export const ModelSections = {
+  Hero: () => import('./model/HeroModel.astro'),
+};
+
+export const InteriorDesignerSections = {
+  Hero: () => import('./interior_designer/HeroInteriorDesigner.astro'),
+};
+
+export const ArchitectSections = {
+  Hero: () => import('./architect/HeroArchitect.astro'),
+};
+
+export const ArtistPainterSections = {
+  Hero: () => import('./artist_painter/HeroArtistPainter.astro'),
+};
+
+export const IllustratorSections = {
+  Hero: () => import('./illustrator/HeroIllustrator.astro'),
+};
+
+export const CalligrapherSections = {
+  Hero: () => import('./calligrapher/HeroCalligrapher.astro'),
+};
+
+export const CraftArtistSections = {
+  Hero: () => import('./craft_artist/HeroCraftArtist.astro'),
+};
+
+export const FloralDesignerSections = {
+  Hero: () => import('./floral_designer/HeroFloralDesigner.astro'),
+};
+
+export const WeddingPlannerSections = {
+  Hero: () => import('./wedding_planner/HeroWeddingPlanner.astro'),
+};
+
+export const EventPlannerSections = {
+  Hero: () => import('./event_planner/HeroEventPlanner.astro'),
+};
+
+export const DecorStylistSections = {
+  Hero: () => import('./decor_stylist/HeroDecorStylist.astro'),
+};
+
+export const BakerSections = {
+  Hero: () => import('./baker/HeroBaker.astro'),
+};
+
+export const ChefSections = {
+  Hero: () => import('./chef/HeroChef.astro'),
+};
+
+export const FitnessTrainerSections = {
+  Hero: () => import('./fitness_trainer/HeroFitnessTrainer.astro'),
+};
+
+export const YogaInstructorSections = {
+  Hero: () => import('./yoga_instructor/HeroYogaInstructor.astro'),
+};
+
+export const PersonalCoachSections = {
+  Hero: () => import('./personal_coach/HeroPersonalCoach.astro'),
+};
+
+export const TutorSections = {
+  Hero: () => import('./tutor/HeroTutor.astro'),
+};
+
+export const ContentCreatorSections = {
+  Hero: () => import('./content_creator/HeroContentCreator.astro'),
+};
+
+export const InfluencerSections = {
+  Hero: () => import('./influencer/HeroInfluencer.astro'),
+};
+
+export const NutritionistSections = {
+  Hero: () => import('./nutritionist/HeroNutritionist.astro'),
+};
+
+export const SkincareSpecialistSections = {
+  Hero: () => import('./skincare_specialist/HeroSkincareSpecialist.astro'),
+};
+
+export const NailArtistSections = {
+  Hero: () => import('./nail_artist/HeroNailArtist.astro'),
+};
+
+export const BoutiqueOwnerSections = {
+  Hero: () => import('./boutique_owner/HeroBoutiqueOwner.astro'),
+};
+
+export const CreativeConsultantSections = {
+  Hero: () => import('./creative_consultant/HeroCreativeConsultant.astro'),
+};
+
 // Map template slugs to category sections
 export function getCategoryForTemplate(slug: string): string {
   const slugLower = slug.toLowerCase();

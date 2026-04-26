@@ -1,0 +1,314 @@
+---
+interface PricingItem {
+  id: string;
+  name: string;
+  price: number;
+  duration?: string;
+  description: string;
+  features: string[];
+  popular?: boolean;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    items?: PricingItem[];
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Investment',
+  items = [],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `pricing-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="pricing-section">
+  <div class="pricing-header">
+    <span class="pricing-tag">Investment</span>
+    <h2 class="pricing-title">{title}</h2>
+  </div>
+
+  <div class="pricing-grid">
+    {items.map((item, index) => (
+      <div class={`pricing-card ${item.popular ? 'popular' : ''}`} style={`--delay: ${index * 0.1}s`}>
+        {item.popular && <span class="popular-badge">Most Popular</span>}
+        <div class="pricing-card-header">
+          <h3 class="pricing-name">{item.name}</h3>
+          <p class="pricing-description">{item.description}</p>
+        </div>
+        <div class="pricing-price">
+          <span class="price-currency">₹</span>
+          <span class="price-value">{item.price.toLocaleString('en-IN')}</span>
+        </div>
+        {item.duration && <span class="pricing-duration">{item.duration}</span>}
+        <ul class="pricing-features">
+          {item.features.map((feature) => (
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+        <a href="/contact" class="pricing-cta">
+          Get Started
+        </a>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    padding: 120px 24px;
+    background: #141414;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .pricing-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #c9a962;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    position: relative;
+    background: #0a0a0a;
+    border-radius: 16px;
+    padding: 48px 40px;
+    border: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: pricing-reveal 0.6s ease forwards;
+    animation-delay: calc(var(--pricing-index, 0) * 100ms);
+  }
+
+  @keyframes pricing-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .pricing-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-8px);
+    border-color: #3a3a3a;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.4);
+  }
+
+  .pricing-card.popular {
+    border-color: #c9a962;
+    background: linear-gradient(180deg, rgba(201, 169, 98, 0.05) 0%, #0a0a0a 100%);
+  }
+
+  .pricing-card.popular:hover {
+    border-color: #c9a962;
+    box-shadow: 0 30px 60px -20px rgba(201, 169, 98, 0.2);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #c9a962;
+    color: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+  }
+
+  .pricing-card-header {
+    margin-bottom: 24px;
+  }
+
+  .pricing-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+
+  .pricing-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #888888;
+    line-height: 1.5;
+  }
+
+  .pricing-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .price-currency {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #c9a962;
+  }
+
+  .price-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1;
+  }
+
+  .pricing-duration {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #888888;
+    display: block;
+    margin-bottom: 32px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    flex: 1;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .pricing-features li:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-features svg {
+    width: 18px;
+    height: 18px;
+    color: #c9a962;
+    flex-shrink: 0;
+  }
+
+  .pricing-cta {
+    display: block;
+    text-align: center;
+    padding: 16px 24px;
+    background: transparent;
+    border: 1px solid #3a3a3a;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .pricing-cta:hover {
+    background: #c9a962;
+    border-color: #c9a962;
+    color: #0a0a0a;
+  }
+
+  .pricing-card.popular .pricing-cta {
+    background: #c9a962;
+    border-color: #c9a962;
+    color: #0a0a0a;
+  }
+
+  .pricing-card.popular .pricing-cta:hover {
+    background: #e8d5a3;
+    border-color: #e8d5a3;
+  }
+
+  @media (max-width: 1024px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 450px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pricing-section {
+      padding: 80px 16px;
+    }
+
+    .pricing-card {
+      padding: 40px 24px;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.pricing-section').forEach((section) => {
+    const cards = section.querySelectorAll('.pricing-card');
+
+    cards.forEach((card, i) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 90%',
+        onEnter: () => {
+          setTimeout(() => {
+            card.classList.add('revealed');
+          }, i * 100);
+        },
+      });
+    });
+  });
+</script>

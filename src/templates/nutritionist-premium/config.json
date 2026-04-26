@@ -1,0 +1,134 @@
+{
+  "id": "nutritionist-premium",
+  "name": "Nutritionist Premium",
+  "slug": "nutritionist-premium",
+  "description": "clients improving energy, digestion, and sustainable eating habits",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/nutritionist/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#BA2C65",
+      "secondary": "#DD473C",
+      "accent": "#D581CD",
+      "background": "#2B6E53",
+      "surface": "#EBF8FA",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Hanken Grotesk",
+      "body": "Inter"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Nutritionist Signature Presence",
+            "subheadline": "Present the nutritionist as a premium specialist for clients improving energy, digestion, and sustainable eating habits",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Nutritionist Distinct",
+            "body": "Highlight premium offers across diet consultations, meal plans, habit coaching, wellness plans, follow-ups",
+            "image": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Diet Consultations",
+              "Meal Plans",
+              "Habit Coaching",
+              "Wellness Plans",
+              "Follow-ups"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Assessment",
+              "Plan Design",
+              "Coaching",
+              "Review"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Health Features",
+              "Awards",
+              "Recognition",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@nutritionist",
+            "instagram": "@nutritionist",
+            "email": "hello@nutrition.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

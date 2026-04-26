@@ -1,0 +1,134 @@
+{
+  "id": "skincare_specialist-premium-max",
+  "name": "Skincare Specialist Premium Max",
+  "slug": "skincare_specialist-premium-max",
+  "description": "clients seeking skin confidence and professional care guidance",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/skincare_specialist/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#7FD714",
+      "secondary": "#3AF529",
+      "accent": "#EAE79E",
+      "background": "#34145D",
+      "surface": "#EED7EF",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Figtree",
+      "body": "DM Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Skincare Specialist Worldbuilding Entrance",
+            "subheadline": "Present the skincare specialist as a premium specialist for clients seeking skin confidence and professional care guidance",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1570194065650-d99fb4d6a673?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Use testimonials, recognitions, features, reviews, or outcome metrics",
+            "image": "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Skin Analysis",
+              "Deep Consultation",
+              "Premium Plan Design",
+              "Expert Treatment",
+              "After Care Guide"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Award Collections",
+              "Client Transformations",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@skincare_specialist",
+            "instagram": "@skincare_specialist",
+            "email": "hello@skincare.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

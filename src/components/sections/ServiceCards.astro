@@ -1,0 +1,231 @@
+---
+// ServiceCards - Portfolio services as pricing cards
+// For Indian creative professionals with clear deliverables
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    items?: Array<{
+      title?: string;
+      description?: string;
+      price?: string;
+      time?: string;
+      deliverables?: string[];
+    }>;
+  };
+  settings?: {
+    templateSlug?: string;
+    motionLevel?: number;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Services',
+  subtitle = '',
+  items = [],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section id="services" class="service-cards">
+  <div class="services-inner">
+    {title && (
+      <h2 class="services-title">{title}</h2>
+    )}
+    {subtitle && (
+      <p class="services-subtitle">{subtitle}</p>
+    )}
+
+    <div class="services-grid">
+      {items.map((item, i) => (
+        <div class="service-card" style={`--index: ${i}`}>
+          <h3 class="service-name">{item.title}</h3>
+          {item.description && (
+            <p class="service-desc">{item.description}</p>
+          )}
+
+          <div class="service-meta">
+            {item.price && (
+              <span class="service-price">{item.price}</span>
+            )}
+            {item.time && (
+              <span class="service-time">{item.time}</span>
+            )}
+          </div>
+
+          {item.deliverables && item.deliverables.length > 0 && (
+            <ul class="service-deliverables">
+              {item.deliverables.map((d) => (
+                <li class="deliverable-item">
+                  <svg class="deliverable-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-cards {
+    padding: 120px 24px;
+    background: var(--color-background, #1a0b12);
+  }
+
+  .services-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .services-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--color-text, #f5efe7);
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .services-subtitle {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #b8a99a);
+    text-align: center;
+    margin-bottom: 60px;
+    letter-spacing: 0.03em;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--color-surface, #2d131e);
+    border: 1px solid var(--color-border, #3d1f2b);
+    border-radius: var(--radius-md, 12px);
+    padding: 36px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-accent, #c78d6e), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-accent, #c78d6e);
+    box-shadow: 0 20px 60px -20px rgba(199, 141, 110, 0.15);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .service-name {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--color-text, #f5efe7);
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--color-text-muted, #b8a99a);
+    margin-bottom: 20px;
+  }
+
+  .service-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border, #3d1f2b);
+  }
+
+  .service-price {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-accent, #c78d6e);
+  }
+
+  .service-time {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.8rem;
+    color: var(--color-text-muted, #b8a99a);
+    padding: 4px 10px;
+    border: 1px solid var(--color-border, #3d1f2b);
+    border-radius: 20px;
+  }
+
+  .service-deliverables {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .deliverable-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.85rem;
+    color: var(--color-text-muted, #b8a99a);
+  }
+
+  .deliverable-check {
+    width: 14px;
+    height: 14px;
+    color: var(--color-accent, #c78d6e);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-card {
+      padding: 28px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .service-card {
+      padding: 24px;
+    }
+
+    .service-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+</style>

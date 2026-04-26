@@ -1,0 +1,134 @@
+{
+  "id": "wedding_planner-premium-max",
+  "name": "Wedding Planner Premium Max",
+  "slug": "wedding_planner-premium-max",
+  "description": "couples wanting seamless, design-led celebrations",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/wedding_planner/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#A31FEA",
+      "secondary": "#F646E2",
+      "accent": "#9789E6",
+      "background": "#356D17",
+      "surface": "#D6F0DA",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Exo 2",
+      "body": "Inter"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Wedding Planner Worldbuilding Entrance",
+            "subheadline": "Present the wedding planner as a premium specialist for couples wanting seamless, design-led celebrations",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Use testimonials, recognitions, features, reviews, or outcome metrics",
+            "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment",
+              "Premium Experience"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Vision Development",
+              "Premium Planning",
+              "Expert Coordination",
+              "Perfect Execution"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Magazine Features",
+              "Award Collections",
+              "Client Satisfaction"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@wedding_planner",
+            "instagram": "@wedding_planner",
+            "email": "hello@weddingplanner.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

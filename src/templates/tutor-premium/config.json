@@ -1,0 +1,134 @@
+{
+  "id": "tutor-premium",
+  "name": "Tutor Premium",
+  "slug": "tutor-premium",
+  "description": "students and parents seeking reliable academic progress",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/tutor/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#32B823",
+      "secondary": "#2CE26F",
+      "accent": "#C0E28D",
+      "background": "#5D2163",
+      "surface": "#F1DFEA",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Nunito",
+      "body": "Lato"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Tutor Signature Presence",
+            "subheadline": "Present the tutor as a premium specialist for students and parents seeking reliable academic progress",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Tutor Distinct",
+            "body": "Show 6–10 signature works that prove strength in concept clarity, structured lessons, and confidence building",
+            "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Subject Tutoring",
+              "Exam Prep",
+              "Homework Support",
+              "Study Plans",
+              "One-on-One"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Assessment",
+              "Lesson Plan",
+              "Teaching",
+              "Review"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Student Stories",
+              "Parent Reviews",
+              "Improvement Metrics",
+              "Awards",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@tutor",
+            "instagram": "@tutor",
+            "email": "hello@tutor.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

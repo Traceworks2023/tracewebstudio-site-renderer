@@ -1,0 +1,222 @@
+---
+interface TimelineItem {
+  year: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    items?: TimelineItem[];
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Journey',
+  items = [
+    { year: '2013', title: 'The Beginning', description: 'Started in a small studio' },
+    { year: '2016', title: 'Vogue Debut', description: 'First cover shoot' },
+    { year: '2019', title: 'Global Expansion', description: 'Opened studios worldwide' },
+    { year: '2023', title: 'Lumina Brand', description: 'Launched personal brand' },
+    { year: '2025', title: 'Today', description: 'One of the most sought-after' },
+  ],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `timeline-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="timeline-section">
+  <div class="timeline-header">
+    <span class="timeline-tag">Story</span>
+    <h2 class="timeline-title">{title}</h2>
+  </div>
+
+  <div class="timeline-container">
+    <div class="timeline-line"></div>
+    {items.map((item, index) => (
+      <div class="timeline-item" style={`--timeline-index: ${index}; --delay: ${index * 0.2}s`}>
+        <div class="timeline-marker">
+          <span class="timeline-year">{item.year}</span>
+        </div>
+        <div class="timeline-content">
+          <h3 class="timeline-item-title">{item.title}</h3>
+          <p class="timeline-item-description">{item.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .timeline-section {
+    padding: 120px 24px;
+    background: #0a0a0a;
+  }
+
+  .timeline-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .timeline-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #c9a962;
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, #c9a962, #2a2a2a);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: timeline-reveal 0.6s ease forwards;
+    animation-delay: calc(var(--timeline-index, 0) * 150ms);
+  }
+
+  @keyframes timeline-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .timeline-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .timeline-item:nth-child(even) .timeline-content {
+    align-items: flex-end;
+  }
+
+  .timeline-marker {
+    flex-shrink: 0;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .timeline-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #c9a962;
+    background: #0a0a0a;
+    padding: 8px 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .timeline-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+  .timeline-item-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #888888;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-section {
+      padding: 80px 16px;
+    }
+
+    .timeline-line {
+      left: 20px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+      flex-direction: row;
+      text-align: left;
+      padding-left: 50px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      align-items: flex-start;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 0;
+      width: auto;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.timeline-section').forEach((section) => {
+    const items = section.querySelectorAll('.timeline-item');
+
+    items.forEach((item, i) => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 85%',
+        onEnter: () => {
+          setTimeout(() => {
+            item.classList.add('revealed');
+          }, i * 150);
+        },
+      });
+    });
+  });
+</script>

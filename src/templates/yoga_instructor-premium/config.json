@@ -1,0 +1,134 @@
+{
+  "id": "yoga_instructor-premium",
+  "name": "Yoga Instructor Premium",
+  "slug": "yoga_instructor-premium",
+  "description": "clients seeking calm strength, balance, and mindful movement",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/yoga_instructor/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#D2328D",
+      "secondary": "#E35462",
+      "accent": "#D778DD",
+      "background": "#297048",
+      "surface": "#DCF4F3",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Poppins",
+      "body": "DM Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Yoga Instructor Signature Presence",
+            "subheadline": "Present the yoga instructor as a premium specialist for clients seeking calm strength, balance, and mindful movement",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Yoga Instructor Distinct",
+            "body": "Show 6–10 signature works that prove strength in breath, flow, posture, and restorative practice",
+            "image": "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Private Yoga",
+              "Group Classes",
+              "Restorative Sessions",
+              "Breathwork",
+              "Workshops"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Assessment",
+              "Program Design",
+              "Sessions",
+              "Progress Review"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Transformations",
+              "Awards",
+              "Recognition",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@yoga_instructor",
+            "instagram": "@yoga_instructor",
+            "email": "hello@yoga.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

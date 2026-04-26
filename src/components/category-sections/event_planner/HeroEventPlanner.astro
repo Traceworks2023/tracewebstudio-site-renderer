@@ -1,0 +1,125 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+    image?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Events Perfected',
+  subtitle = 'From concept to execution, every detail matters',
+  ctaText = 'Get Quote',
+  ctaUrl = '#',
+  image = '',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section class="event-planner-hero relative min-h-screen flex items-center overflow-hidden" style="background: var(--color-background, #0a0a0a);">
+  <div class="absolute inset-0">
+    {image && <img src={image} alt={title} class="w-full h-full object-cover" style="opacity: 0.4;" />}
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom right, var(--color-background, #0a0a0a), var(--color-background, rgba(10,10,10,0.8)), var(--color-surface, #1a1a1a));"></div>
+  </div>
+
+  <div class="absolute top-20 right-40 w-64 h-64 rounded-full opacity-10 blur-3xl" style="background: var(--color-primary, #6366f1);"></div>
+  <div class="absolute bottom-20 left-20 w-96 h-96 rounded-full opacity-10 blur-3xl" style="background: var(--color-secondary, #ec4899);"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid var(--color-border, rgba(255,255,255,0.1));">
+          <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--color-primary, #6366f1);"></span>
+          <span class="text-sm font-medium" style="color: var(--color-text-muted, rgba(255,255,255,0.7));">Event Management</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style="color: var(--color-text, #ffffff);">
+          {title}
+        </h1>
+
+        <p class="text-xl max-w-lg" style="color: var(--color-text-muted, #999999);">
+          {subtitle}
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={ctaUrl}
+            class="group inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg transition-opacity"
+            style="background: var(--color-primary, #6366f1); color: var(--color-text, #ffffff);"
+          >
+            {ctaText}
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 px-6 py-3 transition-colors" style="color: var(--color-text, #ffffff); opacity: 0.7;">
+            Our Portfolio
+          </a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t" style="border-color: var(--color-border, rgba(255,255,255,0.1));">
+          <div>
+            <div class="text-3xl font-bold" style="color: var(--color-text, #ffffff);">1000+</div>
+            <div class="text-sm" style="color: var(--color-text-muted, #999999);">Events</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold" style="color: var(--color-text, #ffffff);">50+</div>
+            <div class="text-sm" style="color: var(--color-text-muted, #999999);">Venues</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold" style="color: var(--color-text, #ffffff);">100%</div>
+            <div class="text-sm" style="color: var(--color-text-muted, #999999);">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:block relative">
+        <div class="relative">
+          {image && (
+            <>
+              <div class="absolute -inset-4 rounded-3xl blur-xl" style="background: var(--color-primary, #6366f1); opacity: 0.2;"></div>
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img src={image} alt={title} class="w-full h-[400px] object-cover" />
+              </div>
+            </>
+          )}
+          {!image && (
+            <div class="w-full h-[400px] rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, var(--color-primary, #6366f1), var(--color-secondary, #ec4899));">
+              <span class="text-8xl font-bold" style="color: var(--color-text, #ffffff); opacity: 0.3;">{title.charAt(0)}</span>
+            </div>
+          )}
+          <div class="absolute -top-6 -left-6 rounded-xl p-4 shadow-xl" style="background: var(--color-primary, #6366f1);">
+            <div class="font-semibold" style="color: var(--color-text, #ffffff);">Since 2010</div>
+            <div class="text-sm" style="color: var(--color-text, #ffffff); opacity: 0.7;">Est.</div>
+          </div>
+          <div class="absolute -bottom-6 -right-6 rounded-xl p-4 shadow-xl" style="background: var(--color-surface, #ffffff);">
+            <div class="font-semibold" style="color: var(--color-text, #1a1a1a);">5.0 Rating</div>
+            <div class="text-sm" style="color: var(--color-text-muted, #666666);">200+ Reviews</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 py-4 border-t" style="background: rgba(255,255,255,0.05); border-color: var(--color-border, rgba(255,255,255,0.1));">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between text-sm" style="color: var(--color-text-muted, rgba(255,255,255,0.4));">
+      <div class="flex items-center gap-8">
+        <span>CORPORATE</span>
+        <span style="color: var(--color-primary, #6366f1);">•</span>
+        <span>SOCIAL</span>
+        <span style="color: var(--color-primary, #6366f1);">•</span>
+        <span>NON-PROFIT</span>
+        <span style="color: var(--color-primary, #6366f1);">•</span>
+        <span>VIP</span>
+      </div>
+    </div>
+  </div>
+</section>

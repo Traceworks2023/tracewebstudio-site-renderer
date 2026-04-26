@@ -1,0 +1,15 @@
+export { default as ParallaxHero } from './ParallaxHero.astro';
+export { default as BentoGrid } from './BentoGrid.astro';
+export { default as HorizontalScrollGallery } from './HorizontalScrollGallery.astro';
+export { default as BeforeAfterSlider } from './BeforeAfterSlider.astro';
+export { default as AnimatedStats } from './AnimatedStats.astro';
+export { default as TestimonialMasonry } from './TestimonialMasonry.astro';
+export { default as CTASplit } from './CTASplit.astro';
+export { default as CTACenter } from './CTACenter.astro';
+export { default as MinimalHero } from './MinimalHero.astro';
+export { default as MinimalFooter } from './MinimalFooter.astro';
+export { default as SplitHero } from './SplitHero.astro';
+export { default as Timeline } from './Timeline.astro';
+export { default as PricingCards } from './PricingCards.astro';
+export { default as ContactSplit } from './ContactSplit.astro';
+export { default as MasonryGallery } from './MasonryGallery.astro';

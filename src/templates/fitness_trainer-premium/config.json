@@ -1,0 +1,134 @@
+{
+  "id": "fitness_trainer-premium",
+  "name": "Fitness Trainer Premium",
+  "slug": "fitness_trainer-premium",
+  "description": "people wanting strength, mobility, and visible consistency",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/fitness_trainer/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#5937E1",
+      "secondary": "#BE5DEF",
+      "accent": "#A7B9E2",
+      "background": "#4B5819",
+      "surface": "#F0F8EC",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Manrope",
+      "body": "Inter"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Fitness Trainer Signature Presence",
+            "subheadline": "Present the fitness trainer as a premium specialist for people wanting strength, mobility, and visible consistency",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Fitness Trainer Distinct",
+            "body": "Highlight premium offers across personal training, online coaching, body recomposition, mobility, assessments",
+            "image": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Personal Training",
+              "Online Coaching",
+              "Body Recomposition",
+              "Mobility",
+              "Assessments"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Assessment",
+              "Program Design",
+              "Training",
+              "Progress Review"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Success Stories",
+              "Client Transformations",
+              "Awards",
+              "Recognition",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@fitness_trainer",
+            "instagram": "@fitness_trainer",
+            "email": "hello@fitness.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

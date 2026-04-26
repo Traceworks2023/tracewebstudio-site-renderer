@@ -1,0 +1,134 @@
+{
+  "id": "makeup_artist-premium",
+  "name": "Makeup Artist Premium",
+  "slug": "makeup_artist-premium",
+  "description": "brides, creators, and personal clients",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/makeup_artist/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#2ACF77",
+      "secondary": "#49E4DA",
+      "accent": "#71CF6E",
+      "background": "#802D59",
+      "surface": "#F9ECEC",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Bodoni Moda",
+      "body": "Manrope"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Makeup Artist Signature Presence",
+            "subheadline": "Present the makeup artist as a premium specialist for brides, creators, and personal clients",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Makeup Artist Distinct",
+            "body": "Tell the brand story: why this practice exists, which standards matter",
+            "image": "https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Bridal Package",
+              "Party Look",
+              "Editorial Session",
+              "Trial Run",
+              "Touch-up Service"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Trial Session",
+              "Final Application",
+              "Touch-ups",
+              "After Care"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Bridal Reviews",
+              "Editorial Features",
+              "Celebrity Endorsements",
+              "Industry Awards",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@makeup_artist",
+            "instagram": "@makeup_artist",
+            "email": "hello@makeupartist.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

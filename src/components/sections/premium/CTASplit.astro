@@ -1,0 +1,170 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+    image?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = "Let's Create Together",
+  subtitle = 'Available for editorial, commercial, and personal projects worldwide',
+  ctaText = 'Get in Touch',
+  ctaUrl = '/contact',
+  image = 'https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&q=80',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `cta-split-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="cta-split-section">
+  <div class="cta-split-image">
+    <img src={image} alt={title} />
+    <div class="cta-split-overlay"></div>
+  </div>
+
+  <div class="cta-split-content">
+    <h2 class="cta-split-title">{title}</h2>
+    <p class="cta-split-subtitle">{subtitle}</p>
+    <a href={ctaUrl} class="cta-split-button">
+      <span>{ctaText}</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta-split-section {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .cta-split-image {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cta-split-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cta-split-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(10, 10, 10, 0.95) 0%,
+      rgba(10, 10, 10, 0.7) 50%,
+      rgba(10, 10, 10, 0.3) 100%
+    );
+  }
+
+  .cta-split-content {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    padding: 120px 60px;
+  }
+
+  .cta-split-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .cta-split-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .cta-split-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 2.5rem;
+    background: #c9a962;
+    color: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-split-button:hover {
+    background: #e8d5a3;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -15px rgba(201, 169, 98, 0.4);
+  }
+
+  .cta-split-button svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-split-button:hover svg {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    .cta-split-content {
+      padding: 80px 24px;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.cta-split-section').forEach((section) => {
+    const content = section.querySelector('.cta-split-content');
+    const title = section.querySelector('.cta-split-title');
+    const subtitle = section.querySelector('.cta-split-subtitle');
+    const button = section.querySelector('.cta-split-button');
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 80%',
+      onEnter: () => {
+        [title, subtitle, button].forEach((el, i) => {
+          if (el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            setTimeout(() => {
+              el.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, i * 150);
+          }
+        });
+      },
+    });
+  });
+</script>

@@ -1,0 +1,134 @@
+{
+  "id": "mehndi_artist-premium-max",
+  "name": "Mehndi Artist Premium Max",
+  "slug": "mehndi_artist-premium-max",
+  "description": "brides and celebration clients who want intricate body art",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/mehndi_artist/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#3DE1AD",
+      "secondary": "#62D9EF",
+      "accent": "#7DD98E",
+      "background": "#77223D",
+      "surface": "#F6E8E4",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Source Serif 4",
+      "body": "Source Sans 3"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Mehendi Artist Worldbuilding Entrance",
+            "subheadline": "Present the mehendi artist as a premium specialist for brides and celebration clients who want intricate body art",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1595981267035-7b04ca84a2d7?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1601001815894-4bb6c81416d7?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Highlight premium offers across bridal mehendi, festive mehendi, guest designs, custom motifs, event bookings",
+            "image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "Artistic Vision",
+              "Premium Quality",
+              "Cultural Beauty",
+              "Award Winning",
+              "Client Satisfaction"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Design Development",
+              "Expert Application",
+              "Premium Finishing",
+              "After Care Guide"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Wedding Features",
+              "Award Collections",
+              "Client Satisfaction"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@mehndi_artist",
+            "instagram": "@mehndi_artist",
+            "email": "hello@mehndi.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

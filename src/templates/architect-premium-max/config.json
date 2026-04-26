@@ -1,0 +1,134 @@
+{
+  "id": "architect-premium-max",
+  "name": "Architect Premium Max",
+  "slug": "architect-premium-max",
+  "description": "clients building homes, spaces, and thoughtful structures",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/architect/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#23A6D1",
+      "secondary": "#3F6FE9",
+      "accent": "#B3EFE0",
+      "background": "#462216",
+      "surface": "#F4EBD2",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Belleza",
+      "body": "Assistant"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Architect Worldbuilding Entrance",
+            "subheadline": "Present the architect as a premium specialist for clients building homes, spaces, and thoughtful structures",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1486718448742-163732cd1544?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Highlight premium offers across concept design, residential planning, facade design, drawings, consultation",
+            "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "Visionary Approach",
+              "Premium Materials",
+              "Award Winning",
+              "Client Satisfaction",
+              "Industry Leader"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Site Analysis",
+              "Concept Development",
+              "Premium Design",
+              "Construction Support"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Magazine Features",
+              "Award Collections",
+              "Client Satisfaction"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@architect",
+            "instagram": "@architect",
+            "email": "hello@architect.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

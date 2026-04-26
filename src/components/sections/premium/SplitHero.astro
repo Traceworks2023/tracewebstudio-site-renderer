@@ -1,0 +1,157 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    imagePosition?: 'left' | 'right';
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'About',
+  description = 'With over a decade of experience capturing the world\'s most iconic fashion moments.',
+  image = 'https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&q=80',
+  imagePosition = 'right',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `split-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class={`split-hero ${imagePosition === 'left' ? 'reverse' : ''}`}>
+  <div class="split-content">
+    <h1 class="split-title">{title}</h1>
+    <p class="split-description">{description}</p>
+  </div>
+  <div class="split-image">
+    <img src={image} alt={title} />
+  </div>
+</section>
+
+<style>
+  .split-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+    background: #0a0a0a;
+  }
+
+  .split-hero.reverse {
+    direction: rtl;
+  }
+
+  .split-hero.reverse > * {
+    direction: ltr;
+  }
+
+  .split-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 80px;
+  }
+
+  .split-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .split-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    color: #888888;
+    line-height: 1.7;
+    max-width: 500px;
+  }
+
+  .split-image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .split-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(201, 169, 98, 0.1) 0%,
+      transparent 50%
+    );
+  }
+
+  @media (max-width: 1024px) {
+    .split-hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .split-hero.reverse {
+      direction: ltr;
+    }
+
+    .split-content {
+      padding: 100px 24px 60px;
+      order: 1;
+    }
+
+    .split-image {
+      order: 0;
+      height: 50vh;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.split-hero').forEach((section) => {
+    const content = section.querySelector('.split-content');
+    const image = section.querySelector('.split-image');
+
+    gsap.fromTo(content,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+        }
+      }
+    );
+
+    gsap.fromTo(image,
+      { opacity: 0, scale: 1.05 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+        }
+      }
+    );
+  });
+</script>

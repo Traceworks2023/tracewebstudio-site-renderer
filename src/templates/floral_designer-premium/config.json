@@ -1,0 +1,134 @@
+{
+  "id": "floral_designer-premium",
+  "name": "Floral Designer Premium",
+  "slug": "floral_designer-premium",
+  "description": "weddings, events, and premium personal celebrations",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/floral_designer/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#35D0B1",
+      "secondary": "#56BCE1",
+      "accent": "#6ECF8B",
+      "background": "#7D3140",
+      "surface": "#FAEFEA",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Barlow Condensed",
+      "body": "Barlow"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Floral Designer Signature Presence",
+            "subheadline": "Present the floral designer as a premium specialist for weddings, events, and premium personal celebrations",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Floral Designer Distinct",
+            "body": "Show 6–10 signature works that prove strength in seasonal florals, floral mood, and sculptural arrangements",
+            "image": "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Bouquets",
+              "Mandaps",
+              "Installations",
+              "Tablescapes",
+              "Event Florals"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Design",
+              "Sourcing",
+              "Creation",
+              "Installation"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Magazine Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@floral_designer",
+            "instagram": "@floral_designer",
+            "email": "hello@floraldesigner.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

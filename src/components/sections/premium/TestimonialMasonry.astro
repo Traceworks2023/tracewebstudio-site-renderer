@@ -1,0 +1,214 @@
+---
+interface TestimonialItem {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  quote: string;
+  image?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    items?: TestimonialItem[];
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Client Words',
+  items = [],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `testimonials-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="testimonial-section">
+  <div class="testimonial-header">
+    <span class="testimonial-tag">Testimonials</span>
+    <h2 class="testimonial-title">{title}</h2>
+  </div>
+
+  <div class="testimonial-grid">
+    {items.map((item, index) => (
+      <div class="testimonial-card" style={`--delay: ${index * 0.1}s`}>
+        <div class="testimonial-quote">
+          <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+          </svg>
+          <p>{item.quote}</p>
+        </div>
+        <div class="testimonial-author">
+          {item.image && (
+            <img src={item.image} alt={item.name} class="author-image" />
+          )}
+          <div class="author-info">
+            <span class="author-name">{item.name}</span>
+            <span class="author-role">{item.role}, {item.company}</span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .testimonial-section {
+    padding: 120px 24px;
+    background: var(--color-surface, #141414);
+  }
+
+  .testimonial-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .testimonial-tag {
+    display: inline-block;
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent, #c9a962);
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-title {
+    font-family: var(--font-heading, 'Cormorant Garamond'), serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--color-text, #ffffff);
+    letter-spacing: -0.02em;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: var(--color-background, #0a0a0a);
+    border-radius: var(--radius-md, 12px);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .testimonial-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.5);
+  }
+
+  .testimonial-quote {
+    position: relative;
+  }
+
+  .quote-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-accent, #c9a962);
+    opacity: 0.3;
+    margin-bottom: 16px;
+  }
+
+  .testimonial-quote p {
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text, rgba(255, 255, 255, 0.8));
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .author-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-border, #2a2a2a);
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .author-name {
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text, #ffffff);
+  }
+
+  .author-role {
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #888888);
+  }
+
+  @media (max-width: 1024px) {
+    .testimonial-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .testimonial-section {
+      padding: 80px 16px;
+    }
+
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonial-card {
+      padding: 32px;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.testimonial-section').forEach((section) => {
+    const cards = section.querySelectorAll('.testimonial-card');
+
+    cards.forEach((card, i) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 90%',
+        onEnter: () => {
+          setTimeout(() => {
+            card.classList.add('revealed');
+          }, i * 100);
+        },
+      });
+    });
+  });
+</script>

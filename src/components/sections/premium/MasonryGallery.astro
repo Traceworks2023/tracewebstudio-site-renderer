@@ -1,0 +1,256 @@
+---
+interface GalleryItem {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    filters?: string[];
+    items?: GalleryItem[];
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'All Projects',
+  filters = ['All'],
+  items = [],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `gallery-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="gallery-section">
+  <div class="gallery-header">
+    <h2 class="gallery-title">{title}</h2>
+    <div class="gallery-filters">
+      {filters.map((filter, index) => (
+        <button
+          class={`filter-btn ${index === 0 ? 'active' : ''}`}
+          data-filter={filter}
+        >
+          {filter}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div class="gallery-masonry">
+    {items.map((item, index) => (
+      <div class="gallery-item" data-category={item.category} style={`--item-index: ${index}`}>
+        <img src={item.image} alt={item.title} loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="gallery-category">{item.category}</span>
+          <h3 class="gallery-item-title">{item.title}</h3>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .gallery-section {
+    padding: 80px 24px 120px;
+    background: var(--color-background, #0a0a0a);
+  }
+
+  .gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .gallery-title {
+    font-family: var(--font-heading, 'Cormorant Garamond'), serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--color-text, #ffffff);
+  }
+
+  .gallery-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--color-border, #2a2a2a);
+    border-radius: 30px;
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted, #888888);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-accent, #c9a962);
+    color: var(--color-accent, #c9a962);
+  }
+
+  .filter-btn.active {
+    background: var(--color-accent, #c9a962);
+    border-color: var(--color-accent, #c9a962);
+    color: var(--color-background, #0a0a0a);
+  }
+
+  .gallery-masonry {
+    columns: 3;
+    column-gap: 20px;
+  }
+
+  .gallery-item {
+    position: relative;
+    break-inside: avoid;
+    margin-bottom: 20px;
+    border-radius: var(--radius-md, 8px);
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: gallery-reveal 0.6s ease forwards;
+    animation-delay: calc(var(--item-index, 0) * 100ms);
+  }
+
+  @keyframes gallery-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .gallery-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      transparent 50%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .gallery-category {
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent, #c9a962);
+    margin-bottom: 8px;
+  }
+
+  .gallery-item-title {
+    font-family: var(--font-heading, 'Cormorant Garamond'), serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-text, #ffffff);
+  }
+
+  .gallery-item.hidden {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .gallery-masonry {
+      columns: 2;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gallery-section {
+      padding: 60px 16px 80px;
+    }
+
+    .gallery-masonry {
+      columns: 1;
+    }
+
+    .gallery-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.gallery-section').forEach((section) => {
+    const filterBtns = section.querySelectorAll('.filter-btn');
+    const items = section.querySelectorAll('.gallery-item');
+
+    // Reveal animation
+    items.forEach((item, i) => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 95%',
+        onEnter: () => {
+          setTimeout(() => {
+            item.classList.add('revealed');
+          }, i * 50);
+        },
+      });
+    });
+
+    // Filter functionality
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        items.forEach((item) => {
+          const category = item.getAttribute('data-category');
+          if (filter === 'All' || category === filter) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script>

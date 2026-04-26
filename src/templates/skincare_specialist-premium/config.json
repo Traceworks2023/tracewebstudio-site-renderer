@@ -1,0 +1,134 @@
+{
+  "id": "skincare_specialist-premium",
+  "name": "Skincare Specialist Premium",
+  "slug": "skincare_specialist-premium",
+  "description": "clients seeking skin confidence and professional care guidance",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/skincare_specialist/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#E3C635",
+      "secondary": "#C4F15B",
+      "accent": "#EDC8B6",
+      "background": "#131C49",
+      "surface": "#E5DFF1",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Anton",
+      "body": "Inter"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Skincare Specialist Signature Presence",
+            "subheadline": "Present the skincare specialist as a premium specialist for clients seeking skin confidence and professional care guidance",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1570194065650-d99fb4d6a673?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Skincare Specialist Distinct",
+            "body": "Show 6–10 signature works that prove strength in skin analysis, treatment guidance, and routine design",
+            "image": "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Skin Consultations",
+              "Facials",
+              "Routine Planning",
+              "Acne Guidance",
+              "Treatment Mapping"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Analysis",
+              "Plan Design",
+              "Treatment",
+              "After Care"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Skin Features",
+              "Awards",
+              "Recognition",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@skincare_specialist",
+            "instagram": "@skincare_specialist",
+            "email": "hello@skincare.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

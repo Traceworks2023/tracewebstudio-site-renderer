@@ -1,0 +1,134 @@
+{
+  "id": "interior_designer-premium-max",
+  "name": "Interior Designer Premium Max",
+  "slug": "interior_designer-premium-max",
+  "description": "homeowners and businesses transforming rooms into lived experiences",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/interior_designer/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#21E825",
+      "secondary": "#48F49B",
+      "accent": "#A9D97D",
+      "background": "#7D1C7B",
+      "surface": "#F7E4ED",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Vidaloka",
+      "body": "Cabin"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Interior Designer Worldbuilding Entrance",
+            "subheadline": "Present the interior designer as a premium specialist for homeowners and businesses transforming rooms into lived experiences",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Show 6–10 signature works that prove strength in space planning, materials, and mood-led interiors",
+            "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "Design Philosophy",
+              "Premium Materials",
+              "Attention to Detail",
+              "Satisfaction",
+              "Excellence"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Space Analysis",
+              "Concept Development",
+              "Premium Execution",
+              "Final Reveal"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Magazine Features",
+              "Award Winning",
+              "Client Satisfaction"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@interior_designer",
+            "instagram": "@interior_designer",
+            "email": "hello@interiordesigner.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

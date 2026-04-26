@@ -1,0 +1,129 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+    image?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Transform Your Body',
+  subtitle = 'Personalized training for lasting results',
+  ctaText = 'Start Training',
+  ctaUrl = '#',
+  image = '',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section class="fitness-trainer-hero relative min-h-screen flex items-center overflow-hidden" style="background: var(--color-background, #0a0a0a);">
+  <div class="absolute inset-0">
+    {image && <img src={image} alt={title} class="w-full h-full object-cover" style="opacity: 0.4;" />}
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom right, var(--color-background, #0a0a0a), var(--color-background, rgba(10,10,10,0.9)), var(--color-surface, #1a1a1a));"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full" style="background: linear-gradient(to left, var(--color-primary, rgba(255,69,0,0.2)), transparent); transform: skewX(-12deg);"></div>
+  </div>
+
+  <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-3 px-4 py-2 rounded-lg" style="background: var(--color-primary, rgba(255,69,0,0.2)); border: 1px solid var(--color-primary, rgba(255,69,0,0.3));">
+          <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--color-primary, #FF4500);"></span>
+          <span class="text-sm font-medium tracking-wider uppercase" style="color: var(--color-primary, #FF4500);">Personal Training</span>
+        </div>
+
+        <h1 class="text-5xl md:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tight" style="color: var(--color-text, #ffffff);">
+          {title}
+        </h1>
+
+        <p class="text-xl max-w-lg leading-relaxed" style="color: var(--color-text-muted, #999999);">
+          {subtitle}
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a
+            href={ctaUrl}
+            class="group relative inline-flex items-center gap-3 px-8 py-4 font-bold rounded-lg overflow-hidden transition-transform hover:scale-105"
+            style="background: var(--color-primary, #FF4500); color: var(--color-text, #ffffff);"
+          >
+            <span class="relative z-10">{ctaText}</span>
+            <svg class="relative z-10 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity" style="background: linear-gradient(to right, var(--color-secondary, #FF6B00), var(--color-primary, #FF4500));"></div>
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 px-8 py-4 font-bold rounded-lg transition-colors" style="border: 2px solid rgba(255,255,255,0.3); color: var(--color-text, #ffffff);">
+            Free Consultation
+          </a>
+        </div>
+
+        <div class="flex gap-8 pt-8 border-t" style="border-color: var(--color-border, rgba(255,255,255,0.1));">
+          <div>
+            <div class="text-4xl font-black" style="color: var(--color-primary, #FF4500);">500+</div>
+            <div class="text-sm uppercase tracking-wider" style="color: var(--color-text-muted, #999999);">Clients</div>
+          </div>
+          <div>
+            <div class="text-4xl font-black" style="color: var(--color-text, #ffffff);">10+</div>
+            <div class="text-sm uppercase tracking-wider" style="color: var(--color-text-muted, #999999);">Years</div>
+          </div>
+          <div>
+            <div class="text-4xl font-black" style="color: var(--color-text, #ffffff);">100%</div>
+            <div class="text-sm uppercase tracking-wider" style="color: var(--color-text-muted, #999999);">Results</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:grid grid-cols-2 gap-4">
+        <div class="rounded-2xl p-6 transition-colors" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+          <div class="text-3xl mb-3">💪</div>
+          <h3 class="font-bold mb-1" style="color: var(--color-text, #ffffff);">Strength</h3>
+          <p class="text-sm" style="color: var(--color-text-muted, #999999);">Build muscle effectively</p>
+        </div>
+        <div class="rounded-2xl p-6 transition-colors mt-8" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+          <div class="text-3xl mb-3">🔥</div>
+          <h3 class="font-bold mb-1" style="color: var(--color-text, #ffffff);">Cardio</h3>
+          <p class="text-sm" style="color: var(--color-text-muted, #999999);">Boost endurance</p>
+        </div>
+        <div class="rounded-2xl p-6 transition-colors" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+          <div class="text-3xl mb-3">🧘</div>
+          <h3 class="font-bold mb-1" style="color: var(--color-text, #ffffff);">Nutrition</h3>
+          <p class="text-sm" style="color: var(--color-text-muted, #999999);">Meal planning</p>
+        </div>
+        <div class="rounded-2xl p-6 transition-colors mt-8" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+          <div class="text-3xl mb-3">🏆</div>
+          <h3 class="font-bold mb-1" style="color: var(--color-text, #ffffff);">Coaching</h3>
+          <p class="text-sm" style="color: var(--color-text-muted, #999999);">Expert guidance</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 py-3" style="background: var(--color-primary, #FF4500);">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between text-sm font-medium" style="color: var(--color-text, #ffffff);">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Personalized Plans
+        </span>
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Online Coaching
+        </span>
+      </div>
+      <span class="font-bold">FREE TRIAL →</span>
+    </div>
+  </div>
+</section>

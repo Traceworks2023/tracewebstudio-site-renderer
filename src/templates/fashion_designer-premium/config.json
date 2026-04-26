@@ -1,0 +1,134 @@
+{
+  "id": "fashion_designer-premium",
+  "name": "Fashion Designer Premium",
+  "slug": "fashion_designer-premium",
+  "description": "clients wanting distinct silhouettes and custom wardrobe pieces",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/fashion_designer/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#D23CDD",
+      "secondary": "#EB60B4",
+      "accent": "#A581D5",
+      "background": "#2A7425",
+      "surface": "#EAFAF1",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Cinzel",
+      "body": "Poppins"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Fashion Designer Signature Presence",
+            "subheadline": "Present the fashion designer as a premium specialist for clients wanting distinct silhouettes and custom wardrobe pieces",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1508532566027-b8f14a7a88a5?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Fashion Designer Distinct",
+            "body": "Show 6–10 signature works that prove strength in fabric, silhouette, and detail-led fashion design",
+            "image": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Custom Design",
+              "Bridal Package",
+              "Occasion Wear",
+              "Styling Consultation",
+              "Fitting"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Design Concept",
+              "Creation",
+              "Fittings",
+              "Final Delivery"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Magazine Features",
+              "Industry Awards",
+              "Celebrity Endorsements",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@fashion_designer",
+            "instagram": "@fashion_designer",
+            "email": "hello@fashiondesigner.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "baker-premium-max",
+  "name": "Baker Premium Max",
+  "slug": "baker-premium-max",
+  "description": "celebration clients and dessert-loving brands",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/baker/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#2FE46F",
+      "secondary": "#55F1D5",
+      "accent": "#8AD97D",
+      "background": "#7A1F5A",
+      "surface": "#F9E2E5",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Sora",
+      "body": "DM Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Baker Worldbuilding Entrance",
+            "subheadline": "Present the baker as a premium specialist for celebration clients and dessert-loving brands",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Show 6–10 signature works that prove strength in artisanal baking, frosting detail, and custom dessert storytelling",
+            "image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Design Development",
+              "Premium Baking",
+              "Expert Decoration",
+              "Perfect Delivery"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Magazine Features",
+              "Award Collections",
+              "Client Satisfaction"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@baker",
+            "instagram": "@baker",
+            "email": "hello@baker.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

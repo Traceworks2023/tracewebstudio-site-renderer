@@ -1,0 +1,134 @@
+{
+  "id": "boutique_owner-premium",
+  "name": "Boutique Owner Premium",
+  "slug": "boutique_owner-premium",
+  "description": "style-conscious clients shopping curated pieces",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/boutique_owner/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#7321BA",
+      "secondary": "#E52AE5",
+      "accent": "#A9A7E2",
+      "background": "#36551B",
+      "surface": "#EBFAEB",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Sarabun",
+      "body": "Manrope"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Boutique Owner Signature Presence",
+            "subheadline": "Present the boutique owner as a premium specialist for style-conscious clients shopping curated pieces",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Boutique Owner Distinct",
+            "body": "Show 6–10 signature works that prove strength in curation, fit, fabric, and boutique experience",
+            "image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Curated Collections",
+              "Appointments",
+              "Styling Support",
+              "New Drops",
+              "Festive Edits"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Curating",
+              "Styling",
+              "Fitting",
+              "After Service"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Style Features",
+              "Awards",
+              "Recognition",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@boutique_owner",
+            "instagram": "@boutique_owner",
+            "email": "hello@boutique.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

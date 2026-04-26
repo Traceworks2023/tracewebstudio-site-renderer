@@ -1,0 +1,64 @@
+---
+// FoodContact — Simple horizontal row on dark moody background
+interface Props {
+  content?: {
+    title?: string;
+    phone?: string;
+    whatsapp?: string;
+    email?: string;
+    instagram?: string;
+    location?: string;
+    availability?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+    motionLevel?: number;
+  };
+}
+const { content = {}, settings = {} } = Astro.props;
+const { title = "Let's Shoot", phone = '+91 98765 43210', whatsapp = '+91 98765 43210', email = 'hello@studio.in', instagram = '@studio', location = 'Mumbai \u00b7 Delhi', availability = 'Booking open for shoots' } = content;
+const items = [
+  { label: 'Phone',    value: phone,     href: `tel:${phone.replace(/\s/g,'')}`, icon: 'phone' },
+  { label: 'WhatsApp', value: whatsapp,  href: `https://wa.me/${whatsapp.replace(/\D/g,'')}`, icon: 'whatsapp' },
+  { label: 'Email',    value: email,     href: `mailto:${email}`, icon: 'email' },
+  { label: 'Instagram',value: instagram, href: `https://instagram.com/${instagram.replace('@','')}`, icon: 'instagram' },
+];
+---
+<section id="contact" class="food-contact">
+  <div class="inner">
+    <h2 class="title">{title}</h2>
+    <p class="avail">{availability}</p>
+    <div class="row">
+      {items.map((it,i)=>(
+        <a href={it.href} target={it.href?.startsWith('http')?'_blank':undefined} rel="noopener" class="cell" key={i}>
+          <span class="line"/>
+          <span class="label">{it.label}</span>
+          <span class="val">{it.value}</span>
+        </a>
+      ))}
+    </div>
+    <p class="loc">{location}</p>
+  </div>
+</section>
+<style>
+  .food-contact { padding:120px 24px; background:var(--color-background,#1a1412); }
+  .inner { max-width:960px; margin:0 auto; text-align:center; }
+  .title { font-family:var(--font-heading,'Cormorant Garamond',serif); font-size:clamp(2.2rem,5vw,3.5rem); font-weight:300; color:var(--color-text,#f5efe7); margin-bottom:8px; letter-spacing:-0.02em; }
+  .avail { font-family:var(--font-body,'Inter',sans-serif); font-size:0.85rem; color:var(--color-accent,#c17817); margin-bottom:64px; letter-spacing:0.06em; text-transform:uppercase; }
+  .row { display:flex; justify-content:center; align-items:stretch; border:1px solid var(--color-border,#3d2b1f); border-radius:0; overflow:hidden; }
+  .cell { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:48px 20px; text-decoration:none; color:inherit; transition:background .35s ease; position:relative; }
+  .cell:hover { background:rgba(193,120,23,0.04); }
+  .cell .line { position:absolute; top:0; left:0; width:100%; height:2px; background:linear-gradient(90deg,transparent,var(--color-accent,#c17817),transparent); opacity:0; transition:opacity .35s ease; }
+  .cell:hover .line { opacity:1; }
+  .cell:not(:last-child)::after { content:''; position:absolute; right:0; top:25%; height:50%; width:1px; background:var(--color-border,#3d2b1f); }
+  .label { font-family:var(--font-heading); font-style:italic; font-size:0.8rem; color:var(--color-text-muted,#b8a99a); letter-spacing:0.06em; }
+  .val { font-family:var(--font-body); font-size:0.95rem; font-weight:500; color:var(--color-text,#f5efe7); }
+  .loc { margin-top:48px; font-family:var(--font-heading); font-style:italic; font-size:1.05rem; color:var(--color-text-muted,#b8a99a); letter-spacing:0.03em; }
+  @media(max-width:768px){
+    .food-contact { padding:80px 20px; }
+    .row { flex-direction:column; border-radius:0; }
+    .cell { padding:28px 16px; flex-direction:row; justify-content:flex-start; gap:14px; }
+    .cell:not(:last-child)::after { display:none; }
+    .cell:not(:last-child) { border-bottom:1px solid var(--color-border,#3d2b1f); }
+  }
+</style>

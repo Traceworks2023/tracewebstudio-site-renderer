@@ -1,0 +1,134 @@
+{
+  "id": "event_planner-premium",
+  "name": "Event Planner Premium",
+  "slug": "event_planner-premium",
+  "description": "brands, families, and hosts planning polished events",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/event_planner/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#B6258F",
+      "secondary": "#E02E5E",
+      "accent": "#C181D5",
+      "background": "#28713B",
+      "surface": "#ECF8F6",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Rajdhani",
+      "body": "Manrope"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Event Planner Signature Presence",
+            "subheadline": "Present the event planner as a premium specialist for brands, families, and hosts planning polished events",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Event Planner Distinct",
+            "body": "Highlight premium offers across social events, launches, private gatherings, coordination, concept design",
+            "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Social Events",
+              "Launches",
+              "Private Gatherings",
+              "Coordination",
+              "Concept Design"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Concept",
+              "Planning",
+              "Execution",
+              "Wrap-up"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Brand Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@event_planner",
+            "instagram": "@event_planner",
+            "email": "hello@eventplanner.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1467853602791-3e4b51c0c0b2?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

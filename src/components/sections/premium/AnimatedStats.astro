@@ -1,0 +1,252 @@
+---
+interface StatItem {
+  id: string;
+  value: number;
+  suffix?: string;
+  label: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    stats?: StatItem[];
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'A decade of excellence',
+  stats = [
+    { id: '1', value: 12, suffix: '', label: 'Years Experience' },
+    { id: '2', value: 200, suffix: '+', label: 'Projects Completed' },
+    { id: '3', value: 50, suffix: '+', label: 'Magazine Covers' },
+    { id: '4', value: 15, suffix: '', label: 'Awards Won' },
+  ],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `stats-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="stats-section">
+  <div class="stats-bg">
+    <div class="stats-gradient"></div>
+  </div>
+
+  <div class="stats-content">
+    <h2 class="stats-title">{title}</h2>
+
+    <div class="stats-grid">
+      {stats.map((stat, index) => (
+        <div class="stat-item" data-value={stat.value} data-suffix={stat.suffix || ''}>
+          <div class="stat-value">
+            <span class="stat-number" data-target={stat.value}>0</span>
+            {stat.suffix && <span class="stat-suffix">{stat.suffix}</span>}
+          </div>
+          <div class="stat-label">{stat.label}</div>
+          <div class="stat-line"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-section {
+    position: relative;
+    padding: 120px 24px;
+    background: #0a0a0a;
+    overflow: hidden;
+  }
+
+  .stats-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .stats-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(201, 169, 98, 0.05) 0%, transparent 50%);
+  }
+
+  .stats-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .stats-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 80px;
+    letter-spacing: -0.01em;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .stat-item {
+    position: relative;
+    padding: 40px 20px;
+  }
+
+  .stat-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, #2a2a2a, transparent);
+  }
+
+  .stat-item:first-child::before {
+    display: none;
+  }
+
+  .stat-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    color: #c9a962;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-suffix {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: #c9a962;
+  }
+
+  .stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #888888;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .stat-line {
+    width: 40px;
+    height: 1px;
+    background: #c9a962;
+    margin: 24px auto 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .stat-item.animated .stat-line {
+    transform: scaleX(1);
+  }
+
+  @media (max-width: 1024px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px 40px;
+    }
+
+    .stat-item:nth-child(2)::before {
+      display: none;
+    }
+
+    .stat-item::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #2a2a2a, transparent);
+    }
+
+    .stat-item:nth-last-child(-n+2)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .stats-section {
+      padding: 80px 16px;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+
+    .stat-item::before,
+    .stat-item::after {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.stats-section').forEach((section) => {
+    const statItems = section.querySelectorAll('.stat-item');
+
+    statItems.forEach((item) => {
+      const numberEl = item.querySelector('.stat-number') as HTMLElement;
+      const targetValue = parseInt(numberEl.getAttribute('data-target') || '0');
+
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 85%',
+        onEnter: () => {
+          if (item.classList.contains('animated')) return;
+          item.classList.add('animated');
+
+          // Animate the number
+          gsap.to({ val: 0 }, {
+            val: targetValue,
+            duration: 2,
+            ease: 'power2.out',
+            onUpdate: function() {
+              numberEl.textContent = Math.round(this.targets()[0].val).toString();
+            },
+          });
+
+          // Animate line
+          gsap.to(item.querySelector('.stat-line'), {
+            scaleX: 1,
+            duration: 0.6,
+            delay: 0.3,
+            ease: 'power2.out',
+          });
+        },
+      });
+    });
+  });
+</script>

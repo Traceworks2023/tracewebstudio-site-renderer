@@ -1,0 +1,134 @@
+{
+  "id": "content_creator-premium",
+  "name": "Content Creator Premium",
+  "slug": "content_creator-premium",
+  "description": "brands wanting consistent content and recognisable storytelling",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/content_creator/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#25CFE9",
+      "secondary": "#4C90F6",
+      "accent": "#6ECFAB",
+      "background": "#8E2E1F",
+      "surface": "#F8F4EC",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Mukta",
+      "body": "Poppins"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Content Creator Signature Presence",
+            "subheadline": "Present the content creator as a premium specialist for brands wanting consistent content and recognisable storytelling",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Content Creator Distinct",
+            "body": "Show 6–10 signature works that prove strength in short-form strategy, visual hooks, and creator-led storytelling",
+            "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "UGC",
+              "Reels",
+              "Campaigns",
+              "Product Content",
+              "Strategy"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Brief",
+              "Strategy",
+              "Creation",
+              "Editing",
+              "Delivery"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Brand Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@content_creator",
+            "instagram": "@content_creator",
+            "email": "hello@content.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

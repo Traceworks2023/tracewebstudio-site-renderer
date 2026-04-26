@@ -1,0 +1,306 @@
+---
+interface GalleryItem {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
+  year?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    items?: GalleryItem[];
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Selected Work',
+  subtitle = 'Featured projects',
+  items = [],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `h-scroll-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="horizontal-scroll-section">
+  <div class="hs-header">
+    <span class="hs-tag">Portfolio</span>
+    <h2 class="hs-title">{title}</h2>
+    <p class="hs-subtitle">{subtitle}</p>
+  </div>
+
+  <div class="hs-wrapper">
+    <div class="hs-track">
+      {items.map((item, index) => (
+        <div class="hs-item" data-index={index}>
+          <div class="hs-image-wrapper">
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              class="hs-image"
+            />
+            <div class="hs-overlay"></div>
+          </div>
+          <div class="hs-info">
+            <span class="hs-category">{item.category}</span>
+            <h3 class="hs-item-title">{item.title}</h3>
+            {item.year && <span class="hs-year">{item.year}</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="hs-progress">
+    <div class="hs-progress-bar"></div>
+  </div>
+</section>
+
+<style>
+  .horizontal-scroll-section {
+    padding: 120px 0;
+    background: var(--color-background, #0a0a0a);
+    overflow: hidden;
+  }
+
+  .hs-header {
+    text-align: center;
+    margin-bottom: 80px;
+    padding: 0 24px;
+  }
+
+  .hs-tag {
+    display: inline-block;
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent, #c9a962);
+    margin-bottom: 1.5rem;
+  }
+
+  .hs-title {
+    font-family: var(--font-heading, 'Cormorant Garamond'), serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hs-subtitle {
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 1.125rem;
+    color: var(--color-text-muted, #888888);
+  }
+
+  .hs-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hs-track {
+    display: flex;
+    gap: 24px;
+    padding: 0 24px;
+    will-change: transform;
+  }
+
+  .hs-item {
+    flex-shrink: 0;
+    position: relative;
+    width: 400px;
+    cursor: pointer;
+  }
+
+  .hs-item:nth-child(even) {
+    margin-top: 60px;
+  }
+
+  .hs-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md, 8px);
+    aspect-ratio: 3/4;
+  }
+
+  .hs-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hs-item:hover .hs-image {
+    transform: scale(1.05);
+  }
+
+  .hs-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .hs-item:hover .hs-overlay {
+    opacity: 1;
+  }
+
+  .hs-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hs-item:hover .hs-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hs-category {
+    display: inline-block;
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent, #c9a962);
+    margin-bottom: 0.5rem;
+  }
+
+  .hs-item-title {
+    font-family: var(--font-heading, 'Cormorant Garamond'), serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 0.25rem;
+  }
+
+  .hs-year {
+    font-family: var(--font-body, 'Inter'), sans-serif;
+    font-size: 0.75rem;
+    color: var(--color-text-muted, #888888);
+  }
+
+  .hs-progress {
+    margin-top: 60px;
+    padding: 0 24px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hs-progress-bar {
+    height: 1px;
+    background: var(--color-border, #2a2a2a);
+    position: relative;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .hs-progress-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: var(--color-accent, #c9a962);
+    transition: width 0.1s linear;
+  }
+
+  @media (max-width: 768px) {
+    .horizontal-scroll-section {
+      padding: 80px 0;
+    }
+
+    .hs-item {
+      width: 300px;
+    }
+
+    .hs-item:nth-child(even) {
+      margin-top: 40px;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.horizontal-scroll-section').forEach((section) => {
+    const track = section.querySelector('.hs-track') as HTMLElement;
+    const progressBar = section.querySelector('.hs-progress-bar::after') as HTMLElement;
+    const items = section.querySelectorAll('.hs-item');
+    const totalWidth = track.scrollWidth - window.innerWidth;
+
+    // Create horizontal scroll animation
+    gsap.to(track, {
+      x: -totalWidth,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${totalWidth}`,
+        scrub: 1,
+        pin: false,
+        onUpdate: (self) => {
+          // Update progress bar
+          const progressBarEl = section.querySelector('.hs-progress-bar');
+          if (progressBarEl) {
+            progressBarEl.style.setProperty('--progress', `${self.progress * 100}%`);
+            const afterEl = progressBarEl.querySelector('::after');
+          }
+          // Update progress bar fill
+          const bar = section.querySelector('.hs-progress-bar') as HTMLElement;
+          if (bar) {
+            bar.style.background = `linear-gradient(90deg, #c9a962 ${self.progress * 100}%, #2a2a2a ${self.progress * 100}%)`;
+          }
+        },
+      },
+    });
+
+    // Parallax effect on images
+    items.forEach((item) => {
+      const image = item.querySelector('.hs-image');
+      if (image) {
+        gsap.fromTo(
+          image,
+          { x: 0 },
+          {
+            x: 100,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          }
+        );
+      }
+    });
+  });
+</script>

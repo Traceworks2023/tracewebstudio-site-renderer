@@ -1,0 +1,346 @@
+---
+interface BentoItem {
+  id: string;
+  size: 'large' | 'medium' | 'small' | 'wide';
+  title: string;
+  description?: string;
+  image?: string;
+  link?: string;
+  icon?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    items?: BentoItem[];
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Our Services',
+  subtitle = 'What we offer',
+  items = [],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `bento-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="bento-section">
+  <div class="bento-header" data-scroll-reveal>
+    <span class="bento-tag">Services</span>
+    <h2 class="bento-title">{title}</h2>
+    <p class="bento-subtitle">{subtitle}</p>
+  </div>
+
+  <div class="bento-grid">
+    {items.map((item, index) => (
+      <a
+        href={item.link || '#'}
+        class={`bento-card bento-${item.size}`}
+        data-scroll-reveal
+        data-delay={index * 100}
+        style={`--card-index: ${index}`}
+      >
+        {item.image && (
+          <div class="bento-image">
+            <img src={item.image} alt={item.title} loading="lazy" />
+            <div class="bento-overlay"></div>
+          </div>
+        )}
+        <div class="bento-content">
+          {item.icon && <span class="bento-icon">{item.icon}</span>}
+          <h3 class="bento-card-title">{item.title}</h3>
+          {item.description && (
+            <p class="bento-card-description">{item.description}</p>
+          )}
+          <span class="bento-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .bento-section {
+    padding: 120px 24px;
+    background: #0a0a0a;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .bento-header {
+    text-align: center;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .bento-header.revealed {
+    animation: revealUp 0.8s ease forwards;
+  }
+
+  .bento-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #c9a962;
+    margin-bottom: 1.5rem;
+  }
+
+  .bento-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .bento-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    color: #888888;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+
+  .bento-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #141414;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: bento-reveal 0.6s ease forwards;
+    animation-delay: calc(var(--card-index, 0) * 100ms);
+  }
+
+  @keyframes bento-reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .bento-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .bento-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+  }
+
+  .bento-card:hover .bento-image img {
+    transform: scale(1.08);
+  }
+
+  .bento-card:hover .bento-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.95) 0%,
+      rgba(10, 10, 10, 0.4) 50%,
+      rgba(10, 10, 10, 0.2) 100%
+    );
+  }
+
+  .bento-card:hover .bento-arrow {
+    transform: translateX(5px);
+    opacity: 1;
+  }
+
+  /* Size variations */
+  .bento-large {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 500px;
+  }
+
+  .bento-medium {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 240px;
+  }
+
+  .bento-small {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 240px;
+  }
+
+  .bento-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+    min-height: 240px;
+  }
+
+  .bento-image {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .bento-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bento-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.9) 0%,
+      rgba(10, 10, 10, 0.3) 50%,
+      rgba(10, 10, 10, 0.1) 100%
+    );
+    transition: background 0.5s ease;
+  }
+
+  .bento-content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .bento-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .bento-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .bento-card-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    max-width: 300px;
+  }
+
+  .bento-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(201, 169, 98, 0.2);
+    border: 1px solid rgba(201, 169, 98, 0.3);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .bento-arrow svg {
+    width: 18px;
+    height: 18px;
+    color: #c9a962;
+  }
+
+  @keyframes revealUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-large {
+      grid-column: span 2;
+      grid-row: span 1;
+      min-height: 350px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .bento-section {
+      padding: 80px 16px;
+    }
+
+    .bento-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bento-large,
+    .bento-medium,
+    .bento-small,
+    .bento-wide {
+      grid-column: span 1;
+      min-height: 280px;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.bento-section').forEach((section) => {
+    // Animate header
+    const header = section.querySelector('.bento-header');
+    if (header) {
+      ScrollTrigger.create({
+        trigger: header,
+        start: 'top 85%',
+        onEnter: () => header.classList.add('revealed'),
+      });
+    }
+
+    // Animate cards with stagger
+    const cards = section.querySelectorAll('.bento-card');
+    cards.forEach((card, i) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 90%',
+        onEnter: () => {
+          setTimeout(() => {
+            card.classList.add('revealed');
+          }, i * 80);
+        },
+      });
+    });
+  });
+</script>

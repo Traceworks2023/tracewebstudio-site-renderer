@@ -1,0 +1,126 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Want to collaborate?',
+  ctaText = "Let's Talk",
+  ctaUrl = '/contact',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section class="cta-center">
+  <h2 class="cta-title">{title}</h2>
+  <a href={ctaUrl} class="cta-button">
+    <span>{ctaText}</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+  </a>
+</section>
+
+<style>
+  .cta-center {
+    padding: 120px 24px;
+    background: #141414;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 3rem;
+    background: #c9a962;
+    color: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-button:hover {
+    background: #e8d5a3;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -15px rgba(201, 169, 98, 0.4);
+  }
+
+  .cta-button svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover svg {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 640px) {
+    .cta-center {
+      padding: 80px 16px;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.cta-center').forEach((section) => {
+    const title = section.querySelector('.cta-title');
+    const button = section.querySelector('.cta-button');
+
+    gsap.fromTo(title,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+        }
+      }
+    );
+
+    gsap.fromTo(button,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+        }
+      }
+    );
+  });
+</script>

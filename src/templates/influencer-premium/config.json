@@ -1,0 +1,134 @@
+{
+  "id": "influencer-premium",
+  "name": "Influencer Premium",
+  "slug": "influencer-premium",
+  "description": "brands, followers, and collaborators seeking a clear public identity",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/influencer/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#6523D7",
+      "secondary": "#CE43EA",
+      "accent": "#A1ABE8",
+      "background": "#40561A",
+      "surface": "#DFF4DC",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Rubik",
+      "body": "Assistant"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Influencer / Personal Brand Signature Presence",
+            "subheadline": "Present the influencer / personal brand as a premium specialist for brands, followers, and collaborators seeking a clear public identity",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1598331668826-20cecc596b86?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Influencer / Personal Brand Distinct",
+            "body": "Highlight premium offers across media kits, partnerships, speaking, collaborations, campaigns",
+            "image": "https://images.unsplash.com/photo-1598331668826-20cecc596b86?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Media Kits",
+              "Partnerships",
+              "Speaking",
+              "Collaborations",
+              "Campaigns"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Brief",
+              "Strategy",
+              "Creation",
+              "Delivery",
+              "Results"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Success Stories",
+              "Brand Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@influencer",
+            "instagram": "@influencer",
+            "email": "hello@influencer.com",
+            "backgroundImage": "https://images.unsplash.com/photo-158集?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

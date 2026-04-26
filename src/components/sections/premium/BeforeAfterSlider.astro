@@ -1,0 +1,286 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    beforeImage?: string;
+    afterImage?: string;
+    labelBefore?: string;
+    labelAfter?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'The Art of Retouching',
+  subtitle = 'Subtle enhancements that preserve authenticity',
+  beforeImage = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80',
+  afterImage = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80&sat=-50&con=-20',
+  labelBefore = 'Original',
+  labelAfter = 'Retouched',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const sectionId = `before-after-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={sectionId} class="ba-section">
+  <div class="ba-header">
+    <span class="ba-tag">Retouching</span>
+    <h2 class="ba-title">{title}</h2>
+    <p class="ba-subtitle">{subtitle}</p>
+  </div>
+
+  <div class="ba-container">
+    <div class="ba-slider" id={`slider-${sectionId}`}>
+      <div class="ba-before">
+        <img src={beforeImage} alt={labelBefore} class="ba-image" />
+        <span class="ba-label ba-label-before">{labelBefore}</span>
+      </div>
+      <div class="ba-after">
+        <img src={afterImage} alt={labelAfter} class="ba-image" />
+        <span class="ba-label ba-label-after">{labelAfter}</span>
+      </div>
+      <div class="ba-handle">
+        <div class="ba-handle-line"></div>
+        <div class="ba-handle-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/>
+          </svg>
+        </div>
+        <div class="ba-handle-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ba-section {
+    padding: 120px 24px;
+    background: #0a0a0a;
+  }
+
+  .ba-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .ba-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #c9a962;
+    margin-bottom: 1.5rem;
+  }
+
+  .ba-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .ba-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    color: #888888;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .ba-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .ba-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: col-resize;
+    user-select: none;
+  }
+
+  .ba-before,
+  .ba-after {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .ba-before {
+    clip-path: inset(0 50% 0 0);
+  }
+
+  .ba-after {
+    clip-path: inset(0 0 0 50%);
+  }
+
+  .ba-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ba-label {
+    position: absolute;
+    top: 24px;
+    padding: 8px 16px;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+
+  .ba-label-before {
+    left: 24px;
+  }
+
+  .ba-label-after {
+    right: 24px;
+  }
+
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 50px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+
+  .ba-handle-line {
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(to bottom, transparent, #c9a962, transparent);
+  }
+
+  .ba-handle-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #c9a962;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(201, 169, 98, 0.4);
+    transition: transform 0.2s ease;
+  }
+
+  .ba-handle-circle svg {
+    width: 24px;
+    height: 24px;
+    color: #0a0a0a;
+  }
+
+  .ba-slider:hover .ba-handle-circle {
+    transform: scale(1.1);
+  }
+
+  .ba-slider:active .ba-handle-circle {
+    transform: scale(0.95);
+  }
+
+  @media (max-width: 768px) {
+    .ba-section {
+      padding: 80px 16px;
+    }
+
+    .ba-label {
+      top: 16px;
+      padding: 6px 12px;
+      font-size: 0.625rem;
+    }
+
+    .ba-label-before {
+      left: 16px;
+    }
+
+    .ba-label-after {
+      right: 16px;
+    }
+
+    .ba-handle-circle {
+      width: 40px;
+      height: 40px;
+    }
+
+    .ba-handle-circle svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.ba-slider').forEach((slider) => {
+    const before = slider.querySelector('.ba-before') as HTMLElement;
+    const handle = slider.querySelector('.ba-handle') as HTMLElement;
+
+    let isDragging = false;
+
+    const updateSlider = (x: number) => {
+      const rect = slider.getBoundingClientRect();
+      let percentage = ((x - rect.left) / rect.width) * 100;
+      percentage = Math.max(0, Math.min(100, percentage));
+
+      before.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+      handle.style.left = `${percentage}%`;
+    };
+
+    const onMove = (e: MouseEvent | TouchEvent) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      updateSlider(x);
+    };
+
+    const onEnd = () => {
+      isDragging = false;
+      document.body.style.cursor = '';
+    };
+
+    slider.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      document.body.style.cursor = 'col-resize';
+      const x = (e as MouseEvent).clientX;
+      updateSlider(x);
+    });
+
+    slider.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      const x = e.touches[0].clientX;
+      updateSlider(x);
+    });
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('mouseup', onEnd);
+    document.addEventListener('touchend', onEnd);
+
+    // Initialize handle position
+    handle.style.left = '50%';
+  });
+</script>

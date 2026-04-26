@@ -1,0 +1,134 @@
+{
+  "id": "photographer-premium",
+  "name": "Photographer Premium",
+  "slug": "photographer-premium",
+  "description": "couples, founders, and brands seeking emotionally rich photography",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/photographer/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#B22A2A",
+      "secondary": "#DB8233",
+      "accent": "#E8BAD1",
+      "background": "#1A4242",
+      "surface": "#EDF2F7",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Playfair Display",
+      "body": "Inter"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Photographer Signature Presence",
+            "subheadline": "Present the photographer as a premium specialist for couples, founders, and brands seeking emotionally rich photography. Promise editorial galleries and timeless photo stories with a strong, memorable first impression.",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Photographer Distinct",
+            "body": "why this practice exists, which standards matter, and how the work balances trust, craft, and premium delivery",
+            "image": "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Portrait Sessions",
+              "Brand Shoots",
+              "Wedding Coverage",
+              "Campaign Lookbooks",
+              "Custom Quotes"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Discovery Call",
+              "Planning Session",
+              "Photoshoot",
+              "Editing & Refinement",
+              "Final Handover"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Sarah & Michael",
+              "Brand XYZ",
+              "Emily Johnson",
+              "Fashion Magazine",
+              "Studio Awards"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@photographer",
+            "instagram": "@photographer",
+            "email": "hello@photographer.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

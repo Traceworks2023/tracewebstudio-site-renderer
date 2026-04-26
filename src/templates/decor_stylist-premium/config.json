@@ -1,0 +1,134 @@
+{
+  "id": "decor_stylist-premium",
+  "name": "Decor Stylist Premium",
+  "slug": "decor_stylist-premium",
+  "description": "hosts and brands wanting impactful visual environments",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/decor_stylist/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#E78727",
+      "secondary": "#F4EE4E",
+      "accent": "#EDB6B6",
+      "background": "#112E4A",
+      "surface": "#DBDBF5",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Righteous",
+      "body": "Nunito"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Decor Stylist Signature Presence",
+            "subheadline": "Present the decor stylist as a premium specialist for hosts and brands wanting impactful visual environments",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Decor Stylist Distinct",
+            "body": "Highlight premium offers across tablescapes, event decor, festive styling, setup concepts, styling consults",
+            "image": "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Tablescapes",
+              "Event Decor",
+              "Festive Styling",
+              "Setup Concepts",
+              "Styling Consults"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Concept",
+              "Design",
+              "Setup",
+              "Finishing"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Magazine Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@decor_stylist",
+            "instagram": "@decor_stylist",
+            "email": "hello@decorstylist.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "wedding_planner-premium",
+  "name": "Wedding Planner Premium",
+  "slug": "wedding_planner-premium",
+  "description": "couples wanting seamless, design-led celebrations",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/wedding_planner/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#231DD3",
+      "secondary": "#9135ED",
+      "accent": "#A1C2E8",
+      "background": "#565918",
+      "surface": "#E7F2DE",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Space Grotesk",
+      "body": "IBM Plex Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Wedding Planner Signature Presence",
+            "subheadline": "Present the wedding planner as a premium specialist for couples wanting seamless, design-led celebrations",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Wedding Planner Distinct",
+            "body": "Show 6–10 signature works that prove strength in wedding logistics, design, and guest experience",
+            "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Full Planning",
+              "Partial Planning",
+              "Vendor Coordination",
+              "Timeline Design",
+              "Decor Oversight"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Planning",
+              "Design",
+              "Coordination",
+              "Execution"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Magazine Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@wedding_planner",
+            "instagram": "@wedding_planner",
+            "email": "hello@weddingplanner.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

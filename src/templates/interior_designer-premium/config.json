@@ -1,0 +1,134 @@
+{
+  "id": "interior_designer-premium",
+  "name": "Interior Designer Premium",
+  "slug": "interior_designer-premium",
+  "description": "homeowners and businesses transforming rooms into lived experiences",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/interior_designer/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#8AD11F",
+      "secondary": "#4FEB37",
+      "accent": "#DBD494",
+      "background": "#3B1D67",
+      "surface": "#F7ECF9",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Rozha One",
+      "body": "Outfit"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Interior Designer Signature Presence",
+            "subheadline": "Present the interior designer as a premium specialist for homeowners and businesses transforming rooms into lived experiences",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Interior Designer Distinct",
+            "body": "Show 6–10 signature works that prove strength in space planning, materials, and mood-led interiors",
+            "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Discovery",
+              "Concept",
+              "Design",
+              "Implementation",
+              "Completion"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Full Service",
+              "Styling",
+              "Planning",
+              "Consultation",
+              "Moodboard"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Magazine Features",
+              "Industry Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@interior_designer",
+            "instagram": "@interior_designer",
+            "email": "hello@interiordesigner.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

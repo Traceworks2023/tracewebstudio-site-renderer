@@ -1,0 +1,134 @@
+{
+  "id": "illustrator-premium",
+  "name": "Illustrator Premium",
+  "slug": "illustrator-premium",
+  "description": "brands, authors, and creators needing unique visual storytelling",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/illustrator/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#D228C1",
+      "secondary": "#E6478C",
+      "accent": "#B578DD",
+      "background": "#26732E",
+      "surface": "#DEF2EA",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Cormorant Infant",
+      "body": "Public Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Illustrator Signature Presence",
+            "subheadline": "Present the illustrator as a premium specialist for brands, authors, and creators needing unique visual storytelling",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Illustrator Distinct",
+            "body": "Show 6–10 signature works that prove strength in line, color, character, and concept illustration",
+            "image": "https://images.unsplash.com/photo-1633355444132-695d5876cd00?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Editorial Illustration",
+              "Book Art",
+              "Packaging Visuals",
+              "Custom Illustrations",
+              "Branding"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Brief",
+              "Concept",
+              "Draft",
+              "Refinement",
+              "Final Art"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Publisher Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@illustrator",
+            "instagram": "@illustrator",
+            "email": "hello@illustrator.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

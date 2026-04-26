@@ -86,10 +86,11 @@ import fs from 'fs';
 import path from 'path';
 
 const TEMPLATES_DIR = path.join(process.cwd(), 'src', 'templates');
+const API_URL = import.meta.env.PUBLIC_API_URL || 'http://localhost:8081';
 
-// Load template config - first from local filesystem, then from API
+// Load template config - first from local filesystem (development), then from core-backend API
 export async function loadTemplate(slug: string): Promise<TemplateConfig | null> {
-  // Try loading from local filesystem first (for development)
+  // 1. Try loading from local filesystem (primary for development)
   try {
     const configPath = path.join(TEMPLATES_DIR, slug, 'config.json');
     if (fs.existsSync(configPath)) {
@@ -100,20 +101,24 @@ export async function loadTemplate(slug: string): Promise<TemplateConfig | null>
     console.warn(`Failed to load local template config for ${slug}:`, e);
   }
 
-  // Try loading from API (for production)
+  // 2. Try loading from core-backend API (production)
   try {
-    const apiResponse = await fetch(`${import.meta.env.PUBLIC_API_URL || 'http://localhost:8081'}/api/v1/templates/slug/${slug}`);
+    const apiResponse = await fetch(`${API_URL}/api/v1/templates/slug/${slug}`);
     if (apiResponse.ok) {
       const data = await apiResponse.json();
-      // Parse structure_json and theme_json from API response
-      if (data.structure_json) {
-        const config = typeof data.structure_json === 'string' 
-          ? JSON.parse(data.structure_json) 
-          : data.structure_json;
-        config.theme = typeof data.theme_json === 'string' 
-          ? JSON.parse(data.theme_json) 
-          : data.theme_json || {};
-        return config;
+      if (data) {
+        // Core-backend returns structure_json and theme_json separately
+        if (data.structure_json) {
+          const config = typeof data.structure_json === 'string'
+            ? JSON.parse(data.structure_json)
+            : data.structure_json;
+          config.theme = typeof data.theme_json === 'string'
+            ? JSON.parse(data.theme_json)
+            : data.theme_json || {};
+          config.id = slug;
+          return config;
+        }
+        return data;
       }
     }
   } catch (e) {

@@ -1,0 +1,83 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Page Title',
+  subtitle = 'Page subtitle',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section class="minimal-hero">
+  <div class="mh-content">
+    <h1 class="mh-title">{title}</h1>
+    {subtitle && <p class="mh-subtitle">{subtitle}</p>}
+  </div>
+</section>
+
+<style>
+  .minimal-hero {
+    padding: 180px 24px 100px;
+    background: #0a0a0a;
+    text-align: center;
+  }
+
+  .mh-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .mh-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .mh-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    color: #888888;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    .minimal-hero {
+      padding: 140px 16px 60px;
+    }
+  }
+</style>
+
+<script>
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.minimal-hero').forEach((hero) => {
+    const title = hero.querySelector('.mh-title');
+    const subtitle = hero.querySelector('.mh-subtitle');
+
+    gsap.fromTo(title,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.2 }
+    );
+    if (subtitle) {
+      gsap.fromTo(subtitle,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.4 }
+      );
+    }
+  });
+</script>

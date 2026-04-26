@@ -1,0 +1,199 @@
+---
+// AboutCentered - Centered portrait + bio stack
+// For Indian creative professionals who want a personal, centered introduction
+interface Props {
+  content?: {
+    title?: string;
+    name?: string;
+    role?: string;
+    years?: string;
+    bio?: string;
+    philosophy?: string;
+    cities?: string;
+    image?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+    motionLevel?: number;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'About',
+  name = 'Artist Name',
+  role = 'Creative Professional',
+  years = '5+ years',
+  bio = '',
+  philosophy = '',
+  cities = '',
+  image = '',
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+const initial = name.charAt(0);
+---
+
+<section id="about" class="about-centered">
+  <div class="about-inner">
+    {title && (
+      <h2 class="about-title">{title}</h2>
+    )}
+
+    <div class="about-portrait">
+      {image ? (
+        <img src={image} alt={name} class="portrait-img" loading="lazy" />
+      ) : (
+        <div class="portrait-placeholder" style={`background: radial-gradient(circle at 30% 30%, var(--color-accent, #c78d6e), var(--color-secondary, #4a1c2a));`}>
+          <span class="portrait-initial">{initial}</span>
+        </div>
+      )}
+    </div>
+
+    <h3 class="about-name">{name}</h3>
+    <p class="about-role">{role} · {years}</p>
+
+    {cities && (
+      <p class="about-cities">{cities}</p>
+    )}
+
+    {bio && (
+      <p class="about-bio">{bio}</p>
+    )}
+
+    {philosophy && (
+      <blockquote class="about-philosophy">
+        <span class="quote-mark">"</span>
+        {philosophy}
+        <span class="quote-mark">"</span>
+      </blockquote>
+    )}
+  </div>
+</section>
+
+<style>
+  .about-centered {
+    padding: 120px 24px;
+    background: var(--color-background, #1a0b12);
+  }
+
+  .about-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent, #c78d6e);
+    margin-bottom: 48px;
+  }
+
+  .about-portrait {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--color-accent, #c78d6e);
+    padding: 4px;
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .portrait-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portrait-initial {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: 4rem;
+    font-weight: 300;
+    color: #fff;
+  }
+
+  .about-name {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 300;
+    color: var(--color-text, #f5efe7);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .about-role {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-accent, #c78d6e);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .about-cities {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #b8a99a);
+    margin-bottom: 32px;
+  }
+
+  .about-bio {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text-muted, #b8a99a);
+    margin-bottom: 32px;
+  }
+
+  .about-philosophy {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-text, #f5efe7);
+    border-left: 2px solid var(--color-accent, #c78d6e);
+    padding-left: 24px;
+    text-align: left;
+    margin-top: 40px;
+  }
+
+  .quote-mark {
+    color: var(--color-accent, #c78d6e);
+    font-size: 1.4em;
+    line-height: 0;
+  }
+
+  @media (max-width: 640px) {
+    .about-centered {
+      padding: 80px 20px;
+    }
+
+    .about-portrait {
+      width: 120px;
+      height: 120px;
+    }
+
+    .portrait-initial {
+      font-size: 3rem;
+    }
+
+    .about-philosophy {
+      font-size: 1.1rem;
+    }
+  }
+</style>

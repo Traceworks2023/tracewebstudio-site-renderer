@@ -1,0 +1,134 @@
+{
+  "id": "artist_painter-premium",
+  "name": "Artist / Painter Premium",
+  "slug": "artist_painter-premium",
+  "description": "collectors and clients seeking expressive original art",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/artist_painter/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#2A43E5",
+      "secondary": "#8650F2",
+      "accent": "#A7CCE2",
+      "background": "#5A5116",
+      "surface": "#F4FAEA",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Tenor Sans",
+      "body": "Sora"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Artist / Painter Signature Presence",
+            "subheadline": "Present the artist / painter as a premium specialist for collectors and clients seeking expressive original art",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Artist / Painter Distinct",
+            "body": "Show 6–10 signature works that prove strength in texture, color, and handcrafted visual storytelling",
+            "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Commissions",
+              "Canvas Art",
+              "Mural Concepts",
+              "Custom Artwork",
+              "Exhibits"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Client Stories",
+              "Collector Features",
+              "Magazine Articles",
+              "Awards",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Consultation",
+              "Concept Development",
+              "Creation",
+              "Finishing",
+              "Delivery"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@artist_painter",
+            "instagram": "@artist_painter",
+            "email": "hello@artist.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

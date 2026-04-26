@@ -1,0 +1,134 @@
+{
+  "id": "tutor-premium-max",
+  "name": "Tutor Premium Max",
+  "slug": "tutor-premium-max",
+  "description": "students and parents seeking reliable academic progress",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/tutor/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#1FD67D",
+      "secondary": "#3BEDEA",
+      "accent": "#74E276",
+      "background": "#78214B",
+      "surface": "#EFD7D7",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Libre Franklin",
+      "body": "Hind"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Tutor Worldbuilding Entrance",
+            "subheadline": "Present the tutor as a premium specialist for students and parents seeking reliable academic progress",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Show 6–10 signature works that prove strength in concept clarity, structured lessons, and confidence building",
+            "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Assessment",
+              "Goal Setting",
+              "Premium Lesson Plan",
+              "Expert Teaching",
+              "Progress Review"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Success Stories",
+              "Industry Recognition",
+              "Award Collections",
+              "Student Transformations",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@tutor",
+            "instagram": "@tutor",
+            "email": "hello@tutor.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

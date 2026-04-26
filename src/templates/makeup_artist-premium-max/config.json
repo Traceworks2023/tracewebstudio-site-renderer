@@ -1,0 +1,134 @@
+{
+  "id": "makeup_artist-premium-max",
+  "name": "Makeup Artist Premium Max",
+  "slug": "makeup_artist-premium-max",
+  "description": "brides, creators, and personal clients",
+  "category": "portfolio",
+  "tier": "premium-max",
+  "thumbnail_url": "/assets/generated/makeup_artist/pro/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#34D1DF",
+      "secondary": "#599CEE",
+      "accent": "#B8EAD5",
+      "background": "#471915",
+      "surface": "#F7EFE3",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Libre Baskerville",
+      "body": "Work Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Makeup Artist Worldbuilding Entrance",
+            "subheadline": "Present the makeup artist as a premium specialist for brides, creators, and personal clients",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Book a High-Touch Experience",
+            "backgroundImage": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work in Motion",
+            "images": [
+              "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "Core Creative Lens",
+            "body": "Tell the brand story: why this practice exists, which standards matter",
+            "image": "https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Max Offers",
+            "items": [
+              "VIP Package",
+              "Bespoke Experience",
+              "Full Service",
+              "Priority Access",
+              "VIP Treatment"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "How Outcomes Are Built",
+            "steps": [
+              "Personal Consultation",
+              "Skin Preparation",
+              "Makeup Application",
+              "Final Touches",
+              "After Care Guide"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Reviews, Features, Results",
+            "items": [
+              "Client Stories",
+              "Magazine Features",
+              "Industry Awards",
+              "Celebrity Endorsements",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Book a High-Touch Experience",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@makeup_artist",
+            "instagram": "@makeup_artist",
+            "email": "hello@makeupartist.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "nail_artist-premium",
+  "name": "Nail Artist Premium",
+  "slug": "nail_artist-premium",
+  "description": "beauty clients looking for trend-led nail designs",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/nail_artist/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#189ED8",
+      "secondary": "#315EF2",
+      "accent": "#64D8C1",
+      "background": "#8C4121",
+      "surface": "#F4EFDC",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Heebo",
+      "body": "Assistant"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Nail Artist Signature Presence",
+            "subheadline": "Present the nail artist as a premium specialist for beauty clients looking for trend-led nail designs",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Nail Artist Distinct",
+            "body": "Show 6–10 signature works that prove strength in nail detail, finish, color story, and durable artistry",
+            "image": "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Gel Nails",
+              "Custom Nail Art",
+              "Bridal Nails",
+              "Seasonal Sets",
+              "Appointments"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Design",
+              "Preparation",
+              "Application",
+              "Finishing"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Beauty Features",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@nail_artist",
+            "instagram": "@nail_artist",
+            "email": "hello@nails.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

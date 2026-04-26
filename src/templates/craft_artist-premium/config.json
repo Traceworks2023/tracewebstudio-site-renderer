@@ -1,0 +1,134 @@
+{
+  "id": "craft_artist-premium",
+  "name": "Craft Artist Premium",
+  "slug": "craft_artist-premium",
+  "description": "buyers and brands drawn to handmade object stories",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/craft_artist/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#81DF3A",
+      "secondary": "#5EED63",
+      "accent": "#DDE28D",
+      "background": "#471E66",
+      "surface": "#F5DBF3",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Archivo Black",
+      "body": "Archivo"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Craft Artist Signature Presence",
+            "subheadline": "Present the craft artist as a premium specialist for buyers and brands drawn to handmade object stories",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Craft Artist Distinct",
+            "body": "Show 6–10 signature works that prove strength in material craft and artisanal surface detail",
+            "image": "https://images.unsplash.com/photo-1558618047-f4b511cc0a08?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Handmade Collections",
+              "Custom Pieces",
+              "Decor Objects",
+              "Gifting Collection",
+              "Limited Editions"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Consultation",
+              "Design",
+              "Creation",
+              "Finishing",
+              "Delivery"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Collector Stories",
+              "Brand Partnerships",
+              "Awards",
+              "Recognition",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Start a Project",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@craft_artist",
+            "instagram": "@craft_artist",
+            "email": "hello@craftartist.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

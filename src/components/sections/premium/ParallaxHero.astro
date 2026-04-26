@@ -1,0 +1,281 @@
+---
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    tagline?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+    images?: string[];
+  };
+  settings?: {
+    templateSlug?: string;
+    motionLevel?: number;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = '',
+  subtitle = '',
+  tagline = '',
+  ctaText = '',
+  ctaUrl = '#',
+  images = [],
+} = content;
+
+const { templateSlug = '', motionLevel = 4 } = settings;
+const heroId = `parallax-hero-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section id={heroId} class="parallax-hero">
+  <div class="parallax-bg">
+    {images.map((image, i) => (
+      <div
+        class="parallax-layer"
+        data-speed={i === 0 ? 0.3 : i === 1 ? 0.5 : 0.7}
+        style={`background-image: url(${image});`}
+      />
+    ))}
+  </div>
+  <div class="parallax-overlay"></div>
+
+  <div class="parallax-content">
+    {tagline && (
+      <div class="tagline-line">
+        <span class="tagline-text">{tagline}</span>
+      </div>
+    )}
+    {title && <h1 class="hero-title" data-animate="fade-up">{title}</h1>}
+    {subtitle && <p class="hero-subtitle" data-animate="fade-up" data-delay="200">{subtitle}</p>}
+    {ctaText && (
+      <a href={ctaUrl} class="hero-cta" data-animate="fade-up" data-delay="400">
+        <span>{ctaText}</span>
+        <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    )}
+  </div>
+
+  <div class="scroll-indicator" data-animate="fade-in" data-delay="800">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<style>
+  .parallax-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--color-background, #0a0a0a);
+  }
+
+  .parallax-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .parallax-layer {
+    position: absolute;
+    inset: -20%;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+  }
+
+  .parallax-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--color-background, #0a0a0a);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .parallax-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 2rem;
+  }
+
+  .tagline-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards 0.3s;
+  }
+
+  .tagline-text {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--color-accent, #c9a962);
+  }
+
+  .tagline-line::before,
+  .tagline-line::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent, #c9a962), transparent);
+  }
+
+  .hero-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1.2s ease forwards 0.5s;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    color: var(--color-text-muted, rgba(255,255,255,0.7));
+    letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards 0.7s;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 2.5rem;
+    background: transparent;
+    border: 1px solid var(--color-accent, rgba(201,169,98,0.5));
+    color: var(--color-accent, #c9a962);
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards 0.9s;
+  }
+
+  .hero-cta:hover {
+    background: var(--color-accent, #c9a962);
+    color: var(--color-background, #0a0a0a);
+    border-color: var(--color-accent, #c9a962);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.3);
+  }
+
+  .hero-cta:hover .cta-arrow {
+    transform: translateX(5px);
+  }
+
+  .cta-arrow {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.2s;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--color-accent, #c9a962), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  .scroll-indicator span {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.625rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-text-muted, rgba(255,255,255,0.5));
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.5; transform: scaleY(0.8); }
+  }
+
+  @media (max-width: 768px) {
+    .tagline-line::before,
+    .tagline-line::after { width: 30px; }
+    .hero-cta { padding: 1rem 2rem; }
+  }
+</style>
+
+{motionLevel >= 4 && (
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.parallax-hero').forEach((hero) => {
+    const layers = hero.querySelectorAll('.parallax-layer');
+    const content = hero.querySelector('.parallax-content');
+
+    ScrollTrigger.create({
+      trigger: hero,
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        layers.forEach((layer) => {
+          const speed = parseFloat(layer.getAttribute('data-speed') || '0.5');
+          gsap.set(layer, { y: progress * 100 * speed });
+        });
+        if (content) {
+          gsap.set(content, { opacity: 1 - progress * 1.5, y: progress * 100 });
+        }
+      },
+    });
+
+    if (content) {
+      gsap.fromTo(content, { opacity: 0 }, { opacity: 1, duration: 0.1 });
+    }
+  });
+</script>
+)}

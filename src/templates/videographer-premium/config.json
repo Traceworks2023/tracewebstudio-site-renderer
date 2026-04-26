@@ -1,0 +1,134 @@
+{
+  "id": "videographer-premium",
+  "name": "Videographer Premium",
+  "slug": "videographer-premium",
+  "description": "brands and people needing story-driven motion content",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/videographer/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#B8E22C",
+      "secondary": "#81F051",
+      "accent": "#E2CC8D",
+      "background": "#2E1C69",
+      "surface": "#EDDDF3",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "DM Serif Display",
+      "body": "Plus Jakarta Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Videographer Signature Presence",
+            "subheadline": "Present the videographer as a premium specialist for brands and people needing story-driven motion content",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1579566346927-c68383817a25?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Videographer Distinct",
+            "body": "Show 6–10 signature works that prove strength in cinematic motion",
+            "image": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Discovery Call",
+              "Concept Development",
+              "Production",
+              "Post-Production",
+              "Final Delivery"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Brand Films",
+              "Social Reels",
+              "Event Coverage",
+              "Product Videos",
+              "Interviews"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Reviews",
+              "Industry Recognition",
+              "Featured Work",
+              "Success Metrics",
+              "Portfolio"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Consultation",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@videographer",
+            "instagram": "@videographer",
+            "email": "hello@videographer.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

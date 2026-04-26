@@ -1,0 +1,300 @@
+---
+// PatternGrid - Filterable gallery with category tags and metadata
+// For Mehndi Artist, Tattoo Artist, and other pattern-based portfolios
+interface PatternItem {
+  id: string;
+  title?: string;
+  style?: string;
+  time?: string;
+  city?: string;
+  image?: string;
+}
+
+interface Props {
+  content?: {
+    title?: string;
+    filters?: string[];
+    items?: PatternItem[];
+  };
+  settings?: {
+    templateSlug?: string;
+    motionLevel?: number;
+  };
+}
+
+const { content = {}, settings = {} } = Astro.props;
+const {
+  title = 'Selected Works',
+  filters = ['All'],
+  items = [],
+} = content;
+
+const templateSlug = settings.templateSlug || '';
+---
+
+<section id="works" class="pattern-grid-section">
+  <div class="pattern-inner">
+    {title && (<h2 class="pattern-title">{title}</h2>)}
+
+    <div class="pattern-filters">
+      {filters.map((f, i) => (
+        <button class={`filter-pill ${i === 0 ? 'active' : ''}`} data-filter={f}>
+          {f}
+        </button>
+      ))}
+    </div>
+
+    <div class="pattern-grid">
+      {items.map((item, i) => (
+        <div class="pattern-card" data-style={item.style || ''} style={`--index: ${i}`}>
+          {item.image ? (
+            <img src={item.image} alt={item.title || ''} loading="lazy" class="pattern-img" />
+          ) : (
+            <div class="pattern-img pattern-placeholder" style={`background: linear-gradient(135deg, var(--color-surface, #2d131e), var(--color-secondary, #4a1c2a));`}></div>
+          )}
+
+          <div class="pattern-overlay">
+            <div class="pattern-meta">
+              {item.style && (<span class="pattern-style">{item.style}</span>
+              )}
+              <div class="pattern-tags">
+                {item.time && (
+                  <span class="pattern-tag">{item.time}</span>
+                )}
+                {item.city && (
+                  <span class="pattern-tag">{item.city}</span>
+                )}
+              </div>
+            </div>
+            {item.title && (
+              <h3 class="pattern-card-title">{item.title}</h3>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pattern-grid-section {
+    padding: 120px 24px;
+    background: var(--color-background, #1a0b12);
+  }
+
+  .pattern-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pattern-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--color-text, #f5efe7);
+    text-align: center;
+    margin-bottom: 48px;
+    letter-spacing: -0.02em;
+  }
+
+  .pattern-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+
+  .filter-pill {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 10px 22px;
+    border: 1px solid var(--color-border, #3d1f2b);
+    border-radius: 30px;
+    background: transparent;
+    color: var(--color-text-muted, #b8a99a);
+    cursor: pointer;
+    transition: all 0.35s ease;
+  }
+
+  .filter-pill:hover {
+    border-color: var(--color-accent, #c78d6e);
+    color: var(--color-accent, #c78d6e);
+  }
+
+  .filter-pill.active {
+    background: var(--color-accent, #c78d6e);
+    border-color: var(--color-accent, #c78d6e);
+    color: var(--color-primary, #1a0b12);
+  }
+
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .pattern-card {
+    position: relative;
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  }
+
+  .pattern-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 24px 48px -12px rgba(0,0,0,0.4);
+  }
+
+  .pattern-card:nth-child(2n) {
+    aspect-ratio: 3/3.6;
+  }
+
+  .pattern-card:nth-child(4n) {
+    aspect-ratio: 3/3.3;
+  }
+
+  .pattern-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pattern-card:hover .pattern-img {
+    transform: scale(1.06);
+  }
+
+  .pattern-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .pattern-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,11,18,0.92) 0%, rgba(26,11,18,0.3) 40%, transparent 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .pattern-card:hover .pattern-overlay {
+    opacity: 1;
+  }
+
+  .pattern-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .pattern-style {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--color-accent, #c78d6e);
+  }
+
+  .pattern-tags {
+    display: flex;
+    gap: 8px;
+  }
+
+  .pattern-tag {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted, #b8a99a);
+    padding: 4px 10px;
+    border: 1px solid rgba(184, 169, 154, 0.3);
+    border-radius: 12px;
+  }
+
+  .pattern-card-title {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text, #f5efe7);
+    margin: 0;
+  }
+
+  .pattern-card.hidden {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .pattern-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pattern-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .pattern-grid-section {
+      padding: 80px 16px;
+    }
+
+    .pattern-overlay {
+      opacity: 1;
+      background: linear-gradient(to top, rgba(26,11,18,0.85) 0%, transparent 60%);
+      padding: 16px;
+    }
+
+    .pattern-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .pattern-card-title {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.pattern-grid-section').forEach((section) => {
+    const filterBtns = section.querySelectorAll('.filter-pill');
+    const cards = section.querySelectorAll('.pattern-card');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        cards.forEach((card) => {
+          const style = card.getAttribute('data-style') || '';
+          if (filter === 'All' || style === filter) {
+            card.classList.remove('hidden');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(12px)';
+            requestAnimationFrame(() => {
+              card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script>

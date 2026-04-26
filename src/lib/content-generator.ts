@@ -365,28 +365,28 @@ export function applyGeneratedContentToSection(
   if (sectionType === 'hero-cinematic' && section.content) {
     updatedSection.content = {
       ...section.content,
-      title: content.brand.name,
-      subtitle: content.brand.tagline,
-      ctaText: content.ctas.primary
+      title: section.content.title || section.content.headline || content.brand.name,
+      subtitle: section.content.subtitle || section.content.subheadline || content.brand.tagline,
+      ctaText: section.content.ctaText || content.ctas.primary
     };
   }
 
   if (sectionType === 'hero-editorial' && section.content) {
     updatedSection.content = {
       ...section.content,
-      title: content.brand.name,
-      subtitle: content.brand.tagline,
-      description: content.brand.description,
-      ctaText: content.ctas.primary,
-      secondaryCtaText: content.ctas.secondary
+      title: section.content.title || content.brand.name,
+      subtitle: section.content.subtitle || content.brand.tagline,
+      description: section.content.description || content.brand.description,
+      ctaText: section.content.ctaText || content.ctas.primary,
+      secondaryCtaText: section.content.secondaryCtaText || content.ctas.secondary
     };
   }
 
   if (sectionType === 'split-media' && section.content) {
     updatedSection.content = {
       ...section.content,
-      title: content.services[0]?.name || 'Our Services',
-      description: content.services[0]?.description || content.brand.description
+      title: section.content.title || content.services[0]?.name || 'Our Services',
+      description: section.content.description || content.services[0]?.description || content.brand.description
     };
   }
 
@@ -399,9 +399,25 @@ export function applyGeneratedContentToSection(
   }
 
   if (sectionType === 'gallery-grid' && section.content) {
+    // Preserve template-defined gallery images; only use generated if none provided
+    const images = section.content.images || section.content.items || [];
+    const processedImages = images.length > 0
+      ? images.map((item: any) => ({
+          title: item.title || item.name || '',
+          src: item.src || item.image || item,
+          alt: item.alt || item.title || item.name || '',
+          category: item.category || '',
+        }))
+      : content.categories.slice(0, 6).map((cat, i) => ({
+          title: cat.name,
+          src: `https://picsum.photos/seed/${cat.id}/600/800`,
+          alt: cat.name,
+          category: cat.name,
+        }));
     updatedSection.content = {
       ...section.content,
-      title: `${content.brand.name} Portfolio`
+      title: section.content.title || content.brand.name + ' Portfolio',
+      images: processedImages,
     };
   }
 
@@ -479,13 +495,19 @@ export function applyGeneratedContentToSection(
   }
 
   if (sectionType === 'testimonials' && section.content) {
-    // Only use generated content if template doesn't define its own testimonials
+    // Preserve template-defined testimonials; only use generated if none provided
+    const existing = section.content.testimonials || section.content.items || [];
     updatedSection.content = {
       ...section.content,
       title: section.content.title || 'What Our Clients Say',
       subtitle: section.content.subtitle || 'Join thousands of satisfied customers',
-      testimonials: section.content.testimonials?.length > 0
-        ? section.content.testimonials
+      testimonials: existing.length > 0
+        ? existing.map((t: any) => ({
+            name: t.name,
+            quote: t.quote,
+            rating: 5,
+            ...(t.date ? { role: t.date } : { role: t.role, company: t.company })
+          }))
         : content.testimonials.slice(0, 3).map((test, i) => ({
             name: test.name,
             role: test.role,
@@ -494,6 +516,58 @@ export function applyGeneratedContentToSection(
             rating: 5
           }))
     };
+  }
+
+  if (sectionType === 'testimonials-marquee' && section.content) {
+    const existing = section.content.testimonials || section.content.items || [];
+    updatedSection.content = {
+      ...section.content,
+      title: section.content.title || 'What Our Clients Say',
+      subtitle: section.content.subtitle || 'Join thousands of satisfied customers',
+      testimonials: existing.length > 0
+        ? existing.map((t: any) => ({
+            name: t.name,
+            quote: t.quote,
+            rating: 5,
+            ...(t.date ? { role: t.date } : { role: t.role, company: t.company })
+          }))
+        : content.testimonials.slice(0, 3).map((test, i) => ({
+            name: test.name,
+            role: test.role,
+            company: test.company,
+            quote: test.quote,
+            rating: 5
+          }))
+    };
+  }
+
+  if ((sectionType === 'testimonial-masonry' || sectionType === 'testimonials-masonry') && section.content) {
+    const existing = section.content.testimonials || section.content.items || [];
+    updatedSection.content = {
+      ...section.content,
+      title: section.content.title || 'What Our Clients Say',
+      subtitle: section.content.subtitle || 'Join thousands of satisfied customers',
+      testimonials: existing.length > 0
+        ? existing.map((t: any) => ({
+            name: t.name,
+            quote: t.quote,
+            rating: 5,
+            ...(t.date ? { role: t.date, company: '' } : { role: t.role, company: t.company })
+          }))
+        : content.testimonials.slice(0, 3).map((test, i) => ({
+            name: test.name,
+            role: test.role,
+            company: test.company,
+            quote: test.quote,
+            rating: 5
+          }))
+    };
+  }
+
+  // Preserve original content for section types not explicitly handled above
+  // (like bento-grid, masonry-gallery, pricing-cards, timeline, etc.)
+  if (!updatedSection.content && section.content) {
+    updatedSection.content = section.content;
   }
 
   return updatedSection;

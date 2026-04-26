@@ -1,0 +1,134 @@
+{
+  "id": "personal_coach-premium",
+  "name": "Personal Coach Premium",
+  "slug": "personal_coach-premium",
+  "description": "people navigating growth, clarity, and performance",
+  "category": "portfolio",
+  "tier": "premium",
+  "thumbnail_url": "/assets/generated/personal_coach/premium/hero.png",
+  "theme": {
+    "colors": {
+      "primary": "#D5971A",
+      "secondary": "#D7F033",
+      "accent": "#E8C2BA",
+      "background": "#122549",
+      "surface": "#EDEBFA",
+      "text": "#FFFFFF",
+      "textMuted": "#d4c4b4",
+      "border": "#2a3a3a"
+    },
+    "fonts": {
+      "heading": "Cabin",
+      "body": "Nunito Sans"
+    }
+  },
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-cinematic",
+          "visible": true,
+          "sortOrder": 1,
+          "content": {
+            "headline": "Personal Coach Signature Presence",
+            "subheadline": "Present the personal coach as a premium specialist for people navigating growth, clarity, and performance",
+            "ctaText": "Get Started",
+            "ctaSecondaryText": "Start the Conversation",
+            "backgroundImage": "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200"
+          }
+        },
+        {
+          "id": "featured",
+          "type": "gallery-grid",
+          "visible": true,
+          "sortOrder": 2,
+          "content": {
+            "title": "Signature Work",
+            "images": [
+              "https://images.unsplash.com/photo-1548777123-e216912df7d8?w=800"
+            ]
+          }
+        },
+        {
+          "id": "brand-story",
+          "type": "split-media",
+          "visible": true,
+          "sortOrder": 3,
+          "content": {
+            "title": "What Makes This Personal Coach Distinct",
+            "body": "Highlight premium offers across clarity coaching, confidence work, routines, accountability, sessions",
+            "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"
+          }
+        },
+        {
+          "id": "services",
+          "type": "bento-grid",
+          "visible": true,
+          "sortOrder": 4,
+          "content": {
+            "title": "Premium Offers",
+            "items": [
+              "Clarity Coaching",
+              "Confidence Work",
+              "Routines",
+              "Accountability",
+              "Sessions"
+            ]
+          }
+        },
+        {
+          "id": "process",
+          "type": "timeline",
+          "visible": true,
+          "sortOrder": 5,
+          "content": {
+            "title": "From Inquiry to Delivery",
+            "steps": [
+              "Discovery Call",
+              "Goal Setting",
+              "Strategy",
+              "Coaching",
+              "Review"
+            ]
+          }
+        },
+        {
+          "id": "testimonials",
+          "type": "testimonial-masonry",
+          "visible": true,
+          "sortOrder": 6,
+          "content": {
+            "title": "Results, Reviews, Trust",
+            "items": [
+              "Client Stories",
+              "Transformations",
+              "Awards",
+              "Recognition",
+              "Testimonials"
+            ]
+          }
+        },
+        {
+          "id": "contact",
+          "type": "cta-split",
+          "visible": true,
+          "sortOrder": 7,
+          "content": {
+            "title": "Start the Conversation",
+            "body": "Close with a conversion-led section for bookings, discovery calls, custom quotes",
+            "ctaText": "Book Discovery Session",
+            "phone": "+1 234 567 8900",
+            "whatsapp": "@personal_coach",
+            "instagram": "@personal_coach",
+            "email": "hello@coach.com",
+            "backgroundImage": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800"
+          }
+        }
+      ]
+    }
+  ]
+}

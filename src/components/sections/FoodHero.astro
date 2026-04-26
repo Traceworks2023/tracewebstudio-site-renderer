@@ -1,0 +1,219 @@
+---
+// FoodHero — Dark, moody, warm amber tones for food photographers
+interface Props {
+  content?: {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    ctaText?: string;
+    ctaUrl?: string;
+    image?: string;
+  };
+  settings?: {
+    templateSlug?: string;
+    motionLevel?: number;
+  };
+}
+const { content = {}, settings = {} } = Astro.props;
+const { title = '', subtitle = '', description = '', ctaText = '', ctaUrl = '#', image = '' } = content;
+---
+
+<section class="food-hero">
+  <div class="hero-wrap">
+    <div class="hero-text">
+      <div class="kicker">
+        <span class="kicker-line"></span>
+        <span>{subtitle}</span>
+        <span class="kicker-line"></span>
+      </div>
+      <h1 class="hero-title">{title}</h1>
+      {description && <p class="hero-desc">{description}</p>}
+      {ctaText && (
+        <a href={ctaUrl} class="hero-cta">
+          <span>{ctaText}</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      )}
+    </div>
+    <div class="hero-visual">
+      <div class="visual-frame">
+        <div class="ember-glow"></div>
+        {image ? (
+          <img src={image} alt={title} loading="eager" class="hero-img" />
+        ) : (
+          <div class="img-placeholder">
+            <span class="placeholder-label">{title.toUpperCase()}</span>
+            <span class="placeholder-sub">Food Photography</span>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .food-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: var(--color-background, #1a1412);
+    position: relative;
+    overflow: hidden;
+  }
+  .food-hero::before {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -20%;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(193,120,23,0.07), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .kicker-line {
+    width: 40px;
+    height: 1px;
+    background: var(--color-accent, #c17817);
+    opacity: 0.4;
+  }
+  .kicker span {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-accent, #c17817);
+  }
+
+  .hero-title {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    color: var(--color-text, #f5efe7);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-desc {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text-muted, #b8a99a);
+    max-width: 440px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 32px;
+    border: 1px solid var(--color-accent, #c17817);
+    color: var(--color-accent, #c17817);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 8px;
+  }
+  .hero-cta:hover {
+    background: var(--color-accent, #c17817);
+    color: var(--color-background, #1a1412);
+    transform: translateY(-2px);
+  }
+  .hero-cta svg { transition: transform 0.3s ease; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .visual-frame {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+
+  .ember-glow {
+    position: absolute;
+    top: -20%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(193,120,23,0.15), transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-sm, 6px);
+  }
+
+  .img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--color-surface, #2d1f1a), var(--color-background, #1a1412));
+    border-radius: var(--radius-sm, 6px);
+  }
+  .placeholder-label {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    letter-spacing: 0.2em;
+    color: var(--color-accent, #c17817);
+    opacity: 0.7;
+  }
+  .placeholder-sub {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #b8a99a);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 900px) {
+    .hero-wrap { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
+    .hero-visual { order: -1; }
+    .visual-frame { max-width: 400px; aspect-ratio: 16/10; }
+  }
+</style>
